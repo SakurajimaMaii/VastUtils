@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class BaseAdapter(private var items: MutableList<BaseItem>) :
     RecyclerView.Adapter<BaseAdapter.RecyclerViewHolder>() {
 
-    private val mClickListener: OnItemClickListener? = null
-    private val mLongClickListener: OnItemLongClickListener? = null
+    private var mClickListener: OnItemClickListener? = null
+    private var mLongClickListener: OnItemLongClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
         val holder = RecyclerViewHolder(
@@ -25,7 +25,7 @@ abstract class BaseAdapter(private var items: MutableList<BaseItem>) :
         }
         if (mLongClickListener != null) {
             holder.itemView.setOnLongClickListener {
-                mLongClickListener.onItemLongClick(holder.itemView, holder.layoutPosition)
+                mLongClickListener!!.onItemLongClick(holder.itemView, holder.layoutPosition)
             }
         }
         return holder
@@ -106,6 +106,14 @@ abstract class BaseAdapter(private var items: MutableList<BaseItem>) :
 
     interface OnItemLongClickListener {
         fun onItemLongClick(itemView: View?, pos: Int): Boolean
+    }
+
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener){
+        mClickListener = onItemClickListener
+    }
+
+    fun setOnItemLongClickListener(onItemLongClickListener: OnItemLongClickListener){
+        mLongClickListener = onItemLongClickListener
     }
 
     class RecyclerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

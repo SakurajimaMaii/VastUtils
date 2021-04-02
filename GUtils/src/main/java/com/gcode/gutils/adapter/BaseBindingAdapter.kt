@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class BaseBindingAdapter(private val items: MutableList<BaseItem>) :
         RecyclerView.Adapter<BaseBindingAdapter.BindingHolder>() {
 
-    private val mClickListener: OnItemClickListener? = null
-    private val mLongClickListener: OnItemLongClickListener? = null
+    private var mClickListener: OnItemClickListener? = null
+    private var mLongClickListener: OnItemLongClickListener? = null
 
     override fun onBindViewHolder(holder: BindingHolder, position: Int) {
         holder.bindData(setVariableId(), items[position])
@@ -116,6 +116,14 @@ abstract class BaseBindingAdapter(private val items: MutableList<BaseItem>) :
 
     interface OnItemLongClickListener {
         fun onItemLongClick(itemView: View?, pos: Int): Boolean
+    }
+
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener){
+        mClickListener = onItemClickListener
+    }
+
+    fun setOnItemLongClickListener(onItemLongClickListener: OnItemLongClickListener){
+        mLongClickListener = onItemLongClickListener
     }
 
     class BindingHolder(private var binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {

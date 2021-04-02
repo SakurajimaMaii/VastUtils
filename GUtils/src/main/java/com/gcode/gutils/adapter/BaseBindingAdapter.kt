@@ -25,7 +25,7 @@ abstract class BaseBindingAdapter(private val items: MutableList<BaseItem>) :
         }
         if (mLongClickListener != null) {
             holder.itemView.setOnLongClickListener {
-                mLongClickListener.onItemLongClick(holder.itemView, position)
+                mLongClickListener!!.onItemLongClick(holder.itemView, position)
             }
         }
     }

@@ -38,7 +38,8 @@
 
 ## 使用说明
 
-
+- [BaseBindingAdapter使用](https://github.com/SakurajimaMaii/GUtils/blob/master/docs/BaseBindingAdapterDoc.md)
+- [BaseAdapter使用](https://github.com/SakurajimaMaii/GUtils/blob/master/docs/BaseAdapterDoc.md)
 
 ### Adapter方法介绍
 

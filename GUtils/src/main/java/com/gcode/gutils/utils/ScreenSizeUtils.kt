@@ -1,4 +1,4 @@
-package com.gcode.gutils
+package com.gcode.gutils.utils
 
 import android.content.Context
 import android.graphics.Point

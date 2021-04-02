@@ -1,4 +1,4 @@
-### BaseBindingAdapter使用
+### BaseAdapter使用
 
 1. 首先让对象继承BaseItem接口，并将布局id作为getItemViewType的返回值，例如
 
@@ -42,4 +42,3 @@
            }
        }
 ```
-   

@@ -21,9 +21,9 @@
 	
 2. 添加依赖
 	```gradle
-   dependencies {
-   	implementation 'com.github.SakurajimaMaii:GUtils:beta-1.0.0'
-   }
+   	dependencies {
+   		implementation 'com.github.SakurajimaMaii:GUtils:beta-1.0.0'
+   	}
 	```
 
 ## Adapter介绍
@@ -38,7 +38,8 @@
 
 ## 使用说明
 
-
+- [BaseBindingAdapter使用](https://github.com/SakurajimaMaii/GUtils/blob/master/docs/BaseBindingAdapterDoc.md)
+- [BaseAdapter使用](https://github.com/SakurajimaMaii/GUtils/blob/master/docs/BaseAdapterDoc.md)
 
 ### Adapter方法介绍
 

@@ -21,9 +21,9 @@
 	
 2. 添加依赖
 	```gradle
-   dependencies {
-   	implementation 'com.github.SakurajimaMaii:GUtils:beta-1.0.0'
-   }
+   	dependencies {
+   		implementation 'com.github.SakurajimaMaii:GUtils:beta-1.0.0'
+   	}
 	```
 
 ## Adapter介绍

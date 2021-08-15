@@ -5,7 +5,7 @@
 为了方便安卓开发，我将一些常用的工具类进行了整合，以便更快速的进行项目开发。目前项目主要包含**adapter**和**utils**两部分
 
 ## 版本及语言
-![targetSdkVersion](https://img.shields.io/badge/targetSdkVersion-30-%230984e3)  ![minSdkVersion](https://img.shields.io/badge/minSdkVersion-23-%23079992)  ![Programming language](https://img.shields.io/badge/Programming%20language-kotlin-%23eb3b5a) ![Current Version](https://img.shields.io/badge/Current%20Version-Beta--1.0.0-%23eb4d4b)
+![targetSdkVersion](https://img.shields.io/badge/targetSdkVersion-30-%230984e3)  ![minSdkVersion](https://img.shields.io/badge/minSdkVersion-23-%23079992)  ![Programming language](https://img.shields.io/badge/Programming%20language-kotlin-%23eb3b5a) ![Current Version](https://img.shields.io/badge/Current%20Version-Beta--1.0.1-%23eb4d4b)
 
 ## 添加依赖
 
@@ -22,7 +22,7 @@
 2. 添加依赖
 	```gradle
    	dependencies {
-   		implementation 'com.github.SakurajimaMaii:GUtils:beta-1.0.0'
+   		implementation 'com.github.SakurajimaMaii:GUtils:beta-1.0.1'
    	}
 	```
 

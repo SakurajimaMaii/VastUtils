@@ -4,23 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".AdapterActivity"
+    android:orientation="horizontal">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecyclerView1"
+        android:id="@+id/RecyclerView3"
         android:layout_width="match_parent"
         android:layout_height="0dp" />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecyclerView2"
+        android:id="@+id/RecyclerView4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-    <com.gcode.widget.ShapeButton
-        android:id="@+id/button4"
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:button_shape="oval_shape"
-        app:button_oval_radius="100dp"/>
 </LinearLayout>

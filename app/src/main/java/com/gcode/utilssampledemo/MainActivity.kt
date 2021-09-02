@@ -3,7 +3,9 @@ package com.gcode.utilssampledemo
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +18,9 @@ import com.gcode.widget.ShapeButton
 
 class MainActivity : AppCompatActivity() {
 
-    private val TAG:String = this.javaClass.simpleName
+    private val tag:String = this.javaClass.simpleName
+
+    private lateinit var linearLayout:View
 
     inner class TestBaseAdapter(items: MutableList<BaseUtilItem>) : BaseUtilAdapter(items) {
         override fun bindData(holder: RecyclerViewHolder, position: Int, item: BaseUtilItem) {
@@ -44,6 +48,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        linearLayout = LayoutInflater.from(this).inflate(R.layout.activity_main,null)
+
+        linearLayout.setBackgroundColor(resources.getColor(R.color.lightyellow,null))
 
         val recyclerView1 = findViewById<RecyclerView>(R.id.RecyclerView1)
 
@@ -73,6 +81,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView2.adapter = adapter
         recyclerView2.layoutManager = LinearLayoutManager(this)
 
-        Log.d(TAG,"${testadapter.itemCount}  ${Build.VERSION.SDK_INT}")
+        Log.d(tag,"${testadapter.itemCount}  ${Build.VERSION.SDK_INT}")
     }
 }

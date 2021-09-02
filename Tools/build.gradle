@@ -7,7 +7,7 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 23
@@ -42,7 +42,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.gcode.toolproj'
                 artifactId = 'toolproj'
-                version = '2.0.0'
+                version = '2.1.0'
             }
         }
     }

@@ -6,20 +6,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.gcode.tools.adapter.BaseAdapter;
-import com.gcode.tools.adapter.BaseItem;
+import com.gcode.tools.adapter.BaseUtilAdapter;
+import com.gcode.tools.adapter.BaseUtilItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class MyTestBaseAdapter extends BaseAdapter{
+class MyTestBaseAdapter extends BaseUtilAdapter {
 
-    public MyTestBaseAdapter(@NonNull List<BaseItem> items) {
+    public MyTestBaseAdapter(@NonNull List<BaseUtilItem> items) {
         super(items);
     }
 
     @Override
-    public void bindData(@NonNull RecyclerViewHolder holder, int position, @NonNull BaseItem item) {
+    public void bindData(@NonNull RecyclerViewHolder holder, int position, @NonNull BaseUtilItem item) {
         ((TextView)holder.findViewById(R.id.firstName)).setText(((Person) item).getFirstName());
         ((TextView)holder.findViewById(R.id.lastName)).setText(((Person) item).getLastName());
     }
@@ -27,7 +27,7 @@ class MyTestBaseAdapter extends BaseAdapter{
 
 public class AdapterActivity extends AppCompatActivity {
 
-    private ArrayList<BaseItem> list = new ArrayList<>();
+    private ArrayList<BaseUtilItem> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

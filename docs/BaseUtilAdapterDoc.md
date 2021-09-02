@@ -1,9 +1,9 @@
-### BaseAdapter使用
+# BaseUtilAdapter使用
 
-1. 首先让对象继承BaseItem接口，并将布局id作为getItemViewType的返回值，例如
+1. 首先让对象继承BaseUtilItem接口，并将布局id作为getItemViewType的返回值，例如
 
    ```kotlin
-   data class Person(val firstName:String,val lastName: String):BaseItem{
+   data class Person(val firstName:String,val lastName: String):BaseUtilItem{
        override fun getItemViewType(): Int {
            return R.layout.item_layout
        }
@@ -35,10 +35,10 @@
 3. 为RecyclerView的子项进行赋值
 
    ```kotlin
-   class TestBaseAdapter(items: MutableList<BaseItem>) : BaseAdapter(items) {
-           override fun bindData(holder: RecyclerViewHolder, position: Int, item: BaseItem) {
+   class TestBaseAdapter(items: MutableList<BaseItem>) : BaseUtilAdapter(items) {
+           override fun bindData(holder: RecyclerViewHolder, position: Int, item: BaseUtilItem) {
                holder.findViewById<TextView>(R.id.firstName).text = (item as Person).firstName
                holder.findViewById<TextView>(R.id.lastName).text = item.lastName
            }
        }
-```
+    ```

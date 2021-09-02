@@ -9,30 +9,29 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.gcode.tools.adapter.BaseAdapter
-import com.gcode.tools.adapter.BaseBindingAdapter
-import com.gcode.tools.adapter.BaseItem
-import com.gcode.tools.utils.ScreenSizeUtils
+import com.gcode.tools.adapter.BaseUtilAdapter
+import com.gcode.tools.adapter.BaseUtilBindingAdapter
+import com.gcode.tools.adapter.BaseUtilItem
 import com.gcode.widget.ShapeButton
 
 class MainActivity : AppCompatActivity() {
 
     private val TAG:String = this.javaClass.simpleName
 
-    inner class TestBaseAdapter(items: MutableList<BaseItem>) : BaseAdapter(items) {
-        override fun bindData(holder: RecyclerViewHolder, position: Int, item: BaseItem) {
+    inner class TestBaseAdapter(items: MutableList<BaseUtilItem>) : BaseUtilAdapter(items) {
+        override fun bindData(holder: RecyclerViewHolder, position: Int, item: BaseUtilItem) {
             holder.findViewById<TextView>(R.id.firstName).text = (item as Person).firstName
             holder.findViewById<TextView>(R.id.lastName).text = item.lastName
         }
     }
 
-    inner class TestBaseBindingAdapter(items: MutableList<BaseItem>) :BaseBindingAdapter(items){
+    inner class TestBaseBindingAdapter(items: MutableList<BaseUtilItem>) :BaseUtilBindingAdapter(items){
         override fun setVariableId(): Int {
             return BR.item
         }
     }
 
-    val items:MutableList<BaseItem> = ArrayList<BaseItem>().apply {
+    val items:MutableList<BaseUtilItem> = ArrayList<BaseUtilItem>().apply {
         var i = 1
         repeat(30){
             add(Person("张$i","王$i"))
@@ -62,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 
         val adapter = TestBaseBindingAdapter(items)
-        adapter.setOnItemClickListener(object :BaseBindingAdapter.OnItemClickListener{
+        adapter.setOnItemClickListener(object :BaseUtilBindingAdapter.OnItemClickListener{
             override fun onItemClick(itemView: View?, pos: Int) {
 
             }

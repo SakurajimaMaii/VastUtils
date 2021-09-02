@@ -1,9 +1,9 @@
-### BaseBindingAdapter使用
+# BaseUtilBindingAdapter使用
 
 1. 首先让对象继承BaseItem接口，并将布局id作为getItemBindViewType的返回值，例如
 
    ```kotlin
-   data class Person(val firstName:String,val lastName: String):BaseItem{
+   data class Person(val firstName:String,val lastName: String):BaseUtilItem{
        override fun getItemViewType(): Int {
            //nothing to do
        }
@@ -42,7 +42,7 @@
 3. 设置VariableId，例如:
 
    ```kotlin
-   inner class TestBaseBindingAdapter(items: MutableList<BaseItem>) :BaseBindingAdapter(items){
+   inner class TestBaseBindingAdapter(items: MutableList<BaseItem>) :BaseUtilBindingAdapter(items){
            override fun setVariableId(): Int {
                return BR.item
            }

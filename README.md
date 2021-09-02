@@ -5,20 +5,21 @@
 为了方便安卓开发，我将一些常用的工具类进行了整合，以便更快速的进行项目开发。目前项目主要包含**adapter**和**utils**两部分
 
 ## 版本及语言
+
 ![targetSdkVersion](https://img.shields.io/badge/targetSdkVersion-30-%230984e3)  ![minSdkVersion](https://img.shields.io/badge/minSdkVersion-23-%23079992)  ![Programming language](https://img.shields.io/badge/Programming%20language-kotlin-%23eb3b5a) ![Current Version](https://img.shields.io/badge/Current%20Version-Beta--1.0.1-%23eb4d4b)
 
 ## 添加依赖
 
 1. 在项目根目录下的build.gradle添加
+
 	```gradle
 	allprojects {
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
+			}
 		}
-	}
 	```
-	
 2. 添加依赖
 	```gradle
    	dependencies {
@@ -34,12 +35,12 @@
 - 支持DataBinding
 - 不支持DataBinding
 
-如果你的项目**支持DataBinding**，请使用**BaseBindingAdapter**，如果**不支持DataBinding**，请使用**BaseAdapter**
+如果你的项目**支持DataBinding**，请使用**BaseUtilBindingAdapter**，如果**不支持DataBinding**，请使用**BaseUtilAdapter**
 
 ## 使用说明
 
-- [BaseBindingAdapter使用](https://github.com/SakurajimaMaii/GUtils/blob/master/docs/BaseBindingAdapterDoc.md)
-- [BaseAdapter使用](https://github.com/SakurajimaMaii/GUtils/blob/master/docs/BaseAdapterDoc.md)
+- [BaseUtilBindingAdapter使用](https://github.com/SakurajimaMaii/GUtils/blob/master/docs/BaseBindingAdapterDoc.md)
+- [BaseUtilAdapter使用](https://github.com/SakurajimaMaii/GUtils/blob/master/docs/BaseAdapterDoc.md)
 
 ### Adapter方法介绍
 

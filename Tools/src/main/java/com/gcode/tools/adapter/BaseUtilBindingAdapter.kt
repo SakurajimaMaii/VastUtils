@@ -15,7 +15,7 @@ import kotlin.jvm.Throws
  *作者:created by HP on 2021/4/2 14:43
  *邮箱:sakurajimamai2020@qq.com
  */
-abstract class BaseUtilBindingAdapter @JvmOverloads constructor(private val items: MutableList<BaseUtilItem>, private val tag:String = "BaseBindingAdapter") :
+abstract class BaseUtilBindingAdapter<obj:BaseUtilItem> @JvmOverloads constructor(private val items: MutableList<obj>, private val tag:String = "BaseBindingAdapter") :
         RecyclerView.Adapter<BaseUtilBindingAdapter.BindingHolder>() {
 
     private var mClickListener: OnItemClickListener? = null
@@ -65,7 +65,7 @@ abstract class BaseUtilBindingAdapter @JvmOverloads constructor(private val item
      * @return BaseItem?
      */
     @Throws(ArrayIndexOutOfBoundsException::class)
-    fun getItemByPos(@IntRange(from = 0) position: Int): BaseUtilItem {
+    fun getItemByPos(@IntRange(from = 0) position: Int): obj {
         if (position >= itemCount || position < 0) {
             throw ArrayIndexOutOfBoundsException("The range of the parameter pos in the addItemByPos() method is wrong")
         }
@@ -77,7 +77,7 @@ abstract class BaseUtilBindingAdapter @JvmOverloads constructor(private val item
      * @param item BaseItem
      * @return Boolean
      */
-    fun addItem(item: BaseUtilItem): Boolean {
+    fun addItem(item: obj): Boolean {
         val flag = items.add(item)
         if (flag) {
             notifyItemInserted(this.itemCount - 1)
@@ -92,7 +92,7 @@ abstract class BaseUtilBindingAdapter @JvmOverloads constructor(private val item
      * @param item BaseItem
      */
     @Throws(ArrayIndexOutOfBoundsException::class)
-    fun addItemPyPos(item: BaseUtilItem, @IntRange(from = 0) pos: Int) {
+    fun addItemPyPos(item: obj, @IntRange(from = 0) pos: Int) {
         if(pos>items.size || pos < 0){
             throw ArrayIndexOutOfBoundsException("The range of the parameter pos in the addItemByPos() method is wrong")
         }
@@ -105,7 +105,7 @@ abstract class BaseUtilBindingAdapter @JvmOverloads constructor(private val item
      * @param item BaseItem?
      * @return Boolean
      */
-    fun removeItem(item: BaseUtilItem?): Boolean {
+    fun removeItem(item: obj?): Boolean {
         val pos: Int = items.indexOf(item)
         if(pos >= 0 && pos < items.size){
             removeItemByPos(pos)
@@ -119,11 +119,11 @@ abstract class BaseUtilBindingAdapter @JvmOverloads constructor(private val item
      * @return BaseItem
      */
     @Throws(ArrayIndexOutOfBoundsException::class)
-    fun removeItemByPos(@IntRange(from = 0) pos: Int): BaseUtilItem {
+    fun removeItemByPos(@IntRange(from = 0) pos: Int): obj {
         if (pos >= items.size || pos < 0) {
             throw ArrayIndexOutOfBoundsException("The range of the parameter pos in the removeItemByIndex() method is wrong")
         }
-        val item: BaseUtilItem = items.removeAt(pos)
+        val item: obj = items.removeAt(pos)
         notifyItemRemoved(pos)
         return item
     }

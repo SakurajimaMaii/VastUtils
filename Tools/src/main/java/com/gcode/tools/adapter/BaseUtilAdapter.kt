@@ -21,7 +21,7 @@ import kotlin.jvm.Throws
  * @property mLongClickListener OnItemLongClickListener?
  * @constructor
  */
-abstract class BaseUtilAdapter @JvmOverloads constructor(private var items: MutableList<BaseUtilItem>, private val tag:String = "BaseAdapter") : RecyclerView.Adapter<BaseUtilAdapter.RecyclerViewHolder>() {
+abstract class BaseUtilAdapter<obj:BaseUtilItem> @JvmOverloads constructor(private var items: MutableList<obj>, private val tag:String = "BaseAdapter") : RecyclerView.Adapter<BaseUtilAdapter.RecyclerViewHolder>() {
 
     private var mClickListener: OnItemClickListener? = null
     private var mLongClickListener: OnItemLongClickListener? = null
@@ -66,7 +66,7 @@ abstract class BaseUtilAdapter @JvmOverloads constructor(private var items: Muta
      * @param pos Int
      * @return BaseItem
      */
-    fun getItemByPos(@IntRange(from = 0) pos: Int): BaseUtilItem {
+    fun getItemByPos(@IntRange(from = 0) pos: Int): obj {
         if (pos >= itemCount) {
             throw ArrayIndexOutOfBoundsException("The range of the parameter pos in the addItemByPos() method is wrong")
         }
@@ -78,7 +78,7 @@ abstract class BaseUtilAdapter @JvmOverloads constructor(private var items: Muta
      * @param item BaseItem
      * @return Boolean
      */
-    fun addItem(item: BaseUtilItem): Boolean {
+    fun addItem(item: obj): Boolean {
         val flag = items.add(item)
         if (flag) {
             notifyItemInserted(this.itemCount - 1)
@@ -93,7 +93,7 @@ abstract class BaseUtilAdapter @JvmOverloads constructor(private var items: Muta
      * @param pos Int
      */
     @Throws(ArrayIndexOutOfBoundsException::class)
-    fun addItemByPos(item: BaseUtilItem, @IntRange(from = 0) pos: Int) {
+    fun addItemByPos(item: obj, @IntRange(from = 0) pos: Int) {
         if(pos>items.size){
             throw ArrayIndexOutOfBoundsException("The range of the parameter pos in the addItemByPos() method is wrong")
         }
@@ -106,7 +106,7 @@ abstract class BaseUtilAdapter @JvmOverloads constructor(private var items: Muta
      * @param item BaseItem?
      * @return Boolean
      */
-    fun removeItem(item: BaseUtilItem?): Boolean {
+    fun removeItem(item: obj?): Boolean {
         val pos: Int = items.indexOf(item)
         if(pos >= 0 && pos < items.size){
             removeItemByPos(pos)
@@ -120,11 +120,11 @@ abstract class BaseUtilAdapter @JvmOverloads constructor(private var items: Muta
      * @return BaseItem?
      */
     @Throws(ArrayIndexOutOfBoundsException::class)
-    fun removeItemByPos(@IntRange(from = 0) pos: Int): BaseUtilItem {
+    fun removeItemByPos(@IntRange(from = 0) pos: Int): obj {
         if (pos >= items.size || pos < 0) {
             throw ArrayIndexOutOfBoundsException("The range of the parameter pos in the removeItemByIndex() method is wrong")
         }
-        val item: BaseUtilItem = items.removeAt(pos)
+        val item: obj = items.removeAt(pos)
         notifyItemRemoved(pos)
         return item
     }
@@ -149,7 +149,7 @@ abstract class BaseUtilAdapter @JvmOverloads constructor(private var items: Muta
      * @param position Int
      * @param item BaseItem
      */
-    abstract fun bindData(holder: RecyclerViewHolder, position: Int, item: BaseUtilItem)
+    abstract fun bindData(holder: RecyclerViewHolder, position: Int, item: obj)
 
     interface OnItemClickListener {
         fun onItemClick(itemView: View?, pos: Int)

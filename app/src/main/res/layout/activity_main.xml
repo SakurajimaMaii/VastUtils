@@ -10,7 +10,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerView1"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerView2"
         android:layout_width="match_parent"
@@ -18,9 +19,9 @@
         android:layout_weight="1" />
     <com.gcode.widget.ShapeButton
         android:id="@+id/button4"
-        android:layout_margin="10dp"
+        android:layout_margin="0dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:button_shape="oval_shape"
         app:button_oval_radius="100dp"/>
 </LinearLayout>

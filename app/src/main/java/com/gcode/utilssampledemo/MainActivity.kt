@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         linearLayout = LayoutInflater.from(this).inflate(R.layout.activity_main,null)
 
-        linearLayout.setBackgroundColor(resources.getColor(R.color.lightyellow,null))
+        linearLayout.setBackgroundColor(resources.getColor(R.color.util_light_yellow,null))
 
         val recyclerView1 = findViewById<RecyclerView>(R.id.RecyclerView1)
 

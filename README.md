@@ -1,4 +1,4 @@
-# [GUtils](https://github.com/SakurajimaMaii/GUtils)说明
+# [Utils](https://github.com/SakurajimaMaii/GUtils)说明
 
 ## 项目介绍
 

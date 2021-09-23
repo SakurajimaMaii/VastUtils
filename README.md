@@ -1,4 +1,4 @@
-# [GUtils](https://github.com/SakurajimaMaii/GUtils)说明
+# [Utils](https://github.com/SakurajimaMaii/Utils)说明
 
 ## 项目介绍
 
@@ -22,7 +22,7 @@ allprojects {
 2. 添加依赖
 ```gradle
 dependencies {
-	implementation 'com.github.SakurajimaMaii:Utils:cancey-2.1.0'
+	implementation 'com.github.SakurajimaMaii:Utils:2.2.0'
 }
 ```
 

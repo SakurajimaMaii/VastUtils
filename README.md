@@ -22,7 +22,7 @@ allprojects {
 2. 添加依赖
 ```gradle
 dependencies {
-	implementation 'com.github.SakurajimaMaii:Utils:2.2.0'
+	implementation 'com.github.SakurajimaMaii:Utils:2.2.1'
 }
 ```
 

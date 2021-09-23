@@ -1,10 +1,11 @@
 package com.gcode.tools.utils
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Point
 import android.os.Build
 import android.view.WindowManager
-import androidx.annotation.RequiresApi
+import com.gcode.tools.exception.BuildVersionException
 
 
 /**
@@ -13,15 +14,22 @@ import androidx.annotation.RequiresApi
 object ScreenSizeUtils {
 
     /**
-     * 判断是否是全面屏
-     * @param context Context
-     * @return Boolean
+     * Is all screen device
+     * @param activity
+     * @return
      */
-    @RequiresApi(Build.VERSION_CODES.R)
-    fun isAllScreenDevice(context: Context): Boolean {
+    @Throws(BuildVersionException::class)
+    fun isAllScreenDevice(activity: Activity): Boolean {
         //后续适配再启用
         val point = Point()
-        context.display?.getRealSize(point)
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> { //设备api大于30
+                activity.baseContext.display?.getRealSize(point)
+            }
+            else -> {
+                activity.windowManager.defaultDisplay.getRealSize(point)
+            }
+        }
         val width: Float
         val height: Float
         if (point.x < point.y) {
@@ -38,40 +46,62 @@ object ScreenSizeUtils {
     }
 
     /**
-     * 获取屏幕高度
-     * 第一种，读取DisplayMetrics的heightPixels参数
+     * Get screen height
+     * Read the heightPixels parameter of DisplayMetrics
+     * @param activity
+     * @return
      */
-    private fun getScreenHeight(context: Context): Int {
-        return context.resources?.displayMetrics?.heightPixels ?: 0
+    private fun getScreenHeight(activity: Activity): Int {
+        return activity.resources?.displayMetrics?.heightPixels ?: 0
     }
 
     /**
-     * 获取屏幕Real高度
-     * 第二种，读取windowManager里面的defaultDisplay参数
+     * S real sizes
+     * Read the defaultDisplay parameter in windowManager
      */
     @Volatile
     private var sRealSizes = arrayOfNulls<Point>(2)
 
-    @RequiresApi(Build.VERSION_CODES.R)
-    private fun getScreenRealHeight(context: Context): Int {
-        var orientation = context.resources?.configuration?.orientation
+    /**
+     * Get screen real height
+     * @param activity
+     * @return
+     */
+    private fun getScreenRealHeight(activity: Activity): Int {
+        var orientation = activity.resources?.configuration?.orientation
         orientation = if (orientation == 1) 0 else 1
         if (sRealSizes[orientation] == null) {
-            context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            activity.getSystemService(Context.WINDOW_SERVICE) as WindowManager
             val point = Point()
-            context.display?.getRealSize(point)
+            when {
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> { //设备api大于30
+                    activity.baseContext.display?.getRealSize(point)
+                }
+                else -> {
+                    activity.windowManager.defaultDisplay.getRealSize(point)
+                }
+            }
             sRealSizes[orientation] = point
         }
-        return sRealSizes[orientation]?.y ?: getScreenRealHeight(context)
+        return sRealSizes[orientation]?.y ?: getScreenRealHeight(activity)
     }
 
-    fun getMobileScreenWidth(context: Context) = context.resources?.displayMetrics?.widthPixels ?: 0
+    /**
+     * Get mobile screen width
+     * @param activity
+     */
+    fun getMobileScreenWidth(activity: Activity) = activity.resources?.displayMetrics?.widthPixels ?: 0
 
-    @RequiresApi(Build.VERSION_CODES.R)
-    fun getMobileScreenHeight(context: Context) =
-        if (isAllScreenDevice(context)) {
+    /**
+     * Get mobile screen height
+     * @param activity
+     */
+    @Throws(BuildVersionException::class)
+    fun getMobileScreenHeight(activity: Activity) =
+        if (isAllScreenDevice(activity)) {
             // 全面屏要通过这个方法获取高度
-            getScreenRealHeight(context)
+            getScreenRealHeight(activity)
         }
-        else { getScreenHeight(context); }
+        else { getScreenHeight(activity); }
 }
+

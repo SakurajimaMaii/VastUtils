@@ -41,7 +41,7 @@ android {
 
 dependencies {
 
-    implementation project(':Tools')
+    implementation 'com.github.SakurajimaMaii:Utils:2.2.1'
     implementation 'com.github.SakurajimaMaii:StarBar:dev-2.1.0'
     implementation 'com.github.SakurajimaMaii:ShapeButton:beta-2.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

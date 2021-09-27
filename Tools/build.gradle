@@ -40,9 +40,9 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.gcode.toolproj'
-                artifactId = 'toolproj'
-                version = '2.1.0'
+                groupId = 'com.gcode.tools'
+                artifactId = 'tools'
+                version = '2.2.1'
             }
         }
     }

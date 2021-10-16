@@ -4,7 +4,7 @@ package com.gcode.tools.adapter
  *作者:created by HP on 2021/4/2 14:37
  *邮箱:sakurajimamai2020@qq.com
  */
-interface BaseUtilItem {
+interface BaseGcodeItem {
     /**
      * Use when calling BaseAdapter
      * @return Int

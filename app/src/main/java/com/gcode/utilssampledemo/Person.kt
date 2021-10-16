@@ -1,12 +1,12 @@
 package com.gcode.utilssampledemo
 
-import com.gcode.tools.adapter.BaseUtilItem
+import com.gcode.tools.adapter.BaseGcodeItem
 
 /**
  *作者:created by HP on 2021/4/2 15:54
  *邮箱:sakurajimamai2020@qq.com
  */
-data class Person(val firstName:String,val lastName: String): BaseUtilItem {
+data class Person(val firstName:String,val lastName: String): BaseGcodeItem {
     override fun getItemViewType(): Int {
         return R.layout.item_layout
     }

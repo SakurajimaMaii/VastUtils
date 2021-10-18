@@ -13,10 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gcode.tools.adapter.BaseGcodeAdapter
 import com.gcode.tools.adapter.BaseGcodeBindingAdapter
+import com.gcode.tools.utils.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val tag:String = this.javaClass.simpleName
+    private val tag:String = "Hello"
 
     private lateinit var linearLayout:View
 
@@ -85,6 +86,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        Log.d(tag,"${testadapter.itemCount}  ${Build.VERSION.SDK_INT}")
+        LogUtils.setLogEnabled(false)
+        LogUtils.i(this.javaClass,"Hello","${1+2}")
+        LogUtils.d(this.javaClass,"Hello","${1+2}")
+        LogUtils.e(this.javaClass,"Hello","${1+2}")
+        LogUtils.v(this.javaClass,"Hello","${1+2}")
+        LogUtils.w(this.javaClass,"Hello","${1+2}")
     }
 }

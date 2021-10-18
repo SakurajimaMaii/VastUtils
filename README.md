@@ -14,10 +14,10 @@
 
 ```gradle
 allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
+  repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+  }
 }
 ```
 
@@ -25,7 +25,7 @@ allprojects {
 
 ```gradle
 dependencies {
-	implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.3.0'
+  implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.3.0'
 }
 ```
 
@@ -49,20 +49,20 @@ dependencies {
 
 adapter 目前提供了以下几种方法
 
-|                                                       方法名                                                        |                 说明                 |
-| :-----------------------------------------------------------------------------------------------------------------: | :----------------------------------: |
-|                                                   getItemCount()                                                    |           获取 item 的数量           |
-|                                           getItemViewType(position: Int)                                            |     根据 position 获取 ViewType      |
-|                                                    isItemEmpty()                                                    |         判断 items 是否为空          |
-|                                     getItemByPos(@IntRange(from = 0) pos: Int)                                      |          根据 pos 获取 item          |
-|                                            addItem(@Nullable item: obj?)                                            |           在数据集最后添加           |
-|                                            addItem(@Nullable item: obj?)                                            |         在最后添加对象 item          |
-|                                addItemByPos(item: obj, @IntRange(from = 0) pos: Int)                                |        根据 pos 添加对象 item        |
-|                       addItemsByPos(addItems: MutableList<obj>, @IntRange(from = 0) pos: Int)                       |       通过 pos 来批量添加 item       |
-|                                        removeItemByObj(@Nullable item: obj?)                                        |         通过对象来删除 Item          |
-|                                    removeItemByPos(@IntRange(from = 0) pos: Int)                                    |         通过 pos 来删除对象          |
-| removeItemsByPos(@IntRange(from = 0) startPos: Int, @IntRange(from = 0) endPos: Int,includeEndPos: Boolean = false) | 删除[startPos]到[endPos]范围内的元素 |
-|                                                     clearItem()                                                     |              清空 items              |
+|                                   方法名                                    |             说明             |
+| :-------------------------------------------------------------------------: | :--------------------------: |
+|                               getItemCount()                                |       获取 item 的数量       |
+|                       getItemViewType(position: Int)                        | 根据 position 获取 ViewType  |
+|                                isItemEmpty()                                |     判断 items 是否为空      |
+|                           getItemByPos(pos: Int)                            |      根据 pos 获取 item      |
+|                             addItem(item: obj?)                             |       在数据集最后添加       |
+|                             addItem(item: obj?)                             |     在最后添加对象 item      |
+|                      addItemByPos(item: obj, pos: Int)                      |    根据 pos 添加对象 item    |
+|             addItemsByPos(addItems: MutableList<obj>, pos: Int)             |   通过 pos 来批量添加 item   |
+|                         removeItemByObj(item: obj?)                         |     通过对象来删除 Item      |
+|                          removeItemByPos(pos: Int)                          |     通过 pos 来删除对象      |
+| removeItemsByPos(startPos: Int, endPos: Int,includeEndPos: Boolean = false) | startPos到endPos范围内的元素 |
+|                                 clearItem()                                 |          清空 items          |
 
 ## Utils 介绍
 
@@ -90,4 +90,28 @@ MsgWindowUtils.showShortMsg(this, "These permissions are denied: $deniedList")
 fun isAllScreenDevice(context: Context) //判断手机是否为全面屏
 fun getMobileScreenWidth(context: Context) //获取屏幕宽度
 fun getMobileScreenHeight(context: Context) //获取屏幕高度
+```
+
+### LogUtils
+
+日志工具类主要用于打印日志，效果如下：
+
+![log example](https://img-blog.csdnimg.cn/e5e2c730d428481fba80a41f8c126af6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA56CB5LiK5aSP6Zuo,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+打印的内容包含 `类名`  `Log调用的行数` `调用Log的方法` `关键字` `输出信息`
+
+你可以通过 `setLogEnabled` 方法来开启或者关闭日志
+
+```kotlin
+LogUtils.setLogEnabled(false)
+```
+
+调用方法
+
+```kotlin
+LogUtils.i(this.javaClass,"Hello","${1+2}")
+LogUtils.d(this.javaClass,"Hello","${1+2}")
+LogUtils.e(this.javaClass,"Hello","${1+2}")
+LogUtils.v(this.javaClass,"Hello","${1+2}")
+LogUtils.w(this.javaClass,"Hello","${1+2}")
 ```

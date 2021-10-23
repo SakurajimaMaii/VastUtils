@@ -1,8 +1,6 @@
 package com.gcode.utilssampledemo
 
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -13,11 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gcode.tools.adapter.BaseGcodeAdapter
 import com.gcode.tools.adapter.BaseGcodeBindingAdapter
-import com.gcode.tools.utils.*
+import com.gcode.tools.utils.LogUtils
+import com.gcode.tools.utils.ScreenSizeUtils
 
 class MainActivity : AppCompatActivity() {
-
-    private val tag:String = "Hello"
 
     private lateinit var linearLayout:View
 
@@ -36,14 +33,6 @@ class MainActivity : AppCompatActivity() {
 
     val items:MutableList<Person> = ArrayList<Person>().apply {
         var i = 1
-        repeat(5){
-            add(Person("张$i","王$i"))
-            i++
-        }
-    }
-
-    val person:MutableList<Person> = ArrayList<Person>().apply {
-        var i = 5
         repeat(5){
             add(Person("张$i","王$i"))
             i++
@@ -86,11 +75,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        LogUtils.setLogEnabled(false)
+        LogUtils.setLogEnabled(true)
         LogUtils.i(this.javaClass,"Hello","${1+2}")
         LogUtils.d(this.javaClass,"Hello","${1+2}")
         LogUtils.e(this.javaClass,"Hello","${1+2}")
         LogUtils.v(this.javaClass,"Hello","${1+2}")
         LogUtils.w(this.javaClass,"Hello","${1+2}")
+        LogUtils.i(this.javaClass,"Hello","${ScreenSizeUtils.getMobileScreenHeight(this)} ${ScreenSizeUtils.getMobileScreenWidth(this)}")
     }
 }

@@ -9,7 +9,10 @@ import androidx.annotation.Nullable
  * @constructor Create empty Log utils
  */
 object LogUtils {
-    //设为false关闭日志
+    /**
+     * [true] if you want to print log,[false] if you don't want to print the log
+     * @See [setLogEnabled]
+     */
     private var LOG_ENABLE = true
 
     fun i(`object`: Class<*>, @Nullable key: String?, @Nullable content: String?) {

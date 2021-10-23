@@ -1,33 +1,34 @@
 package com.gcode.tools.utils
 
-import android.app.Activity
 import android.content.Context
 import android.graphics.Point
 import android.os.Build
 import android.view.WindowManager
 import com.gcode.tools.exception.BuildVersionException
 
-
 /**
- * 获取手机属性工具类
+ * Screen size utils
+ * Get your device screen size
+ * @constructor Create empty Screen size utils
  */
 object ScreenSizeUtils {
 
     /**
-     * Is all screen device
-     * @param activity
-     * @return
+     * Determine whether your device is full screen
+     * @param context
+     * @return [true] if your device is full screen,[false] if your device is not full screen.
      */
     @Throws(BuildVersionException::class)
-    fun isAllScreenDevice(activity: Activity): Boolean {
+    fun isAllScreenDevice(context: Context): Boolean {
         //后续适配再启用
         val point = Point()
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> { //设备api大于30
-                activity.baseContext.display?.getRealSize(point)
+                context.display?.getRealSize(point)
             }
             else -> {
-                activity.windowManager.defaultDisplay.getRealSize(point)
+                val vm:WindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+                vm.defaultDisplay.getRealSize(point)
             }
         }
         val width: Float
@@ -48,11 +49,11 @@ object ScreenSizeUtils {
     /**
      * Get screen height
      * Read the heightPixels parameter of DisplayMetrics
-     * @param activity
+     * @param context
      * @return
      */
-    private fun getScreenHeight(activity: Activity): Int {
-        return activity.resources?.displayMetrics?.heightPixels ?: 0
+    private fun getScreenHeight(context: Context): Int {
+        return context.resources?.displayMetrics?.heightPixels ?: 0
     }
 
     /**
@@ -67,41 +68,41 @@ object ScreenSizeUtils {
      * @param activity
      * @return
      */
-    private fun getScreenRealHeight(activity: Activity): Int {
-        var orientation = activity.resources?.configuration?.orientation
+    private fun getScreenRealHeight(context: Context): Int {
+        var orientation = context.resources?.configuration?.orientation
         orientation = if (orientation == 1) 0 else 1
         if (sRealSizes[orientation] == null) {
-            activity.getSystemService(Context.WINDOW_SERVICE) as WindowManager
             val point = Point()
             when {
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> { //设备api大于30
-                    activity.baseContext.display?.getRealSize(point)
+                    context.display?.getRealSize(point)
                 }
                 else -> {
-                    activity.windowManager.defaultDisplay.getRealSize(point)
+                    val vm:WindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+                    vm.defaultDisplay.getRealSize(point)
                 }
             }
             sRealSizes[orientation] = point
         }
-        return sRealSizes[orientation]?.y ?: getScreenRealHeight(activity)
+        return sRealSizes[orientation]?.y ?: getScreenRealHeight(context)
     }
 
     /**
      * Get mobile screen width
-     * @param activity
+     * @param context
      */
-    fun getMobileScreenWidth(activity: Activity) = activity.resources?.displayMetrics?.widthPixels ?: 0
+    fun getMobileScreenWidth(context: Context) = context.resources?.displayMetrics?.widthPixels ?: 0
 
     /**
      * Get mobile screen height
-     * @param activity
+     * @param context
      */
     @Throws(BuildVersionException::class)
-    fun getMobileScreenHeight(activity: Activity) =
-        if (isAllScreenDevice(activity)) {
+    fun getMobileScreenHeight(context: Context) =
+        if (isAllScreenDevice(context)) {
             // 全面屏要通过这个方法获取高度
-            getScreenRealHeight(activity)
+            getScreenRealHeight(context)
         }
-        else { getScreenHeight(activity); }
+        else { getScreenHeight(context); }
 }
 

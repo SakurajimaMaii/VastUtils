@@ -1,14 +1,16 @@
 # [ToolsForAndroid](https://github.com/SakurajimaMaii/ToolsForAndroid)说明
 
-## 项目介绍
+## 前言
 
-为了方便安卓开发，我将一些常用的工具类进行了整合，以便更快速的进行项目开发。目前项目主要包含**adapter**和**utils**两部分
+### 项目介绍
 
-## 版本及语言
+为了方便安卓开发，我将一些常用的工具类进行了整合，以便更快速的进行项目开发。
+
+### 版本及语言
 
 ![targetSdkVersion](https://img.shields.io/badge/targetSdkVersion-30-%230984e3) ![minSdkVersion](https://img.shields.io/badge/minSdkVersion-23-%23079992) ![Programming language](https://img.shields.io/badge/Programming%20language-kotlin-%23eb3b5a) ![currentVersion](https://jitpack.io/v/SakurajimaMaii/ToolsForAndroid.svg)
 
-## 添加依赖
+### 添加依赖
 
 1. 在项目根目录下的 build.gradle 添加
 
@@ -25,7 +27,7 @@ allprojects {
 
 ```gradle
 dependencies {
-  implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.3.0'
+  implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.4.2'
 }
 ```
 
@@ -40,7 +42,7 @@ dependencies {
 
 如果你的项目**支持 DataBinding**，请使用**BaseGcodeBindingAdapter**，如果**不支持 DataBinding**，请使用**BaseGcodeAdapter**
 
-## 使用说明
+### 使用说明
 
 - [BaseGcodeBindingAdapter 使用](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/docs/BaseGcodeBindingAdapter.md)
 - [BaseGcodeAdapter 使用](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/docs/BaseGcodeAdapter.md)
@@ -68,13 +70,14 @@ adapter 目前提供了以下几种方法
 
 ### MsgWindowUtils
 
-消息弹窗工具类，目前支持以下三种消息弹窗
+!!! info "介绍"
+    消息弹窗工具类，目前支持以下三种消息弹窗
 
-- Short Toast
+    - Short Toast
 
-- Long Toast
+    - Long Toast
 
-- showDlgMsg
+    - showDlgMsg
 
 调用方法
 
@@ -84,7 +87,8 @@ MsgWindowUtils.showShortMsg(this, "These permissions are denied: $deniedList")
 
 ### ScreenSizeUtils
 
-用于返回屏幕大小相关信息，方便你根据此来设计控件尺寸，提供了以下方法
+!!! info ScreenSizeUtils介绍
+    用于返回屏幕大小相关信息，方便你根据此来设计控件尺寸，提供了以下方法
 
 ```kotlin
 fun isAllScreenDevice(context: Context) //判断手机是否为全面屏
@@ -94,7 +98,8 @@ fun getMobileScreenHeight(context: Context) //获取屏幕高度
 
 ### LogUtils
 
-日志工具类主要用于打印日志，效果如下：
+!!! info "LogUtils介绍"
+    日志工具类主要用于打印日志，效果如下：
 
 ![log example](https://img-blog.csdnimg.cn/e5e2c730d428481fba80a41f8c126af6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA56CB5LiK5aSP6Zuo,size_20,color_FFFFFF,t_70,g_se,x_16)
 
@@ -115,3 +120,26 @@ LogUtils.e(this.javaClass,"Hello","${1+2}")
 LogUtils.v(this.javaClass,"Hello","${1+2}")
 LogUtils.w(this.javaClass,"Hello","${1+2}")
 ```
+
+### CameraUtils
+
+!!! info "CameraUtils介绍"
+    相机工具类主要用于获取相册内的图片并将其转化为 `Bitmap` 对象
+
+使用方法
+
+```kotlin
+// 获取到的图片
+private var bitmap: Bitmap? = null
+
+// 打开相册
+private val getPhoto = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
+    if(result.resultCode == Activity.RESULT_OK){
+        bitmap = result.data?.let { CameraUtils.displayImage(it,this) }
+    }
+}
+```
+
+## 参考来源
+
+[Android获取图片：拍照和从相册中选择](https://www.jianshu.com/p/57487bb1ec5a)

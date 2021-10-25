@@ -7,7 +7,6 @@ import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.FileUtils
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 
@@ -45,7 +44,7 @@ object CameraUtils {
             if ("com.android.providers.media.documents" == uri!!.authority) {
                 val id = docId.split(":").toTypedArray()[1] // 解析出数字格式的id
                 val selection = MediaStore.Images.Media._ID + "=" + id
-                LogUtils.i(this.javaClass,this.javaClass.simpleName,"id=$id,selection=$selection")
+                LogUtils.i(this.javaClass.simpleName, "id=$id,selection=$selection")
                 imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection, context)
             } else if ("com.android.providers.downloads.documents" == uri.authority) {
                 val contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), java.lang.Long.valueOf(docId))
@@ -73,7 +72,7 @@ object CameraUtils {
         // 通过Uri和selection来获取真实的图片路径
         val cursor: Cursor? = context?.contentResolver?.query(uri!!, null, selection, null, null)
         if (cursor != null) {
-            LogUtils.i(this.javaClass,this.javaClass.simpleName,"cursor不为null  $selection")
+            LogUtils.i(this.javaClass.simpleName, "cursor不为null  $selection")
             var i = 0
             while (i < cursor.columnCount) {
                 var ss = cursor.getColumnName(i)
@@ -81,7 +80,7 @@ object CameraUtils {
             }
             if (cursor.moveToFirst()) {
                 path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA))
-                LogUtils.i(this.javaClass,this.javaClass.simpleName,"get path= $path")
+                LogUtils.i(this.javaClass.simpleName, "get path= $path")
             }
             cursor.close()
         }

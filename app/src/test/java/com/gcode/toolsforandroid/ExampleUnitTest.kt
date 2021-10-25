@@ -1,4 +1,4 @@
-package com.gcode.utilssampledemo
+package com.gcode.toolsforandroid
 
 import org.junit.Test
 

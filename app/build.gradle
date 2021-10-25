@@ -8,7 +8,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.gcode.utilssampledemo"
+        applicationId "com.gcode.toolsforandroid"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1

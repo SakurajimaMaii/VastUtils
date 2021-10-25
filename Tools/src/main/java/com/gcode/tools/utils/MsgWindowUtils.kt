@@ -9,7 +9,6 @@ import android.widget.Toast
  */
 object MsgWindowUtils {
     /**
-     * 显示短消息
      * @param context Context
      * @param msg String
      */
@@ -18,7 +17,6 @@ object MsgWindowUtils {
     }
 
     /**
-     * 显示长消息
      * @param context Context
      * @param msg String
      */
@@ -27,7 +25,6 @@ object MsgWindowUtils {
     }
 
     /**
-     * 显示标题对话框
      * @param context Context
      * @param msg String
      * @param title String

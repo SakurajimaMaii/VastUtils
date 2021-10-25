@@ -1,4 +1,4 @@
-package com.gcode.utilssampledemo
+package com.gcode.toolsforandroid
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gcode.tools.adapter.BaseGcodeAdapter
 import com.gcode.tools.adapter.BaseGcodeBindingAdapter
+import com.gcode.tools.interfaces.LogContent
+import com.gcode.tools.utils.AppUtils
+import com.gcode.tools.utils.DateUtils
 import com.gcode.tools.utils.LogUtils
-import com.gcode.tools.utils.ScreenSizeUtils
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -76,11 +80,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         LogUtils.setLogEnabled(true)
-        LogUtils.i(this.javaClass,"Hello","${1+2}")
-        LogUtils.d(this.javaClass,"Hello","${1+2}")
-        LogUtils.e(this.javaClass,"Hello","${1+2}")
-        LogUtils.v(this.javaClass,"Hello","${1+2}")
-        LogUtils.w(this.javaClass,"Hello","${1+2}")
-        LogUtils.i(this.javaClass,"Hello","${ScreenSizeUtils.getMobileScreenHeight(this)} ${ScreenSizeUtils.getMobileScreenWidth(this)}")
+        LogUtils.setLogContentFormat(object :LogContent{
+            override fun logContentFormat(
+                methodName: String,
+                key: String?,
+                content: String?
+            ): String {
+                return "$key $content"
+            }
+        })
+        LogUtils.i("Hello", AppUtils.getAppName(this)+"  "+AppUtils.getPackageName(this))
+        LogUtils.d("Hello", "${1+2}")
+        LogUtils.e("Hello", "${1+2}")
+        LogUtils.v("Hello", "${1+2}")
+        LogUtils.w("Hello", "${1+2}")
     }
 }

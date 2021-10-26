@@ -7,23 +7,46 @@ import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import androidx.annotation.RequiresApi
 
 /**
  * Camera utils
- * @see [https://www.jianshu.com/p/57487bb1ec5a]
  * @constructor Create empty Camera utils
  */
 object CameraUtils {
     /**
      * Get the picture you want to show
+     *
+     * This is more recommended when your application Api version is **greater** than **29**
      * @param data The [Intent] returned after opening the picture selection
      * @param context
      * @return
      */
-    fun displayImage(data: Intent, context: Context?):Bitmap? {
-        val imagePath = handleImageOnKitKat(data, context)
+    @RequiresApi(Build.VERSION_CODES.Q)
+    fun getImageBitMapApi29Above(data: Intent, context: Context?): Bitmap? {
+        val uri = data.data
+        var image: Bitmap? = null
+        if(uri != null) {
+            context?.contentResolver?.openFileDescriptor(uri, "r")?.use { pfd ->
+                image = BitmapFactory.decodeFileDescriptor(pfd.fileDescriptor)
+            }
+        }
+        return image
+    }
+
+    /**
+     * Get the picture you want to show
+     *
+     * This is more recommended when your application Api version is **less** than **29**
+     * @param data The [Intent] returned after opening the picture selection
+     * @param context
+     * @return
+     */
+    fun getImageBitMapApi29Down(data: Intent, context: Context?):Bitmap? {
+        val imagePath = getImagePathApi29Down(data, context)
         return if (imagePath != null) {
             BitmapFactory.decodeFile(imagePath)
         }else null
@@ -35,29 +58,32 @@ object CameraUtils {
      * @param context
      * @return
      */
-    private fun handleImageOnKitKat(data: Intent, context: Context?): String? {
-        var imagePath: String? = null
+    private fun getImagePathApi29Down(data: Intent, context: Context?): String? {
         val uri = data.data
-        if (DocumentsContract.isDocumentUri(context, uri)) {
-            // 如果是document类型的Uri，则通过document id处理
-            val docId = DocumentsContract.getDocumentId(uri)
-            if ("com.android.providers.media.documents" == uri!!.authority) {
-                val id = docId.split(":").toTypedArray()[1] // 解析出数字格式的id
-                val selection = MediaStore.Images.Media._ID + "=" + id
-                LogUtils.i(this.javaClass.simpleName, "id=$id,selection=$selection")
-                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection, context)
-            } else if ("com.android.providers.downloads.documents" == uri.authority) {
-                val contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), java.lang.Long.valueOf(docId))
-                imagePath = getImagePath(contentUri, null, context)
+        if(uri == null){
+            return null
+        }else{
+            var imagePath: String? = null
+            if (DocumentsContract.isDocumentUri(context, uri)) {
+                // If it is a document type Uri, it will be processed by document id
+                val docId = DocumentsContract.getDocumentId(uri)
+                if ("com.android.providers.media.documents" == uri.authority) {
+                    val id = docId.split(":").toTypedArray()[1] // Parse the id in digital format
+                    val selection = MediaStore.Images.Media._ID + "=" + id
+                    imagePath = getImageSpecifiedPathApi29Down(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection, context)
+                } else if ("com.android.providers.downloads.documents" == uri.authority) {
+                    val contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), java.lang.Long.valueOf(docId))
+                    imagePath = getImageSpecifiedPathApi29Down(contentUri, null, context)
+                }
+            } else if ("content".equals(uri.scheme, ignoreCase = true)) {
+                // If it is a content type Uri
+                imagePath = getImageSpecifiedPathApi29Down(uri, null, context)
+            } else if ("file".equals(uri.scheme, ignoreCase = true)) {
+                // If it is a file type Uri, just get the image path directly
+                imagePath = uri.path
             }
-        } else if ("content".equals(uri!!.scheme, ignoreCase = true)) {
-            // 如果是content类型的Uri，则使用普通方式处理
-            imagePath = getImagePath(uri, null, context)
-        } else if ("file".equals(uri.scheme, ignoreCase = true)) {
-            // 如果是file类型的Uri，直接获取图片路径即可
-            imagePath = uri.path
+            return imagePath
         }
-        return imagePath
     }
 
     /**
@@ -67,20 +93,14 @@ object CameraUtils {
      * @param context
      * @return
      */
-    private fun getImagePath(uri: Uri?, selection: String?, context: Context?): String? {
+    private fun getImageSpecifiedPathApi29Down(uri: Uri?, selection: String?, context: Context?): String? {
         var path: String? = null
-        // 通过Uri和selection来获取真实的图片路径
-        val cursor: Cursor? = context?.contentResolver?.query(uri!!, null, selection, null, null)
+        // Get the real picture path through uri and selection
+        val cursor: Cursor? =
+            uri?.let { context?.contentResolver?.query(it, null, selection, null, null) }
         if (cursor != null) {
-            LogUtils.i(this.javaClass.simpleName, "cursor不为null  $selection")
-            var i = 0
-            while (i < cursor.columnCount) {
-                var ss = cursor.getColumnName(i)
-                i++
-            }
             if (cursor.moveToFirst()) {
                 path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA))
-                LogUtils.i(this.javaClass.simpleName, "get path= $path")
             }
             cursor.close()
         }

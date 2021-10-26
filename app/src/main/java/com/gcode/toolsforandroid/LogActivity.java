@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.gcode.tools.utils.DateUtils;
 import com.gcode.tools.utils.LogUtils;
 
 public class LogActivity extends AppCompatActivity {
@@ -15,6 +14,6 @@ public class LogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log);
 
         LogUtils.INSTANCE.setLogEnabled(true);
-        LogUtils.INSTANCE.d("hello","111111");
+        LogUtils.INSTANCE.d(this.getClass(),"hello","111111");
     }
 }

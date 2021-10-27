@@ -29,7 +29,7 @@ class CameraActivity : AppCompatActivity() {
 
         val getPhoto = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
             if(result.resultCode == Activity.RESULT_OK){
-                image.setImageBitmap(result.data?.let { CameraUtils.getImageBitMapApi29Down(it,this) })
+                image.setImageBitmap(result.data?.let { CameraUtils.getImageBitMapApi29Above(it,this) })
             }
         }
 

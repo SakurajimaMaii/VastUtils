@@ -168,6 +168,21 @@ AppUtils.getBitmap(this)
 
 用于获取日期相关信息
 
+### DensityUtils `2.6.0 版本引入`
+
+用于尺寸转换,目前提供了以下四种方法
+
+```kotlin
+fun px2dip(context: Context, pxValue: Float): Float
+fun dip2px(context: Context, dipValue: Float): Float
+fun px2sp(context: Context, pxValue: Float): Float
+fun sp2px(context: Context, spValue: Float): Float
+```
+
+### ViewSizeUtils `2.6.0 版本引入`
+
+用于测量控件长度,避免在 `onCreate()` 方法中获取到的长度为0
+
 ## 参考来源
 
 [Android获取图片：拍照和从相册中选择](https://www.jianshu.com/p/57487bb1ec5a)

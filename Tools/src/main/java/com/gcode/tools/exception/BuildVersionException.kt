@@ -5,4 +5,4 @@ package com.gcode.tools.exception
  *邮箱:sakurajimamai2020@qq.com
  */
 // Device Android version is abnormal
-class BuildVersionException(override val message: String):Throwable() {}
+internal class BuildVersionException(override val message: String):Throwable() {}

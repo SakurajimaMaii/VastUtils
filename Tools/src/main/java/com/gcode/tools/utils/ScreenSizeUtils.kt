@@ -15,7 +15,7 @@ object ScreenSizeUtils {
 
     /**
      * Determine whether your device is full screen
-     * @param context
+     * @param context Context for the transform.
      * @return [true] if your device is full screen,[false] if your device is not full screen.
      */
     @Throws(BuildVersionException::class)
@@ -49,8 +49,8 @@ object ScreenSizeUtils {
     /**
      * Get screen height
      * Read the heightPixels parameter of DisplayMetrics
-     * @param context
-     * @return
+     * @param context Context for the transform.
+     * @return The height of the screen, in **pixels**
      */
     private fun getScreenHeight(context: Context): Int {
         return context.resources?.displayMetrics?.heightPixels ?: 0
@@ -65,7 +65,7 @@ object ScreenSizeUtils {
 
     /**
      * Get screen real height
-     * @param activity
+     * @param context Context for the transform.
      * @return
      */
     private fun getScreenRealHeight(context: Context): Int {
@@ -89,13 +89,14 @@ object ScreenSizeUtils {
 
     /**
      * Get mobile screen width
-     * @param context
+     * @param context Context for the transform.
+     * @return The width of the screen, in **pixels**
      */
     fun getMobileScreenWidth(context: Context) = context.resources?.displayMetrics?.widthPixels ?: 0
 
     /**
      * Get mobile screen height
-     * @param context
+     * @param context Context for the transform.
      */
     @Throws(BuildVersionException::class)
     fun getMobileScreenHeight(context: Context) =

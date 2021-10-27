@@ -20,6 +20,7 @@ object LogUtils : LogContent {
 
     /**
      * send info message
+     *
      * @param clz Current class
      * @param key message keyboard
      * @param content message content

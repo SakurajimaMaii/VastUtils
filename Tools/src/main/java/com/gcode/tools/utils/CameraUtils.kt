@@ -7,10 +7,8 @@ import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import android.provider.DocumentsContract
 import android.provider.MediaStore
-import androidx.annotation.RequiresApi
 
 /**
  * Camera utils
@@ -25,7 +23,6 @@ object CameraUtils {
      * @param context
      * @return
      */
-    @RequiresApi(Build.VERSION_CODES.Q)
     fun getImageBitMapApi29Above(data: Intent, context: Context?): Bitmap? {
         val uri = data.data
         var image: Bitmap? = null
@@ -45,7 +42,7 @@ object CameraUtils {
      * @param context
      * @return
      */
-    fun getImageBitMapApi29Down(data: Intent, context: Context?):Bitmap? {
+    private fun getImageBitMapApi29Down(data: Intent, context: Context?):Bitmap? {
         val imagePath = getImagePathApi29Down(data, context)
         return if (imagePath != null) {
             BitmapFactory.decodeFile(imagePath)

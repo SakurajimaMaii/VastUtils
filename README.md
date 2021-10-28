@@ -1,6 +1,6 @@
 # [ToolsForAndroid](https://github.com/SakurajimaMaii/ToolsForAndroid)
 
-简体中文 | [English]([www.baidu.com](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README_EN.md))
+简体中文 | [English](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README_EN.md)
 
 |       最后更新时间          | 稳定版本 | 下一个版本 |
 | :-------------: | :------: | :--------: |

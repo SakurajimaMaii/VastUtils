@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Point
 import android.os.Build
 import android.view.WindowManager
-import com.gcode.tools.exception.BuildVersionException
+import com.gcode.tools.internal.exception.BuildVersionException
 
 /**
  * Screen size utils

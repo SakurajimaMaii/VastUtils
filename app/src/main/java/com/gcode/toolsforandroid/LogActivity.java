@@ -15,5 +15,7 @@ public class LogActivity extends AppCompatActivity {
 
         LogUtils.INSTANCE.setLogEnabled(true);
         LogUtils.INSTANCE.d(this.getClass(),"hello","111111");
+
+        Float value = 50F;
     }
 }

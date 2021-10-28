@@ -1,4 +1,4 @@
-package com.gcode.tools.exception
+package com.gcode.tools.internal.exception
 
 /**
  *作者:created by HP on 2021/9/23 21:04

@@ -42,7 +42,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.gcode.tools'
                 artifactId = 'tools'
-                version = '2.6.0-alpha'
+                version = '2.6.0'
             }
         }
     }

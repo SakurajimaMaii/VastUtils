@@ -58,13 +58,13 @@ abstract class BaseGcodeBindingAdapter<obj : BaseGcodeItem> @JvmOverloads constr
     override fun getItemViewType(position: Int) = items[position].getItemBindViewType()
 
     /**
-     * 判断列表是否为空
+     * Returns `true` if the collection is empty (contains no elements), `false` otherwise.
      * @return Boolean
      */
     fun isItemEmpty() = items.isEmpty()
 
     /**
-     * 借助pos获取对象
+     * Return item from list by position.
      * @param position Int
      * @return BaseItem?
      */
@@ -77,10 +77,10 @@ abstract class BaseGcodeBindingAdapter<obj : BaseGcodeItem> @JvmOverloads constr
     }
 
     /**
-     * 在数据集最后添加
-     * 如果你想在其他位置添加,请参考 [addItemByPos]
-     * @param item 添加的对象
-     * @return 操作的结果 [false] 表示添加失败或者item为 [null]
+     * Adds the specified item to the end of this list.
+     * If you want to add in other position,please refer [addItemByPos]
+     * @param item Item you add
+     * @return The result `false` means adding failed or item is `null`
      */
     fun addItem(@Nullable item: obj?): Boolean {
         return if (item == null) {
@@ -96,9 +96,7 @@ abstract class BaseGcodeBindingAdapter<obj : BaseGcodeItem> @JvmOverloads constr
     }
 
     /**
-     * 通过pos来添加item
-     * @param item 添加的对象
-     * @param pos 添加的位置
+     * Inserts an element into the list at the specified [pos].
      */
     @Throws(ArrayIndexOutOfBoundsException::class)
     fun addItemByPos(item: obj, @IntRange(from = 0) pos: Int) {
@@ -110,9 +108,7 @@ abstract class BaseGcodeBindingAdapter<obj : BaseGcodeItem> @JvmOverloads constr
     }
 
     /**
-     * 通过pos来批量添加item
-     * @param addItems 添加的数据集
-     * @param pos 添加的位置
+     * Inserts all of the elements of the specified collection [addItems] into this list at the specified [pos].
      */
     @Throws(ArrayIndexOutOfBoundsException::class)
     fun addItemsByPos(addItems: MutableList<obj>, @IntRange(from = 0) pos: Int) {
@@ -124,9 +120,7 @@ abstract class BaseGcodeBindingAdapter<obj : BaseGcodeItem> @JvmOverloads constr
     }
 
     /**
-     * 通过对象来删除Item
-     * @param item 要删除的对象
-     * @return 返回操作的结果
+     * Removes an element from the list by [obj].
      */
     fun removeItemByObj(@Nullable item: obj?): Boolean {
         val pos: Int = items.indexOf(item)
@@ -137,9 +131,7 @@ abstract class BaseGcodeBindingAdapter<obj : BaseGcodeItem> @JvmOverloads constr
     }
 
     /**
-     * 通过pos来删除对象
-     * @param pos 删除对象的索引
-     * @return 如果items为空，则返回 [null] 否则返回删除的对象
+     * Removes an element at the specified [pos] from the list.
      */
     @Throws(ArrayIndexOutOfBoundsException::class)
     @Nullable
@@ -157,10 +149,7 @@ abstract class BaseGcodeBindingAdapter<obj : BaseGcodeItem> @JvmOverloads constr
     }
 
     /**
-     * 删除[startPos]到[endPos]范围内的元素
-     * @param startPos
-     * @param endPos
-     * @param includeEndPos [true] 表示包含endPos指向的元素
+     * Delete the elements in the range from [startPos] to [endPos]
      */
     @SuppressLint("NotifyDataSetChanged")
     fun removeItemsByPos(

@@ -2,9 +2,9 @@
 
 [简体中文](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README.md) | English
 
-| Last update time | Stable version | Next version |
-| :--------------: | :------------: | :----------: |
-|    2021/10/25    |     2.5.0      |    2.6.0     |
+| Last update time | Stable version | Next version | Alpha version |
+| :--------------: | :------------: | :----------: | :-----------: |
+|    2021/10/28    |     2.6.0      |    2.7.0     |               |
 
 ## 🚀 How to
 
@@ -47,19 +47,19 @@ If your project supports databinding, please use **BaseGcodeBindingAdapter**, if
 
 #### Methods
 
-|                                   Method name                                    |                illustrate                |
-| :-------------------------------------------------------------------------: | :--------------------------------: |
-|                               getItemCount()                                |      Get the number of Items       |
-|                       getItemViewType(position: Int)                        | Get ViewType according to Position |
-|                                isItemEmpty()                                |    Determine if Items is empty     |
-|                           getItemByPos(pos: Int)                            |       Get item based on POS        |
-|                             addItem(item: obj?)                             |     At the end of the data set     |
-|                      addItemByPos(item: obj, pos: Int)                      |  Add object item according to POS  |
-|             addItemsByPos(addItems: MutableList<obj>, pos: Int)             |      Add Item by POS to batch      |
-|                         removeItemByObj(item: obj?)                         |       Remove Item by object        |
-|                          removeItemByPos(pos: Int)                          |     Remove objects through POS     |
-| removeItemsByPos(startPos: Int, endPos: Int,includeEndPos: Boolean = false) |   Elements in StartPOS to Endpos   |
-|                                 clearItem()                                 |            Empty items             |
+|                                 Method name                                 |                                      illustrate                                      |
+| :-------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
+|                               getItemCount()                                |                            Returns the size of the item.                             |
+|                       getItemViewType(position: Int)                        |                          Get ViewType according to Position                          |
+|                                isItemEmpty()                                | Returns `true` if the collection is empty (contains no elements), `false` otherwise. |
+|                           getItemByPos(pos: Int)                            |                              Returns item by `position`                              |
+|                             addItem(item: obj?)                             |                   Adds the specified item to the end of this list                    |
+|                      addItemByPos(item: obj, pos: Int)                      |                      Adds the specified item by the `position`                       |
+|             addItemsByPos(addItems: MutableList<obj>, pos: Int)             |                     Adds List of Item by `position` to the list                      |
+|                         removeItemByObj(item: obj?)                         |                                Remove Item by object                                 |
+|                          removeItemByPos(pos: Int)                          |                             Remove objects by `position`                             |
+| removeItemsByPos(startPos: Int, endPos: Int,includeEndPos: Boolean = false) |                       Remove item from `startPos` to `endPos`                        |
+|                                 clearItem()                                 |                                     Empty items                                      |
 
 ### Utils
 
@@ -151,8 +151,6 @@ AppUtils.getBitmap(this)
 Used to obtain date related information
 
 #### DensityUtils
-
-❗ This method is available in `2.6.0-alpha` versions
 
 Used for dimensional conversion, currently provided four methods
 

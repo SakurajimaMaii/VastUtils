@@ -1,18 +1,14 @@
-# [ToolsForAndroid](https://github.com/SakurajimaMaii/ToolsForAndroid)说明
+# [ToolsForAndroid](https://github.com/SakurajimaMaii/ToolsForAndroid)
 
-## 前言
+简体中文 | [English]([www.baidu.com](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README_EN.md))
 
-### 项目介绍
+|       最后更新时间          | 稳定版本 | 下一个版本 |
+| :-------------: | :------: | :--------: |
+| 2021/10/25 |  2.5.0   |   2.6.0    |
 
-为了方便安卓开发，我将一些常用的工具类进行了整合，以便更快速的进行项目开发。
+## 声明依赖项
 
-### 版本及语言
-
-![targetSdkVersion](https://img.shields.io/badge/targetSdkVersion-30-%230984e3) ![minSdkVersion](https://img.shields.io/badge/minSdkVersion-23-%23079992) ![Programming language](https://img.shields.io/badge/Programming%20language-kotlin-%23eb3b5a) ![currentVersion](https://jitpack.io/v/SakurajimaMaii/ToolsForAndroid.svg)
-
-### 添加依赖
-
-1. 在项目根目录下的 build.gradle 添加
+在项目根目录下的 `build.gradle` 添加
 
 ```gradle
 allprojects {
@@ -23,7 +19,7 @@ allprojects {
 }
 ```
 
-2. 添加依赖
+添加依赖
 
 ```gradle
 dependencies {
@@ -31,9 +27,11 @@ dependencies {
 }
 ```
 
-## Adapter 介绍
+## 快速开始
 
-### 模式介绍
+目前该项目主要提供 `Adapter` 和 `Utils` 两类工具
+
+### Adapter
 
 根据项目的需求，我将 Adapter 设计成两种模式，分别是：
 
@@ -42,12 +40,12 @@ dependencies {
 
 如果你的项目**支持 DataBinding**，请使用**BaseGcodeBindingAdapter**，如果**不支持 DataBinding**，请使用**BaseGcodeAdapter**
 
-### 使用说明
+#### 使用说明
 
 - [BaseGcodeBindingAdapter 使用](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/docs/BaseGcodeBindingAdapter.md)
 - [BaseGcodeAdapter 使用](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/docs/BaseGcodeAdapter.md)
 
-### Adapter 方法介绍
+#### Adapter 方法介绍
 
 adapter 目前提供了以下几种方法
 
@@ -66,27 +64,19 @@ adapter 目前提供了以下几种方法
 | removeItemsByPos(startPos: Int, endPos: Int,includeEndPos: Boolean = false) | startPos到endPos范围内的元素 |
 |                                 clearItem()                                 |          清空 items          |
 
-## Utils 介绍
+### Utils 介绍
 
-### MsgWindowUtils
+#### MsgWindowUtils
 
-消息弹窗工具类，目前支持以下三种消息弹窗
-
-- Short Toast
-
-- Long Toast
-
-- showDlgMsg
-
-调用方法
+消息弹窗工具类，目前支持三种消息弹窗 `Short Toast` `Long Toast` `showDlgMsg`
 
 ```kotlin
 MsgWindowUtils.showShortMsg(this, "These permissions are denied: $deniedList")
 ```
 
-### ScreenSizeUtils
+#### ScreenSizeUtils
 
-用于返回屏幕大小相关信息，方便你根据此来设计控件尺寸，提供了以下方法
+用于返回屏幕大小相关信息，方便你根据此来设计控件尺寸
 
 ```kotlin
 fun isAllScreenDevice(context: Context) //判断手机是否为全面屏
@@ -94,21 +84,21 @@ fun getMobileScreenWidth(context: Context) //获取屏幕宽度
 fun getMobileScreenHeight(context: Context) //获取屏幕高度
 ```
 
-### LogUtils
+#### LogUtils
 
-日志工具类主要用于打印日志，效果如下：
+日志工具类主要用于打印日志，打印的内容包含 `类名`  `Log调用的行数` `调用Log的方法` `关键字` `输出信息`
 
 ![log example](https://img-blog.csdnimg.cn/e5e2c730d428481fba80a41f8c126af6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA56CB5LiK5aSP6Zuo,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-打印的内容包含 `类名`  `Log调用的行数` `调用Log的方法` `关键字` `输出信息`
 
-#### 日志的开启与关闭
+
+**1.日志的开启与关闭**
 
 ```kotlin
 LogUtils.setLogEnabled(false)
 ```
 
-#### 调用示例
+**2.调用示例**
 
 ```kotlin
 LogUtils.i(this.javaClass,"Hello","${1+2}")
@@ -118,7 +108,7 @@ LogUtils.v(this.javaClass,"Hello","${1+2}")
 LogUtils.w(this.javaClass,"Hello","${1+2}")
 ```
 
-#### 自定义输出内容
+**3.自定义输出内容**
 
 通过实现 `LogContent` 接口来自定义输出日志内容
 
@@ -134,7 +124,7 @@ LogUtils.setLogContentFormat(object :LogContent{
 })
 ```
 
-### CameraUtils
+#### CameraUtils
 
 相机工具类主要用于获取相册内的图片并将其转化为 `Bitmap` 对象
 
@@ -150,11 +140,11 @@ private val getPhoto = registerForActivityResult(ActivityResultContracts.StartAc
 }
 ```
 
-### AppUtils
+#### AppUtils
 
 App工具类用来获取APP的应用程序名称、包名、图标，版本号基本信息
 
-#### 调用方法
+**调用方法**
 
 ```kotlin
 AppUtils.getAppName(this)
@@ -164,26 +154,30 @@ AppUtils.getVersionCode(this)
 AppUtils.getBitmap(this)
 ```
 
-### DateUtils
+#### DateUtils
 
 用于获取日期相关信息
 
-### DensityUtils `2.6.0 版本引入`
+#### DensityUtils
+
+> 你可以在 `2.6.0-alpha` 中使用
 
 用于尺寸转换,目前提供了以下四种方法
 
 ```kotlin
-fun px2dip(context: Context, pxValue: Float): Float
-fun dip2px(context: Context, dipValue: Float): Float
-fun px2sp(context: Context, pxValue: Float): Float
-fun sp2px(context: Context, spValue: Float): Float
+fun px2dp(pxValue: Float): Float
+fun dp2px(dipValue: Float): Float
+fun px2sp(pxValue: Float): Float
+fun sp2px(spValue: Float): Float
+
+// Convert dp value to float (in pixels)
+Float.dp
+// Convert sp value to float (in pixels)
+Float.sp
 ```
-
-### ViewSizeUtils `2.6.0 版本引入`
-
-用于测量控件长度,避免在 `onCreate()` 方法中获取到的长度为0
 
 ## 参考来源
 
 [Android获取图片：拍照和从相册中选择](https://www.jianshu.com/p/57487bb1ec5a)
+
 [Android获取APP的应用程序名称、包名、图标，版本号基本信息](https://blog.csdn.net/jia635/article/details/78722073)

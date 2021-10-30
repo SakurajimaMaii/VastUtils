@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Point
 import android.os.Build
 import android.view.WindowManager
+import android.view.WindowMetrics
 import androidx.annotation.RequiresApi
 
 /**
@@ -13,13 +14,25 @@ import androidx.annotation.RequiresApi
  */
 object ScreenSizeUtils {
 
+    @RequiresApi(Build.VERSION_CODES.S)
+    fun isAllScreenDeviceApi31(context: Context): Boolean{
+        val vm: WindowMetrics =
+            (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).currentWindowMetrics
+        val width: Float = vm.bounds.width().toFloat()
+        val height: Float = vm.bounds.height().toFloat()
+        if (height / width >= 1.97f) {
+            return true
+        }
+        return false
+    }
+
     /**
      * Is all screen device Api30 Above
      * @param context Context for the transform.
      * @return `true` if your device is full screen,`false` if your device is not full screen.
      */
     @RequiresApi(Build.VERSION_CODES.R)
-    fun isAllScreenDeviceApi30Above(context: Context): Boolean {
+    fun isAllScreenDeviceApi30(context: Context): Boolean {
         //后续适配再启用
         val point = Point()
         context.display?.getRealSize(point)
@@ -81,12 +94,24 @@ object ScreenSizeUtils {
     private var sRealSizes = arrayOfNulls<Point>(2)
 
     /**
-     * Get screen real height Api 30 Above
+     * Get screen real height(in Api 31)
+     * @param context Context for the transform.
+     * @return Device Screen Real Height(in pixels).
+     */
+    @RequiresApi(Build.VERSION_CODES.S)
+    private fun getScreenRealHeightApi31(context: Context): Int {
+        val vm: WindowMetrics =
+            (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).currentWindowMetrics
+        return vm.bounds.height()
+    }
+
+    /**
+     * Get screen real height(in Api 30)
      * @param context Context for the transform.
      * @return Device Screen Real Height(in pixels).
      */
     @RequiresApi(Build.VERSION_CODES.R)
-    private fun getScreenRealHeightApi30Above(context: Context): Int {
+    private fun getScreenRealHeightApi30(context: Context): Int {
         var orientation = context.resources?.configuration?.orientation
         orientation = if (orientation == 1) 0 else 1
         if (sRealSizes[orientation] == null) {
@@ -94,7 +119,7 @@ object ScreenSizeUtils {
             context.display?.getRealSize(point)
             sRealSizes[orientation] = point
         }
-        return sRealSizes[orientation]?.y ?: getScreenRealHeightApi30Above(context)
+        return sRealSizes[orientation]?.y ?: getScreenRealHeightApi30(context)
     }
 
     /**
@@ -126,11 +151,23 @@ object ScreenSizeUtils {
      * Get mobile screen height Api 30 Above
      * @param context Context for the transform.
      */
-    @RequiresApi(Build.VERSION_CODES.R)
-    fun getMobileScreenHeightApi30Above(context: Context) =
-        if (isAllScreenDeviceApi30Above(context)) {
+    @RequiresApi(Build.VERSION_CODES.S)
+    fun getMobileScreenHeightApi31(context: Context) =
+        if (isAllScreenDeviceApi31(context)) {
             // 全面屏要通过这个方法获取高度
-            getScreenRealHeightApi30Above(context)
+            getScreenRealHeightApi31(context)
+        } else {
+            getScreenHeight(context); }
+
+    /**
+     * Get mobile screen height Api 30 Above
+     * @param context Context for the transform.
+     */
+    @RequiresApi(Build.VERSION_CODES.R)
+    fun getMobileScreenHeightApi30(context: Context) =
+        if (isAllScreenDeviceApi30(context)) {
+            // 全面屏要通过这个方法获取高度
+            getScreenRealHeightApi30(context)
         } else {
             getScreenHeight(context); }
 
@@ -145,4 +182,3 @@ object ScreenSizeUtils {
         } else {
             getScreenHeight(context); }
 }
-

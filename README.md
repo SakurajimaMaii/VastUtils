@@ -104,21 +104,9 @@ App工具类用来获取APP的应用程序名称、包名、图标，版本号�
 
 用于获取日期相关信息
 
-#### DensityUtils
+#### [DensityUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/DensityUtils)
 
-用于尺寸转换,目前提供了以下四种方法
-
-```kotlin
-fun px2dp(pxValue: Float): Float
-fun dp2px(dipValue: Float): Float
-fun px2sp(pxValue: Float): Float
-fun sp2px(spValue: Float): Float
-
-// Convert dp value to float (in pixels)
-Float.dp
-// Convert sp value to float (in pixels)
-Float.sp
-```
+用于尺寸转换，点击标题查看**文档**
 
 ## 参考来源
 

@@ -16,7 +16,7 @@ class DensityActivity : AppCompatActivity() {
 
         LogUtils.i(this.javaClass,this.javaClass.simpleName,"${50f.sp} ${DensityUtils.sp2px(50f)}")
     }
-
+    
     override fun onContentChanged() {
         super.onContentChanged()
 

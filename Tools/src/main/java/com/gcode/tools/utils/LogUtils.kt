@@ -11,7 +11,7 @@ import com.gcode.tools.interfaces.LogContent
 object LogUtils : LogContent {
 
     /**
-     * [true] if you want to print log,[false] if you don't want to print the log
+     * `true` if you want to print log,`false` if you don't want to print the log
      * @See [setLogEnabled] to set the [logEnabled] value
      */
     private var logEnabled = true

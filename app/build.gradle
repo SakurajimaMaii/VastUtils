@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.gcode.toolsforandroid"
         minSdkVersion 23
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -40,8 +40,8 @@ android {
 
 dependencies {
 
-    //implementation project(":Tools")
-    implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.6.0-alpha'
+    implementation project(":Tools")
+    //implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.6.0'
     implementation 'com.github.SakurajimaMaii:StarBar:dev-2.1.0'
     implementation 'com.github.SakurajimaMaii:ShapeButton:beta-2.0.0'
 

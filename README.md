@@ -96,19 +96,9 @@ private val getPhoto = registerForActivityResult(ActivityResultContracts.StartAc
 }
 ```
 
-#### AppUtils
+#### [AppUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/AppUtils)
 
-App工具类用来获取APP的应用程序名称、包名、图标，版本号基本信息
-
-**调用方法**
-
-```kotlin
-AppUtils.getAppName(this)
-AppUtils.getPackageName(this)
-AppUtils.getVersionName(this)
-AppUtils.getVersionCode(this)
-AppUtils.getBitmap(this)
-```
+App工具类用来获取APP的应用程序名称、包名、图标，版本号基本信息，点击标题查看**文档**
 
 #### DateUtils
 

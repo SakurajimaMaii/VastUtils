@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.gcode.tools.utils.AppUtils
 import com.gcode.tools.utils.DensityUtils.dp
 import com.gcode.tools.utils.LogUtils
 import com.gcode.tools.utils.ScreenSizeUtils
@@ -19,7 +20,7 @@ class DensityActivity : AppCompatActivity() {
 
         val btn = findViewById<TextView>(R.id.btn)
 
-        LogUtils.i(this.javaClass,this.javaClass.simpleName,"${ScreenSizeUtils.getMobileScreenHeightApi31(this)}")
+        LogUtils.i(this.javaClass,this.javaClass.simpleName,"${AppUtils.getAppDebug(this)}")
     }
     
     override fun onContentChanged() {

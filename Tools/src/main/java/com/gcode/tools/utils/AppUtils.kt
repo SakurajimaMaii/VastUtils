@@ -107,7 +107,7 @@ object AppUtils {
      * @return The icon of the application
      */
     @Synchronized
-    fun getBitmap(context: Context): Bitmap? {
+    fun getAppBitmap(context: Context): Bitmap? {
         var packageManager: PackageManager? = null
         var applicationInfo: ApplicationInfo? = null
         try {
@@ -123,5 +123,15 @@ object AppUtils {
             packageManager!!.getApplicationIcon(applicationInfo!!)
         val bd = d as BitmapDrawable
         return bd.bitmap
+    }
+
+    @Synchronized
+    fun getAppDebug(context: Context): Boolean {
+        return try {
+            val info = context.applicationInfo
+            info.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+        } catch (e: java.lang.Exception) {
+            false
+        }
     }
 }

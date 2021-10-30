@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
+import androidx.annotation.RequiresApi
 
 /**
  * App utils
@@ -48,20 +49,35 @@ object AppUtils {
     }
 
     /**
-     * @param context
+     * Get VersionCode (in Api 28 Above)
      * @return The version code of the current application
      */
     @Synchronized
-    fun getVersionCode(context: Context): Int {
+    @RequiresApi(Build.VERSION_CODES.P)
+    fun getVersionCodeApi28Above(context: Context): Int {
         try {
             val packageManager = context.packageManager
             val packageInfo = packageManager.getPackageInfo(
                 context.packageName, 0
             )
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
-                packageInfo.longVersionCode.toInt()
-            else
-                packageInfo.versionCode
+            return packageInfo.longVersionCode.toInt()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return 0
+    }
+
+    /**
+     * Get VersionCode (in Api 28 Down)
+     * @return The version code of the current application
+     */
+    fun getVersionCodeApi28Down(context: Context): Int{
+        try {
+            val packageManager = context.packageManager
+            val packageInfo = packageManager.getPackageInfo(
+                context.packageName, 0
+            )
+            return packageInfo.versionCode
         } catch (e: Exception) {
             e.printStackTrace()
         }

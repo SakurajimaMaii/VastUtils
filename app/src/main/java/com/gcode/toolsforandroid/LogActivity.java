@@ -9,6 +9,8 @@ import android.os.Bundle;
 import com.gcode.tools.interfaces.LogContent;
 import com.gcode.tools.utils.LogUtils;
 
+import java.util.regex.Pattern;
+
 public class LogActivity extends AppCompatActivity {
 
     @Override

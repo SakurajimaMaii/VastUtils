@@ -18,6 +18,8 @@ class IntentActivity : AppCompatActivity() {
         val searchWeb = findViewById<Button>(R.id.searchWeb)
         val openWebPage = findViewById<Button>(R.id.openWebPage)
         val sendMmsMessage = findViewById<Button>(R.id.sendMmsMessage)
+        val sendEmail = findViewById<Button>(R.id.sendEmail)
+        val createAlarm = findViewById<Button>(R.id.createAlarm)
 
         callBtn.setOnClickListener {
             startActivity(IntentUtils.dialPhoneNumber("12345678910"))
@@ -31,7 +33,7 @@ class IntentActivity : AppCompatActivity() {
             startActivity(IntentUtils.openWebPage("www.baidu.com"))
         }
 
-        val requestPermissionLauncher =
+        val smsLauncher =
             registerForActivityResult(
                 ActivityResultContracts.RequestPermission()
             ) { isGranted: Boolean ->
@@ -45,7 +47,27 @@ class IntentActivity : AppCompatActivity() {
             }
 
         sendMmsMessage.setOnClickListener {
-            requestPermissionLauncher.launch(Manifest.permission.SEND_SMS)
+            smsLauncher.launch(Manifest.permission.SEND_SMS)
+        }
+
+        sendEmail.setOnClickListener {
+            startActivity(IntentUtils.openEmail(arrayOf("1550651926@qq.com")))
+        }
+
+        val alarmLauncher =
+            registerForActivityResult(
+                ActivityResultContracts.RequestPermission()
+            ) { isGranted: Boolean ->
+                if (isGranted) {
+                    startActivity(IntentUtils.createAlarm("122",1,1))
+                }else{
+                    ActivityCompat.requestPermissions(this, arrayOf("com.android.alarm.permission.SET_ALARM"),1023)
+                    startActivity(IntentUtils.createAlarm("122",1,1))
+                }
+            }
+
+        createAlarm.setOnClickListener {
+            alarmLauncher.launch("com.android.alarm.permission.SET_ALARM")
         }
     }
 }

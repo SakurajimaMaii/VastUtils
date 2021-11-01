@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IntentActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
     <Button
         android:id="@+id/callBtn"
         android:layout_width="match_parent"
@@ -26,4 +27,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Send Mms Message" />
+    <Button
+        android:id="@+id/sendEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send Email" />
+    <Button
+        android:id="@+id/createAlarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Alarm" />
 </LinearLayout>

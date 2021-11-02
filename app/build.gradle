@@ -40,8 +40,9 @@ android {
 
 dependencies {
 
-    implementation project(':VastTools')
-//implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.6.0'
+    //implementation project(':VastTools')
+    //implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.6.0'
+    implementation 'io.github.sakurajimamaii:VastTools:0.0.1'
     implementation 'com.github.SakurajimaMaii:StarBar:dev-2.1.0'
     implementation 'com.github.SakurajimaMaii:ShapeButton:beta-2.0.0'
 

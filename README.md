@@ -2,11 +2,8 @@
 
 简体中文 | [English](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README_EN.md)
 
-| 最后更新时间 | 稳定版本 | 下一个版本 | 测试版 |
-| :----------: | :------: | :--------: | :----: |
-|  2021/10/28  |  2.6.0   |   2.7.0    |        |
-
-## 声明依赖项
+# ⚠️
+为了之后的项目维护，我已将项目向 `MavenCentral()` 迁移，并且会将 `Adapter` 和 `Tools` 拆开作为单独的module进行维护，如果你使用**2.6.0之前的版本(包含2.6.0)**，依赖项的声明如下：
 
 在项目根目录下的 `build.gradle` 添加
 
@@ -25,6 +22,12 @@ allprojects {
 dependencies {
   implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.5.0'
 }
+```
+
+从**2.6.1开始**，**2.6.1**作为项目的版号，而**Adapter**和**Tools**作为单独的Module以**0.0.1**作为起始版本号，添加引用如下：
+
+```gradle
+implementation 'io.github.sakurajimamaii:VastTools:0.0.1'
 ```
 
 ## 快速开始
@@ -67,9 +70,9 @@ adapter 目前提供了以下几种方法
 ### Utils 介绍
 
 #### [MsgWindowUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/MsgWindowUtils)
-  
+
 弹窗工具类，点击标题查看**文档**
-  
+
 #### [ScreenSizeUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/ScreenSizeUtils)
 
 用于返回屏幕大小相关信息，方便你根据此来设计控件尺寸，点击标题查看**文档**

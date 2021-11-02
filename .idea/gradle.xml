@@ -12,7 +12,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Tools" />
+            <option value="$PROJECT_DIR$/VastTools" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

@@ -7,10 +7,9 @@ rootProject.name = "VastUtils"
 
 def libs = [
         "VastTools",
-        "VastAdapter",
+        "VastAdapter"
 ]
 
 libs.forEach {
-    include(":$it")
-    project(":$it").projectDir = new File("libraries/$it")
+    include(":libraries:$it")
 }

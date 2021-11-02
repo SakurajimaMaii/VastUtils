@@ -40,8 +40,8 @@ android {
 
 dependencies {
 
-    implementation project(':VastTools')
-    implementation project(':VastAdapter')
+    implementation project(':libraries:VastTools')
+    implementation project(':libraries:VastAdapter')
     //implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.6.0'
     //implementation 'io.github.sakurajimamaii:VastTools:0.0.1'
 

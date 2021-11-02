@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import com.gcode.tools.utils.IntentUtils
-import com.gcode.tools.utils.MsgWindowUtils
+import com.gcode.vasttools.utils.IntentUtils
+import com.gcode.vasttools.utils.MsgWindowUtils
 
 class IntentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

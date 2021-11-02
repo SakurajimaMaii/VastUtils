@@ -6,10 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.gcode.tools.interfaces.LogContent;
-import com.gcode.tools.utils.LogUtils;
-
-import java.util.regex.Pattern;
+import com.gcode.vasttools.interfaces.LogContent;
+import com.gcode.vasttools.utils.LogUtils;
 
 public class LogActivity extends AppCompatActivity {
 

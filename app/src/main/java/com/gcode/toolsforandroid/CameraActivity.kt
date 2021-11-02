@@ -11,7 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import com.gcode.tools.utils.CameraUtils
+import com.gcode.vasttools.utils.CameraUtils
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var button:Button

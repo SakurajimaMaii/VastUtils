@@ -1,22 +1,19 @@
 package com.gcode.toolsforandroid
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.gcode.tools.adapter.BaseGcodeAdapter
-import com.gcode.tools.adapter.BaseGcodeBindingAdapter
-import com.gcode.tools.interfaces.LogContent
-import com.gcode.tools.utils.AppUtils
-import com.gcode.tools.utils.LogUtils
-import com.gcode.tools.utils.ScreenSizeUtils
+import com.gcode.vastadapter.BaseGcodeAdapter
+import com.gcode.vastadapter.BaseGcodeBindingAdapter
+import com.gcode.vasttools.interfaces.LogContent
+import com.gcode.vasttools.utils.LogUtils
+import com.gcode.vasttools.utils.ScreenSizeUtils
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +27,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    inner class TestBaseBindingAdapter(items: MutableList<Person>) :BaseGcodeBindingAdapter<Person>(items){
+    inner class TestBaseBindingAdapter(items: MutableList<Person>) :
+        BaseGcodeBindingAdapter<Person>(items){
         override fun setVariableId(): Int {
             return BR.item
         }
@@ -58,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.addButton)
 
-        testadapter.setOnItemClickListener(object :BaseGcodeAdapter.OnItemClickListener{
+        testadapter.setOnItemClickListener(object : BaseGcodeAdapter.OnItemClickListener{
             override fun onItemClick(itemView: View?, pos: Int, itemId: Long) {
                 Toast.makeText(this@MainActivity,"$pos and $itemId ^-^",Toast.LENGTH_SHORT).show()
             }
@@ -81,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         LogUtils.setLogEnabled(true)
-        LogUtils.setLogContentFormat(object :LogContent{
+        LogUtils.setLogContentFormat(object : LogContent {
             override fun logContentFormat(methodName: String, key: String?, content: String?): String {
                 return super.logContentFormat(methodName, key, content)
             }

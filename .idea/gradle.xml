@@ -12,8 +12,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/VastTools" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/libraries/VastAdapter" />
+            <option value="$PROJECT_DIR$/libraries/VastTools" />
           </set>
         </option>
       </GradleProjectSettings>

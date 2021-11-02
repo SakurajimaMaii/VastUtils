@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import com.gcode.tools.utils.AppUtils
-import com.gcode.tools.utils.DensityUtils
-import com.gcode.tools.utils.DensityUtils.dp
-import com.gcode.tools.utils.LogUtils
-import com.gcode.tools.utils.ScreenSizeUtils
+import com.gcode.vasttools.utils.DensityUtils
+import com.gcode.vasttools.utils.LogUtils
 
 class DensityActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.S)

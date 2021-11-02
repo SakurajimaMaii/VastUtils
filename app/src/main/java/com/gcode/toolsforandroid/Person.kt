@@ -1,6 +1,6 @@
 package com.gcode.toolsforandroid
 
-import com.gcode.tools.adapter.BaseGcodeItem
+import com.gcode.vastadapter.BaseGcodeItem
 
 /**
  *作者:created by HP on 2021/4/2 15:54

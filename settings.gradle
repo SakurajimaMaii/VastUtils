@@ -1,3 +1,16 @@
-include ':VastTools'
 include ':app'
 rootProject.name = "VastUtils"
+
+// =======
+// = Lib =
+// =======
+
+def libs = [
+        "VastTools",
+        "VastAdapter",
+]
+
+libs.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File("libraries/$it")
+}

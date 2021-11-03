@@ -2,36 +2,25 @@
 
 [简体中文](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README.md) | English
 
-| Last update time | Stable version | Next version | Alpha version |
-| :--------------: | :------------: | :----------: | :-----------: |
-|    2021/10/28    |     2.6.0      |    2.7.0     |               |
-
 ## 🚀 How to
 
-Add it in your root `build.gradle` at the end of repositories:
+### VastTools
 
 ```gradle
-allprojects {
-  repositories {
-    ...
-    maven { url 'https://jitpack.io' }
-  }
-}
+implementation 'io.github.sakurajimamaii:VastTools:0.0.2'
 ```
 
-Add the dependency
+### VastAdapter
 
 ```gradle
-dependencies {
-  implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.5.0'
-}
+implementation 'io.github.sakurajimamaii:VastAdapter:0.0.1'
 ```
 
 ## 👍 Start quickly
 
-Currently, the project is mainly provided `Adapter` and `Utils`
+Currently, the project is mainly provided `VastAdapter` and `VastTools`
 
-### Adapter
+### VastAdapter
 
 🤔According to the needs of the project, I design Adapter into two modes, respectively:
 
@@ -61,7 +50,7 @@ If your project supports databinding, please use **BaseGcodeBindingAdapter**, if
 | removeItemsByPos(startPos: Int, endPos: Int,includeEndPos: Boolean = false) |                       Remove item from `startPos` to `endPos`                        |
 |                                 clearItem()                                 |                                     Empty items                                      |
 
-### Utils
+### VastTools
 
 #### MsgWindowUtils
 

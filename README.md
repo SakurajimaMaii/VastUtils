@@ -2,39 +2,25 @@
 
 简体中文 | [English](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README_EN.md)
 
-# ⚠️
-为了之后的项目维护，我已将项目向 `MavenCentral()` 迁移，并且会将 `Adapter` 和 `Tools` 拆开作为单独的module进行维护，如果你使用**2.6.0之前的版本(包含2.6.0)**，依赖项的声明如下：
+## 添加依赖
 
-在项目根目录下的 `build.gradle` 添加
+### VastTools
 
 ```gradle
-allprojects {
-  repositories {
-    ...
-    maven { url 'https://jitpack.io' }
-  }
-}
+implementation 'io.github.sakurajimamaii:VastTools:0.0.2'
 ```
 
-添加依赖
+### VastAdapter
 
 ```gradle
-dependencies {
-  implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.5.0'
-}
-```
-
-从**2.6.1开始**，**2.6.1**作为项目的版号，而**Adapter**和**Tools**作为单独的Module以**0.0.1**作为起始版本号，添加引用如下：
-
-```gradle
-implementation 'io.github.sakurajimamaii:VastTools:0.0.1'
+implementation 'io.github.sakurajimamaii:VastAdapter:0.0.1'
 ```
 
 ## 快速开始
 
-目前该项目主要提供 `Adapter` 和 `Utils` 两类工具
+目前该项目主要提供 `VastTools` 和 `VastAdapter` 两类工具
 
-### Adapter
+### VastAdapter 介绍
 
 根据项目的需求，我将 Adapter 设计成两种模式，分别是：
 
@@ -67,7 +53,7 @@ adapter 目前提供了以下几种方法
 | removeItemsByPos(startPos: Int, endPos: Int,includeEndPos: Boolean = false) | startPos到endPos范围内的元素 |
 |                                 clearItem()                                 |          清空 items          |
 
-### Utils 介绍
+###  VastTools 介绍
 
 #### [MsgWindowUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/MsgWindowUtils)
 

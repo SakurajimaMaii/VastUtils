@@ -60,15 +60,15 @@ abstract class BaseGcodeAdapter<obj : BaseGcodeItem> @JvmOverloads constructor(
     override fun getItemViewType(position: Int) = items[position].getItemViewType()
 
     /**
-     * 判断列表是否为空
+     * Returns `true` if the collection is empty (contains no elements), `false` otherwise.
      * @return Boolean
      */
     fun isItemEmpty() = items.isEmpty()
 
     /**
-     * 借助pos来获取item
+     * Return item by position
      * @param pos
-     * @return 获取到的对象
+     * @return item you get
      */
     fun getItemByPos(@IntRange(from = 0) pos: Int): obj {
         if (pos >= items.size) {
@@ -78,10 +78,10 @@ abstract class BaseGcodeAdapter<obj : BaseGcodeItem> @JvmOverloads constructor(
     }
 
     /**
-     * 在数据集最后添加
-     * 如果你想在其他位置添加,请参考 [addItemByPos]
-     * @param item 添加的对象
-     * @return 操作的结果 [false] 表示添加失败或者item为 [null]
+     * Adds the specified element to the end of this list.
+     * If you want to add in other specified `pos`, please refer to [addItemByPos]
+     * @param item Item you want to add.
+     * @return The result `false` means adding failed or item is `null`
      */
     fun addItem(@Nullable item: obj?): Boolean {
         return if (item != null) {
@@ -89,7 +89,6 @@ abstract class BaseGcodeAdapter<obj : BaseGcodeItem> @JvmOverloads constructor(
             if (flag) {
                 notifyItemInserted(this.itemCount - 1)
             }
-            Log.d(tag, "The result of the addItem() is $flag")
             flag
         } else {
             false
@@ -97,9 +96,7 @@ abstract class BaseGcodeAdapter<obj : BaseGcodeItem> @JvmOverloads constructor(
     }
 
     /**
-     * 通过pos来添加item
-     * @param item 添加的对象
-     * @param pos 添加的位置
+     * Inserts an element into the list at the specified [pos].
      */
     @Throws(ArrayIndexOutOfBoundsException::class)
     fun addItemByPos(item: obj, @IntRange(from = 0) pos: Int) {
@@ -111,9 +108,7 @@ abstract class BaseGcodeAdapter<obj : BaseGcodeItem> @JvmOverloads constructor(
     }
 
     /**
-     * 通过pos来批量添加item
-     * @param addItems 添加的数据集
-     * @param pos 添加的位置
+     * Inserts all of the elements of the specified collection [addItems] into this list at the specified [pos].
      */
     @Throws(ArrayIndexOutOfBoundsException::class)
     fun addItemsByPos(addItems: MutableList<obj>, @IntRange(from = 0) pos: Int) {
@@ -125,9 +120,9 @@ abstract class BaseGcodeAdapter<obj : BaseGcodeItem> @JvmOverloads constructor(
     }
 
     /**
-     * 通过对象来删除Item
-     * @param item 要删除的对象
-     * @return 返回操作的结果
+     * Delete Item by object
+     * @param item The object to be deleted
+     * @return Return the result of the operation
      */
     fun removeItemByObj(@Nullable item: obj?): Boolean {
         val pos: Int = items.indexOf(item)
@@ -138,9 +133,9 @@ abstract class BaseGcodeAdapter<obj : BaseGcodeItem> @JvmOverloads constructor(
     }
 
     /**
-     * 通过pos来删除对象
-     * @param pos 删除对象的索引
-     * @return 如果items为空，则返回 [null] 否则返回删除的对象
+     * Removes an element at the specified [pos] from the list.
+     *
+     * @return the element that has been removed.
      */
     @Throws(ArrayIndexOutOfBoundsException::class)
     @Nullable
@@ -158,10 +153,10 @@ abstract class BaseGcodeAdapter<obj : BaseGcodeItem> @JvmOverloads constructor(
     }
 
     /**
-     * 删除[startPos]到[endPos]范围内的元素
+     * Delete the elements in the range from [startPos] to [endPos]
      * @param startPos
      * @param endPos
-     * @param includeEndPos [true] 表示包含endPos指向的元素
+     * @param includeEndPos `true` Indicates that the element pointed to by [endPos] is contained
      */
     @SuppressLint("NotifyDataSetChanged")
     fun removeItemsByPos(
@@ -186,7 +181,9 @@ abstract class BaseGcodeAdapter<obj : BaseGcodeItem> @JvmOverloads constructor(
         }
     }
 
-    // 清空列表全部元素
+    /**
+     * Clear all elements in the list
+     */
     @SuppressLint("NotifyDataSetChanged")
     fun clearItem() {
         if (items.isNotEmpty()) {

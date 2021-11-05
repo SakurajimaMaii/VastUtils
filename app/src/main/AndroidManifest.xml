@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GUtilsSampleDemo">
         <activity
-            android:name=".IntentActivity"
+            android:name=".BaseActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DensityActivity"
+            android:name=".IntentActivity"
             android:exported="true">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
@@ -34,7 +34,7 @@
 <!--            </intent-filter>-->
         </activity>
         <activity
-            android:name=".LogActivity"
+            android:name=".DensityActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->
@@ -45,7 +45,18 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".CameraActivity"
+            android:name="com.gcode.toolsforandroid.LogActivity"
+            android:exported="true">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name="com.gcode.toolsforandroid.CameraActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->

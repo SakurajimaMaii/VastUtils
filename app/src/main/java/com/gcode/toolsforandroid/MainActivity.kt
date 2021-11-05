@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     inner class TestBaseBindingAdapter(items: MutableList<Person>) :
         BaseGcodeBindingAdapter<Person>(items){
         override fun setVariableId(): Int {
-            return BR.item
+            return com.gcode.toolsforandroid.BR.item
         }
     }
 

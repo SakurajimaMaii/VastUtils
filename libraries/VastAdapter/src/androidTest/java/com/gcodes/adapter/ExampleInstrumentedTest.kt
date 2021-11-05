@@ -1,4 +1,4 @@
-package com.gcode.adapter
+package com.gcodes.adapter
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

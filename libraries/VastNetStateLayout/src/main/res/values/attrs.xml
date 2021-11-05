@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="NetStateLayout">
+        <attr name="net_error" format="string" />
+        <attr name="net_loading" format="string" />
+    </declare-styleable>
+
+</resources>

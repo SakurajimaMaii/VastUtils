@@ -8,7 +8,6 @@ import com.gcode.vastnetstatelayout.R
 import com.gcode.vastnetstatelayout.interfaces.INetErrorView
 import com.gcode.vastnetstatelayout.interfaces.INetErrorView.OnRetryClickListener
 import com.gcode.vastnetstatelayout.interfaces.INetLoadingView
-import com.gcodes.vastnetstatelayout.view.NetState
 
 /**
  * Created by Vast Gui on 2021/11/5

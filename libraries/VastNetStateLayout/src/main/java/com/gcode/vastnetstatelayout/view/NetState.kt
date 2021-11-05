@@ -1,4 +1,4 @@
-package com.gcodes.vastnetstatelayout.view
+package com.gcode.vastnetstatelayout.view
 
 /**
  * Net state

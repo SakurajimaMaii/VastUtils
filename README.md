@@ -1,8 +1,8 @@
 # [ToolsForAndroid](https://github.com/SakurajimaMaii/ToolsForAndroid)
 
-简体中文 | [English](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README_EN.md)
+[简体中文](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README_CN.md) | English
 
-## 添加依赖
+## 🚀 How to
 
 ### VastTools
 
@@ -16,68 +16,106 @@ implementation 'io.github.sakurajimamaii:VastTools:0.0.2'
 implementation 'io.github.sakurajimamaii:VastAdapter:0.0.1'
 ```
 
-## 快速开始
+## 👍 Start quickly
 
-目前该项目主要提供 `VastTools` 和 `VastAdapter` 两类工具
+Currently, the project is mainly provided `VastAdapter` and `VastTools`
 
-### VastAdapter 介绍
+### VastAdapter
 
-根据项目的需求，我将 Adapter 设计成两种模式，分别是：
+🤔According to the needs of the project, I design Adapter into two modes, respectively:
 
-- 支持 DataBinding
-- 不支持 DataBinding
+- support DataBinding
+- not support DataBinding
 
-如果你的项目**支持 DataBinding**，请使用**BaseGcodeBindingAdapter**，如果**不支持 DataBinding**，请使用**BaseGcodeAdapter**
+If your project supports databinding, please use **BaseGcodeBindingAdapter**, if does not support , please use **BaseGcodeAdapter**😉
 
-#### 使用说明
+#### Instructions for use
 
-- [BaseGcodeBindingAdapter 使用](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/docs/BaseGcodeBindingAdapter.md)
-- [BaseGcodeAdapter 使用](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/docs/BaseGcodeAdapter.md)
+- [BaseGcodeBindingAdapter](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/docs/BaseGcodeBindingAdapter.md)
+- [BaseGcodeAdapter](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/docs/BaseGcodeAdapter.md)
 
-#### Adapter 方法介绍
+#### Methods
 
-adapter 目前提供了以下几种方法
+|                                 Method name                                 |                                      illustrate                                      |
+| :-------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
+|                               getItemCount()                                |                            Returns the size of the item.                             |
+|                       getItemViewType(position: Int)                        |                          Get ViewType according to Position                          |
+|                                isItemEmpty()                                | Returns `true` if the collection is empty (contains no elements), `false` otherwise. |
+|                           getItemByPos(pos: Int)                            |                              Returns item by `position`                              |
+|                             addItem(item: obj?)                             |                   Adds the specified item to the end of this list                    |
+|                      addItemByPos(item: obj, pos: Int)                      |                      Adds the specified item by the `position`                       |
+|             addItemsByPos(addItems: MutableList<obj>, pos: Int)             |                     Adds List of Item by `position` to the list                      |
+|                         removeItemByObj(item: obj?)                         |                                Remove Item by object                                 |
+|                          removeItemByPos(pos: Int)                          |                             Remove objects by `position`                             |
+| removeItemsByPos(startPos: Int, endPos: Int,includeEndPos: Boolean = false) |                       Remove item from `startPos` to `endPos`                        |
+|                                 clearItem()                                 |                                     Empty items                                      |
 
-|                                   方法名                                    |             说明             |
-| :-------------------------------------------------------------------------: | :--------------------------: |
-|                               getItemCount()                                |       获取 item 的数量       |
-|                       getItemViewType(position: Int)                        | 根据 position 获取 ViewType  |
-|                                isItemEmpty()                                |     判断 items 是否为空      |
-|                           getItemByPos(pos: Int)                            |      根据 pos 获取 item      |
-|                             addItem(item: obj?)                             |       在数据集最后添加       |
-|                             addItem(item: obj?)                             |     在最后添加对象 item      |
-|                      addItemByPos(item: obj, pos: Int)                      |    根据 pos 添加对象 item    |
-|             addItemsByPos(addItems: MutableList<obj>, pos: Int)             |   通过 pos 来批量添加 item   |
-|                         removeItemByObj(item: obj?)                         |     通过对象来删除 Item      |
-|                          removeItemByPos(pos: Int)                          |     通过 pos 来删除对象      |
-| removeItemsByPos(startPos: Int, endPos: Int,includeEndPos: Boolean = false) | startPos到endPos范围内的元素 |
-|                                 clearItem()                                 |          清空 items          |
+### VastTools
 
-###  VastTools 介绍
+#### MsgWindowUtils
 
-#### [MsgWindowUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/MsgWindowUtils)
+Message pop-up tool class, currently support three messages pop-ups `Short Toast` `Long Toast` `showDlgMsg`
 
-弹窗工具类，点击标题查看**文档**
+```kotlin
+MsgWindowUtils.showShortMsg(this, "These permissions are denied: $deniedList")
+```
 
-#### [ScreenSizeUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/ScreenSizeUtils)
+#### ScreenSizeUtils
 
-用于返回屏幕大小相关信息，方便你根据此来设计控件尺寸，点击标题查看**文档**
+Used to return the screen size related information, so that you can design control size according to this
 
-#### [LogUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/LogUtils)
+```kotlin
+fun isAllScreenDevice(context: Context)
+fun getMobileScreenWidth(context: Context)
+fun getMobileScreenHeight(context: Context)
+```
 
-日志工具类主要用于打印日志，打印的内容包含 `类名`  `Log调用的行数` `调用Log的方法` `关键字` `输出信息`，点击标题查看**文档**
+#### LogUtils
+
+The log tool class is mainly used for printing the log, the content contains `Class name` `the number of rows of log call` `the method of log call` `keyboard` `Out information`
 
 ![log example](https://img-blog.csdnimg.cn/e5e2c730d428481fba80a41f8c126af6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA56CB5LiK5aSP6Zuo,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-#### CameraUtils
-
-相机工具类主要用于获取相册内的图片并将其转化为 `Bitmap` 对象
+**1.Log on and off**
 
 ```kotlin
-// 获取到的图片
+LogUtils.setLogEnabled(false)
+```
+
+**2.Use**
+
+```kotlin
+LogUtils.i(this.javaClass,"Hello","${1+2}")
+LogUtils.d(this.javaClass,"Hello","${1+2}")
+LogUtils.e(this.javaClass,"Hello","${1+2}")
+LogUtils.v(this.javaClass,"Hello","${1+2}")
+LogUtils.w(this.javaClass,"Hello","${1+2}")
+```
+
+**3.Custom output content**
+
+From the implementation `Logcontent` interface from defined output log content
+
+```kotlin
+LogUtils.setLogContentFormat(object :LogContent{
+    override fun logContentFormat(
+        methodName: String,
+        key: String?,
+        content: String?
+    ): String {
+        return "$key $content"
+    }
+})
+```
+
+#### CameraUtils
+
+The camera tool class is mainly used to get pictures in the album and convert it to `bitmap` object
+
+```kotlin
+// Getted picture
 private var bitmap: Bitmap? = null
 
-// 打开相册
 private val getPhoto = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
     if(result.resultCode == Activity.RESULT_OK){
         bitmap = result.data?.let { CameraUtils.displayImage(it,this) }
@@ -85,20 +123,40 @@ private val getPhoto = registerForActivityResult(ActivityResultContracts.StartAc
 }
 ```
 
-#### [AppUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/AppUtils)
+#### AppUtils
 
-App工具类用来获取APP的应用程序名称、包名、图标，版本号基本信息，点击标题查看**文档**
+App tool class is used to get app name, package name, icon, version number basic information
+
+```kotlin
+AppUtils.getAppName(this)
+AppUtils.getPackageName(this)
+AppUtils.getVersionName(this)
+AppUtils.getVersionCode(this)
+AppUtils.getBitmap(this)
+```
 
 #### DateUtils
 
-用于获取日期相关信息
+Used to obtain date related information
 
-#### [DensityUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/DensityUtils)
+#### DensityUtils
 
-用于尺寸转换，点击标题查看**文档**
+Used for dimensional conversion, currently provided four methods
 
-## 参考来源
+```kotlin
+fun px2dp(pxValue: Float): Float
+fun dp2px(dipValue: Float): Float
+fun px2sp(pxValue: Float): Float
+fun sp2px(spValue: Float): Float
 
-[Android获取图片：拍照和从相册中选择](https://www.jianshu.com/p/57487bb1ec5a)
+// Convert dp value to float (in pixels)
+Float.dp
+// Convert sp value to float (in pixels)
+Float.sp
+```
 
-[Android获取APP的应用程序名称、包名、图标，版本号基本信息](https://blog.csdn.net/jia635/article/details/78722073)
+## Reference source
+
+[Android Get pictures: taking photos and from albums](https://www.jianshu.com/p/57487bb1ec5a)
+
+[Android gets the app name, package name, icon, version number basic information](https://blog.csdn.net/jia635/article/details/78722073)

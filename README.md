@@ -1,4 +1,6 @@
-# [ToolsForAndroid](https://github.com/SakurajimaMaii/ToolsForAndroid)
+# [VastUtils](https://github.com/SakurajimaMaii/VastUtils)
+
+Easy Quick Android Utils for you to faster project development.
 
 [简体中文](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README_CN.md) | English
 
@@ -17,8 +19,6 @@ implementation 'io.github.sakurajimamaii:VastAdapter:0.0.1'
 ```
 
 ## 👍 Start quickly
-
-Currently, the project is mainly provided `VastAdapter` and `VastTools`
 
 ### VastAdapter
 

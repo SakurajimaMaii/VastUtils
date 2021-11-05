@@ -14,6 +14,11 @@ import androidx.annotation.RequiresApi
  */
 object ScreenSizeUtils {
 
+    /**
+     * Determine whether it is a full screen.(in Api 31)
+     * @param context Context for the transform.
+     * @return `true` if your device is full screen,`false` if your device is not full screen.
+     */
     @RequiresApi(Build.VERSION_CODES.S)
     fun isAllScreenDeviceApi31(context: Context): Boolean{
         val vm: WindowMetrics =
@@ -27,7 +32,7 @@ object ScreenSizeUtils {
     }
 
     /**
-     * Is all screen device Api30 Above
+     * Determine whether it is a full screen.(in Api 30)
      * @param context Context for the transform.
      * @return `true` if your device is full screen,`false` if your device is not full screen.
      */
@@ -52,7 +57,7 @@ object ScreenSizeUtils {
     }
 
     /**
-     * Is all screen device Api30 Down
+     * Determine whether it is a full screen(in Api 30 Down)
      * @param context Context for the transform.
      * @return `true` if your device is full screen,`false` if your device is not full screen.
      */
@@ -154,7 +159,7 @@ object ScreenSizeUtils {
     @RequiresApi(Build.VERSION_CODES.S)
     fun getMobileScreenHeightApi31(context: Context) =
         if (isAllScreenDeviceApi31(context)) {
-            // 全面屏要通过这个方法获取高度
+            // The full screen is needs to get the height through this method.
             getScreenRealHeightApi31(context)
         } else {
             getScreenHeight(context); }
@@ -166,7 +171,7 @@ object ScreenSizeUtils {
     @RequiresApi(Build.VERSION_CODES.R)
     fun getMobileScreenHeightApi30(context: Context) =
         if (isAllScreenDeviceApi30(context)) {
-            // 全面屏要通过这个方法获取高度
+            // The full screen is needs to get the height through this method.
             getScreenRealHeightApi30(context)
         } else {
             getScreenHeight(context); }
@@ -177,8 +182,9 @@ object ScreenSizeUtils {
      */
     fun getMobileScreenHeightApi30Down(context: Context) =
         if (isAllScreenDeviceApi30Down(context)) {
-            // 全面屏要通过这个方法获取高度
+            // The full screen needs to get the height through this method.
             getScreenRealHeightApi30Down(context)
         } else {
-            getScreenHeight(context); }
+            getScreenHeight(context);
+        }
 }

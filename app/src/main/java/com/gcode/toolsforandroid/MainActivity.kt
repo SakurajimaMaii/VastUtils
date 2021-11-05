@@ -13,6 +13,7 @@ import com.gcode.vastadapter.BaseGcodeAdapter
 import com.gcode.vastadapter.BaseGcodeBindingAdapter
 import com.gcode.vasttools.interfaces.LogContent
 import com.gcode.vasttools.utils.LogUtils
+import com.gcode.vasttools.utils.MsgWindowUtils
 import com.gcode.vasttools.utils.ScreenSizeUtils
 import kotlin.collections.ArrayList
 
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.addButton)
 
+
         testadapter.setOnItemClickListener(object : BaseGcodeAdapter.OnItemClickListener{
             override fun onItemClick(itemView: View?, pos: Int, itemId: Long) {
                 Toast.makeText(this@MainActivity,"$pos and $itemId ^-^",Toast.LENGTH_SHORT).show()
@@ -74,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             if(!testadapter.removeItemByObj(null)){
-                Toast.makeText(this@MainActivity,"HHHHHHHHHHHHHHHHHHHHHHHHHH",Toast.LENGTH_SHORT).show()
+                MsgWindowUtils.showShortMsg(this,"VastUtils")
             }
         }
 

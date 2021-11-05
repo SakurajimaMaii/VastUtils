@@ -54,20 +54,39 @@ If your project supports databinding, please use **BaseGcodeBindingAdapter**, if
 
 #### MsgWindowUtils
 
-Message pop-up tool class, currently support three messages pop-ups `Short Toast` `Long Toast` `showDlgMsg`
+Currently support three messages pop-ups `Short Toast` `Long Toast` `showDlgMsg`
+
+Here is **Kotlin** way
 
 ```kotlin
-MsgWindowUtils.showShortMsg(this, "These permissions are denied: $deniedList")
+MsgWindowUtils.showShortMsg(this,"VastUtils")
+```
+
+Here is **Java** way
+
+```java
+MsgWindowUtils.INSTANCE.showDlgMsg(this,"VastUtils");
 ```
 
 #### ScreenSizeUtils
 
-Used to return the screen size related information, so that you can design control size according to this
+Used to return the screen size information,Including whether the device is a **Full screen**, the **ScreenHeight**, and the **ScreenWidth**.
+
+Here is **Kotlin** way
 
 ```kotlin
-fun isAllScreenDevice(context: Context)
-fun getMobileScreenWidth(context: Context)
-fun getMobileScreenHeight(context: Context)
+//in api 31
+ScreenSizeUtils.getMobileScreenHeightApi31(this)
+//in api 30
+ScreenSizeUtils.getMobileScreenHeightApi30(this)
+//in api 30 down
+ScreenSizeUtils.getMobileScreenHeightApi30Down(this)
+```
+
+Here is **Java** way
+
+```java
+ScreenSizeUtils.INSTANCE.isAllScreenDeviceApi30(this);
 ```
 
 #### LogUtils
@@ -78,8 +97,16 @@ The log tool class is mainly used for printing the log, the content contains `Cl
 
 **1.Log on and off**
 
+Here is **Kotlin** way
+
 ```kotlin
 LogUtils.setLogEnabled(false)
+```
+
+Here is **Java** way
+
+```java
+LogUtils.INSTANCE.setLogEnabled(true);
 ```
 
 **2.Use**
@@ -94,18 +121,28 @@ LogUtils.w(this.javaClass,"Hello","${1+2}")
 
 **3.Custom output content**
 
-From the implementation `Logcontent` interface from defined output log content
+Here is **Kotlin** way
 
 ```kotlin
+//Use in Kotlin
 LogUtils.setLogContentFormat(object :LogContent{
-    override fun logContentFormat(
-        methodName: String,
-        key: String?,
-        content: String?
-    ): String {
-        return "$key $content"
+    override fun logContentFormat(methodName: String, key: String?, content: String?): String {
+        return super.logContentFormat(methodName, key, content)
     }
 })
+
+```
+
+Here is **Java** way
+
+```java
+LogUtils.INSTANCE.setLogContentFormat(new LogContent() {
+    @NonNull
+    @Override
+    public String logContentFormat(@NonNull String s, @Nullable String s1, @Nullable String s2) {
+        return s1+s2;
+    }
+});
 ```
 
 #### CameraUtils
@@ -127,12 +164,20 @@ private val getPhoto = registerForActivityResult(ActivityResultContracts.StartAc
 
 App tool class is used to get app name, package name, icon, version number basic information
 
+Here is **Kotlin** way
+
 ```kotlin
 AppUtils.getAppName(this)
 AppUtils.getPackageName(this)
 AppUtils.getVersionName(this)
 AppUtils.getVersionCode(this)
 AppUtils.getBitmap(this)
+```
+
+Here is **Java** way
+
+```java
+AppUtils.INSTANCE.getAppName(this);
 ```
 
 #### DateUtils
@@ -143,16 +188,22 @@ Used to obtain date related information
 
 Used for dimensional conversion, currently provided four methods
 
+Here is **Kotlin** way
+
 ```kotlin
-fun px2dp(pxValue: Float): Float
-fun dp2px(dipValue: Float): Float
-fun px2sp(pxValue: Float): Float
-fun sp2px(spValue: Float): Float
+DensityUtils.dp2px(50f)
 
 // Convert dp value to float (in pixels)
-Float.dp
-// Convert sp value to float (in pixels)
-Float.sp
+50f.dp
+```
+
+Here is **Java** way
+
+```java
+DensityUtils.INSTANCE.dp2px(50F);
+
+// Convert dp value to float (in pixels)
+DensityUtils.INSTANCE.getDp(50f);
 ```
 
 ## Reference source

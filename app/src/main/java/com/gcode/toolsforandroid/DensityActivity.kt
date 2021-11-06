@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.gcode.vasttools.model.AspectRatioDevice
 import com.gcode.vasttools.utils.DensityUtils
 import com.gcode.vasttools.utils.LogUtils
+import com.gcode.vasttools.utils.ScreenSizeUtils
 
 class DensityActivity : AppCompatActivity() {
+
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

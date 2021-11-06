@@ -1,39 +1,33 @@
 package com.gcode.toolsforandroid;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 
-import com.gcode.vasttools.interfaces.LogContent;
-import com.gcode.vasttools.utils.AppUtils;
-import com.gcode.vasttools.utils.DensityUtils;
+import com.gcode.vasttools.internal.exception.NoMatchAspectRatio;
+import com.gcode.vasttools.model.AspectRatioDevice;
 import com.gcode.vasttools.utils.LogUtils;
-import com.gcode.vasttools.utils.MsgWindowUtils;
 import com.gcode.vasttools.utils.ScreenSizeUtils;
+
+import kotlin.Pair;
 
 public class LogActivity extends AppCompatActivity {
 
+    @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
 
-        AppUtils.INSTANCE.getAppName(this);
+        ScreenSizeUtils.INSTANCE.addDevice(new AspectRatioDevice("SAMSUNG",2.3f),new AspectRatioDevice("Apple",1.5f));
 
-        DensityUtils.INSTANCE.dp2px(50F);
-
-        LogUtils.INSTANCE.setLogEnabled(true);
-        LogUtils.INSTANCE.setLogContentFormat(new LogContent() {
-            @NonNull
-            @Override
-            public String logContentFormat(@NonNull String s, @Nullable String s1, @Nullable String s2) {
-                return s1+s2;
-            }
-        });
-        LogUtils.INSTANCE.d(this.getClass(),"hello","111111");
-
-        Float value = 50F;
+        ScreenSizeUtils.INSTANCE.resetDeviceList();
+        try {
+            LogUtils.INSTANCE.e(this.getClass(),"LogActivity", String.valueOf(ScreenSizeUtils.INSTANCE.isAllScreenDeviceApi30(this,"SAMSUNG")));
+        } catch (NoMatchAspectRatio e) {
+            LogUtils.INSTANCE.e(this.getClass(),"LogActivity",e.getMessage());
+        }
     }
 }

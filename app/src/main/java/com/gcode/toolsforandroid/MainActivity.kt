@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        LogUtils.setLogEnabled(true)
+        LogUtils.maxPrintTimes = 10
         LogUtils.setLogContentFormat(object : LogContent {
             override fun logContentFormat(methodName: String, key: String?, content: String?): String {
                 return super.logContentFormat(methodName, key, content)

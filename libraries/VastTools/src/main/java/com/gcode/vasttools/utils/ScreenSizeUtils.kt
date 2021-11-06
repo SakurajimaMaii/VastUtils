@@ -6,6 +6,9 @@ import android.os.Build
 import android.view.WindowManager
 import android.view.WindowMetrics
 import androidx.annotation.RequiresApi
+import com.gcode.vasttools.internal.annotation.UnderTest
+import com.gcode.vasttools.internal.exception.NoMatchAspectRatio
+import com.gcode.vasttools.model.AspectRatioDevice
 
 /**
  * Screen size utils
@@ -14,19 +17,47 @@ import androidx.annotation.RequiresApi
  */
 object ScreenSizeUtils {
 
+    @UnderTest
+    private val DefaultDevice = AspectRatioDevice("DefaultDevice", 1.97f)
+
+    @UnderTest
+    private val defaultAspectRatioList = mutableListOf(DefaultDevice)
+
+    /**
+     * Aspect ratio map
+     *
+     * In order to fit the aspect ratio of more mobile devices
+     */
+    @UnderTest
+    private var AspectRatioDeviceList = defaultAspectRatioList
+
     /**
      * Determine whether it is a full screen.(in Api 31)
      * @param context Context for the transform.
+     * @param deviceTag The category of your phone.
+     *
      * @return `true` if your device is full screen,`false` if your device is not full screen.
+     *
+     * @throws NoMatchAspectRatio Please see the definition.
      */
+    @JvmOverloads
     @RequiresApi(Build.VERSION_CODES.S)
-    fun isAllScreenDeviceApi31(context: Context): Boolean{
+    @Throws(NoMatchAspectRatio::class)
+    fun isAllScreenDeviceApi31(
+        context: Context,
+        @UnderTest deviceTag: String = DefaultDevice.tag
+    ): Boolean {
         val vm: WindowMetrics =
             (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).currentWindowMetrics
         val width: Float = vm.bounds.width().toFloat()
         val height: Float = vm.bounds.height().toFloat()
-        if (height / width >= 1.97f) {
-            return true
+        val device = AspectRatioDeviceList.firstOrNull() { it.tag == deviceTag }
+        if (device == null) {
+            throw NoMatchAspectRatio("Did not find the aspect ratio that matches $deviceTag")
+        } else {
+            if (height / width >= device.aspectRatio) {
+                return true
+            }
         }
         return false
     }
@@ -34,10 +65,19 @@ object ScreenSizeUtils {
     /**
      * Determine whether it is a full screen.(in Api 30)
      * @param context Context for the transform.
+     * @param deviceTag The category of your phone.
+     *
      * @return `true` if your device is full screen,`false` if your device is not full screen.
+     *
+     * @throws NoMatchAspectRatio Please see the definition.
      */
+    @JvmOverloads
     @RequiresApi(Build.VERSION_CODES.R)
-    fun isAllScreenDeviceApi30(context: Context): Boolean {
+    @Throws(NoMatchAspectRatio::class)
+    fun isAllScreenDeviceApi30(
+        context: Context,
+        @UnderTest deviceTag: String = DefaultDevice.tag
+    ): Boolean {
         //后续适配再启用
         val point = Point()
         context.display?.getRealSize(point)
@@ -50,8 +90,13 @@ object ScreenSizeUtils {
             width = point.y.toFloat()
             height = point.x.toFloat()
         }
-        if (height / width >= 1.97f) {
-            return true
+        val device = AspectRatioDeviceList.firstOrNull() { it.tag == deviceTag }
+        if (device == null) {
+            throw NoMatchAspectRatio("Did not find the aspect ratio that matches $deviceTag")
+        } else {
+            if (height / width >= device.aspectRatio) {
+                return true
+            }
         }
         return false
     }
@@ -59,9 +104,18 @@ object ScreenSizeUtils {
     /**
      * Determine whether it is a full screen(in Api 30 Down)
      * @param context Context for the transform.
+     * @param deviceType Device type of your device.
+     *
      * @return `true` if your device is full screen,`false` if your device is not full screen.
+     *
+     * @throws NoMatchAspectRatio Please see the definition.
      */
-    fun isAllScreenDeviceApi30Down(context: Context): Boolean {
+    @JvmOverloads
+    @Throws(NoMatchAspectRatio::class)
+    fun isAllScreenDeviceApi30Down(
+        context: Context,
+        @UnderTest deviceTag: String = DefaultDevice.tag
+    ): Boolean {
         //后续适配再启用
         val point = Point()
         val vm: WindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -75,8 +129,13 @@ object ScreenSizeUtils {
             width = point.y.toFloat()
             height = point.x.toFloat()
         }
-        if (height / width >= 1.97f) {
-            return true
+        val device = AspectRatioDeviceList.firstOrNull() { it.tag == deviceTag }
+        if (device == null) {
+            throw NoMatchAspectRatio("Did not find the aspect ratio that matches $deviceTag")
+        } else {
+            if (height / width >= device.aspectRatio) {
+                return true
+            }
         }
         return false
     }
@@ -187,4 +246,31 @@ object ScreenSizeUtils {
         } else {
             getScreenHeight(context);
         }
+
+    /**
+     * @param devices Add the aspect ratio of the device and its corresponding screen.
+     */
+    @UnderTest
+    fun addDevice(vararg devices: AspectRatioDevice) {
+        devices.forEach {
+            AspectRatioDeviceList.add(it)
+        }
+    }
+
+    /**
+     * Remove device by [device]
+     */
+    @UnderTest
+    fun removeDevice(device: AspectRatioDevice) {
+        AspectRatioDeviceList.remove(device)
+    }
+
+    /**
+     * Reset [AspectRatioDeviceList]
+     */
+    @UnderTest
+    fun resetDeviceList() {
+        AspectRatioDeviceList.clear()
+        AspectRatioDeviceList.add(DefaultDevice)
+    }
 }

@@ -42,7 +42,7 @@ object CameraUtils {
      * @param context
      * @return
      */
-    private fun getImageBitMapApi29Down(data: Intent, context: Context?):Bitmap? {
+    fun getImageBitMapApi29Down(data: Intent, context: Context?):Bitmap? {
         val imagePath = getImagePathApi29Down(data, context)
         return if (imagePath != null) {
             BitmapFactory.decodeFile(imagePath)
@@ -97,7 +97,10 @@ object CameraUtils {
             uri?.let { context?.contentResolver?.query(it, null, selection, null, null) }
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA))
+                val index = cursor.getColumnIndex(MediaStore.Images.Media.DATA)
+                if(index>=0){
+                    path = cursor.getString(index)
+                }
             }
             cursor.close()
         }

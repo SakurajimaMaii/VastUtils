@@ -44,7 +44,7 @@ dependencies {
 ext {
     PUBLISH_GROUP_ID = "io.github.sakurajimamaii"        //项目包名
     PUBLISH_ARTIFACT_ID = 'VastTools'            //项目名
-    PUBLISH_VERSION = '0.0.2'                    //版本号
+    PUBLISH_VERSION = '0.0.3'                    //版本号
     PUBLISH_DESCRIPTION = 'Easy Quick Android Tools for you to faster project development.' //项目描述
     PUBLISH_URL = 'https://github.com/SakurajimaMaii/VastUtils/tree/master/libraries/VastTools' //Url
 }

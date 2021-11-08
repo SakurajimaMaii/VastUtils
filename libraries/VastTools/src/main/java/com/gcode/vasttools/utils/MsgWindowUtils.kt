@@ -5,7 +5,12 @@ import android.content.Context
 import android.widget.Toast
 
 /**
- * 自定义通用工具类
+ * Msg window utils
+ *
+ * Currently support three messages pop-ups
+ * [MsgWindowUtils.showShortMsg]<br/>
+ * [MsgWindowUtils.showLongMsg]<br/>
+ * [MsgWindowUtils.showDlgMsg]
  */
 object MsgWindowUtils {
     /**

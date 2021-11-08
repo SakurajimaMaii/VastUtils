@@ -12,8 +12,8 @@ import com.gcode.vasttools.model.AspectRatioDevice
 
 /**
  * Screen size utils
+ *
  * Get your device screen size
- * @constructor Create empty Screen size utils
  */
 object ScreenSizeUtils {
 

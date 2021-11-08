@@ -75,7 +75,7 @@ object DateUtils {
         // long diff = nowTime - date.getTime();
         var diff = nowTime.time - date.time
         diff /= 1000
-        if (diff < 60) return "刚刚"
+        if (diff < 60) return "just now"
         if (diff < 3600) return (diff / 60).toString() + "minutes ago"
         if (diff > 3600 && diff < 3600 * 24) return (diff / 3600).toString() + "hours ago"
         return if (diff < 3600 * 24 * 7 && diff > 3600 * 24) (diff / (3600 * 24)).toString() + "days ago" else getStringDateShort(

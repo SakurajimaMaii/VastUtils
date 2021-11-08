@@ -44,7 +44,7 @@ dependencies {
     implementation project(':libraries:VastTools')
     //implementation 'com.github.SakurajimaMaii:ToolsForAndroid:2.6.0'
     implementation 'io.github.sakurajimamaii:VastAdapter:0.0.1'
-    //implementation 'io.github.sakurajimamaii:VastTools:0.0.2'
+    //implementation 'io.github.sakurajimamaii:VastTools:0.0.3'
 
     implementation "androidx.activity:activity-ktx:$activity_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"

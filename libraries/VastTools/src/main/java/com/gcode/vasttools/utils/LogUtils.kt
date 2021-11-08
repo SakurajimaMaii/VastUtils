@@ -7,7 +7,6 @@ import java.util.*
 
 /**
  * Log utils
- * @constructor Create empty Log utils
  */
 object LogUtils : LogContent {
 
@@ -179,7 +178,7 @@ object LogUtils : LogContent {
         // Convert the content to ByteArray.
         var bytes = content.toByteArray()
 
-        // 超出范围直接打印
+        // Print when defaultByteLength is greater than bytes.size
         if (defaultByteLength >= bytes.size) {
             Log.println(priority, tag, content)
             return

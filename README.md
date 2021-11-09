@@ -21,7 +21,7 @@ implementation 'io.github.sakurajimamaii:VastTools:0.0.3'
 ### VastAdapter
 
 ```gradle
-implementation 'io.github.sakurajimamaii:VastAdapter:0.0.1'
+implementation 'io.github.sakurajimamaii:VastAdapter:0.0.2'
 ```
 
 ## 👍 Start quickly
@@ -33,12 +33,105 @@ implementation 'io.github.sakurajimamaii:VastAdapter:0.0.1'
 - support DataBinding
 - not support DataBinding
 
-If your project supports databinding, please use **BaseGcodeBindingAdapter**, if does not support , please use **BaseGcodeAdapter**😉
+If your project supports databinding, please use **BaseVastBindingAdapter**, if does not support , please use **BaseVastAdapter**😉
 
-#### Instructions for use
+#### BaseVastBindingAdapter
 
-- [BaseGcodeBindingAdapter](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/docs/BaseGcodeBindingAdapter.md)
-- [BaseGcodeAdapter](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/docs/BaseGcodeAdapter.md)
+1. First let the object extends the `BaseVastItem` interface, and use the layout id as the return value of `getItemViewType`, for example
+
+```kotlin
+data class Person(val firstName:String,val lastName: String):BaseVastItem{
+    override fun getItemViewType(): Int {
+        return R.layout.item_layout
+    }
+
+    override fun getItemBindViewType(): Int {
+        
+    }
+}
+```
+
+2. Use in xml
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/util_gold">
+    <TextView
+        android:id="@+id/firstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/lastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+```
+
+3. Create your adapter extends `BaseVastAdapter` and override the `bindData` method.
+
+```kotlin
+class TestBaseAdapter(items: MutableList<Person>) : BaseVastAdapter<Person>(items) {
+        override fun bindData(holder: RecyclerViewHolder, position: Int, item: Person) {
+        holder.findViewById<TextView>(R.id.firstName).text = item.firstName
+        holder.findViewById<TextView>(R.id.lastName).text = item.lastName
+    }
+}
+```
+
+#### BaseGcodeBindingAdapter
+
+
+1. First let the object extends the `BaseVastItem` interface, and use the layout id as the return value of `getItemBindViewType`, for example
+
+```kotlin
+data class Person(val firstName:String,val lastName: String):BaseVastItem{
+    override fun getItemViewType(): Int {
+        
+    }
+
+    override fun getItemBindViewType(): Int {
+        return R.layout.item_bind_layout
+    }
+}
+```
+
+2. Use in xml
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="item"
+            type="com.gcode.vastutils.Person" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{item.firstName}"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{item.lastName}"/>
+    </LinearLayout>
+</layout>
+```
+
+3. Create your adapter extends `BaseVastBindingAdapter` and override the `setVariableId` method.
+
+```kotlin
+class TestBaseBindingAdapter(items: MutableList<BaseItem>) :BaseVastBindingAdapter(items){
+    override fun setVariableId(): Int {
+        return BR.item
+    }
+}
+```
 
 #### Methods
 

@@ -1,7 +1,6 @@
 package com.gcode.vastadapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +9,14 @@ import androidx.annotation.Nullable
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.jvm.Throws
 
 /**
- *作者:created by HP on 2021/4/2 14:43
- *邮箱:sakurajimamai2020@qq.com
+ * Base gcode binding adapter
+ * @param obj The class of the list item.
+ * @property items List Data.
  */
-abstract class BaseGcodeBindingAdapter<obj : BaseGcodeItem> @JvmOverloads constructor(
+abstract class BaseGcodeBindingAdapter<obj : BaseGcodeItem> constructor(
     private val items: MutableList<obj>,
-    private val tag: String = "BaseBindingAdapter"
 ) :
     RecyclerView.Adapter<BaseGcodeBindingAdapter.BindingHolder>() {
 
@@ -90,7 +88,6 @@ abstract class BaseGcodeBindingAdapter<obj : BaseGcodeItem> @JvmOverloads constr
             if (flag) {
                 notifyItemInserted(this.itemCount - 1)
             }
-            Log.i(tag, "The result of the insert operation is $flag")
             flag
         }
     }

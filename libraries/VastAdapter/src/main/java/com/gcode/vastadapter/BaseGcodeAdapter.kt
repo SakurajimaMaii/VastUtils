@@ -1,30 +1,21 @@
 package com.gcode.vastadapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IntRange
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.jvm.Throws
 
 /**
- *作者:created by HP on 2021/4/2 12:17
- *邮箱:sakurajimamai2020@qq.com
+ * Base gcode adapter
+ *
+ * @param obj The class of the list item.
+ * @property items List Data.
  */
-/**
- * Adapter基类
- * @property items MutableList<BaseItem>
- * @property tag String 用来打印日志的时候使用
- * @property mClickListener OnItemClickListener?
- * @property mLongClickListener OnItemLongClickListener?
- * @constructor
- */
-abstract class BaseGcodeAdapter<obj : BaseGcodeItem> @JvmOverloads constructor(
+abstract class BaseGcodeAdapter<obj : BaseGcodeItem> constructor(
     private var items: MutableList<obj>,
-    private val tag: String = "BaseAdapter"
 ) : RecyclerView.Adapter<BaseGcodeAdapter.RecyclerViewHolder>() {
 
     private var mClickListener: OnItemClickListener? = null

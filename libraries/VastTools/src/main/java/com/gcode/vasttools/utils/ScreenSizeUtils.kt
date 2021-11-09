@@ -7,7 +7,6 @@ import android.view.WindowManager
 import android.view.WindowMetrics
 import androidx.annotation.RequiresApi
 import com.gcode.vasttools.internal.annotation.UnderTest
-import com.gcode.vasttools.internal.exception.NoMatchAspectRatio
 import com.gcode.vasttools.model.AspectRatioDevice
 
 /**
@@ -20,65 +19,56 @@ object ScreenSizeUtils {
     @UnderTest
     private val DefaultDevice = AspectRatioDevice("DefaultDevice", 1.97f)
 
-    @UnderTest
-    private val defaultAspectRatioList = mutableListOf(DefaultDevice)
-
     /**
      * Aspect ratio map
      *
      * In order to fit the aspect ratio of more mobile devices
      */
     @UnderTest
-    private var AspectRatioDeviceList = defaultAspectRatioList
+    private var AspectRatioDeviceList = mutableListOf<AspectRatioDevice>()
 
     /**
-     * Determine whether it is a full screen.(in Api 31)
+     * Determine whether it is a full screen(in Api 31).
+     *
+     * Get the aspectRatio from the [AspectRatioDeviceList] by
+     * the value of [SystemUtils.deviceBrand], if not found,
+     * use **1.97** as the reference value.
+     *
      * @param context Context for the transform.
-     * @param deviceTag The category of your phone.
      *
      * @return `true` if your device is full screen,`false` if your device is not full screen.
-     *
-     * @throws NoMatchAspectRatio Please see the definition.
      */
-    @JvmOverloads
     @RequiresApi(Build.VERSION_CODES.S)
-    @Throws(NoMatchAspectRatio::class)
     fun isAllScreenDeviceApi31(
-        context: Context,
-        @UnderTest deviceTag: String = DefaultDevice.tag
+        context: Context
     ): Boolean {
         val vm: WindowMetrics =
             (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).currentWindowMetrics
         val width: Float = vm.bounds.width().toFloat()
         val height: Float = vm.bounds.height().toFloat()
-        val device = AspectRatioDeviceList.firstOrNull() { it.tag == deviceTag }
-        if (device == null) {
-            throw NoMatchAspectRatio("Did not find the aspect ratio that matches $deviceTag")
-        } else {
-            if (height / width >= device.aspectRatio) {
-                return true
-            }
+        val device = AspectRatioDeviceList.firstOrNull { it.tag == SystemUtils.deviceBrand }
+        val aspectRatio = device?.aspectRatio ?: DefaultDevice.aspectRatio
+        if (height / width >= aspectRatio) {
+            return true
         }
         return false
     }
 
     /**
-     * Determine whether it is a full screen.(in Api 30)
+     * Determine whether it is a full screen(in Api 30).
+     *
+     * Get the aspectRatio from the [AspectRatioDeviceList] by
+     * the value of [SystemUtils.deviceBrand], if not found,
+     * use **1.97** as the reference value.
+     *
      * @param context Context for the transform.
-     * @param deviceTag The category of your phone.
      *
      * @return `true` if your device is full screen,`false` if your device is not full screen.
-     *
-     * @throws NoMatchAspectRatio Please see the definition.
      */
-    @JvmOverloads
     @RequiresApi(Build.VERSION_CODES.R)
-    @Throws(NoMatchAspectRatio::class)
     fun isAllScreenDeviceApi30(
-        context: Context,
-        @UnderTest deviceTag: String = DefaultDevice.tag
+        context: Context
     ): Boolean {
-        //后续适配再启用
         val point = Point()
         context.display?.getRealSize(point)
         val width: Float
@@ -90,33 +80,28 @@ object ScreenSizeUtils {
             width = point.y.toFloat()
             height = point.x.toFloat()
         }
-        val device = AspectRatioDeviceList.firstOrNull() { it.tag == deviceTag }
-        if (device == null) {
-            throw NoMatchAspectRatio("Did not find the aspect ratio that matches $deviceTag")
-        } else {
-            if (height / width >= device.aspectRatio) {
-                return true
-            }
+        val device = AspectRatioDeviceList.firstOrNull { it.tag == SystemUtils.deviceBrand }
+        val aspectRatio = device?.aspectRatio ?: DefaultDevice.aspectRatio
+        if (height / width >= aspectRatio) {
+            return true
         }
         return false
     }
 
     /**
-     * Determine whether it is a full screen(in Api 30 Down)
+     * Determine whether it is a full screen(in Api 30 Down).
+     *
+     * Get the aspectRatio from the [AspectRatioDeviceList] by
+     * the value of [SystemUtils.deviceBrand], if not found,
+     * use **1.97** as the reference value.
+     *
      * @param context Context for the transform.
-     * @param deviceType Device type of your device.
      *
      * @return `true` if your device is full screen,`false` if your device is not full screen.
-     *
-     * @throws NoMatchAspectRatio Please see the definition.
      */
-    @JvmOverloads
-    @Throws(NoMatchAspectRatio::class)
     fun isAllScreenDeviceApi30Down(
-        context: Context,
-        @UnderTest deviceTag: String = DefaultDevice.tag
+        context: Context
     ): Boolean {
-        //后续适配再启用
         val point = Point()
         val vm: WindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         vm.defaultDisplay.getRealSize(point)
@@ -129,13 +114,10 @@ object ScreenSizeUtils {
             width = point.y.toFloat()
             height = point.x.toFloat()
         }
-        val device = AspectRatioDeviceList.firstOrNull() { it.tag == deviceTag }
-        if (device == null) {
-            throw NoMatchAspectRatio("Did not find the aspect ratio that matches $deviceTag")
-        } else {
-            if (height / width >= device.aspectRatio) {
-                return true
-            }
+        val device = AspectRatioDeviceList.firstOrNull { it.tag == SystemUtils.deviceBrand }
+        val aspectRatio = device?.aspectRatio ?: DefaultDevice.aspectRatio
+        if (height / width >= aspectRatio) {
+            return true
         }
         return false
     }
@@ -244,7 +226,7 @@ object ScreenSizeUtils {
             // The full screen needs to get the height through this method.
             getScreenRealHeightApi30Down(context)
         } else {
-            getScreenHeight(context);
+            getScreenHeight(context)
         }
 
     /**
@@ -271,6 +253,5 @@ object ScreenSizeUtils {
     @UnderTest
     fun resetDeviceList() {
         AspectRatioDeviceList.clear()
-        AspectRatioDeviceList.add(DefaultDevice)
     }
 }

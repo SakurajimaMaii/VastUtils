@@ -15,7 +15,7 @@ import kotlin.Pair;
 
 public class LogActivity extends AppCompatActivity {
 
-    @RequiresApi(api = Build.VERSION_CODES.R)
+    @RequiresApi(api = Build.VERSION_CODES.S)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,10 +24,6 @@ public class LogActivity extends AppCompatActivity {
         ScreenSizeUtils.INSTANCE.addDevice(new AspectRatioDevice("SAMSUNG",2.3f),new AspectRatioDevice("Apple",1.5f));
 
         ScreenSizeUtils.INSTANCE.resetDeviceList();
-        try {
-            LogUtils.INSTANCE.e(this.getClass(),"LogActivity", String.valueOf(ScreenSizeUtils.INSTANCE.isAllScreenDeviceApi30(this,"SAMSUNG")));
-        } catch (NoMatchAspectRatio e) {
-            LogUtils.INSTANCE.e(this.getClass(),"LogActivity",e.getMessage());
-        }
+        LogUtils.INSTANCE.e(this.getClass(),"LogActivity", String.valueOf(ScreenSizeUtils.INSTANCE.isAllScreenDeviceApi31(this)));
     }
 }

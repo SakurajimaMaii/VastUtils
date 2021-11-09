@@ -9,8 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.gcode.vastadapter.BaseGcodeAdapter
-import com.gcode.vastadapter.BaseGcodeBindingAdapter
+import com.gcode.vastadapter.BaseVastAdapter
+import com.gcode.vastadapter.BaseVastBindingAdapter
 import com.gcode.vasttools.interfaces.LogContent
 import com.gcode.vasttools.utils.LogUtils
 import com.gcode.vasttools.utils.MsgWindowUtils
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var linearLayout:View
 
-    inner class TestBaseAdapter(items: MutableList<Person>) : BaseGcodeAdapter<Person>(items) {
+    inner class TestBaseAdapter(items: MutableList<Person>) : BaseVastAdapter<Person>(items) {
         override fun bindData(holder: RecyclerViewHolder, position: Int, item: Person) {
             holder.findViewById<TextView>(R.id.firstName).text = item.firstName
             holder.findViewById<TextView>(R.id.lastName).text = item.lastName
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     inner class TestBaseBindingAdapter(items: MutableList<Person>) :
-        BaseGcodeBindingAdapter<Person>(items){
+        BaseVastBindingAdapter<Person>(items){
         override fun setVariableId(): Int {
             return com.gcode.toolsforandroid.BR.item
         }
@@ -58,13 +58,13 @@ class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.addButton)
 
 
-        testadapter.setOnItemClickListener(object : BaseGcodeAdapter.OnItemClickListener{
+        testadapter.setOnItemClickListener(object : BaseVastAdapter.OnItemClickListener{
             override fun onItemClick(itemView: View?, pos: Int, itemId: Long) {
                 Toast.makeText(this@MainActivity,"$pos and $itemId ^-^",Toast.LENGTH_SHORT).show()
             }
         })
 
-        testadapter.setOnItemLongClickListener(object : BaseGcodeAdapter.OnItemLongClickListener{
+        testadapter.setOnItemLongClickListener(object : BaseVastAdapter.OnItemLongClickListener{
             override fun onItemLongClick(itemView: View?, pos: Int, itemId: Long): Boolean {
                 Toast.makeText(this@MainActivity,"^-^",Toast.LENGTH_SHORT).show()
                 return true
@@ -82,9 +82,6 @@ class MainActivity : AppCompatActivity() {
 
         LogUtils.maxPrintTimes = 10
         LogUtils.setLogContentFormat(object : LogContent {
-            override fun logContentFormat(methodName: String, key: String?, content: String?): String {
-                return super.logContentFormat(methodName, key, content)
-            }
         })
         LogUtils.i(this.javaClass,"Hello", "${ScreenSizeUtils.getMobileScreenHeightApi30Down(this)}")
     }

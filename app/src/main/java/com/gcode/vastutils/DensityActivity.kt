@@ -1,14 +1,12 @@
-package com.gcode.toolsforandroid
+package com.gcode.vastutils
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import com.gcode.vasttools.model.AspectRatioDevice
 import com.gcode.vasttools.utils.DensityUtils
 import com.gcode.vasttools.utils.LogUtils
-import com.gcode.vasttools.utils.ScreenSizeUtils
 
 class DensityActivity : AppCompatActivity() {
 

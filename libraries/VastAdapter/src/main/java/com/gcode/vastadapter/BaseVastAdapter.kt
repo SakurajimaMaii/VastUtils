@@ -9,14 +9,14 @@ import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * Base gcode adapter
+ * Base vast adapter
  *
  * @param obj The class of the list item.
  * @property items List Data.
  */
-abstract class BaseGcodeAdapter<obj : BaseGcodeItem> constructor(
+abstract class BaseVastAdapter<obj : BaseVastItem> constructor(
     private var items: MutableList<obj>,
-) : RecyclerView.Adapter<BaseGcodeAdapter.RecyclerViewHolder>() {
+) : RecyclerView.Adapter<BaseVastAdapter.RecyclerViewHolder>() {
 
     private var mClickListener: OnItemClickListener? = null
     private var mLongClickListener: OnItemLongClickListener? = null

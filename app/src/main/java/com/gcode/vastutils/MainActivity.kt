@@ -1,4 +1,4 @@
-package com.gcode.toolsforandroid
+package com.gcode.vastutils
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     inner class TestBaseBindingAdapter(items: MutableList<Person>) :
         BaseVastBindingAdapter<Person>(items){
         override fun setVariableId(): Int {
-            return com.gcode.toolsforandroid.BR.item
+            return com.gcode.vastutils.BR.item
         }
     }
 

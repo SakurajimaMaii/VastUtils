@@ -1,4 +1,4 @@
-package com.gcode.toolsforandroid;
+package com.gcode.vastutils;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +11,6 @@ import com.gcode.vasttools.model.AspectRatioDevice;
 import com.gcode.vasttools.utils.LogUtils;
 import com.gcode.vasttools.utils.ScreenSizeUtils;
 
-import kotlin.Pair;
-
 public class LogActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.S)
@@ -24,6 +22,10 @@ public class LogActivity extends AppCompatActivity {
         ScreenSizeUtils.INSTANCE.addDevice(new AspectRatioDevice("SAMSUNG",2.3f),new AspectRatioDevice("Apple",1.5f));
 
         ScreenSizeUtils.INSTANCE.resetDeviceList();
-        LogUtils.INSTANCE.e(this.getClass(),"LogActivity", String.valueOf(ScreenSizeUtils.INSTANCE.isAllScreenDeviceApi31(this)));
+        try {
+            LogUtils.INSTANCE.e(this.getClass(),"LogActivity", String.valueOf(ScreenSizeUtils.INSTANCE.isAllScreenDeviceApi31(this)));
+        } catch (NoMatchAspectRatio e) {
+            e.printStackTrace();
+        }
     }
 }

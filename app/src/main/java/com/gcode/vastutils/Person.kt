@@ -1,4 +1,4 @@
-package com.gcode.toolsforandroid
+package com.gcode.vastutils
 
 import com.gcode.vastadapter.BaseVastItem
 

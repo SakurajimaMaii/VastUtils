@@ -1,4 +1,4 @@
-package com.gcode.toolsforandroid
+package com.gcode.vastutils
 
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity

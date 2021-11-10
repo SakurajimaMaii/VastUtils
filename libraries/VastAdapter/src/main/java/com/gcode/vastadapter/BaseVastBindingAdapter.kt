@@ -11,14 +11,14 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * Base gcode binding adapter
+ * Base vast binding adapter
  * @param obj The class of the list item.
  * @property items List Data.
  */
-abstract class BaseGcodeBindingAdapter<obj : BaseGcodeItem> constructor(
+abstract class BaseVastBindingAdapter<obj : BaseVastItem> constructor(
     private val items: MutableList<obj>,
 ) :
-    RecyclerView.Adapter<BaseGcodeBindingAdapter.BindingHolder>() {
+    RecyclerView.Adapter<BaseVastBindingAdapter.BindingHolder>() {
 
     private var mClickListener: OnItemClickListener? = null
     private var mLongClickListener: OnItemLongClickListener? = null
@@ -216,7 +216,7 @@ abstract class BaseGcodeBindingAdapter<obj : BaseGcodeItem> constructor(
 
     class BindingHolder(private var binding: ViewDataBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bindData(variableId: Int, item: BaseGcodeItem?) {
+        fun bindData(variableId: Int, item: BaseVastItem?) {
             binding.setVariable(variableId, item)
         }
     }

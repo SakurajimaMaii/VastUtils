@@ -1,4 +1,4 @@
-package com.gcode.toolsforandroid
+package com.gcode.vastutils
 
 import android.app.Activity
 import android.content.Intent
@@ -21,11 +21,11 @@ class CameraActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.gcode.toolsforandroid.R.layout.activity_camera)
+        setContentView(com.gcode.vastutils.R.layout.activity_camera)
 
-        val button = findViewById<Button>(com.gcode.toolsforandroid.R.id.camerabutton)
+        val button = findViewById<Button>(com.gcode.vastutils.R.id.camerabutton)
 
-        val image = findViewById<ImageView>(com.gcode.toolsforandroid.R.id.image)
+        val image = findViewById<ImageView>(com.gcode.vastutils.R.id.image)
 
         val getPhoto = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
             if(result.resultCode == Activity.RESULT_OK){

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gcode.toolsforandroid">
+    package="com.gcode.vastutils">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GUtilsSampleDemo">
         <activity
-            android:name=".BaseActivity"
+            android:name="com.gcode.vastutils.BaseActivity"
             android:exported="true" >
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
@@ -25,7 +25,7 @@
 <!--            </intent-filter>-->
         </activity>
         <activity
-            android:name=".IntentActivity"
+            android:name="com.gcode.vastutils.IntentActivity"
             android:exported="true">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
@@ -34,7 +34,7 @@
 <!--            </intent-filter>-->
         </activity>
         <activity
-            android:name=".DensityActivity"
+            android:name="com.gcode.vastutils.DensityActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->
@@ -45,7 +45,7 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name="com.gcode.toolsforandroid.LogActivity"
+            android:name="com.gcode.vastutils.LogActivity"
             android:exported="true">
 
              <intent-filter>
@@ -56,7 +56,7 @@
              </intent-filter>
         </activity>
         <activity
-            android:name="com.gcode.toolsforandroid.CameraActivity"
+            android:name="com.gcode.vastutils.CameraActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->
@@ -67,7 +67,7 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.gcode.vastutils.MainActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->

@@ -1,6 +1,6 @@
 package com.gcode.vastadapter
 
-interface BaseGcodeItem {
+interface BaseVastItem {
     /**
      * Use when calling BaseAdapter
      * @return Int

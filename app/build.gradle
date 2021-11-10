@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion compile_sdk_version as int
 
     defaultConfig {
         applicationId "com.gcode.toolsforandroid"
-        minSdkVersion 23
-        targetSdkVersion 31
+        minSdkVersion min_sdk_version as int
+        targetSdkVersion target_sdk_version as int
         versionCode 1
         versionName "1.0"
 

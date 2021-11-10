@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk compile_sdk_version as int
 
     defaultConfig {
-        minSdk 21
-        targetSdk 31
+        minSdk min_sdk_version as int
+        targetSdk target_sdk_version as int
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

@@ -1,4 +1,4 @@
-package com.gcode.vasttools.internal.annotation
+package com.gcode.vasttools.annotation
 
 /**
  * You should make sure that your app has this permission

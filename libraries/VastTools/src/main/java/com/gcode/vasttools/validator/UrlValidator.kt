@@ -1,4 +1,4 @@
-package com.gcode.vasttools.internal.validator
+package com.gcode.vasttools.validator
 
 import java.util.regex.Pattern
 

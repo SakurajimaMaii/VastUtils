@@ -5,8 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.AlarmClock
 import androidx.annotation.IntRange
-import com.gcode.vasttools.internal.annotation.CheckPermission
-import com.gcode.vasttools.internal.validator.UrlValidator
+import com.gcode.vasttools.annotation.CheckPermission
+import com.gcode.vasttools.validator.UrlValidator
 import java.util.*
 
 object IntentUtils {

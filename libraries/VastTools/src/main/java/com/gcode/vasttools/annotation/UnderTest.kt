@@ -1,4 +1,4 @@
-package com.gcode.vasttools.internal.annotation
+package com.gcode.vasttools.annotation
 
 /**
  * Indicates that the feature may be removed or revise in the future.

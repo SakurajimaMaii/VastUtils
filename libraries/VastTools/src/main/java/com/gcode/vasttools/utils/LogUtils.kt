@@ -39,7 +39,7 @@ object LogUtils : LogContent {
      * @param key message keyboard
      * @param content message content
      */
-    fun i(@Nullable clz: Class<*>?, @Nullable key: String?, @Nullable content: String?) {
+    fun i(@Nullable clz: Class<*>?, @Nullable key: String?, @Nullable content: String) {
         if (logEnabled) {
             logPrint(Log.INFO, key, content, clz)
         }

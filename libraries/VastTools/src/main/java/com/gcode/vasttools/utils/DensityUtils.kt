@@ -3,7 +3,7 @@ package com.gcode.vasttools.utils
 import android.content.res.Resources
 import android.util.TypedValue
 import androidx.annotation.FloatRange
-import com.gcode.vasttools.internal.annotation.UnderTest
+import com.gcode.vasttools.annotation.UnderTest
 
 /**
  * Density util

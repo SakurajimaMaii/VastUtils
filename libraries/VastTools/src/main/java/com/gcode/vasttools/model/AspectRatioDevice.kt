@@ -1,6 +1,6 @@
 package com.gcode.vasttools.model
 
-import com.gcode.vasttools.internal.annotation.UnderTest
+import com.gcode.vasttools.annotation.UnderTest
 
 /**
  * Aspect ratio device

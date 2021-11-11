@@ -6,7 +6,9 @@ import android.os.Build
 import android.view.WindowManager
 import android.view.WindowMetrics
 import androidx.annotation.RequiresApi
-import com.gcode.vasttools.internal.annotation.UnderTest
+import androidx.annotation.RestrictTo
+import androidx.annotation.VisibleForTesting
+import com.gcode.vasttools.annotation.UnderTest
 import com.gcode.vasttools.model.AspectRatioDevice
 
 /**
@@ -28,6 +30,25 @@ object ScreenSizeUtils {
     private var AspectRatioDeviceList = mutableListOf<AspectRatioDevice>()
 
     /**
+     * Determine whether it is a full screen.
+     *
+     * Get the aspectRatio from the [AspectRatioDeviceList] by
+     * the value of [SystemUtils.deviceBrand], if not found,
+     * use **1.97** as the reference value.
+     *
+     * @param context Context for the transform.
+     *
+     * @return `true` if your device is full screen,`false` if your device is not full screen.
+     */
+    fun isAllScreenDevice(context: Context): Boolean {
+        return when{
+            (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) -> isAllScreenDeviceApi31(context)
+            (Build.VERSION.SDK_INT == Build.VERSION_CODES.R) -> isAllScreenDeviceApi30(context)
+            else-> isAllScreenDeviceApi30Down(context)
+        }
+    }
+
+    /**
      * Determine whether it is a full screen(in Api 31).
      *
      * Get the aspectRatio from the [AspectRatioDeviceList] by
@@ -39,7 +60,7 @@ object ScreenSizeUtils {
      * @return `true` if your device is full screen,`false` if your device is not full screen.
      */
     @RequiresApi(Build.VERSION_CODES.S)
-    fun isAllScreenDeviceApi31(
+    internal fun isAllScreenDeviceApi31(
         context: Context
     ): Boolean {
         val vm: WindowMetrics =
@@ -66,7 +87,7 @@ object ScreenSizeUtils {
      * @return `true` if your device is full screen,`false` if your device is not full screen.
      */
     @RequiresApi(Build.VERSION_CODES.R)
-    fun isAllScreenDeviceApi30(
+    internal fun isAllScreenDeviceApi30(
         context: Context
     ): Boolean {
         val point = Point()
@@ -99,7 +120,7 @@ object ScreenSizeUtils {
      *
      * @return `true` if your device is full screen,`false` if your device is not full screen.
      */
-    fun isAllScreenDeviceApi30Down(
+    internal fun isAllScreenDeviceApi30Down(
         context: Context
     ): Boolean {
         val point = Point()
@@ -165,7 +186,7 @@ object ScreenSizeUtils {
             context.display?.getRealSize(point)
             sRealSizes[orientation] = point
         }
-        return sRealSizes[orientation]?.y ?: getScreenRealHeightApi30(context)
+        return sRealSizes[orientation]?.y ?: 0
     }
 
     /**
@@ -183,22 +204,27 @@ object ScreenSizeUtils {
             vm.defaultDisplay.getRealSize(point)
             sRealSizes[orientation] = point
         }
-        return sRealSizes[orientation]?.y ?: getScreenRealHeightApi30Down(context)
+        return sRealSizes[orientation]?.y ?: 0
     }
 
     /**
-     * Get mobile screen width
+     * Get mobile screen height.
      * @param context Context for the transform.
-     * @return The width of the screen, in **pixels**
      */
-    fun getMobileScreenWidth(context: Context) = context.resources?.displayMetrics?.widthPixels ?: 0
+    fun getMobileScreenHeight(context: Context): Int {
+        return when{
+            (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) -> getMobileScreenHeightApi31(context)
+            (Build.VERSION.SDK_INT == Build.VERSION_CODES.R) -> getMobileScreenHeightApi30(context)
+            else-> getMobileScreenHeightApi30Down(context)
+        }
+    }
 
     /**
      * Get mobile screen height Api 30 Above
      * @param context Context for the transform.
      */
     @RequiresApi(Build.VERSION_CODES.S)
-    fun getMobileScreenHeightApi31(context: Context) =
+    internal fun getMobileScreenHeightApi31(context: Context) =
         if (isAllScreenDeviceApi31(context)) {
             // The full screen is needs to get the height through this method.
             getScreenRealHeightApi31(context)
@@ -210,7 +236,7 @@ object ScreenSizeUtils {
      * @param context Context for the transform.
      */
     @RequiresApi(Build.VERSION_CODES.R)
-    fun getMobileScreenHeightApi30(context: Context) =
+    internal fun getMobileScreenHeightApi30(context: Context) =
         if (isAllScreenDeviceApi30(context)) {
             // The full screen is needs to get the height through this method.
             getScreenRealHeightApi30(context)
@@ -221,13 +247,20 @@ object ScreenSizeUtils {
      * Get mobile screen height Api 30 Down
      * @param context
      */
-    fun getMobileScreenHeightApi30Down(context: Context) =
+    internal fun getMobileScreenHeightApi30Down(context: Context) =
         if (isAllScreenDeviceApi30Down(context)) {
             // The full screen needs to get the height through this method.
             getScreenRealHeightApi30Down(context)
         } else {
             getScreenHeight(context)
         }
+
+    /**
+     * Get mobile screen width
+     * @param context Context for the transform.
+     * @return The width of the screen, in **pixels**
+     */
+    fun getMobileScreenWidth(context: Context) = context.resources?.displayMetrics?.widthPixels ?: 0
 
     /**
      * @param devices Add the aspect ratio of the device and its corresponding screen.

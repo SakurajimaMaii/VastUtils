@@ -16,38 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GUtilsSampleDemo">
         <activity
-            android:name="com.gcode.vastutils.BaseActivity"
+            android:name=".DateActivity"
             android:exported="true" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity
-            android:name="com.gcode.vastutils.IntentActivity"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity
-            android:name="com.gcode.vastutils.DensityActivity"
-            android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity
-            android:name="com.gcode.vastutils.LogActivity"
-            android:exported="true">
-
              <intent-filter>
              <action android:name="android.intent.action.MAIN" />
 
@@ -56,7 +26,7 @@
              </intent-filter>
         </activity>
         <activity
-            android:name="com.gcode.vastutils.CameraActivity"
+            android:name=".IntentActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->
@@ -67,7 +37,38 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name="com.gcode.vastutils.MainActivity"
+            android:name=".DensityActivity"
+            android:exported="true">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".LogActivity"
+            android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".CameraActivity"
+            android:exported="true">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->

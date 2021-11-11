@@ -1,103 +1,37 @@
 package com.gcode.vasttools.utils
 
+import com.gcode.vasttools.annotation.DateFormat
+import com.gcode.vasttools.annotation.DateFormat.*
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 /**
  * Date utils
- * @see [https://github.com/yudu233/AndroidUtils/blob/master/library/src/main/java/com/coder/rain/library/utils/DateHelper.java]
- * @constructor Create empty Date utils
  */
 object DateUtils {
-    private var locale:Locale = Locale.CHINA
-
-    // Returns the date and time formatting object
-    fun datetimeFormat(): SimpleDateFormat {
-        return SimpleDateFormat("yyyy-MM-dd HH:mm:ss", locale)
-    }
-
-    // Returns the date and time formatting object without second
-    fun noSecondFormat(): SimpleDateFormat {
-        return SimpleDateFormat("yyyy-MM-dd HH:mm", locale)
-    }
+    var locale: Locale = Locale.CHINA
+        private set
 
     /**
-     * Parse date and time from string
-     * @param timeString
-     * @return
+     * Get current time
      */
-    fun datetimeFromString(timeString: String): Date? {
-        return try {
-            datetimeFormat().parse(timeString)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-            Date()
+    val currentTime: String
+        get() {
+            return dateTimeToGMT()
         }
-    }
 
-    // Return short time string format yyyy-MM-dd
-    fun getStringDateShort(date: Date): String {
-        val formatter = SimpleDateFormat("yyyy-MM-dd", locale)
-        return formatter.format(date)
-    }
-
-    // Format date time as string
-    fun datetimeToString(date: Date): String {
-        return datetimeFormat().format(date)
-    }
-
-    fun datetimeToNoSecond(date: Date?): String {
-        return if (date == null) "" else noSecondFormat().format(date)
-    }
-
-    fun dealDateFormat(oldDateStr: String): Date? {
-        val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", locale) //yyyy-MM-dd'T'HH:mm:ss.SSS
-        var date: Date? = null
-        try {
-            date = format.parse(oldDateStr)
-        } catch (e: ParseException) {
-            e.printStackTrace()
+    /**
+     * Get current time zone
+     */
+    val currentTimeZone: String
+        get() {
+            return TimeZone.getDefault().getDisplayName(false, TimeZone.SHORT)
         }
-        return date
-    }
 
-    // GMT time format conversion
-    fun dateTimeFromGMT(): String {
-        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale("CHINESE", "CHINA"))
-        formatter.applyPattern("yyyy年MM月dd日 HH:mm")
-        return formatter.format(Date())
-    }
-
-    // Convert time interval into readable information
-    private fun humanInterval(date: Date?, nowTime: Date): String {
-        if (date == null) return ""
-        // long diff = nowTime - date.getTime();
-        var diff = nowTime.time - date.time
-        diff /= 1000
-        if (diff < 60) return "just now"
-        if (diff < 3600) return (diff / 60).toString() + "minutes ago"
-        if (diff > 3600 && diff < 3600 * 24) return (diff / 3600).toString() + "hours ago"
-        return if (diff < 3600 * 24 * 7 && diff > 3600 * 24) (diff / (3600 * 24)).toString() + "days ago" else getStringDateShort(
-            date
-        )
-    }
-
-    fun humanInterval(date: Date?): String {
-        return humanInterval(date, Date())
-    }
-
-    // Determine whether it is within the same minute
-    fun inSameMinute(one: Date?, tow: Date?): Boolean {
-        return if (one == null || tow == null) false else one.time / 60000 == tow.time / 60000
-    }
-
-    // Determine whether it is within the same minute by long
-    fun inSameMinuteByLong(one: Long, tow: Long): Boolean {
-        return one / 60000 == tow / 60000
-    }
-
-    // get min time
+    /**
+     * Get min time
+     */
     fun minDate(): Date {
         val result = Date()
         result.time = GregorianCalendar().let {
@@ -107,71 +41,154 @@ object DateUtils {
         return result
     }
 
-    val nowTime: String
-        get() {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", locale)
-            return dateFormat.format(Date())
-        }
+    /**
+     * Returns the date and time formatting object
+     */
+    @JvmOverloads
+    fun datetimeFormat(
+        @DateFormat.DateFormatString dateFormat: String = TIME_FORMAT
+    ): SimpleDateFormat {
+        return SimpleDateFormat(dateFormat, locale)
+    }
 
-    // Start on Sunday to get the timestamp of the beginning of the week
-    fun getWeekStartTime(calendar: Calendar): String {
-        val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd", locale)
+    /**
+     * Parse date and time from [timeString] in [timeStringFormat] format.
+     *
+     * @return if [timeString] If the parsing fails, it returns [Date] object
+     */
+    @JvmOverloads
+    fun datetimeFromString(
+        timeString: String,
+        @DateFormat.DateFormatString timeStringFormat: String = TIME_FORMAT
+    ): Date? {
+        return try {
+            datetimeFormat(timeStringFormat).parse(timeString)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+            Date()
+        }
+    }
+
+    /**
+     * Parse [date] according to the format of [dateFormat]
+     * into a date/time string.
+     *
+     * If you don't set the [date] or [dateFormat],it will
+     * parse current time in [dateFormat] format by default.
+     */
+    @JvmOverloads
+    fun datetimeToString(
+        date: Date = Date(),
+        @DateFormat.DateFormatString dateFormat: String = TIME_FORMAT
+    ): String {
+        return datetimeFormat(dateFormat).format(date)
+    }
+
+    /**
+     * According to the [dateFormat] format,
+     * returns a time string in the time zone
+     * given by the [gmtFormat].
+     *
+     * If you don't set the [gmtFormat] or [dateFormat],it will
+     * parse current local time in [TIME_FORMAT] format by default.
+     */
+    @JvmOverloads
+    fun dateTimeToGMT(
+        @DateFormat.GmtFormatString gmtFormat: String = currentTimeZone,
+        @DateFormat.DateFormatString dateFormat: String = TIME_FORMAT
+    ): String {
+        val formatter = SimpleDateFormat(dateFormat, locale)
+        formatter.timeZone = TimeZone.getTimeZone(gmtFormat);
+        return formatter.format(Date())
+    }
+
+    /**
+     * Get current local time string by parsing the [utcTime] in [dateFormat] format.
+     */
+    fun dateTimeFromGMT(utcTime: String,@DateFormat.DateFormatString dateFormat: String = TIME_FORMAT): String {
+        val utcFormatter = SimpleDateFormat(dateFormat,locale) //UTC time format
+        utcFormatter.timeZone = TimeZone.getTimeZone("UTC")
+        var gpsUTCDate: Date? = null
+        try {
+            gpsUTCDate = utcFormatter.parse(utcTime)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        val localFormatter =
+            SimpleDateFormat(dateFormat,locale) //Local time format
+        localFormatter.timeZone = TimeZone.getDefault()
+        return localFormatter.format(gpsUTCDate!!.time)
+    }
+
+    /**
+     * Get the **start** timestamp of the week.
+     * **Monday is the first day of the week.**
+     *
+     * @return WeekStartTime parsed in [yearFormat] format
+     */
+    @JvmOverloads
+    fun weekStartTime(@DateFormat.YearFormatString yearFormat: String = DATE_FORMAT): String {
+        val simpleDateFormat = SimpleDateFormat(yearFormat, locale)
+        val cal: Calendar = Calendar.getInstance()
+        var dayOfWeek: Int = cal.get(Calendar.DAY_OF_WEEK) - 1
+        if (dayOfWeek == 0) {
+            dayOfWeek = 7
+        }
+        cal.add(Calendar.DATE, -dayOfWeek + 1)
+        return simpleDateFormat.format(cal.time)
+    }
+
+    /**
+     * Get the **end** timestamp of the week.
+     * **Monday is the first day of the week.**
+     *
+     * @return WeekEndTime parsed in [yearFormat] format
+     */
+    @JvmOverloads
+    fun weekEndTime(@DateFormat.YearFormatString yearFormat: String = DATE_FORMAT): String {
+        val simpleDateFormat = SimpleDateFormat(yearFormat, Locale.getDefault())
+        val cal: Calendar = Calendar.getInstance()
+        var dayOfWeek: Int = cal.get(Calendar.DAY_OF_WEEK) - 1
+        if (dayOfWeek == 0) {
+            dayOfWeek = 7
+        }
+        cal.add(Calendar.DATE, -dayOfWeek + 7)
+        return simpleDateFormat.format(cal.time)
+    }
+
+    /**
+     * Get the **start** timestamp of the week.
+     * **SUNDAY is the first day of the week.**
+     *
+     * @return WeekStartTime parsed in [yearFormat] format
+     */
+    @JvmOverloads
+    fun getWeekStartTime(
+        calendar: Calendar = Calendar.getInstance(),
+        @DateFormat.YearFormatString yearFormat: String = DATE_FORMAT
+    ): String {
+        val simpleDateFormat = SimpleDateFormat(yearFormat, locale)
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         return simpleDateFormat.format(calendar.time)
     }
 
     /**
-     * Timestamp of the end of the week
-     * @param calendar
-     * @return
+     * Get the **start** timestamp of the week.
+     * **SUNDAY is the first day of the week.**
+     *
+     * @return WeekEndTime parsed in [yearFormat] format
      */
-    fun getWeekEndTime(calendar: Calendar): String {
-        val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd", locale)
+    @JvmOverloads
+    fun getWeekEndTime(
+        calendar: Calendar = Calendar.getInstance(),
+        @DateFormat.YearFormatString yearFormat: String = DATE_FORMAT
+    ): String {
+        val simpleDateFormat = SimpleDateFormat(yearFormat, locale)
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY)
         return simpleDateFormat.format(calendar.time)
     }
 
-    // Start timestamp of the week. Monday is the first day of the week
-    val weekStartTime: String
-        get() {
-            val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
-            val cal: Calendar = Calendar.getInstance()
-            var dayOfWeek: Int = cal.get(Calendar.DAY_OF_WEEK) - 1
-            if (dayOfWeek == 0) {
-                dayOfWeek = 7
-            }
-            cal.add(Calendar.DATE, -dayOfWeek + 1)
-            return simpleDateFormat.format(cal.time)
-        }
-
-    // The end timestamp of the week. Monday is the first day of the week
-    val weekEndTime: String
-        get() {
-            val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
-            val cal: Calendar = Calendar.getInstance()
-            var dayOfWeek: Int = cal.get(Calendar.DAY_OF_WEEK) - 1
-            if (dayOfWeek == 0) {
-                dayOfWeek = 7
-            }
-            cal.add(Calendar.DATE, -dayOfWeek + 7)
-            return simpleDateFormat.format(cal.time)
-        }
-
-    // Start on Sunday to get the timestamp of the beginning of the week
-    fun getWeekStartTimeNoYear(calendar: Calendar): String {
-        val simpleDateFormat = SimpleDateFormat("MM/dd", Locale.getDefault())
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-        return simpleDateFormat.format(calendar.time)
-    }
-
-    // Timestamp of the end of the week
-    fun getWeekEndTimeNoYear(calendar: Calendar): String {
-        val simpleDateFormat = SimpleDateFormat("MM/dd", Locale.getDefault())
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY)
-        return simpleDateFormat.format(calendar.time)
-    }
-
-    fun setLocale(locale: Locale){
+    fun setLocale(locale: Locale) {
         DateUtils.locale = locale
     }
 }

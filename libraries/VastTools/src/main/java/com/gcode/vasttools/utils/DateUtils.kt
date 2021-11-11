@@ -173,7 +173,7 @@ object DateUtils {
     }
 
     /**
-     * Get the **start** timestamp of the week.
+     * Get the **end** timestamp of the week.
      * **SUNDAY is the first day of the week.**
      *
      * @return WeekEndTime parsed in [yearFormat] format

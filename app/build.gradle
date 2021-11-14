@@ -41,11 +41,11 @@ android {
 dependencies {
 
     implementation project(':libraries:VastActivity')
-    implementation project(':libraries:VastTools')
+    //implementation project(':libraries:VastTools')
     //implementation project(':libraries:VastAdapter')
     implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.1'
     implementation 'io.github.sakurajimamaii:VastAdapter:0.0.2'
-    //implementation 'io.github.sakurajimamaii:VastTools:0.0.3'
+    implementation 'io.github.sakurajimamaii:VastTools:0.0.4'
 
     implementation "androidx.activity:activity-ktx:$activity_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"

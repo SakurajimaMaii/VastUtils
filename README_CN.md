@@ -2,6 +2,8 @@
 
 简体中文 | [English](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README.md)
 
+如果你想了解更多，建议你查看**wiki**文档查看详细解释。
+
 ## 添加依赖
 
 ### VastNetStateLayout
@@ -13,7 +15,7 @@ implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.1'
 ### VastTools
 
 ```gradle
-implementation 'io.github.sakurajimamaii:VastTools:0.0.3'
+implementation 'io.github.sakurajimamaii:VastTools:0.0.4'
 ```
 
 ### VastAdapter
@@ -100,9 +102,3 @@ App工具类用来获取APP的应用程序名称、包名、图标，版本号�
 #### [DensityUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/DensityUtils)
 
 用于尺寸转换，点击标题查看**文档**
-
-## 参考来源
-
-[Android获取图片：拍照和从相册中选择](https://www.jianshu.com/p/57487bb1ec5a)
-
-[Android获取APP的应用程序名称、包名、图标，版本号基本信息](https://blog.csdn.net/jia635/article/details/78722073)

@@ -12,7 +12,7 @@ object SystemUtils {
      * Returns the language code of this Locale.
      *
      * For example: the current setting is "Chinese-China",
-     * then "zh-CN" will be returned
+     * then "zh" will be returned
      */
     val systemLanguage: String
         get() = Locale.getDefault().language
@@ -25,6 +25,8 @@ object SystemUtils {
 
     /**
      * Get the current mobile phone android version.
+     *
+     * For example: "11" will be returned.
      */
     val systemAndroidVersion: String
         get() = Build.VERSION.RELEASE

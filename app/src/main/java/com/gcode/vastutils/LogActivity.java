@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.gcode.vasttools.utils.LogUtils;
 import com.gcode.vasttools.utils.ScreenSizeUtils;
+import com.gcode.vasttools.utils.SystemUtils;
 
 public class LogActivity extends AppCompatActivity {
 
@@ -16,7 +17,5 @@ public class LogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
-
-        LogUtils.INSTANCE.e(this.getClass(),"LogActivity", String.valueOf(ScreenSizeUtils.INSTANCE.isAllScreenDevice(this)));
     }
 }

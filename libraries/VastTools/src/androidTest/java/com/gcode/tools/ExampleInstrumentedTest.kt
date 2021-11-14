@@ -1,7 +1,9 @@
-package com.gcodes.tools
+package com.gcode.tools
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.gcode.vasttools.utils.LogUtils
+import com.gcode.vasttools.utils.SystemUtils
 
 import org.junit.Test
 import org.junit.runner.RunWith

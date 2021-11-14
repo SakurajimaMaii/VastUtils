@@ -49,12 +49,25 @@ object AppUtils {
     }
 
     /**
+     * Get VersionCode
+     * @return The version code of the current application
+     */
+    @Synchronized
+    fun getVersionCode(context: Context) =
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+            getVersionCodeApi28Above(context)
+        }else{
+            getVersionCodeApi28Down(context)
+        }
+
+
+    /**
      * Get VersionCode (in Api 28 Above)
      * @return The version code of the current application
      */
     @Synchronized
     @RequiresApi(Build.VERSION_CODES.P)
-    fun getVersionCodeApi28Above(context: Context): Int {
+    internal fun getVersionCodeApi28Above(context: Context): Int {
         try {
             val packageManager = context.packageManager
             val packageInfo = packageManager.getPackageInfo(
@@ -71,7 +84,7 @@ object AppUtils {
      * Get VersionCode (in Api 28 Down)
      * @return The version code of the current application
      */
-    fun getVersionCodeApi28Down(context: Context): Int{
+    internal fun getVersionCodeApi28Down(context: Context): Int{
         try {
             val packageManager = context.packageManager
             val packageInfo = packageManager.getPackageInfo(
@@ -109,7 +122,7 @@ object AppUtils {
     @Synchronized
     fun getAppBitmap(context: Context): Bitmap? {
         var packageManager: PackageManager? = null
-        var applicationInfo: ApplicationInfo? = null
+        var applicationInfo: ApplicationInfo?
         try {
             packageManager = context.applicationContext
                 .packageManager

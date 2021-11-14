@@ -12,8 +12,6 @@ import androidx.annotation.Nullable
  * Created by Vast Gui on 2021/11/5.
  */
 interface VastNetErrorView {
-    fun setRetryClickListener(@Nullable retryClickListener: VastRetryClickListener?)
-
     fun getView(context: Context?): View
 
     fun viewHide()

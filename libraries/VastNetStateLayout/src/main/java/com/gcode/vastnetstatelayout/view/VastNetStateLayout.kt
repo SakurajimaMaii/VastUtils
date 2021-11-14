@@ -7,7 +7,7 @@ import androidx.annotation.Nullable
 import com.gcode.vastnetstatelayout.R
 import com.gcode.vastnetstatelayout.interfaces.VastNetErrorView
 import com.gcode.vastnetstatelayout.interfaces.VastNetLoadingView
-import com.gcode.vastnetstatelayout.interfaces.VastRetryClickListener
+import com.gcode.vastnetstatelayout.interfaces.VastRetry
 
 /**
  * Created by Vast Gui on 2021/11/5
@@ -101,8 +101,14 @@ class VastNetStateLayout(context: Context, attrs: AttributeSet?) :
             }
         }
 
-    fun setOnRetryClickListener(vastRetryClickListener: VastRetryClickListener) {
-        mNetErrorView?.setRetryClickListener(vastRetryClickListener)
+    /**
+     * When you use [SimpleNetErrorView],You can use this method
+     * to define the click event of the button on the page.
+     */
+    fun setOnRetryClickListener(vastRetryClickListener: VastRetry.VastRetryClickListener) {
+        if(mNetErrorView is SimpleNetErrorView){
+            (mNetErrorView as SimpleNetErrorView).setRetryClickListener(vastRetryClickListener)
+        }
     }
 
     init {

@@ -9,11 +9,10 @@
         android:id="@+id/net_state_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:net_error="com.gcode.vastnetstatelayou.view.SimpleNetErrorView"
-        app:net_loading="com.gcode.vastnetstatelayou.view.SimpleNetLoadingView">
+        app:net_error="com.gcode.vastnetstatelayout.view.SimpleNetErrorView"
+        app:net_loading="com.gcode.vastnetstatelayout.view.SimpleNetLoadingView">
 
         <LinearLayout
-            android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">

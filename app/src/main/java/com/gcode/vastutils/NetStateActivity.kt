@@ -5,9 +5,8 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.view.View
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.gcode.vastnetstatelayout.interfaces.VastRetryClickListener
+import com.gcode.vastnetstatelayout.interfaces.VastRetry
 import com.gcode.vastnetstatelayout.view.VastNetState
 import com.gcode.vastnetstatelayout.view.VastNetStateLayout
 import com.gcode.vasttools.utils.MsgWindowUtils
@@ -30,13 +29,11 @@ class NetStateActivity : AppCompatActivity() {
 
         mNetStateLayout = findViewById<View>(R.id.net_state_layout) as VastNetStateLayout
         mNetStateLayout!!.contentState = VastNetState.CONTENT_STATE_SHOW_LOADING
-        mNetStateLayout!!.setOnRetryClickListener(object : VastRetryClickListener {
+        mNetStateLayout!!.setOnRetryClickListener(object : VastRetry.VastRetryClickListener {
             override fun onRetryClicked() {
                 mNetStateLayout!!.contentState = VastNetState.CONTENT_STATE_HIDE
             }
         })
-
-        findViewById<LinearLayout>(R.id.linear).background
 
         mHandler.sendEmptyMessageDelayed(0, 3000)
     }

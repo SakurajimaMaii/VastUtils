@@ -1,3 +1,5 @@
 <resources>
     <string name="retry">retry</string>
+    <string name="VastSimpleNetErrorView">com.gcode.vastnetstatelayout.view.SimpleNetErrorView</string>
+    <string name="VastSimpleNetLoadingView">com.gcode.vastnetstatelayout.view.SimpleNetLoadingView</string>
 </resources>

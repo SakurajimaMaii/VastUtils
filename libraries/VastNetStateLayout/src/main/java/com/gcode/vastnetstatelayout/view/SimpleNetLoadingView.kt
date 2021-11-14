@@ -3,12 +3,12 @@ package com.gcode.vastnetstatelayout.view
 import android.content.Context
 import android.view.View
 import com.gcode.vastnetstatelayout.R
-import com.gcode.vastnetstatelayout.interfaces.INetLoadingView
+import com.gcode.vastnetstatelayout.interfaces.VastNetLoadingView
 
 /**
  * Created by Vast Gui on 2021/11/5.
  */
-class SimpleNetLoadingView : INetLoadingView {
+internal class SimpleNetLoadingView : VastNetLoadingView {
 
     private var mView: View? = null
 
@@ -19,11 +19,11 @@ class SimpleNetLoadingView : INetLoadingView {
         return mView!!
     }
 
-    override fun hide() {
+    override fun viewHide() {
         mView?.visibility = View.GONE
     }
 
-    override fun show() {
+    override fun viewShow() {
         mView?.visibility = View.VISIBLE
     }
 }

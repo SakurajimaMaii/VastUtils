@@ -4,10 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.gcode.vasttools.utils.AppUtils
 import com.gcode.vasttools.utils.LogUtils.e
-import com.gcode.vasttools.utils.SystemUtils
-import com.gcode.vasttools.utils.SystemUtils.deviceBrand
 import com.gcode.vasttools.utils.SystemUtils.systemAndroidVersion
 import com.gcode.vasttools.utils.SystemUtils.systemLanguage
 import com.gcode.vasttools.utils.SystemUtils.systemModel
@@ -36,7 +33,7 @@ class DateActivity : AppCompatActivity() {
 
         e(
             this.javaClass, "LogActivity",
-            "${AppUtils.getAppDebug(this)}"
+            BuildConfig.DEBUG.toString()
         )
     }
 }

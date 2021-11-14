@@ -78,7 +78,7 @@ data class Person(val firstName:String,val lastName: String):BaseVastItem{
     <data>
         <variable
             name="item"
-            type="com.gcode.vastutils.Person" />
+            type="com.gcode.vastutils.model.Person" />
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"

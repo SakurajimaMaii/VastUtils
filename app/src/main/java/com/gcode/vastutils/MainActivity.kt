@@ -11,10 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gcode.vastadapter.BaseVastAdapter
 import com.gcode.vastadapter.BaseVastBindingAdapter
-import com.gcode.vasttools.interfaces.LogContent
-import com.gcode.vasttools.utils.LogUtils
 import com.gcode.vasttools.utils.MsgWindowUtils
-import com.gcode.vasttools.utils.ScreenSizeUtils
+import com.gcode.vastutils.model.Person
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {

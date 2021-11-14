@@ -2,6 +2,7 @@ package com.gcode.vasttools.utils
 
 import android.util.Log
 import androidx.annotation.Nullable
+import com.gcode.vasttools.BuildConfig
 import com.gcode.vasttools.interfaces.LogContent
 import java.util.*
 
@@ -40,7 +41,7 @@ object LogUtils : LogContent {
      * @param content message content
      */
     fun i(@Nullable clz: Class<*>?, @Nullable key: String?, @Nullable content: String) {
-        if (logEnabled) {
+        if (logEnabled && BuildConfig.DEBUG) {
             logPrint(Log.INFO, key, content, clz)
         }
     }
@@ -52,7 +53,7 @@ object LogUtils : LogContent {
      * @param content message content
      */
     fun v(@Nullable clz: Class<*>?, @Nullable key: String?, @Nullable content: String?) {
-        if (logEnabled) {
+        if (logEnabled && BuildConfig.DEBUG) {
             logPrint(Log.VERBOSE, key, content, clz)
         }
     }
@@ -64,7 +65,7 @@ object LogUtils : LogContent {
      * @param content message content
      */
     fun w(@Nullable clz: Class<*>?, @Nullable key: String?, @Nullable content: String?) {
-        if (logEnabled) {
+        if (logEnabled && BuildConfig.DEBUG) {
             logPrint(Log.WARN, key, content, clz)
         }
     }
@@ -76,7 +77,7 @@ object LogUtils : LogContent {
      * @param content message content
      */
     fun d(@Nullable clz: Class<*>?, @Nullable key: String?, @Nullable content: String?) {
-        if (logEnabled) {
+        if (logEnabled && BuildConfig.DEBUG) {
             logPrint(Log.DEBUG, key, content, clz)
         }
     }
@@ -88,7 +89,7 @@ object LogUtils : LogContent {
      * @param content message content
      */
     fun e(@Nullable clz: Class<*>?, @Nullable key: String?, @Nullable content: String?) {
-        if (logEnabled) {
+        if (logEnabled && BuildConfig.DEBUG) {
             logPrint(Log.ERROR, key, content, clz)
         }
     }

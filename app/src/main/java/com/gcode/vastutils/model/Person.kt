@@ -1,6 +1,7 @@
-package com.gcode.vastutils
+package com.gcode.vastutils.model
 
 import com.gcode.vastadapter.BaseVastItem
+import com.gcode.vastutils.R
 
 /**
  *作者:created by HP on 2021/4/2 15:54

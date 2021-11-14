@@ -5,7 +5,7 @@ package com.gcode.vastnetstatelayout.view
  *
  * Created by Vast Gui on 2021/11/5.
  */
-enum class NetState {
+enum class VastNetState {
     /**
      * show customized network error view
      */

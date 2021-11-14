@@ -10,11 +10,11 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 
 /**
- * App utils
+ * App info utils
  * Get information about App
  * @constructor Create empty App utils
  */
-object AppUtils {
+object AppInfoUtils {
     @Synchronized
     fun getAppName(context: Context): String? {
         try {

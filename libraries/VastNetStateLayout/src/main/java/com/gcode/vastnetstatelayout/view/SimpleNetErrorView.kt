@@ -3,20 +3,20 @@ package com.gcode.vastnetstatelayout.view
 import android.content.Context
 import android.view.View
 import com.gcode.vastnetstatelayout.R
-import com.gcode.vastnetstatelayout.interfaces.INetErrorView
-import com.gcode.vastnetstatelayout.interfaces.INetErrorView.OnRetryClickListener
+import com.gcode.vastnetstatelayout.interfaces.VastNetErrorView
+import com.gcode.vastnetstatelayout.interfaces.VastRetryClickListener
 
 /**
  * Created by Vast Gui on 2021/11/5
  */
-class SimpleNetErrorView : INetErrorView {
-    private var mRetryClickListener: OnRetryClickListener? = null
+internal class SimpleNetErrorView : VastNetErrorView {
+    private var vastRetryClickListener: VastRetryClickListener? = null
     private var mView: View? = null
 
-    override fun setRetryClickListener(retryClickListener: OnRetryClickListener?) {
-        mRetryClickListener = retryClickListener
+    override fun setRetryClickListener(retryClickListener: VastRetryClickListener?) {
+        vastRetryClickListener = retryClickListener
         mView?.findViewById<View>(R.id.btn_retry)?.setOnClickListener {
-            mRetryClickListener?.onRetryClicked()
+            vastRetryClickListener?.onRetryClicked()
         }
     }
 
@@ -27,11 +27,11 @@ class SimpleNetErrorView : INetErrorView {
         return mView!!
     }
 
-    override fun hide() {
+    override fun viewHide() {
         mView?.visibility = View.GONE
     }
 
-    override fun show() {
+    override fun viewShow() {
         mView?.visibility = View.VISIBLE
     }
 }

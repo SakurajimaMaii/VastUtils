@@ -30,9 +30,7 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
@@ -42,7 +40,7 @@ dependencies {
 ext {
     PUBLISH_GROUP_ID = "io.github.sakurajimamaii"        //项目包名
     PUBLISH_ARTIFACT_ID = 'VastNetStateLayout'            //项目名
-    PUBLISH_VERSION = '0.0.1'                    //版本号
+    PUBLISH_VERSION = '0.0.2'                    //版本号
     PUBLISH_DESCRIPTION = 'A layout to set customized network state ui.' //项目描述
     PUBLISH_URL = 'https://github.com/SakurajimaMaii/VastUtils/tree/master/libraries/VastNetStateLayout' //Url
 }

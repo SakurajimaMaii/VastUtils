@@ -2,4 +2,7 @@
     <string name="retry">retry</string>
     <string name="VastSimpleNetErrorView">com.gcode.vastnetstatelayout.view.SimpleNetErrorView</string>
     <string name="VastSimpleNetLoadingView">com.gcode.vastnetstatelayout.view.SimpleNetLoadingView</string>
+    <string name="network_error">Network error</string>
+    <string name="loading_error">Loading error</string>
+    <string name="empty_data">Empty data</string>
 </resources>

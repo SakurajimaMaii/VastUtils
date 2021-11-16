@@ -6,9 +6,9 @@ import android.os.Looper
 import android.os.Message
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.gcode.vastnetstatelayout.interfaces.VastRetry
-import com.gcode.vastnetstatelayout.view.VastNetState
+import com.gcode.vastnetstatelayout.interfaces.VastRetryClickListener
 import com.gcode.vastnetstatelayout.view.VastNetStateLayout
+import com.gcode.vastnetstatelayout.view.VastNetStateMgr
 import com.gcode.vasttools.utils.MsgWindowUtils
 
 
@@ -28,12 +28,15 @@ class NetStateActivity : AppCompatActivity() {
         }
 
         mNetStateLayout = findViewById<View>(R.id.net_state_layout) as VastNetStateLayout
-        mNetStateLayout!!.contentState = VastNetState.CONTENT_STATE_SHOW_LOADING
-        mNetStateLayout!!.setOnRetryClickListener(object : VastRetry.VastRetryClickListener {
-            override fun onRetryClicked() {
-                mNetStateLayout!!.contentState = VastNetState.CONTENT_STATE_HIDE
+        val vastNetStateMgr = VastNetStateMgr(this)
+        vastNetStateMgr.setLoadingView(R.layout.simple_net_error_view)
+        vastNetStateMgr.setVastRetryClickListener(object :VastRetryClickListener{
+            override fun onRetry() {
+
             }
         })
+        mNetStateLayout!!.setVastNetStateMgr(vastNetStateMgr)
+        mNetStateLayout!!.showLoading()
 
         mHandler.sendEmptyMessageDelayed(0, 3000)
     }
@@ -41,7 +44,7 @@ class NetStateActivity : AppCompatActivity() {
     private val mHandler: Handler = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
-            mNetStateLayout!!.contentState = VastNetState.CONTENT_STATE_SHOW_NET_ERROR
+            mNetStateLayout!!.showEmptyData()
         }
     }
 }

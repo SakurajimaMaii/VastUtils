@@ -2,119 +2,188 @@ package com.gcode.vastnetstatelayout.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.SparseArray
+import android.view.View
 import android.widget.FrameLayout
-import androidx.annotation.Nullable
-import com.gcode.vastnetstatelayout.R
-import com.gcode.vastnetstatelayout.interfaces.VastNetErrorView
-import com.gcode.vastnetstatelayout.interfaces.VastNetLoadingView
-import com.gcode.vastnetstatelayout.interfaces.VastRetry
+import com.gcode.vastnetstatelayout.annotation.VastNetState
+import com.gcode.vastnetstatelayout.annotation.VastNetState.*
+
 
 /**
  * Created by Vast Gui on 2021/11/5
+ *
+ * [VastNetStateLayout] is a layout to set customized network state ui.
+ *
+ * You can use [showLoading]、[showLoadingError]、[showNetError]、[showEmptyData]
+ * to show the net state view.
+ *
+ * If you want to customize the net state view or click events,please set
+ * [vastNetStateMgr],like this:
+ *
+ * ```kotlin
+ * val vastNetStateMgr = VastNetStateMgr(this)
+ * vastNetStateMgr.setLoadingView(R.layout.simple_net_error_view)
+ * vastNetStateMgr.setVastRetryClickListener(object :VastRetryClickListener{
+ *     override fun onRetry() {
+ *
+ *     }
+ * })
+ * mNetStateLayout.setVastNetStateMgr(vastNetStateMgr)
+ * ```
+ *
+ * If you don't set the [vastNetStateMgr],it will take the default value
+ * when you call a method like [showLoading]
  */
-class VastNetStateLayout(context: Context, attrs: AttributeSet?) :
-    FrameLayout(context, attrs) {
-    private var mNetErrorView: VastNetErrorView? = null
-    private var mNetLoadingView: VastNetLoadingView? = null
-    private var netErrorClassName: String = ""
-    private var netLoadingClassName: String = ""
-    private var mContentState = VastNetState.CONTENT_STATE_HIDE
+class VastNetStateLayout @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null,defStyleAttr:Int = 0
+) : FrameLayout(context, attrs, defStyleAttr) {
+    /**
+     * Set default vastNetStateMgr.
+     */
+    lateinit var vastNetStateMgr:VastNetStateMgr
+        private set
 
     /**
-     * set customized network error view.
-     *
-     * @param netErrorView
-     * @see SimpleNetErrorView
+     * Layout sparse array.
      */
-    fun setNetErrorView(@Nullable netErrorView: VastNetErrorView?) {
-        if (netErrorView == null) {
-            return
-        }
-        if (mNetErrorView != null) {
-            removeView(mNetErrorView!!.getView(context))
-        }
-        mNetErrorView = netErrorView
-        addView(netErrorView.getView(context))
+    private val layoutSparseArray: SparseArray<View> = SparseArray<View>()
+
+    fun setVastNetStateMgr(mgr: VastNetStateMgr){
+        vastNetStateMgr = mgr
+        addNetStateView()
     }
 
     /**
-     * set customized network loading view.
-     *
-     * @param netLoadingView
-     * @see SimpleNetLoadingView
+     * Add all different state layouts to the frame layout
      */
-    fun setNetLoadingView(@Nullable netLoadingView: VastNetLoadingView?) {
-        if (netLoadingView == null) {
-            return
-        }
-        if (mNetLoadingView != null) {
-            removeView(mNetLoadingView!!.getView(context))
-        }
-        mNetLoadingView = netLoadingView
-        addView(netLoadingView.getView(context))
-    }
-
-    /**
-     * get current state
-     *
-     * @return [VastNetState.CONTENT_STATE_SHOW_NET_ERROR],[VastNetState.CONTENT_STATE_SHOW_LOADING],[VastNetState.CONTENT_STATE_HIDE]
-     */
-    var contentState: VastNetState
-        get() = mContentState
-        set(contentState) {
-            if (mNetErrorView == null) {
-                mNetErrorView = try {
-                    Class.forName(netErrorClassName).newInstance() as VastNetErrorView
-                } catch (e: Exception) {
-                    SimpleNetErrorView() //Avoid no corresponding interface display when netErrorClassName is null
-                }
-                addView(
-                    mNetErrorView!!.getView(context),
-                    LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-                )
-            }
-            if (mNetLoadingView == null) {
-                mNetLoadingView = try {
-                    Class.forName(netLoadingClassName).newInstance() as VastNetLoadingView
-                } catch (e: Exception) {
-                    SimpleNetLoadingView() //Avoid no corresponding interface display when netLoadingClassName is null
-                }
-                addView(
-                    mNetLoadingView!!.getView(context),
-                    LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-                )
-            }
-            mContentState = contentState
-            when (contentState) {
-                VastNetState.CONTENT_STATE_SHOW_NET_ERROR -> {
-                    mNetErrorView?.viewShow()
-                    mNetLoadingView?.viewHide()
-                }
-                VastNetState.CONTENT_STATE_SHOW_LOADING -> {
-                    mNetErrorView?.viewHide()
-                    mNetLoadingView?.viewShow()
-                }
-                VastNetState.CONTENT_STATE_HIDE -> {
-                    mNetErrorView?.viewHide()
-                    mNetLoadingView?.viewHide()
-                }
-            }
-        }
-
-    /**
-     * When you use [SimpleNetErrorView],You can use this method
-     * to define the click event of the button on the page.
-     */
-    fun setOnRetryClickListener(vastRetryClickListener: VastRetry.VastRetryClickListener) {
-        if(mNetErrorView is SimpleNetErrorView){
-            (mNetErrorView as SimpleNetErrorView).setRetryClickListener(vastRetryClickListener)
+    private fun addNetStateView(){
+        vastNetStateMgr.apply {
+            addView(loadingVs,LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))
+            addView(netErrorRetryVs,LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))
+            addView(emptyDataVs,LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))
+            addView(loadingErrorVs,LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))
         }
     }
 
-    init {
-        val ta = context.obtainStyledAttributes(attrs, R.styleable.VastNetStateLayout)
-        netErrorClassName = ta.getString(R.styleable.VastNetStateLayout_net_error).toString()
-        netLoadingClassName = ta.getString(R.styleable.VastNetStateLayout_net_loading).toString()
-        ta.recycle()
+    fun showLoading(){
+        if(!::vastNetStateMgr.isInitialized){
+            vastNetStateMgr = VastNetStateMgr(context)
+            addNetStateView()
+        }
+        if(inflateSvLayout(CONTENT_STATE_SHOW_LOADING)){
+            showHideViewById(CONTENT_STATE_SHOW_LOADING)
+        }
+    }
+
+    fun showNetError(){
+        if(!::vastNetStateMgr.isInitialized){
+            vastNetStateMgr = VastNetStateMgr(context)
+            addNetStateView()
+        }
+        if(inflateSvLayout(CONTENT_STATE_SHOW_NET_ERROR)){
+            showHideViewById(CONTENT_STATE_SHOW_NET_ERROR)
+        }
+    }
+
+    fun showLoadingError(){
+        if(!::vastNetStateMgr.isInitialized){
+            vastNetStateMgr = VastNetStateMgr(context)
+            addNetStateView()
+        }
+        if(inflateSvLayout(CONTENT_STATE_SHOW_LOADING_ERROR)){
+            showHideViewById(CONTENT_STATE_SHOW_LOADING_ERROR)
+        }
+    }
+
+    fun showEmptyData(){
+        if(!::vastNetStateMgr.isInitialized){
+            vastNetStateMgr = VastNetStateMgr(context)
+            addNetStateView()
+        }
+        if(inflateSvLayout(CONTENT_STATE_SHOW_EMPTY_DATA)){
+            showHideViewById(CONTENT_STATE_SHOW_EMPTY_DATA)
+        }
+    }
+
+    fun showSuccess(){
+        if(!::vastNetStateMgr.isInitialized){
+            vastNetStateMgr = VastNetStateMgr(context)
+            addNetStateView()
+        }
+        showHideViewById(CONTENT_STATE_SHOW_SUCCESS)
+    }
+
+    /**
+     * Show or hide view according to the [layoutId]
+     */
+    private fun showHideViewById(@VastNetState.NetStateView layoutId: Int) {
+        for (i in 0 until layoutSparseArray.size()) {
+            val key = layoutSparseArray.keyAt(i)
+            val valueView = layoutSparseArray.valueAt(i)
+            if (key == layoutId) {
+                valueView.visibility = VISIBLE
+            } else {
+                if (valueView.visibility != GONE) {
+                    valueView.visibility = GONE
+                }
+            }
+        }
+    }
+
+    /**
+     * Mainly to inflate the ViewStub layout,
+     * such as network view, loading view, and
+     * empty data view
+     *
+     * @return Whether the layout corresponding to layoutId is shown or not.
+     */
+    private fun inflateSvLayout(@VastNetState.NetStateView layoutId:Int):Boolean{
+        var isShow = true
+        when(layoutId){
+            CONTENT_STATE_SHOW_LOADING->{
+                isShow = run {
+                    val view = vastNetStateMgr.loadingVs.inflate()
+                    view.setOnClickListener {
+                        vastNetStateMgr.vastRetryClickListener?.onRetry()
+                    }
+                    layoutSparseArray.put(layoutId,view)
+                    true
+                }
+            }
+            CONTENT_STATE_SHOW_NET_ERROR->{
+                isShow = run {
+                    val view = vastNetStateMgr.netErrorRetryVs.inflate()
+                    view.setOnClickListener {
+                        vastNetStateMgr.vastNetWorkClickListener?.onNetWork()
+                    }
+                    layoutSparseArray.put(layoutId,view)
+                    true
+                }
+            }
+            CONTENT_STATE_SHOW_LOADING_ERROR->{
+                isShow = run {
+                    val view = vastNetStateMgr.loadingErrorVs.inflate()
+                    view.setOnClickListener {
+                        vastNetStateMgr.vastRetryClickListener?.onRetry()
+                    }
+                    layoutSparseArray.put(layoutId,view)
+                    true
+                }
+            }
+            CONTENT_STATE_SHOW_EMPTY_DATA ->{
+                isShow = run {
+                    val view = vastNetStateMgr.emptyDataVs.inflate()
+                    view.setOnClickListener {
+                        vastNetStateMgr.vastRetryClickListener?.onRetry()
+                    }
+                    layoutSparseArray.put(layoutId,view)
+                    true
+                }
+            }
+            CONTENT_STATE_SHOW_SUCCESS -> {
+                TODO()
+            }
+        }
+        return isShow
     }
 }

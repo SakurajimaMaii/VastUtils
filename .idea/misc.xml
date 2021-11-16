@@ -17,10 +17,22 @@
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/activity_net_state.xml" value="0.32760416666666664" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/item_bind_layout.xml" value="0.1" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/item_layout.xml" value="0.32760416666666664" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/net_error_page.xml" value="0.34322916666666664" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastFace/src/main/res/layout/item_face.xml" value="0.34322916666666664" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/drawable/corners_bg_main_theme_bound.xml" value="0.33" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/drawable/ic_empty_data.xml" value="0.228" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/drawable/ic_loading.xml" value="0.228" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/drawable/ic_loading_error.xml" value="0.228" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/drawable/ic_net_error.xml" value="0.228" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/drawable/simple_net_error_page_button.xml" value="0.228" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/layout/common_net_error.xml" value="0.22" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/layout/common_shade_loading.xml" value="0.34375" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/layout/simple_empty_data_view.xml" value="0.34322916666666664" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/layout/simple_empty_error_view.xml" value="0.3421875" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/layout/simple_loading_error_view.xml" value="0.3421875" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/layout/simple_loading_view.xml" value="0.34322916666666664" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/layout/simple_net_error_page.xml" value="0.32760416666666664" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastNetStateLayout/src/main/res/layout/simple_net_error_view.xml" value="0.32760416666666664" />
       </map>
     </option>
   </component>

@@ -110,15 +110,15 @@ class VastSwipeListView @JvmOverloads constructor(
                 //Get the position of the list item which you touch.
                 touchPosition = pointToPosition(ev.x.toInt(), ev.y.toInt())
 
-                if (touchPosition == oldPos && swipeListItemLayout != null && swipeListItemLayout!!.isOpen()) {
+                if (touchPosition == oldPos && swipeListItemLayout != null && swipeListItemLayout!!.getSwipeMenuState() != STATE_CLOSE) {
                     touchOrientation = TOUCH_STATE_X
                     swipeListItemLayout!!.onSwipe(ev)
                     return true
                 }
                 //Get the view corresponding to the position you touch.
                 val view = getChildAt(touchPosition - firstVisiblePosition)
-                if (swipeListItemLayout != null && swipeListItemLayout!!.isOpen()) {
-                    swipeListItemLayout!!.smoothCloseMenu()
+                if (swipeListItemLayout != null && swipeListItemLayout!!.getSwipeMenuState() != STATE_CLOSE) {
+                    swipeListItemLayout!!.smoothCloseMenu(swipeListItemLayout!!.getSwipeMenuState())
                     swipeListItemLayout = null
                     return super.onTouchEvent(ev)
                 }
@@ -138,7 +138,8 @@ class VastSwipeListView @JvmOverloads constructor(
                     ev.action = MotionEvent.ACTION_CANCEL
                     super.onTouchEvent(ev)
                     return true
-                } else if (touchOrientation == TOUCH_STATE_NONE) {
+                }
+                else if (touchOrientation == TOUCH_STATE_NONE) {
                     if (dy > maxY) {
                         touchOrientation = TOUCH_STATE_Y
                     } else if (dx > maxX) {
@@ -150,7 +151,7 @@ class VastSwipeListView @JvmOverloads constructor(
             MotionEvent.ACTION_UP -> if (touchOrientation == TOUCH_STATE_X) {
                 if (swipeListItemLayout != null) {
                     swipeListItemLayout!!.onSwipe(ev)
-                    if (!swipeListItemLayout!!.isOpen()) {
+                    if (swipeListItemLayout!!.getSwipeMenuState() == STATE_CLOSE) {
                         touchPosition = -1
                         swipeListItemLayout = null
                     }
@@ -162,20 +163,6 @@ class VastSwipeListView @JvmOverloads constructor(
             }
         }
         return super.onTouchEvent(ev)
-    }
-
-    fun smoothOpenMenu(position: Int) {
-        if (position in firstVisiblePosition..lastVisiblePosition) {
-            val view = getChildAt(position - firstVisiblePosition)
-            if (view is VastSwipeListItemLayout) {
-                touchPosition = position
-                if (swipeListItemLayout != null && swipeListItemLayout!!.isOpen()) {
-                    swipeListItemLayout!!.smoothCloseMenu()
-                }
-                swipeListItemLayout = view
-                swipeListItemLayout!!.smoothOpenMenu()
-            }
-        }
     }
 
     private fun dp2px(dp: Int): Int {

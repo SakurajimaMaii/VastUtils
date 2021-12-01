@@ -3,6 +3,7 @@ package com.gcode.vastswipelayout.view
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
@@ -13,7 +14,9 @@ import android.widget.LinearLayout
 import android.widget.OverScroller
 import androidx.core.view.GestureDetectorCompat
 import com.gcode.vastswipelayout.VastSwipeMenuMgr
+import com.gcode.vastswipelayout.annotation.VastSwipeListViewConstant
 import com.gcode.vastswipelayout.annotation.VastSwipeListViewConstant.*
+import kotlin.math.abs
 
 /**
  * @OriginalAuthor: Vast Gui
@@ -33,49 +36,65 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
     defStyle: Int = 0
 ) : LinearLayout(context, attrs, defStyle) {
     /**
-     * List content view
+     * List content view.
      */
     private lateinit var contentView: View
+
     /**
-     * Swipe menu view
+     * Left Swipe menu view.
      */
-    private lateinit var menuView: VastSwipeMenuLayout
+    private lateinit var leftMenuView: VastSwipeLeftMenu
+
+    /**
+     * Right Swipe menu view.
+     */
+    private lateinit var rightMenuView: VastSwipeRightMenu
+
     /**
      * The initial x coordinate every time you touch the screen.
      */
     private var downX = 0
+
     /**
      * Swipe menu state.
      *
-     * @see STATE_OPEN
+     * @see STATE_LEFT_OPEN
+     * @see STATE_RIGHT_OPEN
      * @see STATE_CLOSE
      */
     private var state = STATE_CLOSE
+
     /**
      * Detects various gestures and events using the [onSwipe] supplied [MotionEvent]s.
      */
     private lateinit var gestureDetector: GestureDetectorCompat
+
     /**
      * Use to define the [SimpleOnGestureListener.onDown] and
      * [SimpleOnGestureListener.onFling]
      */
     private lateinit var gestureListener: GestureDetector.OnGestureListener
+
     /**
      * Whether the finger is fling.
      */
     private var isFling = false
+
     /**
      * The minimum distance of the finger fling.
      */
     private val minFling = dp2px(15)
+
     /**
      * The max velocity of this fling measured in pixels per second along the x axis.
      */
     private val maxVelocityX = -dp2px(500)
+
     /**
      * Base x distance
      */
     private var baseX = 0
+
     /**
      * The position of the item in the list.
      *
@@ -83,48 +102,60 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
      */
     var position = 0
         private set
+
     /**
      * Open scroller
      */
     private lateinit var openScroller: OverScroller
+
     /**
      * Close scroller
      */
     private lateinit var closeScroller: OverScroller
+
     /**
      * Close interpolator
      *
      * Get from [VastSwipeMenuMgr.closeInterpolator].
      */
     private var closeInterpolator: Interpolator? = null
+
     /**
      * Open interpolator
      *
      * Get from [VastSwipeMenuMgr.openInterpolator].
      */
     private var openInterpolator: Interpolator? = null
+
     /**
      * Swipe menu manager.
      */
     private lateinit var swipeMenuMgr: VastSwipeMenuMgr
 
+    /**
+     * Swipe orientation
+     */
+    @setparam:VastSwipeListViewConstant.SwipeMenuOrientation
+    private var swipeOrientation: Int = SWIPE_NONE
+
     constructor(
         contentView: View,
-        menuView: VastSwipeMenuLayout,
+        leftMenu: VastSwipeLeftMenu,
+        rightMenu: VastSwipeRightMenu,
         swipeMenuMgr: VastSwipeMenuMgr
     ) : this(contentView.context, null, 0) {
         this.closeInterpolator = swipeMenuMgr.closeInterpolator
         this.openInterpolator = swipeMenuMgr.openInterpolator
         this.contentView = contentView
-        this.menuView = menuView
+        this.leftMenuView = leftMenu
+        this.rightMenuView = rightMenu
         this.swipeMenuMgr = swipeMenuMgr
-        this.menuView.setLayout(this)
         init()
     }
 
     fun setPosition(position: Int) {
         this.position = position
-        menuView.setPosition(position)
+        rightMenuView.setPosition(position)
     }
 
     @SuppressLint("ResourceType")
@@ -143,7 +174,7 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
                 e1: MotionEvent, e2: MotionEvent,
                 velocityX: Float, velocityY: Float
             ): Boolean {
-                if (e1.x - e2.x > minFling && velocityX < maxVelocityX) {
+                if (abs(e1.x - e2.x) > minFling && velocityX < maxVelocityX) {
                     isFling = true
                 }
                 return super.onFling(e1, e2, velocityX, velocityY)
@@ -165,12 +196,17 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
             LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT
         )
         contentView.layoutParams = contentParams
-        menuView.layoutParams = LayoutParams(
+        leftMenuView.layoutParams = LayoutParams(
             LayoutParams.WRAP_CONTENT,
             LayoutParams.MATCH_PARENT
         )
+        rightMenuView.layoutParams = LayoutParams(
+            LayoutParams.WRAP_CONTENT,
+            LayoutParams.MATCH_PARENT
+        )
+        addView(leftMenuView)
         addView(contentView)
-        addView(menuView)
+        addView(rightMenuView)
     }
 
     /**
@@ -185,18 +221,42 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
             }
             MotionEvent.ACTION_MOVE -> {
                 var dis = (downX - event.x).toInt()
-                if (state == STATE_OPEN) {
-                    dis += menuView.width
+                swipeOrientation = if (dis >= 0) SWIPE_LEFT else SWIPE_RIGHT
+                if (state == STATE_LEFT_OPEN || state == STATE_RIGHT_OPEN) {
+                    smoothCloseMenu(state)
+                    when (swipeOrientation) {
+                        SWIPE_LEFT ->
+                            dis += rightMenuView.width
+                        SWIPE_RIGHT ->
+                            dis -= leftMenuView.width
+                    }
                 }
                 swipe(dis)
             }
-            MotionEvent.ACTION_UP -> if (isFling || downX - event.x > menuView.width / 2) {
-                // open
-                smoothOpenMenu()
-            } else {
-                // close
-                smoothCloseMenu()
-                return false
+            MotionEvent.ACTION_UP -> {
+                Log.d("Hello","ok the value is ${downX - event.x}")
+                when (swipeOrientation) {
+                    SWIPE_RIGHT -> {
+                        if (isFling || abs(downX - event.x) > leftMenuView.width / 2) {
+                            // open
+                            smoothOpenMenu(SWIPE_RIGHT)
+                        } else {
+                            // close
+                            smoothCloseMenu(SWIPE_RIGHT)
+                            return false
+                        }
+                    }
+                    SWIPE_LEFT -> {
+                        if (isFling || downX - event.x > rightMenuView.width / 2) {
+                            // open
+                            smoothOpenMenu(SWIPE_LEFT)
+                        } else {
+                            // close
+                            smoothCloseMenu(SWIPE_LEFT)
+                            return false
+                        }
+                    }
+                }
             }
         }
         return true
@@ -204,10 +264,8 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
 
     /**
      * Get swipe menu state
-     *
-     * `true` if swipe menu is open, `false` otherwise.
      */
-    fun isOpen() = state == STATE_OPEN
+    fun getSwipeMenuState() = state
 
     /**
      * Swipe
@@ -217,23 +275,46 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
      */
     private fun swipe(dis: Int) {
         var distance = dis
-        if (dis > menuView.width) {
-            distance = menuView.width
+        when (swipeOrientation) {
+            SWIPE_LEFT -> {
+                if (dis > rightMenuView.width) {
+                    distance = rightMenuView.width
+                }
+                if (dis < 0) {
+                    distance = 0
+                }
+            }
+            SWIPE_RIGHT -> {
+                if (dis < -leftMenuView.width) {
+                    distance = -leftMenuView.width
+                }
+                if (dis > 0) {
+                    distance = 0
+                }
+            }
         }
-        if (dis < 0) {
-            distance = 0
-        }
-        contentView.layout(-distance, contentView.top, contentView.width - distance, measuredHeight)
-        menuView.layout(
+        leftMenuView.layout(
+            -leftMenuView.width - distance,
+            leftMenuView.top,
+            -distance,
+            leftMenuView.bottom
+        )
+        contentView.layout(
+            -distance,
+            contentView.top,
             contentView.width - distance,
-            menuView.top,
-            contentView.width + menuView.width - distance,
-            menuView.bottom
+            measuredHeight
+        )
+        rightMenuView.layout(
+            contentView.width - distance,
+            rightMenuView.top,
+            contentView.width + rightMenuView.width - distance,
+            measuredHeight
         )
     }
 
     override fun computeScroll() {
-        if (state == STATE_OPEN) {
+        if (state == STATE_LEFT_OPEN || state == STATE_RIGHT_OPEN) {
             if (openScroller.computeScrollOffset()) {
                 swipe(openScroller.currX)
                 postInvalidate()
@@ -246,42 +327,47 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
         }
     }
 
-    fun smoothCloseMenu() {
+    fun smoothCloseMenu(swipeMenuOrientation: Int) {
         state = STATE_CLOSE
-        baseX = -contentView.left
-        closeScroller.startScroll(0, 0, baseX, 0, swipeMenuMgr.swipeMenuCloseDuration)
+        when (swipeMenuOrientation) {
+            SWIPE_LEFT -> {
+                baseX = -contentView.left
+                closeScroller.startScroll(0, 0, baseX, 0, swipeMenuMgr.swipeMenuCloseDuration)
+            }
+            SWIPE_RIGHT -> {
+                baseX = contentView.left
+                closeScroller.startScroll(0, 0, baseX, 0, swipeMenuMgr.swipeMenuCloseDuration)
+            }
+        }
         postInvalidate()
     }
 
-    fun smoothOpenMenu() {
-        state = STATE_OPEN
-        openScroller.startScroll(-contentView.left, 0, menuView.width, 0, swipeMenuMgr.swipeMenuOpenDuration)
+    private fun smoothOpenMenu(swipeMenuOrientation: Int) {
+        when (swipeMenuOrientation) {
+            SWIPE_LEFT -> {
+                state = STATE_RIGHT_OPEN
+                Log.i("Hello", "${contentView.left}")
+                openScroller.startScroll(
+                    -contentView.left,
+                    0,
+                    rightMenuView.width,
+                    0,
+                    swipeMenuMgr.swipeMenuOpenDuration
+                )
+            }
+            SWIPE_RIGHT -> {
+                state = STATE_LEFT_OPEN
+                Log.i("Hello", "AAA ${contentView.left}")
+                openScroller.startScroll(
+                    -contentView.left,
+                    0,
+                    -leftMenuView.width,
+                    0,
+                    swipeMenuMgr.swipeMenuOpenDuration
+                )
+            }
+        }
         postInvalidate()
-    }
-
-    fun closeMenu() {
-        if (closeScroller.computeScrollOffset()) {
-            closeScroller.abortAnimation()
-        }
-        if (state == STATE_OPEN) {
-            state = STATE_CLOSE
-            swipe(0)
-        }
-    }
-
-    fun openMenu() {
-        if (state == STATE_CLOSE) {
-            state = STATE_OPEN
-            swipe(menuView.width)
-        }
-    }
-
-    fun getContentView(): View {
-        return contentView
-    }
-
-    fun getMenuView(): VastSwipeMenuLayout {
-        return menuView
     }
 
     private fun dp2px(dp: Int): Int {
@@ -293,27 +379,31 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        menuView.measure(
+        leftMenuView.measure(
+            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+            MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.EXACTLY)
+        )
+        rightMenuView.measure(
             MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
             MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.EXACTLY)
         )
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        contentView.layout(0, 0, measuredWidth, contentView.measuredHeight)
-        menuView.layout(
-            measuredWidth,
-            0,
-            measuredWidth + menuView.measuredWidth,
-            contentView.measuredHeight
-        )
-    }
-
-    fun setMenuHeight(measuredHeight: Int) {
-        val params = menuView.layoutParams as LayoutParams
-        if (params.height != measuredHeight) {
-            params.height = measuredHeight
-            menuView.layoutParams = menuView.layoutParams
+        if (changed) {
+            leftMenuView.layout(
+                -leftMenuView.measuredWidth, 0, 0, leftMenuView.measuredHeight
+            )
+            contentView.layout(
+                0, 0, measuredWidth, contentView.measuredHeight
+            )
+            rightMenuView.layout(
+                measuredWidth,
+                0,
+                measuredWidth + rightMenuView.measuredWidth,
+                rightMenuView.measuredHeight
+            )
         }
     }
+
 }

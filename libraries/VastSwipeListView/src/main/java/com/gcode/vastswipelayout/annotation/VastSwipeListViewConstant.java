@@ -38,21 +38,72 @@ public class VastSwipeListViewConstant {
      * show title and icon
      */
     public final static String ICON_TITLE = "ICON_TITLE";
-
+    /**
+     * Using when you want to set swipe menu content style.
+     */
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
             ONLY_TITLE,ONLY_ICON,ICON_TITLE
     })
     public @interface SwipeMenuContentStyle {}
 
-    public final static int SwipeMenuId = 520;
-
     /**
      * Swipe menu close state.
      */
     public final static int STATE_CLOSE = 0;
     /**
-     * Swipe menu open state.
+     * Swipe menu right open state.
      */
-    public final static int STATE_OPEN = 1;
+    public final static int STATE_RIGHT_OPEN = -1;
+    /**
+     * Swipe menu left open state.
+     */
+    public final static int STATE_LEFT_OPEN = 1;
+
+    /**
+     * Only right have menu.
+     */
+    public final static int ONLY_RIGHT = 0;
+    /**
+     * Only left have menu.
+     */
+    public final static int ONLY_LEFT = 1;
+    /**
+     * Left and right have menu.
+     */
+    public final static int LEFT_RIGHT = 2;
+    /**
+     * Using when you want to set swipe menu style.
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({
+            ONLY_LEFT,ONLY_RIGHT,LEFT_RIGHT
+    })
+    public @interface SwipeMenuStyle {}
+
+    /**
+     * @hide
+     */
+    public final static int SWIPE_LEFT = STATE_RIGHT_OPEN;
+
+    /**
+     * @hide
+     */
+    public final static int SWIPE_RIGHT = STATE_LEFT_OPEN;
+
+    /**
+     * @hide
+     */
+    public final static int SWIPE_NONE = 0;
+
+    /**
+     * @hide
+     *
+     * Use when set the swipe orientation
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({
+            SWIPE_NONE,SWIPE_LEFT,SWIPE_RIGHT
+    })
+    public @interface SwipeMenuOrientation {}
 }

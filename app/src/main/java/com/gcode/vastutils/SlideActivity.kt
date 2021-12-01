@@ -39,20 +39,28 @@ class SlideActivity : AppCompatActivity() {
         deleteItem.setBackgroundByColorInt(0xFF1e90ff)
         deleteItem.setTitleByString("撤销")
         deleteItem.setTitleColorByColorInt(Color.WHITE)
+        deleteItem.setIconByResId(R.drawable.ic_delete)
         deleteItem.setClickEvent { item: VastSwipeMenuItem, position: Int ->
             run {
                 Toast.makeText(this@SlideActivity, "${item.title} $position", Toast.LENGTH_SHORT)
                     .show()
             }
         }
-        menu.addMenuItem(deleteItem)
+        menu.addLeftMenuItem(deleteItem)
         //创建刷新菜单
         val refreshItem = VastSwipeMenuItem(this@SlideActivity)
         refreshItem.setBackgroundByColorInt(0xFFff4757)
         refreshItem.setTitleByString("刷新")
-        menu.addMenuItem(refreshItem)
+        refreshItem.setIconByResId(R.drawable.ic_refresh)
+        menu.addRightMenuItem(refreshItem)
+        val revokeItem = VastSwipeMenuItem(this@SlideActivity)
+        revokeItem.setBackgroundByColorInt(0xff6ab04c)
+        revokeItem.setTitleByString("撤销")
+        revokeItem.setIconByResId(R.drawable.ic_revoke)
+        menu.addRightMenuItem(revokeItem)
 
         menu.setSwipeMenuContentStyle(ICON_TITLE)
+        menu.setSwipeMenuStyle(LEFT_RIGHT)
 
         inflater = LayoutInflater.from(this)
         context = applicationContext

@@ -12,6 +12,7 @@ import com.gcode.vastswipelayout.R
 import com.gcode.vastswipelayout.VastSwipeMenuMgr
 import com.gcode.vastswipelayout.annotation.VastSwipeListViewConstant.*
 import com.gcode.vastswipelayout.model.VastSwipeMenuItem
+import java.util.ArrayList
 
 
 /**
@@ -26,22 +27,21 @@ import com.gcode.vastswipelayout.model.VastSwipeMenuItem
  *
  * Used to show the swipe menu
  */
-class VastSwipeMenuLayout @JvmOverloads constructor(
+open class VastSwipeMenuLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr:Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    constructor(vastMenuGroups: VastSwipeMenuMgr) : this(vastMenuGroups.context,null,0) {
-        this.swipeMenuMgr = vastMenuGroups
-        for (item in vastMenuGroups.items){
+    constructor(swipeMenuMgr: VastSwipeMenuMgr,items:ArrayList<VastSwipeMenuItem>) : this(swipeMenuMgr.context,null,0) {
+        this.swipeMenuMgr = swipeMenuMgr
+        this.items = items
+        for(item in items){
             addItem(item)
         }
     }
 
-    init {
-        id = SwipeMenuId
-    }
-
     private lateinit var swipeMenuMgr: VastSwipeMenuMgr
+
+    private lateinit var items:ArrayList<VastSwipeMenuItem>
 
     /**
      * The swipe menu position in the list
@@ -51,13 +51,6 @@ class VastSwipeMenuLayout @JvmOverloads constructor(
 
     fun setPosition(position:Int){
         this.position = position
-    }
-
-    var layout:VastSwipeListItemLayout? = null
-        private set
-
-    fun setLayout(vastItemViewLayout: VastSwipeListItemLayout){
-        layout = vastItemViewLayout
     }
 
     private fun createIcon(item: VastSwipeMenuItem): ImageView {
@@ -119,16 +112,16 @@ class VastSwipeMenuLayout @JvmOverloads constructor(
         addView(parent)
     }
 
-    /**
-     * Set vastSwipeMenuMgr
-     *
-     * Doing this will **reset** your previous settings
-     */
-    fun setSwipeMenuMgr(vastMenuGroups: VastSwipeMenuMgr){
-        this.swipeMenuMgr = vastMenuGroups
-        //removeAllViews()
-        for (item in vastMenuGroups.items){
-            addItem(item)
-        }
-    }
+}
+
+class VastSwipeLeftMenu: VastSwipeMenuLayout{
+    @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr:Int = 0):super(context, attrs, defStyleAttr)
+
+    constructor(vastSwipeMenuMgr: VastSwipeMenuMgr):super(vastSwipeMenuMgr,vastSwipeMenuMgr.leftMenuItems)
+}
+
+class VastSwipeRightMenu: VastSwipeMenuLayout{
+    @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr:Int = 0):super(context, attrs, defStyleAttr)
+
+    constructor(vastSwipeMenuMgr: VastSwipeMenuMgr):super(vastSwipeMenuMgr,vastSwipeMenuMgr.rightMenuItems)
 }

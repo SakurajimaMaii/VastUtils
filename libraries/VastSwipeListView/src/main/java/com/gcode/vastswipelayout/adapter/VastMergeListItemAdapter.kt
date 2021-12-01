@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.WrapperListAdapter
 import com.gcode.vastswipelayout.VastSwipeMenuMgr
+import com.gcode.vastswipelayout.view.VastSwipeLeftMenu
 import com.gcode.vastswipelayout.view.VastSwipeListItemLayout
-import com.gcode.vastswipelayout.view.VastSwipeMenuLayout
+import com.gcode.vastswipelayout.view.VastSwipeRightMenu
 
 /**
  * @OriginalAuthor: Vast Gui
@@ -30,7 +31,7 @@ internal open class VastMergeListItemAdapter(
     private val context: Context,
     private val adapter: ListAdapter,
     private val swipeMenuMgr: VastSwipeMenuMgr
-    ) : WrapperListAdapter{
+) : WrapperListAdapter {
 
     override fun getCount() = adapter.count
 
@@ -60,20 +61,24 @@ internal open class VastMergeListItemAdapter(
 
     override fun getWrappedAdapter() = adapter
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): VastSwipeListItemLayout? {
-        var layout: VastSwipeListItemLayout? = null
-        if (convertView == null) {
+    override fun getView(
+        position: Int,
+        convertView: View?,
+        parent: ViewGroup
+    ): VastSwipeListItemLayout? {
+        return if (convertView == null) {
             val contentView = adapter.getView(position, null, parent)
-            val menuView = VastSwipeMenuLayout(swipeMenuMgr)
-            layout = VastSwipeListItemLayout(
-                contentView, menuView,
-                swipeMenuMgr
-            )
-            layout.setPosition(position)
+            val leftMenuView = VastSwipeLeftMenu(swipeMenuMgr)
+            val rightMenuView = VastSwipeRightMenu(swipeMenuMgr)
+            VastSwipeListItemLayout(
+                contentView, leftMenuView, rightMenuView, swipeMenuMgr
+            ).apply {
+                setPosition(position)
+            }
         } else {
-            layout = convertView as VastSwipeListItemLayout?
-            layout?.setPosition(position)
+            (convertView as VastSwipeListItemLayout).apply {
+                setPosition(position)
+            }
         }
-        return layout
     }
 }

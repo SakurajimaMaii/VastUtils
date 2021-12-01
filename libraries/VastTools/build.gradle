@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'org.jetbrains.dokka'
 }
 
 android {
@@ -43,6 +44,17 @@ ext {
     PUBLISH_VERSION = '0.0.4'                    //版本号
     PUBLISH_DESCRIPTION = 'Easy Quick Android Tools for you to faster project development.' //项目描述
     PUBLISH_URL = 'https://github.com/SakurajimaMaii/VastUtils/tree/master/libraries/VastTools' //Url
+}
+
+dokkaGfm {
+    outputDirectory.set(file("$rootDir/docs/vasttools"))
+    moduleName.set("VastTools")
+    suppressInheritedMembers.set(false)
+    dokkaSourceSets {
+        configureEach {
+            includeNonPublic.set(true)
+        }
+    }
 }
 
 apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"

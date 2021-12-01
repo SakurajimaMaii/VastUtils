@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/libraries/VastActivity" />
             <option value="$PROJECT_DIR$/libraries/VastAdapter" />
             <option value="$PROJECT_DIR$/libraries/VastNetStateLayout" />
+            <option value="$PROJECT_DIR$/libraries/VastSwipeListView" />
             <option value="$PROJECT_DIR$/libraries/VastTools" />
           </set>
         </option>

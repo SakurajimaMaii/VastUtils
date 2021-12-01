@@ -9,7 +9,8 @@ def libs = [
         "VastTools",
         "VastAdapter",
         "VastActivity",
-        "VastNetStateLayout"
+        "VastNetStateLayout",
+        "VastSwipeListView"
 ]
 
 libs.forEach {

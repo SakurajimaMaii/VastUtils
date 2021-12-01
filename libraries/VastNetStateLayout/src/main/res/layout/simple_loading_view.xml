@@ -5,10 +5,11 @@
     android:background="?colorBackgroundFloating"
     android:orientation="vertical">
 
-    <ProgressBar
+    <ImageView
+        android:id="@+id/loading_anim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:indeterminateTint="?colorOnSurface"/>
+        android:background="@drawable/loading_anim"/>
 
 </RelativeLayout>

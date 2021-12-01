@@ -1,10 +1,13 @@
 package com.gcode.vastnetstatelayout.view
 
 import android.content.Context
+import android.graphics.drawable.AnimationDrawable
 import android.util.AttributeSet
 import android.util.SparseArray
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
+import com.gcode.vastnetstatelayout.R
 import com.gcode.vastnetstatelayout.annotation.VastNetState
 import com.gcode.vastnetstatelayout.annotation.VastNetState.*
 

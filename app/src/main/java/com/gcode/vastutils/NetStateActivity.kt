@@ -32,7 +32,12 @@ class NetStateActivity : AppCompatActivity() {
         vastNetStateMgr.setLoadingView(R.layout.simple_net_error_view)
         vastNetStateMgr.setVastRetryClickListener(object :VastRetryClickListener{
             override fun onRetry() {
-
+                object:Handler(Looper.getMainLooper()) {
+                    override fun handleMessage(msg: Message) {
+                        super.handleMessage(msg)
+                        mNetStateLayout!!.showLoading()
+                    }
+                }.sendEmptyMessageDelayed(0, 3000)
             }
         })
         mNetStateLayout!!.setVastNetStateMgr(vastNetStateMgr)

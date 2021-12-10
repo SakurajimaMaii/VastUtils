@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">GUtilsSampleDemo</string>
+    <string name="loading_page">加载页面</string>
     <!-- Strings used for fragments for navigation -->
 
 </resources>

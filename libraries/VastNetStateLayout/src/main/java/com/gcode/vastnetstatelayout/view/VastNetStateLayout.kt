@@ -1,10 +1,13 @@
 package com.gcode.vastnetstatelayout.view
 
 import android.content.Context
+import android.graphics.drawable.AnimatedImageDrawable
 import android.graphics.drawable.AnimationDrawable
 import android.util.AttributeSet
 import android.util.SparseArray
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.ImageView
 import com.gcode.vastnetstatelayout.R
@@ -146,10 +149,12 @@ class VastNetStateLayout @JvmOverloads constructor(
             CONTENT_STATE_SHOW_LOADING->{
                 isShow = run {
                     val view = vastNetStateMgr.loadingVs.inflate()
+                    val drawable = view.findViewById<ImageView>(R.id.loading_anim).drawable
+                    (drawable as AnimationDrawable).start()
                     view.setOnClickListener {
                         vastNetStateMgr.vastRetryClickListener?.onRetry()
                     }
-                    layoutSparseArray.put(layoutId,view)
+                    layoutSparseArray.put(layoutId, view)
                     true
                 }
             }

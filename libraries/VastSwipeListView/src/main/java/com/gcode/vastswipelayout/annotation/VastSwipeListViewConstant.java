@@ -61,6 +61,10 @@ public class VastSwipeListViewConstant {
     public final static int STATE_LEFT_OPEN = 1;
 
     /**
+     * Not init
+     */
+    public final static int NOT_INIT = -1;
+    /**
      * Only right have menu.
      */
     public final static int ONLY_RIGHT = 0;
@@ -77,7 +81,7 @@ public class VastSwipeListViewConstant {
      */
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({
-            ONLY_LEFT,ONLY_RIGHT,LEFT_RIGHT
+            NOT_INIT,ONLY_LEFT,ONLY_RIGHT,LEFT_RIGHT
     })
     public @interface SwipeMenuStyle {}
 

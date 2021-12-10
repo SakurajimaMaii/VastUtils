@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.IntRange
 import androidx.core.view.setMargins
 import com.gcode.vastswipelayout.R
 import com.gcode.vastswipelayout.VastSwipeMenuMgr
@@ -39,8 +40,14 @@ open class VastSwipeMenuLayout @JvmOverloads constructor(
         }
     }
 
+    /**
+     * See the definition of the [VastSwipeMenuMgr].
+     */
     private lateinit var swipeMenuMgr: VastSwipeMenuMgr
 
+    /**
+     * An array of the [VastSwipeMenuItem].
+     */
     private lateinit var items:ArrayList<VastSwipeMenuItem>
 
     /**
@@ -49,7 +56,10 @@ open class VastSwipeMenuLayout @JvmOverloads constructor(
     var position:Int = -1
         private set
 
-    fun setPosition(position:Int){
+    /**
+     * Set the position of the menu.
+     */
+    fun setPosition(@IntRange(from = 0) position:Int){
         this.position = position
     }
 

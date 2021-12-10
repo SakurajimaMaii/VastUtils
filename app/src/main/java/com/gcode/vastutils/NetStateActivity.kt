@@ -29,17 +29,16 @@ class NetStateActivity : AppCompatActivity() {
 
         mNetStateLayout = findViewById<View>(R.id.net_state_layout) as VastNetStateLayout
         val vastNetStateMgr = VastNetStateMgr(this)
-        vastNetStateMgr.setLoadingView(R.layout.simple_net_error_view)
-        vastNetStateMgr.setVastRetryClickListener(object :VastRetryClickListener{
-            override fun onRetry() {
-                object:Handler(Looper.getMainLooper()) {
-                    override fun handleMessage(msg: Message) {
-                        super.handleMessage(msg)
-                        mNetStateLayout!!.showLoading()
-                    }
-                }.sendEmptyMessageDelayed(0, 3000)
-            }
-        })
+//        vastNetStateMgr.setVastRetryClickListener(object : VastRetryClickListener {
+//            override fun onRetry() {
+//                object:Handler(Looper.getMainLooper()) {
+//                    override fun handleMessage(msg: Message) {
+//                        super.handleMessage(msg)
+//                        mNetStateLayout!!.showNetError()
+//                    }
+//                }.sendEmptyMessageDelayed(0, 3000)
+//            }
+//        })
         mNetStateLayout!!.setVastNetStateMgr(vastNetStateMgr)
         mNetStateLayout!!.showLoading()
 
@@ -49,7 +48,6 @@ class NetStateActivity : AppCompatActivity() {
     private val mHandler: Handler = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
-            mNetStateLayout!!.showEmptyData()
         }
     }
 }

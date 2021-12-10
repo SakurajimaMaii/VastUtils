@@ -38,3 +38,13 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
+
+ext {
+    PUBLISH_GROUP_ID = "io.github.sakurajimamaii"        //项目包名
+    PUBLISH_ARTIFACT_ID = 'VastSwipeListView'            //项目名
+    PUBLISH_VERSION = '0.0.1'                    //版本号
+    PUBLISH_DESCRIPTION = 'A ListView that supports swipe list items.' //项目描述
+    PUBLISH_URL = 'https://github.com/SakurajimaMaii/VastUtils/tree/master/libraries/VastSwipeListView' //Url
+}
+
+apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"

@@ -31,7 +31,7 @@ class SlideActivity : AppCompatActivity() {
         setContentView(R.layout.activity_slide)
 
         menu = VastSwipeMenuMgr(this).apply {
-
+            setSwipeMenuStyle(ONLY_LEFT)
         }
 
         //创建删除菜单
@@ -60,7 +60,6 @@ class SlideActivity : AppCompatActivity() {
         menu.addRightMenuItem(revokeItem)
 
         menu.setSwipeMenuContentStyle(ICON_TITLE)
-        menu.setSwipeMenuStyle(LEFT_RIGHT)
 
         inflater = LayoutInflater.from(this)
         context = applicationContext

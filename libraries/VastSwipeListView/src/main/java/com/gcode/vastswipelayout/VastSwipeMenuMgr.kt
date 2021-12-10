@@ -9,6 +9,7 @@ import androidx.annotation.IntRange
 import com.gcode.vastswipelayout.annotation.VastSwipeListViewConstant
 import com.gcode.vastswipelayout.annotation.VastSwipeListViewConstant.*
 import com.gcode.vastswipelayout.model.VastSwipeMenuItem
+import kotlin.jvm.Throws
 
 /**
  * @OriginalAuthor: Vast Gui
@@ -76,33 +77,57 @@ class VastSwipeMenuMgr @JvmOverloads constructor(
     var swipeMenuCloseDuration:Int = 300
         private set
 
+    /**
+     * Close interpolator.
+     */
     var closeInterpolator: Interpolator? = null
         private set
 
+    /**
+     * Open interpolator.
+     */
     var openInterpolator: Interpolator? = null
         private set
 
     /**
      * Menu style.Default value is [ONLY_RIGHT]
      *
+     * @see VastSwipeListViewConstant.NOT_INIT
      * @see VastSwipeListViewConstant.ONLY_RIGHT
      * @see VastSwipeListViewConstant.ONLY_LEFT
      * @see VastSwipeListViewConstant.LEFT_RIGHT
      */
-    var swipeMenuStyle:Int = ONLY_RIGHT
+    var swipeMenuStyle:Int = NOT_INIT
         private set
 
     /**
-     * Set [leftMenuItems] and [rightMenuItems] by [swipeMenuStyle]
+     * Set [leftMenuItems] and [rightMenuItems] by [swipeMenuStyle].
+     *
+     * When you call [setItems],if [swipeMenuStyle] is [ONLY_LEFT],
+     * you can not set [rightMenuItems],or [swipeMenuStyle] is [ONLY_RIGHT]
+     * you can not set [leftMenuItems].
+     *
+     * @throws Throwable When [swipeMenuStyle] is equals to [NOT_INIT],
+     *                   then throw an exception.
      */
     @JvmOverloads
+    @Throws(Throwable::class)
     fun setItems(
         leftItems:ArrayList<VastSwipeMenuItem> = ArrayList(),
         rightItems:ArrayList<VastSwipeMenuItem> = ArrayList(),
     ){
         when(swipeMenuStyle){
-            ONLY_RIGHT -> rightMenuItems = rightItems
-            ONLY_LEFT -> leftMenuItems = leftItems
+            NOT_INIT->{
+                throw Throwable("You should set swipeMenuStyle")
+            }
+            ONLY_RIGHT -> {
+                leftMenuItems.clear()
+                rightMenuItems = rightItems
+            }
+            ONLY_LEFT ->{
+                leftMenuItems = leftItems
+                rightMenuItems.clear()
+            }
             LEFT_RIGHT -> {
                 leftMenuItems = leftItems
                 rightMenuItems = rightItems
@@ -111,17 +136,47 @@ class VastSwipeMenuMgr @JvmOverloads constructor(
     }
 
     /**
-     * Add [item] to the end of [leftMenuItems].
+     * Add [item] to the end of [leftMenuItems]
+     * when [swipeMenuStyle] is not [ONLY_RIGHT].
+     *
+     * @throws Throwable When [swipeMenuStyle] is equals to [NOT_INIT],
+     *                   then throw an exception.
      */
+    @Throws(Throwable::class)
     fun addLeftMenuItem(item: VastSwipeMenuItem) {
-        leftMenuItems.add(item)
+        when(swipeMenuStyle){
+            NOT_INIT->{
+                throw Throwable("You should set swipeMenuStyle")
+            }
+            ONLY_RIGHT->{
+                return
+            }
+            else ->{
+                leftMenuItems.add(item)
+            }
+        }
     }
 
     /**
-     * Add [item] to the end of [rightMenuItems].
+     * Add [item] to the end of [rightMenuItems]
+     * when [swipeMenuStyle] is not [ONLY_LEFT].
+     *
+     * @throws Throwable When [swipeMenuStyle] is equals to [NOT_INIT],
+     *                   then throw an exception.
      */
+    @Throws(Throwable::class)
     fun addRightMenuItem(item: VastSwipeMenuItem){
-        rightMenuItems.add(item)
+        when(swipeMenuStyle){
+            NOT_INIT->{
+                throw Throwable("You should set swipeMenuStyle")
+            }
+            ONLY_LEFT->{
+                return
+            }
+            else ->{
+                rightMenuItems.add(item)
+            }
+        }
     }
 
     /**
@@ -181,10 +236,16 @@ class VastSwipeMenuMgr @JvmOverloads constructor(
         )
     }
 
+    /**
+     * Set close interpolator.
+     */
     fun setCloseInterpolator(interpolator: Interpolator?) {
         closeInterpolator = interpolator
     }
 
+    /**
+     * Set open interpolator.
+     */
     fun setOpenInterpolator(interpolator: Interpolator?) {
         openInterpolator = interpolator
     }

@@ -2,6 +2,8 @@
 
 <p align="center">一款支持自定义的仿QQ列表滑动控件</p>
 
+<p align="center">简体中文 | <a href="https://github.com/SakurajimaMaii/VastUtils/edit/master/libraries/VastSwipeListView/README.md">English</a></p>
+
 ## 💫 特性
 - 🤔 支持自定义菜单项，包括 `标题` `图标` `菜单背景色` `标题字体大小` `图标大小`
 - 🤣 支持自定义菜单类别，包括 `只有左菜单` `只有右菜单` `左右都有菜单`

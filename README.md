@@ -10,7 +10,7 @@
 <img src="https://img.shields.io/badge/jdk%20version-11-%2300b894"/>
 </p>
 
-<div align="center"><a herf="https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README_CN.md">简体中文</a> | English</div>
+<div align="center">English | <a href="https://github.com/SakurajimaMaii/VastUtils/blob/master/README_CN.md">简体中文</a></div>
 
 ## 🚀 How to
 

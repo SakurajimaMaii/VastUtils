@@ -217,6 +217,7 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 downX = event.x.toInt()
+                Log.d("vasttest","${event.x} ${event.rawX}")
                 isFling = false
             }
             MotionEvent.ACTION_MOVE -> {
@@ -391,6 +392,7 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         if (changed) {
+            Log.d("vasttest","Hello")
             leftMenuView.layout(
                 -leftMenuView.measuredWidth, 0, 0, leftMenuView.measuredHeight
             )

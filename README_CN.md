@@ -1,104 +1,68 @@
-# [VastUtils](https://github.com/SakurajimaMaii/VastUtils)
+<h1 align="center">VastUtils</h1>
 
-简体中文 | [English](https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README.md)
-
-如果你想了解更多，建议你查看**wiki**文档查看详细解释。
-
-## 添加依赖
-
-### VastNetStateLayout
-
-```gradle
-implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.1'
-```
+<p align="center">简体中文 | <a href="https://github.com/SakurajimaMaii/ToolsForAndroid/blob/master/README.md">English</a></p>
 
 ### VastTools
 
+包含了我们常用的一些必要功能
+
+💫 特性
+
+- 👍 AppInfoUtils 支持获取`应用程序名` `当前版本名` `应用版本号` `应用包名` `应用图标` `应用Debug状态`
+- 👍 DateUtils 支持获取日期等相关信息，详情可以[点击这里](https://juejin.cn/post/7029336437493350407)
+- 👍 DensityUtils 提供了dp px sp之间的相互转换，同时也支持`56f.sp`
+- 👍 IntentUtils 提供了常用的Intent，例如`拨打电话` `打开网页`
+- 👍 LogUtils 提供了日志打印工具，详情可以[点击这里](https://juejin.cn/post/7027420579607248932)
+- 👍 MergeBitmapUtils 提供了BitMap合并
+- 👍 MsgWindowUtils 提供了三种常用消息提示框`Short Toast` `Long Toast` `Dialog`
+- 👍 ScreenSizeUtils 提供了屏幕尺寸获取方法，屏幕长度，屏幕宽度，是否是全面屏
+- 👍 SystemUtils 提供了获取系统信息的方法
+
+😁 使用
 ```gradle
 implementation 'io.github.sakurajimamaii:VastTools:0.0.4'
 ```
 
 ### VastAdapter
+帮助你快速的构建适合`RecyclerView`的`Adapter`,详情可以[点击这里](https://juejin.cn/post/7020284564270481439)，以下为示例：
+```java
+public class LocalMusicAdapter extends BaseVastBindingAdapter<LocalMusicBean> {
+    public LocalMusicAdapter(@NonNull List<LocalMusicBean> items) {
+        super(items);
+    }
 
+    @Override
+    public int setVariableId() {
+        return BR.item;
+    }
+}
+```
+对你没看错，就是如此简单。
+
+😁 使用
 ```gradle
 implementation 'io.github.sakurajimamaii:VastAdapter:0.0.2'
 ```
 
-## 快速开始
+### VastNetStateLayout
+VastNatStateLayout继承自framelayout。你可以自定义下列状态页面: loading,error,ok,empty data。详情可以[点击这里](https://juejin.cn/post/7040032577830256653),以下为演示图：
+<div align="center">
+	<image src="https://img-blog.csdnimg.cn/07db693ac8154e968cc7dbbd8f95ef3e.jpg" width="30%"/>
+	<image src="https://img-blog.csdnimg.cn/a270b3dd21554189a07ac50e3a426c6f.jpg" width="30%"/>
+	<image src="https://img-blog.csdnimg.cn/6925a02f78cd46e2904bf524b74d1c3e.jpg" width="30%"/>
+	<image src="https://img-blog.csdnimg.cn/e3d521f969014a2387c8ff4348c47800.jpg" width="30%"/>
+</div>
 
-### VastAdapter 介绍
-
-根据项目的需求，我将 Adapter 设计成两种模式，分别是：
-
-- 支持 DataBinding
-- 不支持 DataBinding
-
-如果你的项目**支持 DataBinding**，请使用**BaseVastBindingAdapter**，如果**不支持 DataBinding**，请使用**BaseVastAdapter**
-
-#### 使用说明
-
-- [BaseVastBindingAdapter 使用](https://github.com/SakurajimaMaii/VastUtils/wiki/BaseVastBindingAdapter)
-- [BaseVastAdapter 使用](https://github.com/SakurajimaMaii/VastUtils/wiki/BaseVastAdapter)
-
-#### Adapter 方法介绍
-
-adapter 目前提供了以下几种方法
-
-|                                   方法名                                    |             说明             |
-| :-------------------------------------------------------------------------: | :--------------------------: |
-|                               getItemCount()                                |       获取 item 的数量       |
-|                       getItemViewType(position: Int)                        | 根据 position 获取 ViewType  |
-|                                isItemEmpty()                                |     判断 items 是否为空      |
-|                           getItemByPos(pos: Int)                            |      根据 pos 获取 item      |
-|                             addItem(item: obj?)                             |       在数据集最后添加       |
-|                             addItem(item: obj?)                             |     在最后添加对象 item      |
-|                      addItemByPos(item: obj, pos: Int)                      |    根据 pos 添加对象 item    |
-|             addItemsByPos(addItems: MutableList<obj>, pos: Int)             |   通过 pos 来批量添加 item   |
-|                         removeItemByObj(item: obj?)                         |     通过对象来删除 Item      |
-|                          removeItemByPos(pos: Int)                          |     通过 pos 来删除对象      |
-| removeItemsByPos(startPos: Int, endPos: Int,includeEndPos: Boolean = false) | startPos到endPos范围内的元素 |
-|                                 clearItem()                                 |          清空 items          |
-
-###  VastTools 介绍
-
-#### [MsgWindowUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/MsgWindowUtils)
-
-弹窗工具类，点击标题查看**文档**
-
-#### [ScreenSizeUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/ScreenSizeUtils)
-
-用于返回屏幕大小相关信息，方便你根据此来设计控件尺寸，点击标题查看**文档**
-
-#### [LogUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/LogUtils)
-
-日志工具类主要用于打印日志，打印的内容包含 `类名`  `Log调用的行数` `调用Log的方法` `关键字` `输出信息`，点击标题查看**文档**
-
-![log example](https://img-blog.csdnimg.cn/e5e2c730d428481fba80a41f8c126af6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA56CB5LiK5aSP6Zuo,size_20,color_FFFFFF,t_70,g_se,x_16)
-
-#### CameraUtils
-
-相机工具类主要用于获取相册内的图片并将其转化为 `Bitmap` 对象
-
-```kotlin
-// 获取到的图片
-private var bitmap: Bitmap? = null
-
-// 打开相册
-private val getPhoto = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
-    if(result.resultCode == Activity.RESULT_OK){
-        bitmap = result.data?.let { CameraUtils.displayImage(it,this) }
-    }
-}
+😁 使用
+```gradle
+implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.2'
 ```
 
-#### [AppUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/AppUtils)
+### VastSwipeListView
+一款支持自定义的仿QQ列表滑动控件，详情可以[点击这里](https://juejin.cn/post/7037127443244646431),以下为演示图：
+<div align="center"><img src="https://img-blog.csdnimg.cn/08c1d95b98af4f089342ab9163d0cd23.gif" width=30%></div>
 
-App工具类用来获取APP的应用程序名称、包名、图标，版本号基本信息，点击标题查看**文档**
-
-#### DateUtils
-
-用于获取日期相关信息
-
-#### [DensityUtils](https://github.com/SakurajimaMaii/ToolsForAndroid/wiki/DensityUtils)
-
-用于尺寸转换，点击标题查看**文档**
+😁 使用
+```gradle
+implementation 'io.github.sakurajimamaii:VastSwipeListView:0.0.1'
+```

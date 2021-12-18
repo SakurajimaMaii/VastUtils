@@ -2,7 +2,7 @@
 
 <p align="center">A sliding control of imitation QQ list that supports customization</p>
 
-<p align="center">English | <a href="https://github.com/SakurajimaMaii/VastUtils/edit/master/libraries/VastSwipeListView/README_CN.md">简体中文</a></p>
+<p align="center">English | <a href="https://github.com/SakurajimaMaii/VastUtils/blob/master/libraries/VastSwipeListView/README_CN.md">简体中文</a></p>
 
 <div align="center"><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0123a4cd494441d09c94649011bd44f3~tplv-k3u1fbpfcp-zoom-1.image" width=30%></div>
 

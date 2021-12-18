@@ -7,13 +7,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.gcode.vastswipelayout.model.VastSwipeMenuItem;
-import com.gcode.vasttools.utils.LogUtils;
-import com.gcode.vasttools.utils.ScreenSizeUtils;
-import com.gcode.vasttools.utils.SystemUtils;
-
-import kotlin.Unit;
-import kotlin.jvm.functions.Function3;
+import com.gcode.vastswipelistview.model.VastSwipeMenuItem;
 
 public class LogActivity extends AppCompatActivity {
 

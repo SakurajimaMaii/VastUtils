@@ -30,5 +30,9 @@ class MainActivity : AppCompatActivity() {
         binding.loadingPage.setOnClickListener {
             startActivity(Intent(this,NetStateActivity::class.java))
         }
+
+        binding.swipeListViewPage.setOnClickListener {
+            startActivity(Intent(this,SlideActivity::class.java))
+        }
     }
 }

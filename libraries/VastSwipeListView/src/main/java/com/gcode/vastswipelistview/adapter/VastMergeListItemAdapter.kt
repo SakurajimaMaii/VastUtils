@@ -1,4 +1,4 @@
-package com.gcode.vastswipelayout.adapter
+package com.gcode.vastswipelistview.adapter
 
 import android.content.Context
 import android.database.DataSetObserver
@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.WrapperListAdapter
-import com.gcode.vastswipelayout.VastSwipeMenuMgr
-import com.gcode.vastswipelayout.view.VastSwipeLeftMenu
-import com.gcode.vastswipelayout.view.VastSwipeListItemLayout
-import com.gcode.vastswipelayout.view.VastSwipeRightMenu
+import com.gcode.vastswipelistview.VastSwipeMenuMgr
+import com.gcode.vastswipelistview.view.VastSwipeLeftMenu
+import com.gcode.vastswipelistview.view.VastSwipeListItemLayout
+import com.gcode.vastswipelistview.view.VastSwipeRightMenu
 
 /**
  * @OriginalAuthor: Vast Gui

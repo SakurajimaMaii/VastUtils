@@ -2,6 +2,8 @@
 
 <p align="center">VastNatStateLayout继承自framelayout。你可以自定义下列状态页面: loading,error,ok,empty data.</p>
 
+<p align="center">简体中文 | <a href="https://github.com/SakurajimaMaii/VastUtils/blob/master/libraries/VastNetStateLayout/README.md">English</a></p>
+
 # 💫 特性
 
 - 👍 支持自定义四种状态页面 `loading 加载页面` `empty data 空数据页面` `net error 网络错误页面` `retry 重试界面`

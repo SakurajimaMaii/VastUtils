@@ -2,6 +2,8 @@
 
 <p align="center">netstatelayout extend framelayout.you can custom view to show net state: loading,error,ok,empty data.</p>
 
+<p align="center">English | <a href="https://github.com/SakurajimaMaii/VastUtils/blob/master/libraries/VastNetStateLayout/README_CN.md">简体中文</a></p>
+
 <div>
 	<image src="https://img-blog.csdnimg.cn/07db693ac8154e968cc7dbbd8f95ef3e.jpg" width="30%"/>
 	<image src="https://img-blog.csdnimg.cn/a270b3dd21554189a07ac50e3a426c6f.jpg" width="30%"/>

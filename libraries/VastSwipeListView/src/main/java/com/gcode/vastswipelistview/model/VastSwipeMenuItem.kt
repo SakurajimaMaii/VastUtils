@@ -1,4 +1,4 @@
-package com.gcode.vastswipelayout.model
+package com.gcode.vastswipelistview.model
 
 import android.content.Context
 import android.content.res.Resources
@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
-import com.gcode.vastswipelayout.R
+import com.gcode.vastswipelistview.R
 
 /**
  * @OriginalAuthor: Vast Gui
@@ -23,8 +23,6 @@ import com.gcode.vastswipelayout.R
  * @param icon menu icon
  * @param background default background is grey
  * @param titleColor default color is black
- * @param titleSize default font size is 15sp
- * @param iconSize default icon size is 30dp
  * @param clickEvent default value is null
  */
 class VastSwipeMenuItem @JvmOverloads constructor(
@@ -33,8 +31,6 @@ class VastSwipeMenuItem @JvmOverloads constructor(
     icon: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_null),
     background: Drawable? = ContextCompat.getDrawable(context, R.drawable.default_menu_item_background),
     titleColor: Int = ContextCompat.getColor(context, R.color.default_menu_item_title_color),
-    titleSize: Float = context.resources.getDimension(R.dimen.default_menu_item_title_size),
-    iconSize: Float = context.resources.getDimension(R.dimen.default_menu_item_icon_size),
     clickEvent: ((VastSwipeMenuItem, Int) -> Unit)? = null
 ) {
     /**
@@ -42,48 +38,30 @@ class VastSwipeMenuItem @JvmOverloads constructor(
      */
     var title: String = title
         private set
+
     /**
      * Icon
      */
     var icon: Drawable? = icon
         private set
+
     /**
      * Background,default background is **grey**.
      */
     var background: Drawable? = background
         private set
+
     /**
      * Title color,default color is **black**.
      */
     var titleColor = titleColor
         private set
-    /**
-     * Title size,default font size is **15sp**.
-     *
-     * titleSize is temporarily managed by
-     * [com.gcode.vastswipelayout.VastSwipeMenuMgr]
-     *
-     * If you want to set titleSize,you should check
-     * [com.gcode.vastswipelayout.VastSwipeMenuMgr.titleSize]
-     */
-    internal var titleSize = titleSize
-        private set
-    /**
-     * Icon size,default font size is **30dp**.
-     *
-     * iconSize is temporarily managed by
-     * [com.gcode.vastswipelayout.VastSwipeMenuMgr]
-     *
-     * If you want to set iconSize,you should check
-     * [com.gcode.vastswipelayout.VastSwipeMenuMgr.iconSize]
-     */
-    internal var iconSize = iconSize
-        private set
+
     /**
      * Click event
      *
      * @param VastSwipeMenuItem The menu item.
-     * @param Int Index of the swipe menu in the list.
+     * @param Int Index of the VastSwipeListItemLayout in the list.
      */
     var clickEvent: ((VastSwipeMenuItem, Int) -> Unit)? = clickEvent
         private set
@@ -152,44 +130,10 @@ class VastSwipeMenuItem @JvmOverloads constructor(
     }
 
     /**
-     * Set titleSize by [titleSize].
-     *
-     * If you want to set the value of titleSize,you should call
-     * [com.gcode.vastswipelayout.VastSwipeMenuMgr.setTitleSizeByFloat]
-     */
-    internal fun setTitleSizeByFloat(@FloatRange(from = 0.0) titleSize:Float){
-        this.titleSize = titleSize
-    }
-
-    /**
-     * Set titleSize by [titleSizeSp].
-     *
-     * If you want to set the value of titleSize,you should call
-     * [com.gcode.vastswipelayout.VastSwipeMenuMgr.setTitleSizeBySp]
-     */
-    internal fun setTitleSizeBySp(@FloatRange(from = 0.0) titleSizeSp: Float){
-        this.titleSize = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_SP,
-            titleSize,
-            Resources.getSystem().displayMetrics
-        )
-    }
-
-    /**
-     * Set iconSize by [iconSize].
-     *
-     * If you want to set the value of iconSize,you should call
-     * [com.gcode.vastswipelayout.VastSwipeMenuMgr.setIconSizeByFloat]
-     */
-    internal fun setIconSizeByFloat(@FloatRange(from = 0.0) iconSize:Float){
-        this.iconSize = iconSize
-    }
-
-    /**
      * Set iconSize by [iconSizeDp].
      *
      * If you want to set the value of iconSize,you should call
-     * [com.gcode.vastswipelayout.VastSwipeMenuMgr.setIconSizeByDp]
+     * [com.gcode.vastswipelistview.VastSwipeMenuMgr.setIconSizeByDp]
      */
     internal fun setIconSizeByDp(@FloatRange(from = 0.0) iconSizeDp:Float){
         TypedValue.applyDimension(

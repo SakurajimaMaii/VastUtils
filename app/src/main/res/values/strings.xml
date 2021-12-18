@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">GUtilsSampleDemo</string>
     <string name="loading_page">加载页面</string>
+    <string name="swipe_list_view">仿qq滑动列表</string>
     <!-- Strings used for fragments for navigation -->
 
 </resources>

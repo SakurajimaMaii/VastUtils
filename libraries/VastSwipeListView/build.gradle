@@ -21,11 +21,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_11
     }
 }
 
@@ -42,7 +42,7 @@ dependencies {
 ext {
     PUBLISH_GROUP_ID = "io.github.sakurajimamaii"        //项目包名
     PUBLISH_ARTIFACT_ID = 'VastSwipeListView'            //项目名
-    PUBLISH_VERSION = '0.0.1'                    //版本号
+    PUBLISH_VERSION = '0.0.2'                    //版本号
     PUBLISH_DESCRIPTION = 'A ListView that supports swipe list items.' //项目描述
     PUBLISH_URL = 'https://github.com/SakurajimaMaii/VastUtils/tree/master/libraries/VastSwipeListView' //Url
 }

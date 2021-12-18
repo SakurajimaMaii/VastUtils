@@ -1,4 +1,4 @@
-package com.gcode.vastswipelayout.view
+package com.gcode.vastswipelistview.view
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -13,9 +13,9 @@ import android.view.animation.Interpolator
 import android.widget.LinearLayout
 import android.widget.OverScroller
 import androidx.core.view.GestureDetectorCompat
-import com.gcode.vastswipelayout.VastSwipeMenuMgr
-import com.gcode.vastswipelayout.annotation.VastSwipeListViewConstant
-import com.gcode.vastswipelayout.annotation.VastSwipeListViewConstant.*
+import com.gcode.vastswipelistview.VastSwipeMenuMgr
+import com.gcode.vastswipelistview.annotation.VastSwipeListViewConstant
+import com.gcode.vastswipelistview.annotation.VastSwipeListViewConstant.*
 import kotlin.math.abs
 
 /**
@@ -98,10 +98,9 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
     /**
      * The position of the item in the list.
      *
-     * The value is set by [com.gcode.vastswipelayout.adapter.VastMergeListItemAdapter]
+     * The value is set by [com.gcode.vastswipelistview.adapter.VastMergeListItemAdapter]
      */
-    var position = 0
-        private set
+    private var position = 0
 
     /**
      * Open scroller
@@ -136,7 +135,7 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
      * Swipe orientation
      */
     @setparam:VastSwipeListViewConstant.SwipeMenuOrientation
-    private var swipeOrientation: Int = SWIPE_NONE
+    private var swipeOrientation: Int = STATE_INIT
 
     constructor(
         contentView: View,
@@ -214,46 +213,48 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
      */
     fun onSwipe(event: MotionEvent): Boolean {
         gestureDetector.onTouchEvent(event)
+
+        if(state == STATE_LEFT_OPEN || state == STATE_RIGHT_OPEN){
+            smoothCloseMenu(state)
+        }
+
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 downX = event.x.toInt()
-                Log.d("vasttest","${event.x} ${event.rawX}")
                 isFling = false
             }
             MotionEvent.ACTION_MOVE -> {
                 var dis = (downX - event.x).toInt()
-                swipeOrientation = if (dis >= 0) SWIPE_LEFT else SWIPE_RIGHT
+                swipeOrientation = if (dis >= 0) STATE_RIGHT_OPEN else STATE_LEFT_OPEN
                 if (state == STATE_LEFT_OPEN || state == STATE_RIGHT_OPEN) {
-                    smoothCloseMenu(state)
                     when (swipeOrientation) {
-                        SWIPE_LEFT ->
+                        STATE_RIGHT_OPEN ->
                             dis += rightMenuView.width
-                        SWIPE_RIGHT ->
+                        STATE_LEFT_OPEN ->
                             dis -= leftMenuView.width
                     }
                 }
                 swipe(dis)
             }
             MotionEvent.ACTION_UP -> {
-                Log.d("Hello","ok the value is ${downX - event.x}")
                 when (swipeOrientation) {
-                    SWIPE_RIGHT -> {
+                    STATE_LEFT_OPEN -> {
                         if (isFling || abs(downX - event.x) > leftMenuView.width / 2) {
                             // open
-                            smoothOpenMenu(SWIPE_RIGHT)
+                            smoothOpenMenu(STATE_LEFT_OPEN)
                         } else {
                             // close
-                            smoothCloseMenu(SWIPE_RIGHT)
+                            smoothCloseMenu(STATE_LEFT_OPEN)
                             return false
                         }
                     }
-                    SWIPE_LEFT -> {
+                    STATE_RIGHT_OPEN -> {
                         if (isFling || downX - event.x > rightMenuView.width / 2) {
                             // open
-                            smoothOpenMenu(SWIPE_LEFT)
+                            smoothOpenMenu(STATE_RIGHT_OPEN)
                         } else {
                             // close
-                            smoothCloseMenu(SWIPE_LEFT)
+                            smoothCloseMenu(STATE_RIGHT_OPEN)
                             return false
                         }
                     }
@@ -264,11 +265,6 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
     }
 
     /**
-     * Get swipe menu state
-     */
-    fun getSwipeMenuState() = state
-
-    /**
      * Swipe
      *
      * @param dis [dis] is calculated based on the
@@ -277,7 +273,7 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
     private fun swipe(dis: Int) {
         var distance = dis
         when (swipeOrientation) {
-            SWIPE_LEFT -> {
+            STATE_RIGHT_OPEN -> {
                 if (dis > rightMenuView.width) {
                     distance = rightMenuView.width
                 }
@@ -285,7 +281,7 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
                     distance = 0
                 }
             }
-            SWIPE_RIGHT -> {
+            STATE_LEFT_OPEN -> {
                 if (dis < -leftMenuView.width) {
                     distance = -leftMenuView.width
                 }
@@ -328,16 +324,16 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
         }
     }
 
-    fun smoothCloseMenu(swipeMenuOrientation: Int) {
+    private fun smoothCloseMenu(swipeMenuOrientation: Int) {
         state = STATE_CLOSE
         when (swipeMenuOrientation) {
-            SWIPE_LEFT -> {
+            STATE_RIGHT_OPEN -> {
                 baseX = -contentView.left
-                closeScroller.startScroll(0, 0, baseX, 0, swipeMenuMgr.swipeMenuCloseDuration)
+                closeScroller.startScroll(0, 0, baseX, 0, swipeMenuMgr.menuCloseDuration)
             }
-            SWIPE_RIGHT -> {
+            STATE_LEFT_OPEN -> {
                 baseX = contentView.left
-                closeScroller.startScroll(0, 0, baseX, 0, swipeMenuMgr.swipeMenuCloseDuration)
+                closeScroller.startScroll(0, 0, baseX, 0, swipeMenuMgr.menuCloseDuration)
             }
         }
         postInvalidate()
@@ -345,7 +341,7 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
 
     private fun smoothOpenMenu(swipeMenuOrientation: Int) {
         when (swipeMenuOrientation) {
-            SWIPE_LEFT -> {
+            STATE_RIGHT_OPEN -> {
                 state = STATE_RIGHT_OPEN
                 Log.i("Hello", "${contentView.left}")
                 openScroller.startScroll(
@@ -353,10 +349,10 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
                     0,
                     rightMenuView.width,
                     0,
-                    swipeMenuMgr.swipeMenuOpenDuration
+                    swipeMenuMgr.menuCloseDuration
                 )
             }
-            SWIPE_RIGHT -> {
+            STATE_LEFT_OPEN -> {
                 state = STATE_LEFT_OPEN
                 Log.i("Hello", "AAA ${contentView.left}")
                 openScroller.startScroll(
@@ -364,7 +360,7 @@ class VastSwipeListItemLayout @JvmOverloads constructor(
                     0,
                     -leftMenuView.width,
                     0,
-                    swipeMenuMgr.swipeMenuOpenDuration
+                    swipeMenuMgr.menuOpenDuration
                 )
             }
         }

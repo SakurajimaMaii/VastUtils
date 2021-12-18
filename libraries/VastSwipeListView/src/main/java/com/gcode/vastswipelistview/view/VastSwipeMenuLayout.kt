@@ -1,4 +1,4 @@
-package com.gcode.vastswipelayout.view
+package com.gcode.vastswipelistview.view
 
 import android.content.Context
 import android.text.TextUtils
@@ -9,10 +9,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.IntRange
 import androidx.core.view.setMargins
-import com.gcode.vastswipelayout.R
-import com.gcode.vastswipelayout.VastSwipeMenuMgr
-import com.gcode.vastswipelayout.annotation.VastSwipeListViewConstant.*
-import com.gcode.vastswipelayout.model.VastSwipeMenuItem
+import com.gcode.vastswipelistview.R
+import com.gcode.vastswipelistview.VastSwipeMenuMgr
+import com.gcode.vastswipelistview.annotation.VastSwipeListViewConstant.*
+import com.gcode.vastswipelistview.model.VastSwipeMenuItem
 import java.util.ArrayList
 
 

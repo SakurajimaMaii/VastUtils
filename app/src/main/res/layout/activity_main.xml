@@ -36,5 +36,21 @@
             app:button_rect_height="80dp"
             app:button_is_solid="true"
             app:button_normal_bg_color="#e67e22"/>
+
+        <com.gcode.shapebutton.ShapeButton
+            android:id="@+id/adapter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:text="@string/vastadapter"
+            android:textColor="@color/white"
+            app:button_shape="rounded_rect_shape"
+            android:textAllCaps="false"
+            app:button_rounded_rect_corner_radius="10dp"
+            app:button_rect_width="1000dp"
+            app:button_rect_height="80dp"
+            app:button_is_solid="true"
+            app:button_normal_bg_color="#273c75"/>
     </LinearLayout>
 </layout>

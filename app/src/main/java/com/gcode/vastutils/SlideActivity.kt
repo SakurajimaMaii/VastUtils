@@ -6,27 +6,31 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.DecelerateInterpolator
-import android.widget.AdapterView
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.gcode.vastswipelistview.VastSwipeMenuMgr
-import com.gcode.vastswipelistview.annotation.VastSwipeListViewConstant.*
-import com.gcode.vastswipelistview.model.VastSwipeMenuItem
-import com.gcode.vastswipelistview.view.VastSwipeListView
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.gcode.vastswipeview.VastSwipeViewMgr
+import com.gcode.vastswipeview.adapter.VastSwipeViewAdapter
+import com.gcode.vastswipeview.adapter.VastSwipeViewMenuVH
+import com.gcode.vastswipeview.annotation.VastSwipeViewConstant.*
+import com.gcode.vastswipeview.interfaces.VastSwipeContentItem
+import com.gcode.vastswipeview.model.VastSwipeMenuItem
+import com.gcode.vastswipeview.view.VastSwipeView
+import com.gcode.vastswipeview.view.VastSwipeViewItem
+import com.gcode.vastutils.model.Person
 
 class SlideActivity : AppCompatActivity() {
 
-    private lateinit var vastSwipeListView: VastSwipeListView
-
-    private lateinit var delListViewAdapter: DelListViewAdapter
+    private lateinit var vastSwipeView: VastSwipeView
 
     private var inflater: LayoutInflater? = null
     private var context: Context? = null
-    private var lists: List<String> = ArrayList()
+    private var lists: MutableList<Person> = ArrayList()
 
-    private lateinit var vastSwipeMenuMgr: VastSwipeMenuMgr
+    private lateinit var vastSwipeMenuMgr: VastSwipeViewMgr
 
     private val tag = "vasttest"
 
@@ -34,21 +38,20 @@ class SlideActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slide)
 
-        vastSwipeMenuMgr = VastSwipeMenuMgr(this).apply {
+        vastSwipeMenuMgr = VastSwipeViewMgr(this).apply {
             setMenuStyle(LEFT_RIGHT)
         }
+
+        lists = initData()
 
         //创建删除菜单
         val deleteItem = VastSwipeMenuItem(this@SlideActivity)
         deleteItem.setBackgroundByColorInt(0xFF1e90ff)
-        deleteItem.setTitleByString("撤销")
+        deleteItem.setTitleByString("删除")
         deleteItem.setTitleColorByColorInt(Color.WHITE)
         deleteItem.setIconByResId(R.drawable.ic_delete)
         deleteItem.setClickEvent { item: VastSwipeMenuItem, position: Int ->
-            run {
-                Toast.makeText(this@SlideActivity, "${item.title} $position", Toast.LENGTH_SHORT)
-                    .show()
-            }
+            Toast.makeText(this@SlideActivity, "$position", Toast.LENGTH_SHORT).show();
         }
         vastSwipeMenuMgr.setLeftMenuItems(ArrayList<VastSwipeMenuItem>().apply {
             add(deleteItem)
@@ -63,14 +66,15 @@ class SlideActivity : AppCompatActivity() {
         revokeItem.setTitleByString("撤销")
         revokeItem.setIconByResId(R.drawable.ic_revoke)
         vastSwipeMenuMgr.addRightMenuItems(ArrayList<VastSwipeMenuItem>().apply {
+            add(deleteItem)
             add(refreshItem)
-            add(revokeItem)
+            //add(revokeItem)
         })
 
         vastSwipeMenuMgr.setSwipeMenuContentStyle(ICON_TITLE)
-        vastSwipeMenuMgr.setEventListener(object : VastSwipeMenuMgr.EventListener {
+        vastSwipeMenuMgr.setEventListener(object : VastSwipeViewMgr.EventListener {
             override fun eventDownListener(position: Int, event: MotionEvent) {
-                //Log.d(tag,"eventDownListener")
+                //Log.d(tag,"${vastSwipeListView.adapter?.itemCount}")
             }
 
             override fun eventMoveListener(position: Int, event: MotionEvent) {
@@ -80,6 +84,10 @@ class SlideActivity : AppCompatActivity() {
             override fun eventUpListener(position: Int, event: MotionEvent) {
                 //Log.d(tag,"eventUpListener")
             }
+
+            override fun eventCancelListener(position: Int, event: MotionEvent) {
+                //Log.d(tag,"eventCancelListener")
+            }
         })
         vastSwipeMenuMgr.setMenuOpenDuration(200)
         vastSwipeMenuMgr.setLeftMenuOpenDistanceThreshold(50)
@@ -87,26 +95,20 @@ class SlideActivity : AppCompatActivity() {
 
         inflater = LayoutInflater.from(this)
         context = applicationContext
-        vastSwipeListView = findViewById(R.id.listview)
-        lists = initData()
-        delListViewAdapter = DelListViewAdapter(this, R.layout.listview_item, lists)
-        vastSwipeListView.setSwipeMenuMgr(vastSwipeMenuMgr)
-        vastSwipeListView.adapter = delListViewAdapter
-        vastSwipeListView.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, arg2, _ ->
-                Toast.makeText(
-                    context,
-                    "位置   " + arg2 + "  >>>  value：" + lists[arg2],
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        vastSwipeView = findViewById(R.id.listview)
+        vastSwipeView.setManager(vastSwipeMenuMgr)
+        vastSwipeView.layoutManager = LinearLayoutManager(this)
+        vastSwipeView.adapter =
+            VastSwipeViewAdapter(lists, this, ArrayList<VastSwipeViewMenuVH.Factory>().apply {
+                add(contentVH.contentFactory())
+            }, vastSwipeMenuMgr)
     }
 
-    private fun initData(): List<String> {
-        val list: ArrayList<String> = ArrayList()
+    private fun initData(): MutableList<Person> {
+        val list: ArrayList<Person> = ArrayList()
         var i = 'A'.code
         while (i <= 'Z'.code) {
-            list.add(i.toChar().toString() + "")
+            list.add(Person(i.toChar().toString(), i.toChar().toString()))
             i++
         }
         return list
@@ -117,5 +119,34 @@ class SlideActivity : AppCompatActivity() {
             TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(),
             resources.displayMetrics
         ).toInt()
+    }
+
+    class contentVH(val itemView: View) : VastSwipeViewMenuVH(itemView) {
+
+        private var tv: TextView = itemView.findViewById(R.id.tv_value)
+
+        class contentFactory : VastSwipeViewMenuVH.Factory {
+
+            override fun onCreateViewHolder(
+                parent: ViewGroup,
+                viewType: Int,
+                manager: VastSwipeViewMgr
+            ): VastSwipeViewMenuVH {
+                val contentView =
+                    LayoutInflater.from(parent.context).inflate(R.layout.listview_item, null)
+                val itemView = VastSwipeViewItem(contentView, manager)
+                return contentVH(itemView)
+            }
+
+            override fun getType(): String {
+                return "person"
+            }
+        }
+
+        override fun onBindData(item: VastSwipeContentItem) {
+            super.onBindData(item)
+            tv.text = (item as Person).firstName
+        }
+
     }
 }

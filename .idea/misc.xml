@@ -20,7 +20,9 @@
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/activity_base.xml" value="0.34322916666666664" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/activity_main.xml" value="0.32864583333333336" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/activity_net_state.xml" value="0.32760416666666664" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/activity_recycler_view.xml" value="0.21882598124348732" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/activity_slide.xml" value="0.3375" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/activity_test.xml" value="0.2539546814878153" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/item_bind_layout.xml" value="0.1" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/item_layout.xml" value="0.32760416666666664" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/listview_item.xml" value="0.17395833333333333" />
@@ -48,6 +50,9 @@
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastSlideLayout/src/main/res/drawable/ic_null.xml" value="0.234" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastSwipeLayout/src/main/res/drawable/default_menu_item_background.xml" value="0.217" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastSwipeLayout/src/main/res/layout/listview_item.xml" value="0.3171875" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastSwipeListView/src/main/res/drawable/ic_null.xml" value="0.1745" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastSwipeListView/src/main/res/layout/item.xml" value="0.26623931623931624" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/libraries/VastSwipeListView/src/main/res/layout/item_vast_swipe_view.xml" value="0.24454895254382214" />
       </map>
     </option>
   </component>

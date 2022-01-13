@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SlideActivity">
-    <com.gcode.vastswipelistview.view.VastSwipeListView
+    <com.gcode.vastswipeview.view.VastSwipeView
         android:id="@+id/listview"
+        android:background="@color/purple_500"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:choiceMode="singleChoice"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

@@ -7,8 +7,7 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$USER_HOME$/.gradle/wrapper/dists/gradle-6.8.2-all/446le5pselpgh0bzinc35sp0d/gradle-6.8.2" />
-        <option name="gradleJvm" value="11" />
+        <option name="gradleJvm" value="Android Studio java home" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -17,7 +16,7 @@
             <option value="$PROJECT_DIR$/libraries/VastActivity" />
             <option value="$PROJECT_DIR$/libraries/VastAdapter" />
             <option value="$PROJECT_DIR$/libraries/VastNetStateLayout" />
-            <option value="$PROJECT_DIR$/libraries/VastSwipeListView" />
+            <option value="$PROJECT_DIR$/libraries/VastSwipeView" />
             <option value="$PROJECT_DIR$/libraries/VastTools" />
           </set>
         </option>

@@ -7,7 +7,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.gcode.vastswipelistview.model.VastSwipeMenuItem;
+import com.gcode.vastswipeview.model.VastSwipeMenuItem;
 
 public class LogActivity extends AppCompatActivity {
 

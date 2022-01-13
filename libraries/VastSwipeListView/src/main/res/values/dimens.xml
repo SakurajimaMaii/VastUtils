@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="default_menu_item_icon_size">20dp</dimen>
-    <dimen name="default_menu_item_title_size">6sp</dimen>
-    <dimen name="default_menu_item_width_size">80dp</dimen>
-</resources>

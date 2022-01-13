@@ -2,7 +2,7 @@
 buildscript {
     ext{
         kotlin_version = "1.5.31"
-        gradle_version = '7.0.3'
+        gradle_version = '7.0.4'
         activity_version = "1.4.0"
         fragment_version = "1.4.0"
         camerax_version = "1.0.0-alpha06"
@@ -14,7 +14,7 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradle_version"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
 
         // NOTE: Do not place your application dependencies here; they belong

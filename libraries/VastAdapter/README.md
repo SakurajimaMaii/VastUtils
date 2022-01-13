@@ -7,7 +7,7 @@
 
 If your project supports databinding, please use **BaseVastBindingAdapter**, if does not support , please use **BaseVastAdapter**😉
 
-## BaseVastBindingAdapter
+## BaseVastAdapter
 
 1. First let the object extends the `BaseVastItem` interface, and use the layout id as the return value of `getItemViewType`, for example
 

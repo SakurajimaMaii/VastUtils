@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Rect
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import android.view.ViewConfiguration
@@ -182,6 +183,7 @@ class VastSwipeView @JvmOverloads constructor(
                     when {
                         velocityTracker!!.xVelocity < -SNAP_VELOCITY -> {
                             // right menu open
+                            Log.d(TAG,"right menu open")
                             openScroller.startScroll(
                                 scrollX,
                                 0,
@@ -192,6 +194,7 @@ class VastSwipeView @JvmOverloads constructor(
                         }
                         velocityTracker!!.xVelocity > SNAP_VELOCITY -> {
                             // left menu open
+                            Log.d(TAG,"left menu open")
                             openScroller.startScroll(
                                 scrollX,
                                 0,
@@ -296,6 +299,7 @@ class VastSwipeView @JvmOverloads constructor(
     }
 
     companion object {
+        private const val TAG = "VastSwipeView"
         /**
          * The point you touch on the screen is not within the scope of the RecyclerView's subviews.
          */

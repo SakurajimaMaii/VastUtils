@@ -6,4 +6,7 @@ package com.gcode.vastswipeview.exception
  * @EditAuthor: Vast Gui
  * @EditDate: 2021/12/16
  */
-internal data class VastSwipeViewNotFound(override val message: String):Throwable(message){}
+internal data class VastSwipeViewNotFound(
+    override val message: String,
+    override val cause: Throwable? = null
+) : Throwable(message, cause) {}

@@ -6,4 +6,7 @@ package com.gcode.vastswipeview.exception
  * @EditAuthor: Vast Gui
  * @EditDate: 2022/1/2
  */
-internal data class VastSwipeViewTypeError(override val message: String?):Throwable(message){}
+internal data class VastSwipeViewTypeError(
+    override val message: String?,
+    override val cause: Throwable? = null
+) : Throwable(message, cause) {}

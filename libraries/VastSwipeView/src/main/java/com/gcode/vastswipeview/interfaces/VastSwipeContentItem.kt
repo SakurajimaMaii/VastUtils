@@ -15,5 +15,5 @@ package com.gcode.vastswipeview.interfaces
  * override the [getType]
  */
 interface VastSwipeContentItem{
-    fun getType():String
+    fun getType():Int
 }

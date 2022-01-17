@@ -7,11 +7,9 @@ import android.view.MotionEvent
 import android.view.animation.Interpolator
 import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
-import com.gcode.vastswipeview.R
 import com.gcode.vastswipeview.annotation.VastSwipeViewConstant
 import com.gcode.vastswipeview.annotation.VastSwipeViewConstant.*
 import com.gcode.vastswipeview.exception.VastSwipeViewNotInit
-import com.gcode.vastswipeview.model.VastSwipeMenuItem
 import kotlin.jvm.Throws
 
 /**
@@ -59,45 +57,9 @@ import kotlin.jvm.Throws
  * ```
  */
 class VastSwipeViewMgr @JvmOverloads constructor(
-    context: Context,
-    leftMenuItems: ArrayList<VastSwipeMenuItem> = ArrayList(),
-    rightMenuItems: ArrayList<VastSwipeMenuItem> = ArrayList()
+    context: Context
 ){
     var context:Context = context
-        private set
-
-    /**
-     * An array of [VastSwipeMenuItem] item on the left.
-     */
-    var leftMenuItems:ArrayList<VastSwipeMenuItem> = leftMenuItems
-        private set
-
-    /**
-     * An array of [VastSwipeMenuItem] item on the right.
-     */
-    var rightMenuItems:ArrayList<VastSwipeMenuItem> = rightMenuItems
-        private set
-
-    /**
-     * Title size,default font size is **15sp**.
-     */
-    var titleSize = context.resources.getDimension(R.dimen.default_menu_item_title_size)
-        private set
-
-    /**
-     * Icon size,default font size is **30dp**.
-     */
-    var iconSize = context.resources.getDimension(R.dimen.default_menu_item_icon_size)
-        private set
-
-    /**
-     * Menu content style
-     *
-     * @see VastSwipeViewConstant.ONLY_ICON
-     * @see VastSwipeViewConstant.ONLY_TITLE
-     * @see VastSwipeViewConstant.ICON_TITLE
-     */
-    var swipeMenuContentStyle:String = ICON_TITLE
         private set
 
     /**
@@ -122,17 +84,6 @@ class VastSwipeViewMgr @JvmOverloads constructor(
      * Open interpolator.
      */
     var openInterpolator: Interpolator? = null
-        private set
-
-    /**
-     * Menu style.Default value is [ONLY_RIGHT]
-     *
-     * @see VastSwipeViewConstant.NOT_INIT
-     * @see VastSwipeViewConstant.ONLY_RIGHT
-     * @see VastSwipeViewConstant.ONLY_LEFT
-     * @see VastSwipeViewConstant.LEFT_RIGHT
-     */
-    var menuStyle:Int = NOT_INIT
         private set
 
     /**
@@ -164,98 +115,10 @@ class VastSwipeViewMgr @JvmOverloads constructor(
         private set
 
     /**
-     * Set [leftMenuItems] and [rightMenuItems] by [menuStyle].
-     *
-     * When you call [setItems],if [menuStyle] is [ONLY_LEFT],
-     * you can not set [rightMenuItems],or [menuStyle] is [ONLY_RIGHT]
-     * you can not set [leftMenuItems].
-     *
-     * @throws Throwable When [menuStyle] is equals to [NOT_INIT],
-     *                   then throw an exception.
+     * Menu style,you can learn more by check [VastSwipeViewConstant.MenuStyle]
      */
-    @JvmOverloads
-    @Throws(Throwable::class)
-    fun setItems(
-        leftItems:ArrayList<VastSwipeMenuItem> = ArrayList(),
-        rightItems:ArrayList<VastSwipeMenuItem> = ArrayList(),
-    ){
-        when(menuStyle){
-            NOT_INIT->{
-                throw Throwable("You should set swipeMenuStyle")
-            }
-            ONLY_RIGHT -> {
-                leftMenuItems.clear()
-                rightMenuItems = rightItems
-            }
-            ONLY_LEFT ->{
-                leftMenuItems = leftItems
-                rightMenuItems.clear()
-            }
-            LEFT_RIGHT -> {
-                leftMenuItems = leftItems
-                rightMenuItems = rightItems
-            }
-        }
-    }
-
-    /**
-     * Set [VastSwipeViewMgr.leftMenuItems] when
-     * [menuStyle] is not [ONLY_RIGHT].
-     *
-     * **Note:**
-     * That this will clear the previous settings
-     *
-     * @throws VastSwipeViewNotInit When [menuStyle] is equals to [NOT_INIT],
-     *                 then throw an exception.
-     */
-    @Throws(VastSwipeViewNotInit::class)
-    fun setLeftMenuItems(leftMenuItems: ArrayList<VastSwipeMenuItem>) {
-        when(menuStyle){
-            NOT_INIT->{
-                throw VastSwipeViewNotInit("You should set swipeMenuStyle")
-            }
-            ONLY_RIGHT->{
-                return
-            }
-            else ->{
-                this.leftMenuItems.clear()
-                this.leftMenuItems = leftMenuItems
-            }
-        }
-    }
-
-    /**
-     * Set [VastSwipeViewMgr.rightMenuItems] when
-     * [menuStyle] is not [ONLY_LEFT].
-     *
-     * **Note:**
-     * That this will clear the previous settings
-     *
-     * @throws VastSwipeViewNotInit When [menuStyle] is equals to [NOT_INIT],
-     *                 then throw an exception.
-     */
-    @Throws(VastSwipeViewNotInit::class)
-    fun addRightMenuItems(rightMenuItems: ArrayList<VastSwipeMenuItem>){
-        when(menuStyle){
-            NOT_INIT->{
-                throw VastSwipeViewNotInit("You should set swipeMenuStyle")
-            }
-            ONLY_LEFT->{
-                return
-            }
-            else ->{
-                this.rightMenuItems.clear()
-                this.rightMenuItems = rightMenuItems
-            }
-        }
-    }
-
-    /**
-     * Set [VastSwipeViewMgr.swipeMenuContentStyle].
-     */
-    fun setSwipeMenuContentStyle(@VastSwipeViewConstant.SwipeMenuContentStyle swipeMenuContentStyle:String){
-        this.swipeMenuContentStyle = swipeMenuContentStyle
-    }
+    var menuStyle: Int = NOT_INIT
+        private set
 
     /**
      * Set [VastSwipeViewMgr.menuOpenDuration]
@@ -272,42 +135,6 @@ class VastSwipeViewMgr @JvmOverloads constructor(
     }
 
     /**
-     * Set [titleSize] by [titleSize].
-     */
-    fun setTitleSizeByFloat(@FloatRange(from = 0.0) titleSize:Float){
-        this.titleSize = titleSize
-    }
-
-    /**
-     * Set [titleSize] by [titleSizeSp].
-     */
-    fun setTitleSizeBySp(@FloatRange(from = 0.0) titleSizeSp: Float){
-        this.titleSize = TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_SP,
-            titleSize,
-            Resources.getSystem().displayMetrics
-        )
-    }
-
-    /**
-     * Set iconSize by [iconSize].
-     */
-    fun setIconSizeByFloat(@FloatRange(from = 0.0) iconSize:Float){
-        this.iconSize = iconSize
-    }
-
-    /**
-     * Set iconSize by [iconSizeDp].
-     */
-    fun setIconSizeByDp(@FloatRange(from = 0.0) iconSizeDp:Float){
-        TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            iconSizeDp,
-            Resources.getSystem().displayMetrics
-        )
-    }
-
-    /**
      * Set close interpolator.
      */
     fun setCloseInterpolator(interpolator: Interpolator?) {
@@ -319,13 +146,6 @@ class VastSwipeViewMgr @JvmOverloads constructor(
      */
     fun setOpenInterpolator(interpolator: Interpolator?) {
         openInterpolator = interpolator
-    }
-
-    /**
-     * Set [VastSwipeViewMgr.menuStyle].
-     */
-    fun setMenuStyle(@VastSwipeViewConstant.MenuStyle menuStyle: Int){
-        this.menuStyle = menuStyle
     }
 
     /**
@@ -347,6 +167,14 @@ class VastSwipeViewMgr @JvmOverloads constructor(
      */
     fun setRightMenuOpenDistanceThreshold(@IntRange(from = 0) distance: Int){
         rightMenuOpenDistanceThreshold = distance
+    }
+
+    /**
+     * Set [menuStyle].This will cause an error if the
+     * [menuStyle] does not match your actual layout file.
+     */
+    fun setMenuStyle(@VastSwipeViewConstant.MenuStyle style: Int){
+        menuStyle = style
     }
 
     interface EventListener {

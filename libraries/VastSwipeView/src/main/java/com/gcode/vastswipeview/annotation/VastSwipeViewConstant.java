@@ -88,26 +88,31 @@ public class VastSwipeViewConstant {
     public final static int NOT_INIT = -1;
 
     /**
+     * Only have menu.
+     */
+    public final static int ONLY_MENU = 0;
+
+    /**
      * Only right have menu.
      */
-    public final static int ONLY_RIGHT = 0;
+    public final static int ONLY_RIGHT = 1;
 
     /**
      * Only left have menu.
      */
-    public final static int ONLY_LEFT = 1;
+    public final static int ONLY_LEFT = 2;
 
     /**
      * Left and right have menu.
      */
-    public final static int LEFT_RIGHT = 2;
+    public final static int LEFT_RIGHT = 3;
 
     /**
      * Using when you want to set swipe menu style.
      */
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({
-            NOT_INIT,ONLY_LEFT,ONLY_RIGHT,LEFT_RIGHT
+            NOT_INIT,ONLY_MENU,ONLY_LEFT,ONLY_RIGHT,LEFT_RIGHT
     })
     public @interface MenuStyle {}
 }

@@ -17,7 +17,7 @@ data class Person(val firstName:String,val lastName: String): BaseVastItem, Vast
         return R.layout.item_bind_layout
     }
 
-    override fun getType(): String {
-        return "person"
+    override fun getType(): Int {
+        return R.layout.menu_item
     }
 }

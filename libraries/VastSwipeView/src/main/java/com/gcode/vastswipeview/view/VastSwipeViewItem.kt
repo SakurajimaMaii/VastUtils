@@ -6,7 +6,9 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.widget.LinearLayout
+import androidx.annotation.IntRange
 import com.gcode.vastswipeview.VastSwipeViewMgr
+import com.gcode.vastswipeview.exception.VastSwipeViewNotInit
 
 /**
  * @OriginalAuthor: Vast Gui
@@ -25,71 +27,31 @@ class VastSwipeViewItem @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : LinearLayout(context, attrs, defStyle) {
-    /**
-     * List content view.
-     */
-    private lateinit var contentView: View
 
-    /**
-     * Left Swipe menu view.
-     */
-    private lateinit var leftMenuView: VastSwipeLeftMenu
+    companion object{
+        const val INVALID_POSITION = -1
+    }
 
-    /**
-     * Right Swipe menu view.
-     */
-    private lateinit var rightMenuView: VastSwipeRightMenu
-
-    /**
-     * The position of the item in the list.
-     */
-    private var position = 0
-
-    /**
-     * Swipe menu manager.
-     */
     private lateinit var manager: VastSwipeViewMgr
 
-    constructor(
-        contentView: View,
-        manager: VastSwipeViewMgr
-    ) : this(contentView.context, null, 0) {
-        this.contentView = contentView
-        this.leftMenuView = VastSwipeLeftMenu(manager)
-        this.rightMenuView = VastSwipeRightMenu(manager)
+    private var position: Int = INVALID_POSITION
+
+    fun setManager(manager: VastSwipeViewMgr){
         this.manager = manager
-        init()
     }
 
-    fun setPosition(position: Int) {
+    fun setPosition(@IntRange(from = 0) position: Int){
         this.position = position
-        rightMenuView.setPosition(position)
-    }
-
-    @SuppressLint("ResourceType")
-    private fun init() {
-        layoutParams = LayoutParams(
-            LayoutParams.MATCH_PARENT,
-            LayoutParams.WRAP_CONTENT
-        )
-        contentView.layoutParams = LayoutParams(
-            LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT
-        )
-        leftMenuView.layoutParams = LayoutParams(
-            LayoutParams.WRAP_CONTENT,
-            LayoutParams.MATCH_PARENT
-        )
-        rightMenuView.layoutParams = LayoutParams(
-            LayoutParams.WRAP_CONTENT,
-            LayoutParams.MATCH_PARENT
-        )
-        addView(leftMenuView)
-        addView(contentView)
-        addView(rightMenuView)
     }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
+        if(position == INVALID_POSITION){
+            throw VastSwipeViewNotInit("You haven't init the position.")
+        }
+        if(!::manager.isInitialized){
+            throw VastSwipeViewNotInit("You haven't init the manager.",kotlin.UninitializedPropertyAccessException())
+        }
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 manager.eventListener?.eventDownListener(position, event)
@@ -109,31 +71,7 @@ class VastSwipeViewItem @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        leftMenuView.measure(
-            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
-            MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.EXACTLY)
-        )
-        rightMenuView.measure(
-            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
-            MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.EXACTLY)
-        )
+        val width = 0 // The width of root view.
+        val height = 0 // The height of root view.
     }
-
-    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        if (changed) {
-            leftMenuView.layout(
-                -leftMenuView.measuredWidth, 0, 0, leftMenuView.measuredHeight
-            )
-            contentView.layout(
-                0, 0, measuredWidth, contentView.measuredHeight
-            )
-            rightMenuView.layout(
-                measuredWidth,
-                0,
-                measuredWidth + rightMenuView.measuredWidth,
-                rightMenuView.measuredHeight
-            )
-        }
-    }
-
 }

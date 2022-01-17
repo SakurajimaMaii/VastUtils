@@ -1,7 +1,6 @@
 package com.gcode.vastutils
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -9,17 +8,13 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gcode.vastswipeview.VastSwipeViewMgr
 import com.gcode.vastswipeview.adapter.VastSwipeViewAdapter
-import com.gcode.vastswipeview.adapter.VastSwipeViewMenuVH
 import com.gcode.vastswipeview.annotation.VastSwipeViewConstant.*
 import com.gcode.vastswipeview.interfaces.VastSwipeContentItem
-import com.gcode.vastswipeview.model.VastSwipeMenuItem
 import com.gcode.vastswipeview.view.VastSwipeView
-import com.gcode.vastswipeview.view.VastSwipeViewItem
 import com.gcode.vastutils.model.Person
 
 class SlideActivity : AppCompatActivity() {
@@ -38,40 +33,11 @@ class SlideActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slide)
 
-        vastSwipeMenuMgr = VastSwipeViewMgr(this).apply {
-            setMenuStyle(LEFT_RIGHT)
-        }
-
         lists = initData()
 
-        //创建删除菜单
-        val deleteItem = VastSwipeMenuItem(this@SlideActivity)
-        deleteItem.setBackgroundByColorInt(0xFF1e90ff)
-        deleteItem.setTitleByString("删除")
-        deleteItem.setTitleColorByColorInt(Color.WHITE)
-        deleteItem.setIconByResId(R.drawable.ic_delete)
-        deleteItem.setClickEvent { item: VastSwipeMenuItem, position: Int ->
-            Toast.makeText(this@SlideActivity, "$position", Toast.LENGTH_SHORT).show();
-        }
-        vastSwipeMenuMgr.setLeftMenuItems(ArrayList<VastSwipeMenuItem>().apply {
-            add(deleteItem)
-        })
-        //创建刷新菜单
-        val refreshItem = VastSwipeMenuItem(this@SlideActivity)
-        refreshItem.setBackgroundByColorInt(0xFFff4757)
-        refreshItem.setTitleByString("刷新")
-        refreshItem.setIconByResId(R.drawable.ic_refresh)
-        val revokeItem = VastSwipeMenuItem(this@SlideActivity)
-        revokeItem.setBackgroundByColorInt(0xff6ab04c)
-        revokeItem.setTitleByString("撤销")
-        revokeItem.setIconByResId(R.drawable.ic_revoke)
-        vastSwipeMenuMgr.addRightMenuItems(ArrayList<VastSwipeMenuItem>().apply {
-            add(deleteItem)
-            add(refreshItem)
-            //add(revokeItem)
-        })
+        vastSwipeMenuMgr = VastSwipeViewMgr(this)
+        vastSwipeMenuMgr.setMenuStyle(ONLY_RIGHT)
 
-        vastSwipeMenuMgr.setSwipeMenuContentStyle(ICON_TITLE)
         vastSwipeMenuMgr.setEventListener(object : VastSwipeViewMgr.EventListener {
             override fun eventDownListener(position: Int, event: MotionEvent) {
                 //Log.d(tag,"${vastSwipeListView.adapter?.itemCount}")
@@ -98,10 +64,7 @@ class SlideActivity : AppCompatActivity() {
         vastSwipeView = findViewById(R.id.listview)
         vastSwipeView.setManager(vastSwipeMenuMgr)
         vastSwipeView.layoutManager = LinearLayoutManager(this)
-        vastSwipeView.adapter =
-            VastSwipeViewAdapter(lists, this, ArrayList<VastSwipeViewMenuVH.Factory>().apply {
-                add(contentVH.contentFactory())
-            }, vastSwipeMenuMgr)
+        vastSwipeView.adapter = Adapter(lists,vastSwipeMenuMgr)
     }
 
     private fun initData(): MutableList<Person> {
@@ -121,32 +84,13 @@ class SlideActivity : AppCompatActivity() {
         ).toInt()
     }
 
-    class contentVH(val itemView: View) : VastSwipeViewMenuVH(itemView) {
-
-        private var tv: TextView = itemView.findViewById(R.id.tv_value)
-
-        class contentFactory : VastSwipeViewMenuVH.Factory {
-
-            override fun onCreateViewHolder(
-                parent: ViewGroup,
-                viewType: Int,
-                manager: VastSwipeViewMgr
-            ): VastSwipeViewMenuVH {
-                val contentView =
-                    LayoutInflater.from(parent.context).inflate(R.layout.listview_item, null)
-                val itemView = VastSwipeViewItem(contentView, manager)
-                return contentVH(itemView)
-            }
-
-            override fun getType(): String {
-                return "person"
-            }
+    class Adapter(data:MutableList<Person>,manager:VastSwipeViewMgr):VastSwipeViewAdapter(data,manager){
+        override fun bindData(
+            holder: AdapterViewHolder,
+            position: Int,
+            item: VastSwipeContentItem
+        ) {
+            holder.findViewById<TextView>(R.id.tv_value).text = (item as Person).firstName
         }
-
-        override fun onBindData(item: VastSwipeContentItem) {
-            super.onBindData(item)
-            tv.text = (item as Person).firstName
-        }
-
     }
 }

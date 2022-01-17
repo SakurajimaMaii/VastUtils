@@ -12,8 +12,12 @@ import android.widget.OverScroller
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gcode.vastswipeview.VastSwipeViewMgr
+import com.gcode.vastswipeview.annotation.VastSwipeViewConstant
+import com.gcode.vastswipeview.annotation.VastSwipeViewConstant.*
 import com.gcode.vastswipeview.exception.VastSwipeViewNotFound
+import com.gcode.vastswipeview.exception.VastSwipeViewNotInit
 import com.gcode.vastswipeview.exception.VastSwipeViewTypeError
+import java.lang.NullPointerException
 import kotlin.math.abs
 
 /**
@@ -117,10 +121,44 @@ class VastSwipeView @JvmOverloads constructor(
                     if (view is VastSwipeViewItem) {
                         flingView = view
 
-                        leftMenuViewWidth = flingView.getChildAt(0).width
-                        rightMenuViewWidth = flingView.getChildAt(2).width
+                        when (manager.menuStyle) {
+                            NOT_INIT -> {
+                                throw VastSwipeViewNotInit("You should set the menuStyle.")
+                            }
+                            ONLY_LEFT -> {
+                                try {
+                                    leftMenuViewWidth = flingView.getChildAt(0).width
+                                } catch (e: NullPointerException) {
+                                    throw VastSwipeViewTypeError(
+                                        "Please check the value of the menuStyle.",
+                                        e
+                                    )
+                                }
+                            }
+                            ONLY_RIGHT -> {
+                                try {
+                                    rightMenuViewWidth = flingView.getChildAt(1).width
+                                } catch (e: NullPointerException) {
+                                    throw VastSwipeViewTypeError(
+                                        "Please check the value of the menuStyle.",
+                                        e
+                                    )
+                                }
+                            }
+                            LEFT_RIGHT -> {
+                                try {
+                                    leftMenuViewWidth = flingView.getChildAt(0).width
+                                    rightMenuViewWidth = flingView.getChildAt(2).width
+                                } catch (e: NullPointerException) {
+                                    throw VastSwipeViewTypeError(
+                                        "Please check the value of the menuStyle.",
+                                        e
+                                    )
+                                }
+                            }
+                        }
                     } else {
-                        throw VastSwipeViewNotFound("Not found the swipeListItemLayout of the position you touch.")
+                        throw VastSwipeViewTypeError("The item of the position you touch is not the type of VastSwipeViewItem.")
                     }
                 }
             }
@@ -183,7 +221,7 @@ class VastSwipeView @JvmOverloads constructor(
                     when {
                         velocityTracker!!.xVelocity < -SNAP_VELOCITY -> {
                             // right menu open
-                            Log.d(TAG,"right menu open")
+                            Log.d(TAG, "right menu open")
                             openScroller.startScroll(
                                 scrollX,
                                 0,
@@ -194,7 +232,7 @@ class VastSwipeView @JvmOverloads constructor(
                         }
                         velocityTracker!!.xVelocity > SNAP_VELOCITY -> {
                             // left menu open
-                            Log.d(TAG,"left menu open")
+                            Log.d(TAG, "left menu open")
                             openScroller.startScroll(
                                 scrollX,
                                 0,
@@ -282,14 +320,16 @@ class VastSwipeView @JvmOverloads constructor(
     }
 
     private fun smoothCloseMenu() {
-        closeScroller.startScroll(
-            flingView.scrollX,
-            0,
-            -flingView.scrollX,
-            0,
-            manager.menuCloseDuration
-        )
-        postInvalidate()
+        if (::flingView.isInitialized) {
+            closeScroller.startScroll(
+                flingView.scrollX,
+                0,
+                -flingView.scrollX,
+                0,
+                manager.menuCloseDuration
+            )
+            postInvalidate()
+        }
     }
 
     fun setManager(manager: VastSwipeViewMgr) {
@@ -300,6 +340,7 @@ class VastSwipeView @JvmOverloads constructor(
 
     companion object {
         private const val TAG = "VastSwipeView"
+
         /**
          * The point you touch on the screen is not within the scope of the RecyclerView's subviews.
          */

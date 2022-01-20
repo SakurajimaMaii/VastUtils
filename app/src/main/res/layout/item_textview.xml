@@ -5,9 +5,13 @@
     <TextView
         android:id="@+id/firstName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:gravity="center"/>
     <TextView
         android:id="@+id/lastName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:gravity="center"/>
 </LinearLayout>

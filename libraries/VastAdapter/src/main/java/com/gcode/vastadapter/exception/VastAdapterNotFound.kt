@@ -4,6 +4,6 @@ package com.gcode.vastadapter.exception
  * @OriginalAuthor: Vast Gui
  * @OriginalDate:
  * @EditAuthor: Vast Gui
- * @EditDate: 2021/12/20
+ * @EditDate: 2022/1/19
  */
-data class ViewTypeError(override val message: String?):Throwable(message){}
+internal data class VastAdapterNotFound(override val message: String?):Throwable(message){}

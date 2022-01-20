@@ -13,6 +13,7 @@
         <entry key="..\:/WorkSpace/GitSpaceAndroid/UtilsSampleDemo/app/src/main/res/layout/item_bind_layout.xml" value="0.32760416666666664" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/UtilsSampleDemo/app/src/main/res/layout/item_layout.xml" value="0.22662889518413598" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/drawable/ic_delete.xml" value="0.2916666666666667" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/drawable/ic_knots.xml" value="0.153" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/drawable/ic_loading_7.xml" value="0.2265" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/drawable/ic_loading_8.xml" value="0.2265" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/drawable/ic_refresh.xml" value="0.2490740740740741" />
@@ -24,7 +25,9 @@
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/activity_slide.xml" value="0.3375" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/activity_test.xml" value="0.2539546814878153" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/item_bind_layout.xml" value="0.1" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/item_imageview.xml" value="0.2453125" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/item_layout.xml" value="0.32760416666666664" />
+        <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/item_textview.xml" value="0.1" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/listview_item.xml" value="0.17395833333333333" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/menu_item.xml" value="0.22" />
         <entry key="..\:/WorkSpace/GitSpaceAndroid/VastUtils/app/src/main/res/layout/net_error_page.xml" value="0.34322916666666664" />

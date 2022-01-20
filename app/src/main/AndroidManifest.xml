@@ -25,7 +25,7 @@
 <!--            </intent-filter>-->
         </activity>
         <activity
-            android:name=".RecyclerViewActivity"
+            android:name=".BaseAdapterActivity"
             android:exported="false" />
         <activity
             android:name=".SlideActivity"

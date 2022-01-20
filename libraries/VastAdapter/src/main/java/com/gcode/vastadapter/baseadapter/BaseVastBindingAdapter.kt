@@ -9,7 +9,8 @@ import androidx.annotation.Nullable
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.gcode.vastadapter.exception.ViewTypeError
+import com.gcode.vastadapter.exception.VastAdapterValueError
+import com.gcode.vastadapter.interfaces.BaseVastItem
 
 /**
  * Base vast binding adapter
@@ -23,7 +24,7 @@ abstract class BaseVastBindingAdapter<obj : BaseVastItem> constructor(
     private var mClickListener: OnItemClickListener? = null
     private var mLongClickListener: OnItemLongClickListener? = null
 
-    override fun onBindViewHolder(holder: BindingHolder, position: Int) {
+    final override fun onBindViewHolder(holder: BindingHolder, position: Int) {
         holder.bindData(setVariableId(), items[position])
         if (mClickListener != null) {
             holder.itemView.setOnClickListener {
@@ -41,7 +42,7 @@ abstract class BaseVastBindingAdapter<obj : BaseVastItem> constructor(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingHolder {
+    final override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingHolder {
         val binding = DataBindingUtil.inflate<ViewDataBinding>(
             LayoutInflater.from(parent.context),
             viewType,
@@ -51,12 +52,12 @@ abstract class BaseVastBindingAdapter<obj : BaseVastItem> constructor(
         return BindingHolder(binding)
     }
 
-    override fun getItemCount() = items.size
+    final override fun getItemCount() = items.size
 
-    override fun getItemViewType(position: Int):Int {
-        val viewType = items[position].getItemBindViewType()
+    final override fun getItemViewType(position: Int):Int {
+        val viewType = items[position].itemBindViewType()
         if (viewType == -1){
-            throw ViewTypeError("Please check if you have set the correct layout id")
+            throw VastAdapterValueError("Please check if you have set the correct layout id")
         }
         return viewType
     }

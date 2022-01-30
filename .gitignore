@@ -25,6 +25,9 @@ out/
 .idea/navEditor.xml
 .idea/assetWizardSettings.xml
 
+.settings
+.project
+
 /local.properties
 
 .DS_Store
@@ -33,4 +36,5 @@ out/
 .externalNativeBuild
 .cxx
 
+gradle.properties
 publish-mavencentral.gradle

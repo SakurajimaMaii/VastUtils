@@ -1,4 +1,4 @@
-package com.gcode.vastutils
+package com.gcode.vastutils.activity
 
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import com.gcode.vasttools.utils.IntentUtils
 import com.gcode.vasttools.utils.MsgWindowUtils
+import com.gcode.vastutils.R
 
 class IntentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.gcode.vastutils
+package com.gcode.vastutils.activity
 
 import android.os.Bundle
 import android.os.Handler
@@ -6,10 +6,10 @@ import android.os.Looper
 import android.os.Message
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.gcode.vastnetstatelayout.interfaces.VastRetryClickListener
 import com.gcode.vastnetstatelayout.view.VastNetStateLayout
 import com.gcode.vastnetstatelayout.view.VastNetStateMgr
 import com.gcode.vasttools.utils.MsgWindowUtils
+import com.gcode.vastutils.R
 
 
 class NetStateActivity : AppCompatActivity() {

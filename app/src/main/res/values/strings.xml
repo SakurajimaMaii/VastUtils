@@ -3,5 +3,6 @@
     <string name="loading_page">加载页面</string>
     <string name="swipe_list_view">仿qq滑动列表</string>
     <string name="vast_base_adapter">通用RecyclerView BaseAdapter</string>
+    <string name="vast_base_bind_adapter">通用RecyclerView BaseBindingAdapter</string>
     <string name="picture">图片</string>
 </resources>

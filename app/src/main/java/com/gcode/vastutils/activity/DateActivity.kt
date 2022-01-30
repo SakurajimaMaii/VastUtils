@@ -1,4 +1,4 @@
-package com.gcode.vastutils
+package com.gcode.vastutils.activity
 
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +8,8 @@ import com.gcode.vasttools.utils.LogUtils.e
 import com.gcode.vasttools.utils.SystemUtils.systemAndroidVersion
 import com.gcode.vasttools.utils.SystemUtils.systemLanguage
 import com.gcode.vasttools.utils.SystemUtils.systemModel
+import com.gcode.vastutils.BuildConfig
+import com.gcode.vastutils.R
 
 class DateActivity : AppCompatActivity() {
 

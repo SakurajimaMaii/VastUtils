@@ -1,4 +1,4 @@
-package com.gcode.vastutils
+package com.gcode.vastutils.activity
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.gcode.vasttools.utils.DensityUtils
 import com.gcode.vasttools.utils.LogUtils
+import com.gcode.vastutils.R
 
 class DensityActivity : AppCompatActivity() {
 

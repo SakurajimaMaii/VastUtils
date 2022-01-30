@@ -33,8 +33,8 @@ android {
     dataBinding {
         enabled = true
     }
-    buildFeatures {
-        viewBinding true
+    viewBinding {
+        enabled = true
     }
     namespace 'com.gcode.vastutils'
 }
@@ -47,7 +47,6 @@ dependencies {
     //implementation project(':libraries:VastTools')
     implementation project(':libraries:VastAdapter')
     //implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.2'
-    implementation 'io.github.sakurajimamaii:VastAdapter:0.0.2'
     implementation 'io.github.sakurajimamaii:VastTools:0.0.4'
 
     implementation 'com.github.SakurajimaMaii:ShapeButton:0.0.5'
@@ -56,13 +55,11 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation "androidx.recyclerview:recyclerview:1.2.1"
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
-    implementation 'com.android.support:support-annotations:28.0.0'
+    implementation 'androidx.annotation:annotation:1.3.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

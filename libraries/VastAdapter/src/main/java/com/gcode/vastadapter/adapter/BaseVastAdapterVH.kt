@@ -1,9 +1,8 @@
-package com.gcode.vastadapter.baseadapter
+package com.gcode.vastadapter.adapter
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.gcode.vastadapter.interfaces.VastAdapterItem
 
 /**
  * @OriginalAuthor: Vast Gui
@@ -11,12 +10,12 @@ import com.gcode.vastadapter.interfaces.VastAdapterItem
  * @EditAuthor: Vast Gui
  * @EditDate: 2022/1/17
  */
-open class BaseVastAdapterVH(val itemView: View): RecyclerView.ViewHolder(itemView) {
-    open fun onBindData(item:VastAdapterItem){
+open class BaseVastAdapterVH(itemView: View): RecyclerView.ViewHolder(itemView) {
+    open fun onBindData(item: VastAdapterItem){
 
     }
 
-    interface Factory{
+    interface BVAdpVHFactory{
         /**
          * Create the current ViewHolder instance.
          */
@@ -25,6 +24,6 @@ open class BaseVastAdapterVH(val itemView: View): RecyclerView.ViewHolder(itemVi
         /**
          * Should be the same as the type returned by the corresponding item.
          */
-        fun getVastAdapterVHType():String
+        fun getVAdpVHType():String
     }
 }

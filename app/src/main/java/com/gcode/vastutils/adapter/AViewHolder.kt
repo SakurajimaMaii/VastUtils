@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.gcode.vastadapter.baseadapter.BaseVastAdapterVH
-import com.gcode.vastadapter.interfaces.VastAdapterItem
+import com.gcode.vastadapter.adapter.BaseVastAdapterVH
+import com.gcode.vastadapter.adapter.VastAdapterItem
 import com.gcode.vastutils.R
 import com.gcode.vastutils.model.Person
 
@@ -25,12 +25,12 @@ class AViewHolder(itemView: View): BaseVastAdapterVH(itemView) {
         last.text = (item as Person).lastName
     }
 
-    class Factory:BaseVastAdapterVH.Factory{
+    class Factory:BaseVastAdapterVH.BVAdpVHFactory{
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseVastAdapterVH {
             return AViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_textview,parent,false))
         }
 
-        override fun getVastAdapterVHType(): String {
+        override fun getVAdpVHType(): String {
             return "person"
         }
     }

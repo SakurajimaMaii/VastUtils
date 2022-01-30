@@ -1,12 +1,10 @@
-package com.gcode.vastutils
+package com.gcode.vastutils.activity
 
 import android.content.Context
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +13,7 @@ import com.gcode.vastswipeview.adapter.VastSwipeViewAdapter
 import com.gcode.vastswipeview.annotation.VastSwipeViewConstant.*
 import com.gcode.vastswipeview.interfaces.VastSwipeContentItem
 import com.gcode.vastswipeview.view.VastSwipeView
+import com.gcode.vastutils.R
 import com.gcode.vastutils.model.Person
 
 class SlideActivity : AppCompatActivity() {
@@ -71,7 +70,7 @@ class SlideActivity : AppCompatActivity() {
         val list: ArrayList<Person> = ArrayList()
         var i = 'A'.code
         while (i <= 'Z'.code) {
-            list.add(Person(i.toChar().toString(), i.toChar().toString()))
+            list.add(Person(i.toChar().toString(), i.toChar().toString(),null,null,null,null))
             i++
         }
         return list

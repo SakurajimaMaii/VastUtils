@@ -1,9 +1,10 @@
-package com.gcode.vastutils
+package com.gcode.vastutils.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
+import com.gcode.vastutils.R
 
 class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

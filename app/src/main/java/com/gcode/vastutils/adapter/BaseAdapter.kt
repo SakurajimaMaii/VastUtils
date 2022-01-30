@@ -3,9 +3,9 @@ package com.gcode.vastutils.adapter
 import android.annotation.SuppressLint
 import androidx.annotation.IntRange
 import androidx.annotation.Nullable
-import com.gcode.vastadapter.baseadapter.BaseVastAdapter
-import com.gcode.vastadapter.baseadapter.BaseVastAdapterVH
-import com.gcode.vastadapter.interfaces.VastAdapterItem
+import com.gcode.vastadapter.adapter.BaseVastAdapter
+import com.gcode.vastadapter.adapter.BaseVastAdapterVH
+import com.gcode.vastadapter.adapter.VastAdapterItem
 
 /**
  * @OriginalAuthor: Vast Gui
@@ -15,7 +15,7 @@ import com.gcode.vastadapter.interfaces.VastAdapterItem
  */
 class BaseAdapter(
     private val items: MutableList<VastAdapterItem>,
-    factories: MutableList<BaseVastAdapterVH.Factory>
+    factories: MutableList<BaseVastAdapterVH.BVAdpVHFactory>
 ) : BaseVastAdapter(items, factories) {
 
     /**

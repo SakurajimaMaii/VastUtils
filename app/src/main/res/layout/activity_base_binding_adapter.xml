@@ -5,9 +5,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.BaseAdapterActivity">
+        tools:context=".activity.BaseBindingAdapterActivity">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dataList"
+            android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

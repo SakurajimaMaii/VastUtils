@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SlideActivity">
+    tools:context=".activity.SlideActivity">
     <com.gcode.vastswipeview.view.VastSwipeView
         android:id="@+id/listview"
         android:background="@color/purple_500"

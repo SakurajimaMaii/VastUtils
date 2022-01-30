@@ -1,9 +1,10 @@
-package com.gcode.vastutils
+package com.gcode.vastutils.activity
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.gcode.vastutils.R
 import com.gcode.vastutils.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,15 +17,19 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.loadingPage.setOnClickListener {
-            startActivity(Intent(this,NetStateActivity::class.java))
+            startActivity(Intent(this, NetStateActivity::class.java))
         }
 
         binding.swipeListViewPage.setOnClickListener {
-            startActivity(Intent(this,SlideActivity::class.java))
+            startActivity(Intent(this, SlideActivity::class.java))
         }
 
         binding.baseAdapter.setOnClickListener {
             startActivity(Intent(this, BaseAdapterActivity::class.java))
+        }
+
+        binding.baseBindAdapter.setOnClickListener {
+            startActivity(Intent(this, BaseBindingAdapterActivity::class.java))
         }
     }
 }

@@ -5,8 +5,8 @@ import android.widget.ImageView
 import androidx.annotation.IntRange
 import androidx.annotation.Nullable
 import androidx.databinding.BindingAdapter
-import com.gcode.vastadapter.adapter.BaseVastBindingAdapter
-import com.gcode.vastadapter.adapter.VastBindingAdapterItem
+import com.gcode.vastadapter.base.BaseVastBindingAdapter
+import com.gcode.vastadapter.interfaces.VastBindingAdapterItem
 import com.gcode.vastutils.BR
 
 
@@ -19,11 +19,6 @@ import com.gcode.vastutils.BR
 class BaseBindingAdapter(
     private val dataSource:MutableList<VastBindingAdapterItem>
 ):BaseVastBindingAdapter(dataSource) {
-    @BindingAdapter("android:src")
-    fun setImageResource(imageView: ImageView, resource: Int) {
-        imageView.setImageResource(resource)
-    }
-
     /**
      * Returns `true` if the collection is empty (contains no elements), `false` otherwise.
      * @return Boolean

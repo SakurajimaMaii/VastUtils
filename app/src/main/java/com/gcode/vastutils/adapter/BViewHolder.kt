@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.gcode.vastadapter.adapter.BaseVastAdapterVH
-import com.gcode.vastadapter.adapter.VastAdapterItem
+import com.gcode.vastadapter.base.BaseVastAdapterVH
+import com.gcode.vastadapter.interfaces.VastAdapterItem
 import com.gcode.vastutils.R
 import com.gcode.vastutils.model.Picture
 
@@ -22,10 +22,10 @@ class BViewHolder(itemView: View) : BaseVastAdapterVH(itemView) {
 
     override fun onBindData(iType: VastAdapterItem) {
         super.onBindData(iType)
-        iv.setImageResource((iType as Picture).resId)
+        iv.setImageDrawable((iType as Picture).drawable)
     }
 
-    class Factory : BaseVastAdapterVH.BVAdpVHFactory {
+    class Factory : BVAdpVHFactory {
 
         override fun onCreateViewHolder(
             parent: ViewGroup,

@@ -1,4 +1,4 @@
-package com.gcode.vastadapter.adapter
+package com.gcode.vastadapter.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.gcode.vastadapter.exception.VastAdapterValueError
+import com.gcode.vastadapter.interfaces.VastBindingAdapterItem
 
 /**
  * Base vast binding adapter
@@ -21,12 +22,12 @@ abstract class BaseVastBindingAdapter constructor(
         holder.bindData(setVariableId(), item)
         holder.itemView.setOnClickListener {
             item.vbAdpClickEvent?.let{
-                clickEvent -> clickEvent(holder.itemView,item,position,holder.itemId)
+                clickEvent -> clickEvent(holder.itemView,position)
             }
         }
         holder.itemView.setOnLongClickListener {
             item.vbAdpLongClickEvent?.also {
-                longClickEvent -> longClickEvent(holder.itemView,item,position,holder.itemId)
+                longClickEvent -> longClickEvent(holder.itemView,position)
             }
             return@setOnLongClickListener true
         }
@@ -45,7 +46,7 @@ abstract class BaseVastBindingAdapter constructor(
     final override fun getItemCount() = dataSource.size
 
     final override fun getItemViewType(position: Int):Int {
-        val viewType = dataSource[position].getVBAdpIType()
+        val viewType = dataSource[position].getVBAdpItemType()
         if (viewType == -1){
             throw VastAdapterValueError("Please check if you have set the correct layout id")
         }

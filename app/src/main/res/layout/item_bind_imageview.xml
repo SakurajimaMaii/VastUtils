@@ -13,7 +13,7 @@
             android:id="@+id/item_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@{item.resId}"
+            android:src="@{item.drawable}"
             android:contentDescription="@string/picture"
             android:layout_gravity="center_horizontal"/>
     </LinearLayout>

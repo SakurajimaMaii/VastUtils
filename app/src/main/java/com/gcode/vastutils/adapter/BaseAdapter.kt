@@ -3,9 +3,9 @@ package com.gcode.vastutils.adapter
 import android.annotation.SuppressLint
 import androidx.annotation.IntRange
 import androidx.annotation.Nullable
-import com.gcode.vastadapter.adapter.BaseVastAdapter
-import com.gcode.vastadapter.adapter.BaseVastAdapterVH
-import com.gcode.vastadapter.adapter.VastAdapterItem
+import com.gcode.vastadapter.base.BaseVastAdapter
+import com.gcode.vastadapter.base.BaseVastAdapterVH
+import com.gcode.vastadapter.interfaces.VastAdapterItem
 
 /**
  * @OriginalAuthor: Vast Gui

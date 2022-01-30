@@ -1,8 +1,9 @@
-package com.gcode.vastadapter.adapter
+package com.gcode.vastadapter.base
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.gcode.vastadapter.interfaces.VastAdapterItem
 
 /**
  * @OriginalAuthor: Vast Gui
@@ -23,6 +24,10 @@ open class BaseVastAdapterVH(itemView: View): RecyclerView.ViewHolder(itemView) 
 
         /**
          * Should be the same as the type returned by the corresponding item.
+         *
+         * For example,If the VH corresponding to person is pVH, then the
+         * getVAdpItemType method of person returns **"per"**, and the return
+         * value of getVAdpVHType corresponding to pVH should also be **"per"**.
          */
         fun getVAdpVHType():String
     }

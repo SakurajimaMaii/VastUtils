@@ -1,8 +1,9 @@
-package com.gcode.vastadapter.adapter
+package com.gcode.vastadapter.base
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gcode.vastadapter.exception.VastAdapterNotFound
+import com.gcode.vastadapter.interfaces.VastAdapterItem
 
 abstract class BaseVastAdapter(
     private val dataSource: MutableList<VastAdapterItem>,
@@ -13,7 +14,7 @@ abstract class BaseVastAdapter(
 
     final override fun getItemViewType(position: Int): Int {
         val item: VastAdapterItem = dataSource[position]
-        val type: String = item.getVAIType()
+        val type: String = item.getVAdpItemType()
         if (type2ItemType[type] == null) {
             throw VastAdapterNotFound("Not found the itemType according to the position.")
         } else {
@@ -31,12 +32,12 @@ abstract class BaseVastAdapter(
         holder.onBindData(itemData)
         holder.itemView.setOnClickListener {
             itemData.vAdpClickEvent?.let {
-                    clickEvent -> clickEvent(holder.itemView,itemData,position,holder.itemId)
+                    clickEvent -> clickEvent(holder.itemView,position)
             }
         }
         holder.itemView.setOnLongClickListener {
             itemData.vAdpLongClickEvent?.also {
-                    clickEvent -> clickEvent(holder.itemView,itemData,position,holder.itemId)
+                    clickEvent -> clickEvent(holder.itemView,position)
             }
             return@setOnLongClickListener true
         }

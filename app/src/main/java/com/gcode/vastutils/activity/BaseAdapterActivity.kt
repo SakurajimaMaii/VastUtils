@@ -5,7 +5,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gcode.vastadapter.adapter.VastAdapterItem
+import com.gcode.vastadapter.base.VAapClickEvent
+import com.gcode.vastadapter.base.VAdpLongClickEvent
+import com.gcode.vastadapter.interfaces.VastAdapterItem
 import com.gcode.vasttools.utils.MsgWindowUtils
 import com.gcode.vastutils.R
 import com.gcode.vastutils.adapter.*
@@ -21,12 +23,13 @@ class BaseAdapterActivity : AppCompatActivity() {
 
     private val datas:MutableList<VastAdapterItem> = ArrayList()
 
-    private val click = { _: View, _: VastAdapterItem, pos:Int, _:Long->
-        MsgWindowUtils.showShortMsg(this@BaseAdapterActivity,"Hello,User.And position is $pos")
+    private val click:VAapClickEvent = { _: View, pos:Int,->
+        val item = adapter.getItemByPos(pos)
+        MsgWindowUtils.showShortMsg(this@BaseAdapterActivity,"Click event and pos is $pos,item inf ${(item as Person).firstName}")
     }
 
-    private val longClick = { _: View, _: VastAdapterItem, pos:Int, _:Long->
-        MsgWindowUtils.showShortMsg(this@BaseAdapterActivity,"Hello,User.And position is $pos")
+    private val longClick:VAdpLongClickEvent = { _: View, pos:Int,->
+        MsgWindowUtils.showShortMsg(this@BaseAdapterActivity,"Long click event and pos is $pos")
         true
     }
 
@@ -45,7 +48,7 @@ class BaseAdapterActivity : AppCompatActivity() {
     private fun initData() {
         for(i in 0..10){
             datas.add(Person(i.toString(),i.toString(),click,null,null,null))
-            datas.add(Picture(R.drawable.ic_knots,null,longClick,null,null))
+            datas.add(Picture(resources.getDrawable(R.drawable.ic_knots),null,longClick,null,null))
         }
     }
 }

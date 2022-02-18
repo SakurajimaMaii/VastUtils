@@ -3,7 +3,7 @@
     <data>
         <variable
             name="item"
-            type="com.gcode.vastutils.model.Person" />
+            type="com.gcode.vastutils.basebindadpexample.model.Person" />
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"

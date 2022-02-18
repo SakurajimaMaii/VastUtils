@@ -2,30 +2,36 @@ package com.gcode.vastutils.activity
 
 import android.graphics.Bitmap
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
 import androidx.annotation.RequiresApi
-import com.gcode.vastutils.R
+import androidx.fragment.app.FragmentActivity
+import com.gcode.vastutils.ImgUtils
+import com.gcode.vastutils.databinding.ActivityCameraBinding
 
-class CameraActivity : AppCompatActivity() {
-    private lateinit var button:Button
+class CameraActivity : FragmentActivity() {
+    private lateinit var binding:ActivityCameraBinding
 
     private var bitmap: Bitmap? = null
 
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_camera)
+        binding = ActivityCameraBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val button = findViewById<Button>(R.id.camerabutton)
+//        val getPhoto = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
+//            if(result.resultCode == Activity.RESULT_OK){
+//                //image 就是 imageView控件
+//                binding.image.setImageBitmap(result.data?.let { ImgUtils.choiceFromAlbum(it,this) })
+//            }
+//        }
 
-        val image = findViewById<ImageView>(R.id.image)
-
-    }
-
-    override fun onStart() {
-        super.onStart()
+        binding.camerabutton.setOnClickListener {
+//            val intent = Intent(Intent.ACTION_GET_CONTENT)
+//            intent.type = "image/*"
+//            getPhoto.launch(intent)
+            val bitmap = ImgUtils.startCamera(this)
+            binding.image.setImageBitmap(bitmap)
+        }
     }
 }

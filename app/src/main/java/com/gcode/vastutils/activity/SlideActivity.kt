@@ -14,7 +14,7 @@ import com.gcode.vastswipeview.annotation.VastSwipeViewConstant.*
 import com.gcode.vastswipeview.interfaces.VastSwipeContentItem
 import com.gcode.vastswipeview.view.VastSwipeView
 import com.gcode.vastutils.R
-import com.gcode.vastutils.model.Person
+import com.gcode.vastutils.basebindadpexample.model.Person
 
 class SlideActivity : AppCompatActivity() {
 
@@ -70,7 +70,7 @@ class SlideActivity : AppCompatActivity() {
         val list: ArrayList<Person> = ArrayList()
         var i = 'A'.code
         while (i <= 'Z'.code) {
-            list.add(Person(i.toChar().toString(), i.toChar().toString(),null,null,null,null))
+            list.add(Person(i.toChar().toString(), i.toChar().toString(),null,null))
             i++
         }
         return list

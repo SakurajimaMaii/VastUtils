@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.ViewStub
 import androidx.annotation.LayoutRes
 import com.gcode.vastnetstatelayout.R
-import com.gcode.vastnetstatelayout.interfaces.VastNetWorkClickListener
-import com.gcode.vastnetstatelayout.interfaces.VastRetryClickListener
+import com.gcode.vastnetstatelayout.interfaces.VastEmptyDataListener
+import com.gcode.vastnetstatelayout.interfaces.VastLoadingErrorListener
+import com.gcode.vastnetstatelayout.interfaces.VastNetErrorListener
+import com.gcode.vastnetstatelayout.interfaces.VastLoadingListener
 
 /**
  * @OriginalAuthor: Vast Gui
@@ -28,38 +30,48 @@ import com.gcode.vastnetstatelayout.interfaces.VastRetryClickListener
  */
 class VastNetStateMgr(private val context: Context) {
 
-    internal lateinit var loadingVs: ViewStub
+    internal var loadingVs: ViewStub
         private set
     var loadingViewId = 0
         private set
 
-    internal lateinit var netErrorRetryVs: ViewStub
+    internal var netErrorRetryVs: ViewStub
         private set
     var netErrorRetryViewId = 0
         private set
 
-    internal lateinit var emptyDataVs: ViewStub
+    internal var emptyDataVs: ViewStub
         private set
     var emptyDataRetryViewId = 0
         private set
 
-    internal lateinit var loadingErrorVs: ViewStub
+    internal var loadingErrorVs: ViewStub
         private set
     var loadingErrorRetryViewId = 0
         private set
 
     /**
-     * It will be called when you want
-     * to set retry click event.
+     * It will be called when the layout state is [com.gcode.vastnetstatelayout.annotation.CONTENT_STATE_SHOW_LOADING].
      */
-    internal var vastRetryClickListener: VastRetryClickListener? = null
+    internal var loadingListener: VastLoadingListener? = null
         private set
 
     /**
-     * It will be called when you want
-     * to set net work.
+     * It will be called when the layout state is [com.gcode.vastnetstatelayout.annotation.CONTENT_STATE_SHOW_NET_ERROR].
      */
-    internal var vastNetWorkClickListener: VastNetWorkClickListener? = null
+    internal var netErrorListener: VastNetErrorListener? = null
+        private set
+
+    /**
+     * It will be called when the layout state is [com.gcode.vastnetstatelayout.annotation.CONTENT_STATE_SHOW_EMPTY_DATA].
+     */
+    internal var emptyDataListener: VastEmptyDataListener? = null
+        private set
+
+    /**
+     * It will be called when the layout state is [com.gcode.vastnetstatelayout.annotation.CONTENT_STATE_SHOW_LOADING_ERROR].
+     */
+    internal var loadingErrorListener: VastLoadingErrorListener? = null
         private set
 
     /**
@@ -114,17 +126,32 @@ class VastNetStateMgr(private val context: Context) {
      * You can set the view click event including
      * the following status:**NET ERROR**
      */
-    fun setNetWorkListener(vastNetWorkClickListener: VastNetWorkClickListener){
-        this.vastNetWorkClickListener = vastNetWorkClickListener
+    fun setNetErrorListener(netErrorListener: VastNetErrorListener?){
+        this.netErrorListener = netErrorListener
     }
 
     /**
      * You can set the view click event including
-     * the following status:
-     * **EMPTY DATA** , **LOADING ERROR** , **LOADING**
+     * the following status:**LOADING**
      */
-    fun setVastRetryClickListener(vastRetryClickListener: VastRetryClickListener){
-        this.vastRetryClickListener = vastRetryClickListener
+    fun setLoadingListener(loadingListener: VastLoadingListener?){
+        this.loadingListener = loadingListener
+    }
+
+    /**
+     * You can set the view click event including
+     * the following status:**EMPTY DATA**
+     */
+    fun setEmptyDataListener(emptyDataListener: VastEmptyDataListener?){
+        this.emptyDataListener = emptyDataListener
+    }
+
+    /**
+     * You can set the view click event including
+     * the following status:**LOADING ERROR**
+     */
+    fun setLoadingErrorListener(loadingErrorListener: VastLoadingErrorListener?){
+        this.loadingErrorListener = loadingErrorListener
     }
 
     init {

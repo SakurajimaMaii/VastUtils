@@ -4,50 +4,63 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.gcode.vastnetstatelayout.view.VastNetStateLayout
+import com.gcode.vastnetstatelayout.interfaces.VastEmptyDataListener
+import com.gcode.vastnetstatelayout.interfaces.VastLoadingErrorListener
+import com.gcode.vastnetstatelayout.interfaces.VastNetErrorListener
+import com.gcode.vastnetstatelayout.interfaces.VastLoadingListener
 import com.gcode.vastnetstatelayout.view.VastNetStateMgr
-import com.gcode.vasttools.utils.MsgWindowUtils
 import com.gcode.vastutils.R
+import com.gcode.vastutils.databinding.ActivityNetStateBinding
 
 
 class NetStateActivity : AppCompatActivity() {
 
-    private var mNetStateLayout: VastNetStateLayout? = null
+    private lateinit var mBinding:ActivityNetStateBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_net_state)
+        mBinding = ActivityNetStateBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
 
-        findViewById<View>(R.id.test).setOnClickListener {
-            MsgWindowUtils.showShortMsg(
-                this@NetStateActivity,
-                "Hello"
-            )
-        }
-
-        mNetStateLayout = findViewById<View>(R.id.net_state_layout) as VastNetStateLayout
         val vastNetStateMgr = VastNetStateMgr(this)
-//        vastNetStateMgr.setVastRetryClickListener(object : VastRetryClickListener {
-//            override fun onRetry() {
-//                object:Handler(Looper.getMainLooper()) {
-//                    override fun handleMessage(msg: Message) {
-//                        super.handleMessage(msg)
-//                        mNetStateLayout!!.showNetError()
-//                    }
-//                }.sendEmptyMessageDelayed(0, 3000)
-//            }
-//        })
-        mNetStateLayout!!.setVastNetStateMgr(vastNetStateMgr)
-        mNetStateLayout!!.showLoading()
+        vastNetStateMgr.setNetErrorListener(object :VastNetErrorListener{
+            override fun onNetWorkError() {
+                // Something to do when network error
+            }
+        })
+        vastNetStateMgr.setLoadingListener(object : VastLoadingListener {
+            override fun onLoading() {
+                object:Handler(Looper.getMainLooper()) {
+                    override fun handleMessage(msg: Message) {
+                        super.handleMessage(msg)
+                        mBinding.netStateLayout.showSuccess()
+                    }
+                }.sendEmptyMessageDelayed(0, 1000)
+            }
+        })
+        vastNetStateMgr.setLoadingErrorListener(object :VastLoadingErrorListener{
+            override fun onLoadingError() {
+                // Something to do when loading error
+            }
+        })
+        vastNetStateMgr.setEmptyDataListener(object :VastEmptyDataListener{
+            override fun onEmptyData() {
+                // Something to do when empty data
+            }
+        })
+        vastNetStateMgr.setNetErrorView(R.layout.error_page)
+        mBinding.netStateLayout.setVastNetStateMgr(vastNetStateMgr)
+        mBinding.netStateLayout.showNetError()
 
-        mHandler.sendEmptyMessageDelayed(0, 3000)
+        //mHandler.sendEmptyMessageDelayed(0, 1000)
     }
 
     private val mHandler: Handler = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
+
+            mBinding.netStateLayout.showSuccess()
         }
     }
 }

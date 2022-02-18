@@ -7,6 +7,8 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.gcode.vasttools.utils.DensityUtils
 import com.gcode.vasttools.utils.LogUtils
+import com.gcode.vasttools.utils.colorHex2Int
+import com.gcode.vasttools.utils.colorHex2RGB
 import com.gcode.vastutils.R
 
 class DensityActivity : AppCompatActivity() {
@@ -19,8 +21,6 @@ class DensityActivity : AppCompatActivity() {
         val tv = findViewById<TextView>(R.id.tv)
 
         val btn = findViewById<TextView>(R.id.btn)
-
-        LogUtils.i(this.javaClass,this.javaClass.simpleName,"${DensityUtils.sp2px(0.1f)}")
     }
     
     override fun onContentChanged() {

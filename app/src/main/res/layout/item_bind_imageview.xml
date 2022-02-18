@@ -3,7 +3,7 @@
     <data>
         <variable
             name="item"
-            type="com.gcode.vastutils.model.Picture" />
+            type="com.gcode.vastutils.basebindadpexample.model.Picture" />
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

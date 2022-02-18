@@ -76,21 +76,15 @@ data class Person(val firstName:String,val lastName: String):BaseVastItem{
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
-        <variable
-            name="item"
-            type="com.gcode.vastutils.model.Person" />
+        <variable name="item" type="com.gcode.vastutils.basebindadpexample.model.Person" />
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{item.firstName}"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{item.lastName}"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@{item.firstName}" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@{item.lastName}" />
     </LinearLayout>
 </layout>
 ```

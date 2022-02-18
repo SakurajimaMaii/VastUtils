@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gcode.vastutils" >
+    package="com.gcode.vastutils">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.DIAL"/>
+        </intent>
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -14,13 +20,27 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GUtilsSampleDemo" >
+        android:theme="@style/Theme.GUtilsSampleDemo">
         <activity
-            android:name=".activity.BaseBindingAdapterActivity"
+            android:name=".TestActivity"
+            android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.gcode.vastutils.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".basebindadpexample.BaseBindingAdapterActivity"
             android:exported="false" />
         <activity
             android:name=".activity.TestActivity"
-            android:exported="true" >
+            android:exported="true">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -30,11 +50,11 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".activity.BaseAdapterActivity"
+            android:name=".baseadpexample.BaseAdapterActivity"
             android:exported="false" />
         <activity
             android:name=".activity.SlideActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -43,7 +63,7 @@
         </activity>
         <activity
             android:name=".activity.NetStateActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -51,8 +71,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.DateActivity"
-            android:exported="true" >
+            android:name=".activity.ShapeActivity"
+            android:exported="true">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -63,7 +83,7 @@
         </activity>
         <activity
             android:name=".activity.IntentActivity"
-            android:exported="true" >
+            android:exported="true">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -74,7 +94,7 @@
         </activity>
         <activity
             android:name=".activity.DensityActivity"
-            android:exported="true" >
+            android:exported="true">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -85,7 +105,7 @@
         </activity>
         <activity
             android:name=".activity.CameraActivity"
-            android:exported="true" >
+            android:exported="true">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -96,7 +116,7 @@
         </activity>
         <activity
             android:name=".activity.MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

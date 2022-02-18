@@ -1,18 +1,11 @@
 package com.gcode.vastnetstatelayout.view
 
 import android.content.Context
-import android.graphics.drawable.AnimatedImageDrawable
-import android.graphics.drawable.AnimationDrawable
 import android.util.AttributeSet
 import android.util.SparseArray
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
-import android.widget.ImageView
-import com.gcode.vastnetstatelayout.R
-import com.gcode.vastnetstatelayout.annotation.VastNetState
-import com.gcode.vastnetstatelayout.annotation.VastNetState.*
+import com.gcode.vastnetstatelayout.annotation.*
 
 
 /**
@@ -122,7 +115,7 @@ class VastNetStateLayout @JvmOverloads constructor(
     /**
      * Show or hide view according to the [layoutId]
      */
-    private fun showHideViewById(@VastNetState.NetStateView layoutId: Int) {
+    private fun showHideViewById(@NetStateView layoutId: Int) {
         for (i in 0 until layoutSparseArray.size()) {
             val key = layoutSparseArray.keyAt(i)
             val valueView = layoutSparseArray.valueAt(i)
@@ -143,16 +136,14 @@ class VastNetStateLayout @JvmOverloads constructor(
      *
      * @return Whether the layout corresponding to layoutId is shown or not.
      */
-    private fun inflateSvLayout(@VastNetState.NetStateView layoutId:Int):Boolean{
+    private fun inflateSvLayout(@NetStateView layoutId:Int):Boolean{
         var isShow = true
         when(layoutId){
             CONTENT_STATE_SHOW_LOADING->{
                 isShow = run {
                     val view = vastNetStateMgr.loadingVs.inflate()
-                    val drawable = view.findViewById<ImageView>(R.id.loading_anim).drawable
-                    (drawable as AnimationDrawable).start()
                     view.setOnClickListener {
-                        vastNetStateMgr.vastRetryClickListener?.onRetry()
+                        vastNetStateMgr.loadingListener?.onLoading()
                     }
                     layoutSparseArray.put(layoutId, view)
                     true
@@ -162,7 +153,7 @@ class VastNetStateLayout @JvmOverloads constructor(
                 isShow = run {
                     val view = vastNetStateMgr.netErrorRetryVs.inflate()
                     view.setOnClickListener {
-                        vastNetStateMgr.vastNetWorkClickListener?.onNetWork()
+                        vastNetStateMgr.netErrorListener?.onNetWorkError()
                     }
                     layoutSparseArray.put(layoutId,view)
                     true
@@ -172,7 +163,7 @@ class VastNetStateLayout @JvmOverloads constructor(
                 isShow = run {
                     val view = vastNetStateMgr.loadingErrorVs.inflate()
                     view.setOnClickListener {
-                        vastNetStateMgr.vastRetryClickListener?.onRetry()
+                        vastNetStateMgr.loadingErrorListener?.onLoadingError()
                     }
                     layoutSparseArray.put(layoutId,view)
                     true
@@ -182,7 +173,7 @@ class VastNetStateLayout @JvmOverloads constructor(
                 isShow = run {
                     val view = vastNetStateMgr.emptyDataVs.inflate()
                     view.setOnClickListener {
-                        vastNetStateMgr.vastRetryClickListener?.onRetry()
+                        vastNetStateMgr.emptyDataListener?.onEmptyData()
                     }
                     layoutSparseArray.put(layoutId,view)
                     true

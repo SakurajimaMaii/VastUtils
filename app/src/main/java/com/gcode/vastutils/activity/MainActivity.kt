@@ -2,19 +2,23 @@ package com.gcode.vastutils.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import com.gcode.vastutils.R
+import com.gcode.vasttools.utils.*
+import com.gcode.vastutils.baseadpexample.BaseAdapterActivity
+import com.gcode.vastutils.basebindadpexample.BaseBindingAdapterActivity
 import com.gcode.vastutils.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.loadingPage.setOnClickListener {
             startActivity(Intent(this, NetStateActivity::class.java))
@@ -30,6 +34,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.baseBindAdapter.setOnClickListener {
             startActivity(Intent(this, BaseBindingAdapterActivity::class.java))
+        }
+
+        binding.intent.setOnClickListener {
+            startActivity(Intent(this,IntentActivity::class.java))
+        }
+
+        binding.shape.setOnClickListener {
+            startActivity(Intent(this,ShapeActivity::class.java))
         }
     }
 }

@@ -1,22 +1,24 @@
 package com.gcode.vasttools.utils
 
 import android.util.Log
+import androidx.annotation.IntRange
 import androidx.annotation.Nullable
 import com.gcode.vasttools.BuildConfig
-import com.gcode.vasttools.interfaces.LogContent
 import java.util.*
 
 /**
  * Log utils
  */
-object LogUtils : LogContent {
+object LogUtils {
 
     private var logContent: LogContent? = null
 
     /**
-     * Maximum number of bytes printed at once.
+     * Default maximum length of chars printed of a single log.
+     *
+     * Notes:Considering fault tolerance, 1000 is set here instead of 1024.
      */
-    private const val defaultByteLength = 4000
+    private const val defaultCharLength = 1000
 
     /**
      * Default max print repeat times
@@ -24,9 +26,16 @@ object LogUtils : LogContent {
     private const val defaultMaxPrintTimes = 5
 
     /**
+     * Maximum length of chars printed of a single log.
+     */
+    var singleLogCharLength = defaultCharLength
+        private set
+
+    /**
      * Max print repeat times
      */
     var maxPrintTimes: Int = defaultMaxPrintTimes
+        private set
 
     /**
      * `true` if you want to print log,`false` if you don't want to print the log.
@@ -34,63 +43,76 @@ object LogUtils : LogContent {
     var logEnabled = true
 
     /**
-     * send info message
+     * Set [singleLogCharLength].
+     */
+    fun setSingleLogCharLength(@IntRange(from = 0, to = 1000) charLength:Int){
+        singleLogCharLength = charLength
+    }
+
+    /**
+     * Set [maxPrintTimes]
+     */
+    fun setMaxPrintTimes(@IntRange(from = 0) maxPrint: Int){
+        maxPrintTimes = maxPrint
+    }
+
+    /**
+     * Send info message.
      *
-     * @param clz Current class
-     * @param key message keyboard
-     * @param content message content
+     * @param key Message keyboard.
+     * @param content Message content.
      */
-    fun i(@Nullable clz: Class<*>?, @Nullable key: String?, @Nullable content: String) {
+    fun i(@Nullable key: String?, @Nullable content: String?) {
         if (logEnabled && BuildConfig.DEBUG) {
-            logPrint(Log.INFO, key, content, clz)
+            logPrint(Log.INFO, key, content)
         }
     }
 
     /**
-     * send verbose message
-     * @param clz Current class
-     * @param key message keyboard
-     * @param content message content
+     * Send verbose message.
+     *
+     * @param key Message keyboard.
+     * @param content Message content.
      */
-    fun v(@Nullable clz: Class<*>?, @Nullable key: String?, @Nullable content: String?) {
+    fun v(@Nullable key: String?, @Nullable content: String?) {
         if (logEnabled && BuildConfig.DEBUG) {
-            logPrint(Log.VERBOSE, key, content, clz)
+            logPrint(Log.VERBOSE, key, content)
         }
     }
 
     /**
-     * send warning message
-     * @param clz Current class
-     * @param key message keyboard
-     * @param content message content
+     * Send warning message.
+     *
+     * @param key Message keyboard.
+     * @param content Message content.
      */
-    fun w(@Nullable clz: Class<*>?, @Nullable key: String?, @Nullable content: String?) {
+    fun w(@Nullable key: String?, @Nullable content: String?) {
         if (logEnabled && BuildConfig.DEBUG) {
-            logPrint(Log.WARN, key, content, clz)
+            logPrint(Log.WARN, key, content)
         }
     }
 
     /**
-     * send debug message
-     * @param clz Current class
-     * @param key message keyboard
-     * @param content message content
+     * Send debug message.
+     *
+     * @param key Message keyboard.
+     * @param content Message content.
      */
-    fun d(@Nullable clz: Class<*>?, @Nullable key: String?, @Nullable content: String?) {
+    fun d(@Nullable key: String?, @Nullable content: String?) {
         if (logEnabled && BuildConfig.DEBUG) {
-            logPrint(Log.DEBUG, key, content, clz)
+            logPrint(Log.DEBUG, key, content)
         }
     }
 
     /**
-     * send error message
-     * @param clz Current class
-     * @param key message keyboard
-     * @param content message content
+     * Send error message.
+     *
+     * @param key Message keyboard.
+     * @param content Message content.
      */
-    fun e(@Nullable clz: Class<*>?, @Nullable key: String?, @Nullable content: String?) {
+    fun e(@Nullable key: String?, @Nullable content: String?) {
         if (logEnabled && BuildConfig.DEBUG) {
-            logPrint(Log.ERROR, key, content, clz)
+            logPrint(Log.ERROR, key, content)
         }
     }
 
@@ -104,7 +126,7 @@ object LogUtils : LogContent {
 
     /**
      * Log print
-     * @param clz If you want to get the log information of the specified class, please assign a value to the [clz]
+     *
      * @param priority log level
      * @param key log keyboard
      * @param content log message
@@ -113,42 +135,21 @@ object LogUtils : LogContent {
         priority: Int,
         @Nullable key: String?,
         @Nullable content: String?,
-        @Nullable clz: Class<*>?
     ) {
         // Get the function call stack structure of the current thread.
         val stackTrace = Thread.currentThread().stackTrace
 
-        /**
-         * Get the stackTrace of the of the [LogUtils]
-         */
-        val logStackTraceElement = stackTrace.find { it.className == this.javaClass.name }
-        // Get the stackTrace of the of the current class
-        clz?.let {
-            stackTrace.find { it.className == clz.name }?.let {
-                val methodName = it.methodName
-                val tag = "class (${it.fileName}:${it.lineNumber}) "
-                val parameter: String =
-                    logContent?.logContentFormat(methodName, key, content) ?: logContentFormat(
-                        methodName,
-                        key,
-                        content
-                    )
+        val methodStackTraceIndex = stackTrace.indexOfLast {
+            it.className == this.javaClass.name
+        } + 1
+        val methodStackTraceElement = stackTrace[methodStackTraceIndex]
 
-                // Print log by log level.
-                print(priority, tag, parameter)
-            } ?: Log.e(
-                "class (${logStackTraceElement?.fileName}:${logStackTraceElement?.lineNumber}) ",
-                "We can't find the stackTrace about the class ${clz.javaClass.simpleName}"
-            ) //print the error message
-        } ?: run {
-            // If clz is null,we will print all information of the current stackTrace
-            for (stackTraceElement in stackTrace) {
-                val tag = "class (${stackTraceElement.fileName}:${stackTraceElement.lineNumber}) "
-                val parameter = "key:" + (key ?: this.javaClass.simpleName)
-                // Print log by log level.
-                print(priority, tag, parameter)
-            }
-        }
+        val methodName = methodStackTraceElement.methodName
+        val tag = "class (${methodStackTraceElement.fileName}:${methodStackTraceElement.lineNumber}) "
+        val parameter: String =
+            logContent?.logContentFormat(methodName, key, content) ?: logContentFormat(methodName, key, content)
+
+        print(priority, tag, parameter)
     }
 
     /**
@@ -168,10 +169,10 @@ object LogUtils : LogContent {
          */
 
         /**
-         * Here the character length is less than 1000, that is, the byte length is less than 4000,
+         * Here the character length is less than [singleLogCharLength],
          * then it will be printed directly, avoiding the subsequent process.
          */
-        if (content.length < 1000) {
+        if (content.length < singleLogCharLength) {
             Log.println(priority, tag, content)
             return
         }
@@ -179,8 +180,7 @@ object LogUtils : LogContent {
         // Convert the content to ByteArray.
         var bytes = content.toByteArray()
 
-        // Print when defaultByteLength is greater than bytes.size
-        if (defaultByteLength >= bytes.size) {
+        if (singleLogCharLength * 4 >= bytes.size) {
             Log.println(priority, tag, content)
             return
         }
@@ -188,31 +188,37 @@ object LogUtils : LogContent {
         // Segment printing count
         var count = 1
 
+        var printTheRest = true
+
         // In the range of the array, print in cycles
-        while (defaultByteLength < bytes.size) {
+        while (singleLogCharLength * 4 < bytes.size) {
             val subStr = cutStr(bytes)
 
-            count++
             Log.println(priority, tag, String.format("%s", subStr))
 
             // Truncate the unprinted bytes
             bytes = bytes.copyOfRange(subStr!!.toByteArray().size, bytes.size)
 
             if (count == maxPrintTimes) {
+                printTheRest = false
                 break
             }
+
+            count++
         }
 
         // Print the unprinted bytes
-        Log.println(priority, tag, String.format("%s", String(bytes)))
+        if(printTheRest){
+            Log.println(priority, tag, String.format("%s", String(bytes)))
+        }
     }
 
 
     /**
-     * Truncate the byte array as a string according to [defaultByteLength].
+     * Truncate the byte array as a string according to [singleLogCharLength].
      *
      * @param bytes byte array
-     * @return The string obtained by [defaultByteLength]
+     * @return The string obtained by [singleLogCharLength]
      */
     private fun cutStr(bytes: ByteArray?): String? {
         // Return when the bytes is null.
@@ -221,14 +227,30 @@ object LogUtils : LogContent {
         }
 
         // Return when the bytes length is less than the subLength.
-        if (defaultByteLength >= bytes.size) {
+        if (singleLogCharLength * 4 >= bytes.size) {
             return String(bytes)
         }
 
         // Copy the fixed-length byte array and convert it to a string
-        val subStr = String(Arrays.copyOf(bytes, defaultByteLength))
+        val subStr = String(Arrays.copyOf(bytes, singleLogCharLength * 4))
 
         // Avoid the end character is split, here minus 1 to keep the string intact
         return subStr.substring(0, subStr.length - 1)
+    }
+
+    private fun logContentFormat(methodName: String?, key: String?, content: String?): String {
+        return if (key == null || key.trim { it <= ' ' }.isEmpty()) {
+            "method: $methodName()  content: $content"
+        } else {
+            if (content?.isEmpty() == true) {
+                "method: $methodName() key: $key"
+            } else {
+                "method: $methodName() key: $key content: $content"
+            }
+        }
+    }
+
+    interface LogContent {
+        fun logContentFormat(methodName: String?, key: String?, content: String?): String
     }
 }

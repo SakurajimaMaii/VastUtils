@@ -2,7 +2,6 @@ package com.gcode.vasttools.utils
 
 import android.content.res.Resources
 import android.util.TypedValue
-import androidx.annotation.FloatRange
 import com.gcode.vasttools.annotation.UnderTest
 
 /**
@@ -16,29 +15,34 @@ import com.gcode.vasttools.annotation.UnderTest
  */
 object DensityUtils {
 
-    fun px2dp(@FloatRange(from = 0.0) pxValue: Float): Float {
+    fun px2dp(pxValue: Float): Float {
         val scale: Float = Resources.getSystem().displayMetrics.density
         return pxValue / scale
     }
 
-    fun dp2px(@FloatRange(from = 0.0) dpValue: Float): Float {
+    fun dp2px(dpValue: Float): Float {
         val scale = Resources.getSystem().displayMetrics.density
         return dpValue * scale
     }
 
-    fun px2sp(@FloatRange(from = 0.0) pxValue: Float): Float {
+    fun px2sp(pxValue: Float): Float {
         val fontScale = Resources.getSystem().displayMetrics.scaledDensity
         return pxValue / fontScale
     }
 
-    fun sp2px(@FloatRange(from = 0.0) spValue: Float): Float {
+    fun sp2px(spValue: Float): Float {
         val fontScale = Resources.getSystem().displayMetrics.scaledDensity
         return spValue * fontScale
     }
 
-    fun dp2sp(@FloatRange(from = 0.0) dpValue: Float): Float {
+    fun dp2sp(dpValue: Float): Float {
         val scale = Resources.getSystem().displayMetrics.density
         return px2sp(dpValue * scale)
+    }
+
+    fun sp2dp(spValue:Float):Float{
+        val fontScale = Resources.getSystem().displayMetrics.scaledDensity
+        return px2dp(spValue * fontScale)
     }
 
     /**

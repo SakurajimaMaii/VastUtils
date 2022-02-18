@@ -16,3 +16,4 @@ def libs = [
 libs.forEach {
     include(":libraries:$it")
 }
+include ':libraries:VastAnnotation'

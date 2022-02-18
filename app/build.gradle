@@ -42,11 +42,11 @@ android {
 dependencies {
 
     implementation project(':libraries:VastSwipeView')
-    //implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.2'
     implementation project(':libraries:VastNetStateLayout')
-    //implementation project(':libraries:VastTools')
+    implementation project(':libraries:VastTools')
     implementation project(':libraries:VastAdapter')
-    //implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.2'
+
+    implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.2'
     implementation 'io.github.sakurajimamaii:VastTools:0.0.4'
 
     implementation 'com.github.SakurajimaMaii:ShapeButton:0.0.5'

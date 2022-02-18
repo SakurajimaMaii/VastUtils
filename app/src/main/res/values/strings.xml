@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">VastUtilsSampleDemo</string>
+    <string name="app_name">VastUtils</string>
     <string name="loading_page">加载页面</string>
     <string name="swipe_list_view">仿qq滑动列表</string>
     <string name="vast_base_adapter">通用RecyclerView BaseAdapter</string>
     <string name="vast_base_bind_adapter">通用RecyclerView BaseBindingAdapter</string>
     <string name="picture">图片</string>
+    <string name="get_camera">获取相册图片</string>
+    <string name="shape">Shape工具类</string>
+    <string name="base_intent">常用intent</string>
 </resources>

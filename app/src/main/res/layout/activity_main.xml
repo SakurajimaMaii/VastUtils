@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".activity.MainActivity">
+        tools:context=".activity.MainActivityASDFGHJKLZXCVBNMQWERTYUIOPQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm">
         <com.gcode.shapebutton.ShapeButton
             android:id="@+id/loading_page"
             android:layout_width="match_parent"
@@ -69,5 +68,36 @@
             app:button_is_solid="true"
             app:button_normal_bg_color="#e1b12c"/>
 
+        <com.gcode.shapebutton.ShapeButton
+            android:id="@+id/intent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:text="@string/base_intent"
+            android:textColor="@color/white"
+            app:button_shape="rounded_rect_shape"
+            android:textAllCaps="false"
+            app:button_rounded_rect_corner_radius="10dp"
+            app:button_rect_width="1000dp"
+            app:button_rect_height="80dp"
+            app:button_is_solid="true"
+            app:button_normal_bg_color="#2ecc71"/>
+
+        <com.gcode.shapebutton.ShapeButton
+            android:id="@+id/shape"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:text="@string/shape"
+            android:textColor="@color/white"
+            app:button_shape="rounded_rect_shape"
+            android:textAllCaps="false"
+            app:button_rounded_rect_corner_radius="10dp"
+            app:button_rect_width="1000dp"
+            app:button_rect_height="80dp"
+            app:button_is_solid="true"
+            app:button_normal_bg_color="#f64f59"/>
+
     </LinearLayout>
-</layout>

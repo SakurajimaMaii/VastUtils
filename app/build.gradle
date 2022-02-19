@@ -46,18 +46,13 @@ dependencies {
     implementation project(':libraries:VastTools')
     implementation project(':libraries:VastAdapter')
 
-    implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.2'
-    implementation 'io.github.sakurajimamaii:VastTools:0.0.4'
-
-    implementation 'com.github.SakurajimaMaii:ShapeButton:0.0.5'
-
     implementation "androidx.activity:activity-ktx:$activity_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation 'androidx.annotation:annotation:1.3.0'
     testImplementation 'junit:junit:4.13.2'

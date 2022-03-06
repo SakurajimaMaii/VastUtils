@@ -73,23 +73,23 @@ class SwipeActivity : VastVbActivity<ActivitySwipeBinding>(){
             })
             setSwipeMenuCreator(object :VastSwipeMenuCreator{
                 override fun onCreateMenu(
-                    leftMenu: VastSwipeMenuView,
-                    rightMenu: VastSwipeMenuView,
+                    leftMenu: MutableList<VastSwipeMenu>,
+                    rightMenu: MutableList<VastSwipeMenu>,
                     position: Int
                 ) {
                     val delete = VastSwipeMenu(
                         this@SwipeActivity,"删除",ContextCompat.getDrawable(this@SwipeActivity,R.drawable.ic_delete))
-                    leftMenu.addItem(delete)
+                    leftMenu.add(delete)
 
                     val refresh = VastSwipeMenu(this@SwipeActivity,"刷新",ContextCompat.getDrawable(this@SwipeActivity,R.drawable.ic_refresh))
-                    rightMenu.addItem(refresh)
+                    rightMenu.add(refresh)
                 }
             })
         }
 
         val mAdapter = TAdapter(ArrayList<String>().apply {
             var i = 'A'.code
-            while (i <= 'I'.code) {
+            while (i <= 'Z'.code) {
                 this.add(i.toString())
                 i++
             }

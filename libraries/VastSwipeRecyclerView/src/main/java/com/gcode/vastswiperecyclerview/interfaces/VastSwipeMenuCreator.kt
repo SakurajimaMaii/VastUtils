@@ -24,7 +24,7 @@
 
 package com.gcode.vastswiperecyclerview.interfaces
 
-import com.gcode.vastswiperecyclerview.view.VastSwipeMenuView
+import com.gcode.vastswiperecyclerview.model.VastSwipeMenu
 
 /**
  * @OriginalAuthor: Vast Gui
@@ -34,6 +34,6 @@ import com.gcode.vastswiperecyclerview.view.VastSwipeMenuView
  */
 interface VastSwipeMenuCreator {
 
-    fun onCreateMenu(leftMenu:VastSwipeMenuView,rightMenu:VastSwipeMenuView,position:Int)
+    fun onCreateMenu(leftMenu:MutableList<VastSwipeMenu>,rightMenu:MutableList<VastSwipeMenu>,position:Int)
 
 }

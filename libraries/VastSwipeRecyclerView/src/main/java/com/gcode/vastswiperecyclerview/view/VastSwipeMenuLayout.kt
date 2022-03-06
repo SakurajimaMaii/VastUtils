@@ -26,21 +26,9 @@ package com.gcode.vastswiperecyclerview.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.TypedValue
-import android.view.GestureDetector
-import android.view.GestureDetector.SimpleOnGestureListener
-import android.view.MotionEvent
 import android.view.View
-import android.view.animation.Interpolator
 import android.widget.FrameLayout
-import android.widget.OverScroller
-import androidx.core.view.GestureDetectorCompat
-import com.gcode.vastswiperecyclerview.VastSwipeRvMgr
-import com.gcode.vastswiperecyclerview.annotation.STATE_CLOSE
-import com.gcode.vastswiperecyclerview.annotation.STATE_INIT
-import com.gcode.vastswiperecyclerview.annotation.SwipeMenuOrientation
 import com.gcode.vastswipeview.R
-import kotlin.math.abs
 
 /**
  * @OriginalAuthor: Vast Gui @OriginalDate: @EditAuthor: Vast Gui
@@ -56,75 +44,6 @@ class VastSwipeMenuLayout @JvmOverloads constructor(
     defStyle: Int = 0
 ) : FrameLayout(context, attrs, defStyle) {
 
-    /** The initial x coordinate every time you touch the screen. */
-    private var downX = 0
-
-    /**
-     * Swipe menu state.
-     *
-     * @see STATE_LEFT_OPEN
-     * @see STATE_RIGHT_OPEN
-     * @see STATE_CLOSE
-     */
-    private var state = STATE_CLOSE
-
-    /**
-     * Detects various gestures and events using the [onSwipe] supplied
-     * [MotionEvent]s.
-     */
-    private lateinit var gestureDetector: GestureDetectorCompat
-
-    /**
-     * Use to define the [SimpleOnGestureListener.onDown] and
-     * [SimpleOnGestureListener.onFling].
-     */
-    private lateinit var gestureListener: GestureDetector.OnGestureListener
-
-    /** Whether the finger is fling. */
-    private var isFling = false
-
-    /** The minimum distance of the finger fling. */
-    private val minFling = dp2px(15)
-
-    /**
-     * The max velocity of this fling measured in pixels per second
-     * along the x axis.
-     */
-    private val maxVelocityX = -dp2px(500)
-
-    /** Base x distance. */
-    private var baseX = 0
-
-    /** The position of the item in the list. */
-    var position = 0
-
-    /** Open scroller. */
-    private lateinit var openScroller: OverScroller
-
-    /** Close scroller. */
-    private lateinit var closeScroller: OverScroller
-
-    /**
-     * Close interpolator
-     *
-     * Get from [VastSwipeRvMgr.closeInterpolator].
-     */
-    private var closeInterpolator: Interpolator? = null
-
-    /**
-     * Open interpolator
-     *
-     * Get from [VastSwipeRvMgr.openInterpolator].
-     */
-    private var openInterpolator: Interpolator? = null
-
-    /** Swipe menu manager. */
-    private lateinit var manager: VastSwipeRvMgr
-
-    /** Swipe orientation. */
-    @setparam:SwipeMenuOrientation
-    private var swipeOrientation: Int = STATE_INIT
-
     private val defaultViewId = 0
 
     private var mLeftViewId = defaultViewId
@@ -136,35 +55,6 @@ class VastSwipeMenuLayout @JvmOverloads constructor(
     var mSwipeRightMenu: VastSwipeMenuView? = null
 
     init {
-        gestureListener = object : SimpleOnGestureListener() {
-            override fun onDown(e: MotionEvent): Boolean {
-                isFling = false
-                return true
-            }
-
-            override fun onFling(
-                e1: MotionEvent, e2: MotionEvent,
-                velocityX: Float, velocityY: Float
-            ): Boolean {
-                if (abs(e1.x - e2.x) > minFling && velocityX < maxVelocityX) {
-                    isFling = true
-                }
-                return super.onFling(e1, e2, velocityX, velocityY)
-            }
-        }
-        gestureDetector = GestureDetectorCompat(
-            context,
-            gestureListener
-        )
-        closeScroller = OverScroller(
-            context,
-            closeInterpolator
-        )
-        openScroller = OverScroller(
-            context,
-            openInterpolator
-        )
-
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.VastSwipeMenuLayout)
         mLeftViewId =
             typedArray.getResourceId(R.styleable.VastSwipeMenuLayout_leftViewId, mLeftViewId)
@@ -223,17 +113,6 @@ class VastSwipeMenuLayout @JvmOverloads constructor(
             measuredWidth + mSwipeRightMenu!!.measuredWidth,
             measuredHeight
         )
-    }
-
-    fun setManager(manager:VastSwipeRvMgr){
-        this.manager = manager
-    }
-
-    private fun dp2px(dp: Int): Int {
-        return TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(),
-            context.resources.displayMetrics
-        ).toInt()
     }
 
 }

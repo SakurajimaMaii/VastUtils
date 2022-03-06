@@ -24,11 +24,13 @@
 
 package com.gcode.vastswiperecyclerview.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.gcode.vastswiperecyclerview.VastSwipeRvMgr
+import com.gcode.vastswiperecyclerview.model.VastSwipeMenu
 import com.gcode.vastswiperecyclerview.view.VastSwipeMenuLayout
 import com.gcode.vastswiperecyclerview.view.VastSwipeMenuView
 import com.gcode.vastswipeview.R
@@ -77,28 +79,28 @@ internal class VastSwipeWrapperAdapter(
 
         }
 
-        (viewHolder.itemView as VastSwipeMenuLayout).apply {
-            setManager(manager)
-            position = viewHolder.bindingAdapterPosition
-        }
-
         return viewHolder
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         val itemView = holder.itemView as VastSwipeMenuLayout
+        val leftMenuList:MutableList<VastSwipeMenu> = ArrayList()
+        val rightMenuList:MutableList<VastSwipeMenu> = ArrayList()
+        manager.mSwipeMenuCreator?.onCreateMenu(leftMenuList, rightMenuList, position)
         val leftMenu:VastSwipeMenuView = (itemView.getChildAt(0) as VastSwipeMenuView).apply {
             setManager(manager)
             setPosition(position)
+            setMenu(leftMenuList)
         }
         val rightMenu:VastSwipeMenuView = (itemView.getChildAt(2) as VastSwipeMenuView).apply {
             setManager(manager)
             setPosition(position)
+            setMenu(rightMenuList)
         }
-        manager.mSwipeMenuCreator?.onCreateMenu(leftMenu, rightMenu, position)
 
         mAdapter.onBindViewHolder(holder,position)
+
     }
 
     override fun getItemCount() = mAdapter.itemCount

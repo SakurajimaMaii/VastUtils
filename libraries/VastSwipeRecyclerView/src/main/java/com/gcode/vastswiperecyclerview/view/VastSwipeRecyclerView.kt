@@ -147,13 +147,7 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
                     // should to close the flingView.Then get the item by getChildAt you touch now.
                     if (::swipeView.isInitialized && swipeView.scrollX != 0) {
                         Log.d("test","${swipeView.scrollX}")
-                        closeScroller.startScroll(
-                            0,
-                            0,
-                            -swipeView.scrollX,
-                            0,
-                            manager.menuCloseDuration
-                        )
+                        swipeView.scrollTo(0,0)
                     }
 
                     // Get the view you touch on the screen.

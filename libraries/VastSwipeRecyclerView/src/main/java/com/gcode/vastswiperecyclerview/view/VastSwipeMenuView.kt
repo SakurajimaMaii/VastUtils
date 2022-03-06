@@ -62,6 +62,14 @@ class VastSwipeMenuView @JvmOverloads constructor(
         this.position = position
     }
 
+    fun setMenu(menuList:MutableList<VastSwipeMenu>){
+        removeAllViews()
+
+        for(menu in menuList){
+            addItem(menu)
+        }
+    }
+
     fun setManager(manager: VastSwipeRvMgr) {
         this.manager = manager
     }
@@ -88,7 +96,7 @@ class VastSwipeMenuView @JvmOverloads constructor(
         }
     }
 
-    fun addItem(item: VastSwipeMenu) {
+    private fun addItem(item: VastSwipeMenu) {
         val parent = LinearLayout(context)
         parent.apply {
             layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)

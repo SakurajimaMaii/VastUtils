@@ -26,6 +26,7 @@
 
 package com.gcode.vastswiperecyclerview.annotation
 
+import android.util.TypedValue.*
 import androidx.annotation.IntDef
 import androidx.annotation.StringDef
 
@@ -109,20 +110,27 @@ const val LEFT_RIGHT = 2
 /**
  * Using when you want to set swipe menu content style.
  */
-@kotlin.annotation.Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.SOURCE)
 @StringDef(ONLY_TITLE, ONLY_ICON, ICON_TITLE)
 annotation class SwipeMenuContentStyle
 
 /**
  * Use when set the swipe orientation
  */
-@kotlin.annotation.Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.SOURCE)
 @IntDef(STATE_CLOSE, STATE_LEFT_OPEN, STATE_RIGHT_OPEN)
 annotation class SwipeMenuOrientation
 
 /**
  * Using when you want to set swipe menu style.
  */
-@kotlin.annotation.Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.SOURCE)
 @IntDef(NOT_INIT, ONLY_LEFT, ONLY_RIGHT, LEFT_RIGHT)
 annotation class MenuStyle
+
+/**
+ * Dimension
+ */
+@Retention(AnnotationRetention.SOURCE)
+@IntDef(COMPLEX_UNIT_PX,COMPLEX_UNIT_DIP,COMPLEX_UNIT_SP,COMPLEX_UNIT_PT,COMPLEX_UNIT_IN,COMPLEX_UNIT_MM)
+annotation class Dimension

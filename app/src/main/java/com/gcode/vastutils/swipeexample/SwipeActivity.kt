@@ -13,6 +13,7 @@ import com.gcode.vastactfrag.VastVbActivity
 import com.gcode.vastadapter.base.BaseVastBindAdapter
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vastswiperecyclerview.VastSwipeRvMgr
+import com.gcode.vastswiperecyclerview.annotation.ICON_TITLE
 import com.gcode.vastswiperecyclerview.annotation.ONLY_ICON
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemLongClickListener
@@ -56,10 +57,10 @@ class SwipeActivity : VastVbActivity<ActivitySwipeBinding>(){
         lists = initData()
 
         val manager = VastSwipeRvMgr(this).apply {
-            setTitleSize(10f.sp)
+            setTitleSize(20f)
             setIconSize(40f.dp)
             setMenuWidth(100f.dp)
-            setSwipeMenuContentStyle(ONLY_ICON)
+            setSwipeMenuContentStyle(ICON_TITLE)
             setSwipeItemClickListener(object: VastSwipeItemClickListener{
                 override fun onClickEvent(view: View, adapterPosition: Int) {
                     showShortMsg("Hello")

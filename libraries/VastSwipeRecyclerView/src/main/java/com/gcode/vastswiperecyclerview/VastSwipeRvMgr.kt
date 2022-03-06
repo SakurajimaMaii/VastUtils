@@ -25,13 +25,11 @@
 package com.gcode.vastswiperecyclerview
 
 import android.content.Context
+import android.util.TypedValue
 import android.view.animation.Interpolator
 import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
-import com.gcode.vastswiperecyclerview.annotation.ICON_TITLE
-import com.gcode.vastswiperecyclerview.annotation.ONLY_ICON
-import com.gcode.vastswiperecyclerview.annotation.ONLY_TITLE
-import com.gcode.vastswiperecyclerview.annotation.SwipeMenuContentStyle
+import com.gcode.vastswiperecyclerview.annotation.*
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemLongClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeMenuCreator
@@ -39,9 +37,7 @@ import com.gcode.vastswiperecyclerview.view.VastSwipeRecyclerView
 import com.gcode.vastswipeview.R
 
 /**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
+ * @OriginalAuthor: Vast Gui @OriginalDate: @EditAuthor: Vast Gui
  * @EditDate: 2021/11/29
  */
 
@@ -84,19 +80,18 @@ import com.gcode.vastswipeview.R
  */
 class VastSwipeRvMgr constructor(
     context: Context
-){
-    var context:Context = context
+) {
+    var context: Context = context
         private set
 
     /**
-     * Title size,default font size is **15sp**.
+     * Title size and unit,default font size is **15sp**.
      */
-    var titleSize = context.resources.getDimension(R.dimen.default_menu_item_title_size)
-        private set
+    var titleSize: TitleSize =
+        TitleSize(context.resources.getDimension(R.dimen.default_menu_item_title_size))
 
-    /**
-     * Icon size,default font size is **30dp**.
-     */
+
+    /** Icon size,default font size is **30dp**. */
     var iconSize = context.resources.getDimension(R.dimen.default_menu_item_icon_size)
         private set
 
@@ -107,175 +102,157 @@ class VastSwipeRvMgr constructor(
      * @see ONLY_ICON
      * @see ICON_TITLE
      */
-    var swipeMenuContentStyle:String = ICON_TITLE
+    var swipeMenuContentStyle: String = ICON_TITLE
         private set
 
-    /**
-     * Swipe menu item width.
-     */
+    /** Swipe menu item width. */
     var swipeMenuWidth = 100f
         private set
 
-    /**
-     * Swipe menu open duration(default value is **300**).
-     */
-    var menuOpenDuration:Int = 300
+    /** Swipe menu open duration(default value is **300**). */
+    var menuOpenDuration: Int = 300
         private set
 
-    /**
-     * Swipe menu close duration(default value is **300**).
-     */
-    var menuCloseDuration:Int = 300
+    /** Swipe menu close duration(default value is **300**). */
+    var menuCloseDuration: Int = 300
         private set
 
-    /**
-     * Close interpolator.
-     */
+    /** Close interpolator. */
     var closeInterpolator: Interpolator? = null
         private set
 
-    /**
-     * Open interpolator.
-     */
+    /** Open interpolator. */
     var openInterpolator: Interpolator? = null
         private set
 
     /**
      * When the distance(in pixels) you swipe to the right on the screen
      * is greater than the half of [leftMenuOpenDistanceThreshold],the
-     * left menu will be opened.If [leftMenuOpenDistanceThreshold] takes
-     * the default value of -1,The distance threshold value will be set
-     * to the half of the contentView width.When you set it,it should be
-     * set to a value between 0 and the screen width.
+     * left menu will be opened.If [leftMenuOpenDistanceThreshold]
+     * takes the default value of -1,The distance threshold value
+     * will be set to the half of the contentView width.When you set
+     * it,it should be set to a value between 0 and the screen width.
      */
-    var leftMenuOpenDistanceThreshold:Int = -1
+    var leftMenuOpenDistanceThreshold: Int = -1
         private set
 
     /**
      * When the distance(in pixels) you swipe to the left on the screen
      * is greater than the half of [rightMenuOpenDistanceThreshold],the
-     * right menu will be opened.If [rightMenuOpenDistanceThreshold] takes
-     * the default value of -1,The distance threshold value will be set
-     * to the half of the contentView width.When you set it,it should be
-     * set to a value between 0 and the screen width.
+     * right menu will be opened.If [rightMenuOpenDistanceThreshold]
+     * takes the default value of -1,The distance threshold value
+     * will be set to the half of the contentView width.When you set
+     * it,it should be set to a value between 0 and the screen width.
      */
-    var rightMenuOpenDistanceThreshold:Int = -1
+    var rightMenuOpenDistanceThreshold: Int = -1
         private set
 
 
     /**
-     * Listener used to dispatch click events of the item view in [VastSwipeRecyclerView].
+     * Listener used to dispatch click events of the item view in
+     * [VastSwipeRecyclerView].
      */
     var mSwipeItemClickListener: VastSwipeItemClickListener? = null
         private set
 
 
     /**
-     * Listener used to dispatch long click events of the item view in [VastSwipeRecyclerView].
+     * Listener used to dispatch long click events of the item view in
+     * [VastSwipeRecyclerView].
      */
     var mSwipeItemLongClickListener: VastSwipeItemLongClickListener? = null
         private set
 
-    /**
-     * Creator used to create the left and right menu.
-     */
+    /** Creator used to create the left and right menu. */
     var mSwipeMenuCreator: VastSwipeMenuCreator? = null
         private set
 
-    /**
-     * Set [VastSwipeRvMgr.swipeMenuContentStyle].
-     */
-    fun setSwipeMenuContentStyle(@SwipeMenuContentStyle swipeMenuContentStyle:String){
+    /** Set [VastSwipeRvMgr.swipeMenuContentStyle]. */
+    fun setSwipeMenuContentStyle(@SwipeMenuContentStyle swipeMenuContentStyle: String) {
         this.swipeMenuContentStyle = swipeMenuContentStyle
     }
 
-    /**
-     * Set [VastSwipeRvMgr.menuOpenDuration]
-     */
-    fun setMenuOpenDuration(@IntRange(from = 0) openDuration:Int){
+    /** Set [VastSwipeRvMgr.menuOpenDuration]. */
+    fun setMenuOpenDuration(@IntRange(from = 0) openDuration: Int) {
         menuOpenDuration = openDuration
     }
 
-    /**
-     * Set [VastSwipeRvMgr.menuCloseDuration]
-     */
-    fun setMenuCloseDuration(@IntRange(from = 0) closeDuration:Int){
+    /** Set [VastSwipeRvMgr.menuCloseDuration]. */
+    fun setMenuCloseDuration(@IntRange(from = 0) closeDuration: Int) {
         menuCloseDuration = closeDuration
     }
 
     /**
-     * Set titleSize by [titleSize].
+     * Set the [titleSize] to the given value, interpreted as "scaled
+     * pixel" units.
      */
-    fun setTitleSize(@FloatRange(from = 0.0) titleSize:Float){
-        this.titleSize = titleSize
+    fun setTitleSize(@FloatRange(from = 0.0) size: Float) {
+        titleSize = TitleSize(size)
     }
 
-    /**
-     * Set iconSize by [iconSize].
-     */
-    fun setIconSize(@FloatRange(from = 0.0) iconSize:Float){
+    fun setTitleSize(@FloatRange(from = 0.0) size: Float, @Dimension unit: Int) {
+        titleSize = TitleSize(size, unit)
+    }
+
+    /** Set iconSize by [iconSize] (in Scaled Pixels). */
+    fun setIconSize(@FloatRange(from = 0.0) iconSize: Float) {
         this.iconSize = iconSize
     }
 
-    /**
-     * Set swipeMenuWidth by [menuWidth]
-     */
-    fun setMenuWidth(@FloatRange(from = 0.0) menuWidth:Float){
+    /** Set swipeMenuWidth by [menuWidth]. */
+    fun setMenuWidth(@FloatRange(from = 0.0) menuWidth: Float) {
         this.swipeMenuWidth = menuWidth
     }
 
-    /**
-     * Set close interpolator.
-     */
+    /** Set close interpolator. */
     fun setCloseInterpolator(interpolator: Interpolator?) {
         closeInterpolator = interpolator
     }
 
-    /**
-     * Set open interpolator.
-     */
+    /** Set open interpolator. */
     fun setOpenInterpolator(interpolator: Interpolator?) {
         openInterpolator = interpolator
     }
 
-    /**
-     * Set [leftMenuOpenDistanceThreshold] (in pixels)
-     */
-    fun setLeftMenuOpenDistanceThreshold(@IntRange(from = 0) distance: Int){
+    /** Set [leftMenuOpenDistanceThreshold] (in pixels) */
+    fun setLeftMenuOpenDistanceThreshold(@IntRange(from = 0) distance: Int) {
         leftMenuOpenDistanceThreshold = distance
     }
 
-    /**
-     * Set [rightMenuOpenDistanceThreshold] (in pixels)
-     */
-    fun setRightMenuOpenDistanceThreshold(@IntRange(from = 0) distance: Int){
+    /** Set [rightMenuOpenDistanceThreshold] (in pixels) */
+    fun setRightMenuOpenDistanceThreshold(@IntRange(from = 0) distance: Int) {
         rightMenuOpenDistanceThreshold = distance
     }
 
     /**
-     * Register a callback to be invoked when this item view in RecyclerView is clicked.
+     * Register a callback to be invoked when this item view in
+     * RecyclerView is clicked.
      *
      * @param mSwipeItemClickListener
      */
-    fun setSwipeItemClickListener(mSwipeItemClickListener:VastSwipeItemClickListener){
+    fun setSwipeItemClickListener(mSwipeItemClickListener: VastSwipeItemClickListener) {
         this.mSwipeItemClickListener = mSwipeItemClickListener
     }
 
     /**
-     * Register a callback to be invoked when this item view in RecyclerView is clicked and held.
+     * Register a callback to be invoked when this item view in
+     * RecyclerView is clicked and held.
      *
      * @param mSwipeItemLongClickListener
      */
-    fun setSwipeItemLongClickListener(mSwipeItemLongClickListener:VastSwipeItemLongClickListener){
+    fun setSwipeItemLongClickListener(mSwipeItemLongClickListener: VastSwipeItemLongClickListener) {
         this.mSwipeItemLongClickListener = mSwipeItemLongClickListener
     }
 
     /**
-     * Register a callback to be invoked when create the left and right menu.
+     * Register a callback to be invoked when create the left and right
+     * menu.
      *
      * @param mSwipeMenuCreator
      */
-    fun setSwipeMenuCreator(mSwipeMenuCreator: VastSwipeMenuCreator?){
+    fun setSwipeMenuCreator(mSwipeMenuCreator: VastSwipeMenuCreator?) {
         this.mSwipeMenuCreator = mSwipeMenuCreator
     }
 }
+
+data class TitleSize(val size: Float, val unit: Int = TypedValue.COMPLEX_UNIT_SP)

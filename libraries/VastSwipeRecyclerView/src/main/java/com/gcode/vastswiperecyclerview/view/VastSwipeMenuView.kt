@@ -87,7 +87,8 @@ class VastSwipeMenuView @JvmOverloads constructor(
         return TextView(context).apply {
             text = item.title
             gravity = Gravity.CENTER
-            textSize = manager.titleSize
+            val (size,unit) = manager.titleSize
+            setTextSize(unit,size)
             layoutParams =
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
                     setMargins(10)

@@ -3,35 +3,42 @@ package com.gcode.vastutils.activity
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.LinearLayout.VERTICAL
 import androidx.annotation.RequiresApi
+import androidx.core.view.OneShotPreDrawListener.add
 import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.gcode.vastactfrag.VastVbActivity
 import com.gcode.vastutils.ImgUtils
 import com.gcode.vastutils.databinding.ActivityCameraBinding
 
-class CameraActivity : FragmentActivity() {
-    private lateinit var binding:ActivityCameraBinding
+class CameraActivity : VastVbActivity<ActivityCameraBinding>() {
 
-    private var bitmap: Bitmap? = null
+    override fun onActCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
 
-    @RequiresApi(Build.VERSION_CODES.Q)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityCameraBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-//        val getPhoto = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
-//            if(result.resultCode == Activity.RESULT_OK){
-//                //image 就是 imageView控件
-//                binding.image.setImageBitmap(result.data?.let { ImgUtils.choiceFromAlbum(it,this) })
-//            }
-//        }
-
-        binding.camerabutton.setOnClickListener {
-//            val intent = Intent(Intent.ACTION_GET_CONTENT)
-//            intent.type = "image/*"
-//            getPhoto.launch(intent)
-            val bitmap = ImgUtils.startCamera(this)
-            binding.image.setImageBitmap(bitmap)
-        }
     }
+
+}
+
+class mAdapter <T:RecyclerView.ViewHolder> (val datas:MutableList<String>): RecyclerView.Adapter<T>(){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): T {
+        TODO("Not yet implemented")
+    }
+
+    override fun onBindViewHolder(holder: T, position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getItemCount(): Int {
+        return datas.size
+    }
+}
+
+class mViewHolder(val view: View) : RecyclerView.ViewHolder(view){
+
 }

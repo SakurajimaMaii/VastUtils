@@ -2,13 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.TestActivity"
+    tools:context=".vastactfrag.BaseVbActivity"
     android:orientation="vertical">
-    <com.yanzhenjie.recyclerview.SwipeRecyclerView
-        android:id="@+id/swipeRv"
+    <TextView
+        android:id="@+id/tv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="320dp"
+        android:text="@string/app_name"
+        android:textSize="30sp"/>
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="@string/app_name" />
 </LinearLayout>

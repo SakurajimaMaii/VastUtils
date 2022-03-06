@@ -2,13 +2,11 @@ package com.gcode.vastutils.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Looper
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.gcode.vasttools.utils.*
 import com.gcode.vastutils.baseadpexample.BaseAdapterActivity
 import com.gcode.vastutils.basebindadpexample.BaseBindingAdapterActivity
 import com.gcode.vastutils.databinding.ActivityMainBinding
+import com.gcode.vastutils.swipeexample.SwipeActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.swipeListViewPage.setOnClickListener {
-            startActivity(Intent(this, SlideActivity::class.java))
+            startActivity(Intent(this, SwipeActivity::class.java))
         }
 
         binding.baseAdapter.setOnClickListener {

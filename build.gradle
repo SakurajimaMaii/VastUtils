@@ -4,7 +4,7 @@ buildscript {
         kotlin_version = "1.6.10"
         gradle_version = '7.0.4'
         activity_version = "1.4.0"
-        fragment_version = "1.4.0"
+        fragment_version = "1.4.1"
         camerax_version = "1.0.0-alpha06"
         dokka_version = "1.5.0"
     }

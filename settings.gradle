@@ -8,12 +8,13 @@ rootProject.name = "VastUtils"
 def libs = [
         "VastTools",
         "VastAdapter",
-        "VastActivity",
         "VastNetStateLayout",
-        "VastSwipeView"
+        "VastSwipeRecyclerView",
+        "VastActFrag"
 ]
 
 libs.forEach {
     include(":libraries:$it")
 }
+
 include ':libraries:VastAnnotation'

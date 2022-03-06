@@ -1,0 +1,8 @@
+<TextView android:id="@+id/tv_value"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="#dfe4ea"
+    android:layout_gravity="center"
+    android:textSize="20sp"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

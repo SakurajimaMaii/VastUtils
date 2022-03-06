@@ -8,4 +8,6 @@
     <string name="get_camera">获取相册图片</string>
     <string name="shape">Shape工具类</string>
     <string name="base_intent">常用intent</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

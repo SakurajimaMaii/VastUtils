@@ -84,9 +84,7 @@ class VastSwipeRvMgr constructor(
     var context: Context = context
         private set
 
-    /**
-     * Title size and unit,default font size is **15sp**.
-     */
+    /** Title size and unit,default font size is **15sp**. */
     var titleSize: TitleSize =
         TitleSize(context.resources.getDimension(R.dimen.default_menu_item_title_size))
 
@@ -190,6 +188,9 @@ class VastSwipeRvMgr constructor(
         titleSize = TitleSize(size)
     }
 
+    /**
+     * Set the default text size to a given [unit] and [size].
+     */
     fun setTitleSize(@FloatRange(from = 0.0) size: Float, @Dimension unit: Int) {
         titleSize = TitleSize(size, unit)
     }

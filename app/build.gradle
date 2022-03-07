@@ -44,7 +44,6 @@ dependencies {
     implementation project(':libraries:VastNetStateLayout')
     implementation project(':libraries:VastTools')
     implementation project(':libraries:VastAdapter')
-    implementation project(':libraries:VastActFrag')
     implementation project(':libraries:VastSwipeRecyclerView')
 
     implementation 'com.github.SakurajimaMaii:ShapeButton:0.0.5'

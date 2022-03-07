@@ -1,4 +1,4 @@
-package com.gcode.vastactfrag
+package com.gcode.vasttools.base
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

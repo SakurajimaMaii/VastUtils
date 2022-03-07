@@ -40,9 +40,7 @@ import com.gcode.vastswiperecyclerview.adapter.VastSwipeWrapperAdapter
 import kotlin.math.abs
 
 /**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
+ * @OriginalAuthor: Vast Gui @OriginalDate: @EditAuthor: Vast Gui
  * @EditDate: 2022/1/10
  */
 class VastSwipeRecyclerView @JvmOverloads constructor(
@@ -51,20 +49,16 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
     defStyle: Int = 0
 ) : RecyclerView(context, attrs, defStyle) {
 
-    /**
-     * velocity tracker.
-     */
+    /** velocity tracker. */
     private var velocityTracker: VelocityTracker? = null
 
     /**
-     * The minimum distance considered to be swiping
-     * (generally provided by the system).
+     * The minimum distance considered to be swiping (generally provided
+     * by the system).
      */
     private val touchSlop: Int
 
-    /**
-     * The scope of recyclerview item view.
-     */
+    /** The scope of recyclerview item view. */
     private var touchFrame: Rect? = null
 
     private lateinit var openScroller: OverScroller
@@ -74,57 +68,48 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
     /**
      * The x coordinate of the start of each swipe.
      *
-     * The [startX] will first get the starting x coordinate of each swipe in
-     * the [onInterceptTouchEvent] method, and then continue to update it in
-     * the [onTouchEvent] when detect the action is [MotionEvent.ACTION_MOVE].
+     * The [startX] will first get the starting x coordinate of each
+     * swipe in the [onInterceptTouchEvent] method, and then continue
+     * to update it in the [onTouchEvent] when detect the action is
+     * [MotionEvent.ACTION_MOVE].
      */
     private var startX = 0f
 
     /**
      * The x coordinate of the screen you first touch.
      *
-     * Used to determine which item in the [VastSwipeRecyclerView]
-     * you are touching at this time.
+     * Used to determine which item in the [VastSwipeRecyclerView] you
+     * are touching at this time.
      */
     private var firstX = 0f
 
     /**
      * The y coordinate of the screen you first touch.
      *
-     * Used to determine which item in the [VastSwipeRecyclerView]
-     * you are touching at this time.
+     * Used to determine which item in the [VastSwipeRecyclerView] you
+     * are touching at this time.
      */
     private var firstY = 0f
 
-    /**
-     * True if you swipe the item menu,otherwise False.
-     */
+    /** True if you swipe the item menu,otherwise False. */
     private var isSwipe = false
 
-    /**
-     * The item you touch on the screen.
-     */
+    /** The item you touch on the screen. */
     private lateinit var swipeView: VastSwipeMenuLayout
 
     /**
-     * The position of which item you touch in
-     * the [VastSwipeRecyclerView] at this time.
+     * The position of which item you touch in the
+     * [VastSwipeRecyclerView] at this time.
      */
     private var position = -1
 
-    /**
-     * Right swipe menu view width.
-     */
+    /** Right swipe menu view width. */
     private var rightMenuViewWidth = 0
 
-    /**
-     * Left swipe menu view width.
-     */
+    /** Left swipe menu view width. */
     private var leftMenuViewWidth = 0
 
-    /**
-     * Manager,you can learn more by check [VastSwipeRvMgr]
-     */
+    /** Manager,you can learn more by check [VastSwipeRvMgr]. */
     private lateinit var manager: VastSwipeRvMgr
 
     override fun onInterceptTouchEvent(e: MotionEvent): Boolean {
@@ -146,19 +131,24 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
                     // If flingView isInitialized,it maybe not the item you touch now,so call you
                     // should to close the flingView.Then get the item by getChildAt you touch now.
                     if (::swipeView.isInitialized && swipeView.scrollX != 0) {
-                        Log.d("test","${swipeView.scrollX}")
-                        swipeView.scrollTo(0,0)
+                        Log.d("test", "${swipeView.scrollX}")
+                        closeScroller.startScroll(
+                            swipeView.scrollX,
+                            0,
+                            -swipeView.scrollX,
+                            0,
+                            manager.menuCloseDuration
+                        )
+                        //swipeView.scrollTo(0,0)
                     }
-
                     // Get the view you touch on the screen.
                     val view =
                         getChildAt(position - (layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
-
                     if (null != view) {
                         swipeView = view as VastSwipeMenuLayout
 
-                        leftMenuViewWidth = swipeView.mSwipeLeftMenu?.width?: 0
-                        rightMenuViewWidth = swipeView.mSwipeRightMenu?.width?: 0
+                        leftMenuViewWidth = swipeView.mSwipeLeftMenu?.width ?: 0
+                        rightMenuViewWidth = swipeView.mSwipeRightMenu?.width ?: 0
 
                     } else {
                         throw RuntimeException("The item of the position you touch is not the type of VastSwipeMenuLayout.")
@@ -253,19 +243,22 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
             }
             return true
         } else {
-            smoothCloseMenu()
+            //smoothCloseMenu()
             releaseVelocity()
         }
         return super.onTouchEvent(e)
     }
 
     override fun computeScroll() {
+
         if (openScroller.computeScrollOffset()) {
+            //Log.d("test","openScroller Hello")
             swipeView.scrollTo(openScroller.currX, openScroller.currY)
             invalidate()
         }
 
         if (closeScroller.computeScrollOffset()) {
+            Log.d("test", "closeScroller Hello ${closeScroller.currX} ${closeScroller.currY}")
             swipeView.scrollTo(closeScroller.currX, closeScroller.currY)
             invalidate()
         }
@@ -287,9 +280,9 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
 
     override fun setAdapter(adapter: Adapter<ViewHolder>?) {
 
-        var wrapperAdapter:VastSwipeWrapperAdapter? = null
+        var wrapperAdapter: VastSwipeWrapperAdapter? = null
 
-        if(null != adapter){
+        if (null != adapter) {
             wrapperAdapter = VastSwipeWrapperAdapter(manager, adapter)
         }
 
@@ -333,6 +326,7 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
 
     private fun smoothCloseMenu() {
         if (::swipeView.isInitialized) {
+            Log.d("test", "close ${swipeView.scrollX}")
             closeScroller.startScroll(
                 swipeView.scrollX,
                 0,
@@ -351,16 +345,14 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
     }
 
 
-
     companion object {
         /**
-         * The point you touch on the screen is not within the scope of the RecyclerView's subviews.
+         * The point you touch on the screen is not within the scope of
+         * the RecyclerView's subviews.
          */
         private const val INVALID_POSITION = -1
 
-        /**
-         * The minimum swipe velocity.
-         */
+        /** The minimum swipe velocity. */
         private const val SNAP_VELOCITY = 600
     }
 

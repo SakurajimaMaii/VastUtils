@@ -24,16 +24,15 @@
 
 package com.gcode.vastswiperecyclerview.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.gcode.vastswiperecyclerview.R
 import com.gcode.vastswiperecyclerview.VastSwipeRvMgr
 import com.gcode.vastswiperecyclerview.model.VastSwipeMenu
 import com.gcode.vastswiperecyclerview.view.VastSwipeMenuLayout
 import com.gcode.vastswiperecyclerview.view.VastSwipeMenuView
-import com.gcode.vastswipeview.R
 import java.lang.reflect.Field
 
 

@@ -28,7 +28,9 @@ package com.gcode.vasttools.utils
 import androidx.annotation.IntRange
 
 /**
- * @OriginalAuthor: Vast Gui @OriginalDate: @EditAuthor: Vast Gui
+ * @OriginalAuthor: Vast Gui
+ * @OriginalDate:
+ * @EditAuthor: Vast Gui
  * @EditDate: 2022/3/9
  */
 

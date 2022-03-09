@@ -30,7 +30,7 @@ import android.graphics.drawable.Drawable
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeMenuClickListener
-import com.gcode.vastswipeview.R
+import com.gcode.vastswiperecyclerview.R
 
 /**
  * @OriginalAuthor: Vast Gui

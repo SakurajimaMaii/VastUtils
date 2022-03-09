@@ -34,7 +34,7 @@ import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemLongClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeMenuCreator
 import com.gcode.vastswiperecyclerview.view.VastSwipeRecyclerView
-import com.gcode.vastswipeview.R
+import com.gcode.vastswiperecyclerview.R
 
 /**
  * @OriginalAuthor: Vast Gui @OriginalDate: @EditAuthor: Vast Gui

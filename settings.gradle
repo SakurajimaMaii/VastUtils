@@ -6,8 +6,8 @@ rootProject.name = "VastUtils"
 // =======
 
 def libs = [
-        "VastTools",
         "VastAdapter",
+        "VastTools",
         "VastNetStateLayout",
         "VastSwipeRecyclerView",
 ]
@@ -15,5 +15,3 @@ def libs = [
 libs.forEach {
     include(":libraries:$it")
 }
-
-include ':libraries:VastAnnotation'

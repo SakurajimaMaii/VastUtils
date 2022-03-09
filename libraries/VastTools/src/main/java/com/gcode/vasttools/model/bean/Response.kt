@@ -8,4 +8,4 @@ package com.gcode.vasttools.model.bean
  */
 
 // Response json bean
-open class Response(val code:Int,val msg:String,val data:Any)
+open class Response<T:Any> (val code:Int,val msg:String,val data:T)

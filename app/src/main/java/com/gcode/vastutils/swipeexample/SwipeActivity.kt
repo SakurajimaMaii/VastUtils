@@ -18,7 +18,7 @@ import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemLongClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeMenuCreator
 import com.gcode.vastswiperecyclerview.model.VastSwipeMenu
-import com.gcode.vasttools.utils.DensityUtils.dp
+import com.gcode.vasttools.utils.dp
 import com.gcode.vasttools.utils.showShortMsg
 import com.gcode.vastutils.BR
 import com.gcode.vastutils.R

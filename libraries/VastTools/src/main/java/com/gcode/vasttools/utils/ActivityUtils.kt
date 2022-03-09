@@ -22,38 +22,35 @@
  * SOFTWARE.
  */
 
-package com.gcode.vasttools.base
+package com.gcode.vasttools.utils
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.gcode.vasttools.extension.getVmClass
+import android.app.Activity
 
 /**
  * @OriginalAuthor: Vast Gui
  * @OriginalDate:
  * @EditAuthor: Vast Gui
- * @EditDate: 2022/2/19
+ * @EditDate: 2022/3/8
  */
-abstract class VastVmFragment<VM:ViewModel>: VastFragment() {
+object ActivityUtils {
 
-    protected lateinit var mViewModel: VM
+    private val activities = ArrayList<Activity>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        mViewModel = createViewModel()
-
-        return dataBindView ?: inflater.inflate(layoutId, container, false)
+    fun addActivity(activity: Activity){
+        activities.add(activity)
     }
 
-    private fun createViewModel(): VM {
-        return ViewModelProvider(this).get(getVmClass(this))
+    fun removeActivity(activity: Activity){
+        activities.remove(activity)
+    }
+
+    fun finishAllActivity(){
+        for(activity in activities){
+            if(!activity.isFinishing){
+                activity.finish()
+            }
+        }
+        activities.clear()
     }
 
 }

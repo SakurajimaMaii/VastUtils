@@ -1,80 +1,100 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2021 码上夏雨
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 @file:JvmName("ScreenSizeUtils")
 
 package com.gcode.vasttools.utils
 
+import android.annotation.TargetApi
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Point
 import android.os.Build
 import android.view.WindowManager
 import android.view.WindowMetrics
 import androidx.annotation.RequiresApi
 
-
 /**
- * S real sizes
- * Read the defaultDisplay parameter in windowManager
+ * @Author: Vast Gui
+ * @Email: guihy2019@gmail.com
+ * @Date: 2022/3/10 15:27
+ * @Description: Help you to get the width and height of screen.
+ * @Documentation:
  */
-@Volatile
-private var sRealSizes = arrayOfNulls<Point>(2)
 
-/**
- * Get screen real height(in Api 31)
- * @param context Context for the transform.
- * @return Device Screen Real Height(in pixels).
- */
+data class ScreenSize(val width: Int, val height:Int)
+
+private var mScreenSize = ScreenSize(0,0)
+
 @RequiresApi(Build.VERSION_CODES.S)
-private fun getScreenRealHeightApi31(context: Context): Int {
+private fun getScreenSizeApi31(context: Context): ScreenSize {
     val vm: WindowMetrics =
         (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).currentWindowMetrics
-    return vm.bounds.height()
+    return ScreenSize(vm.bounds.width(),vm.bounds.height())
 }
 
-/**
- * Get screen real height(in Api 30)
- * @param context Context for the transform.
- * @return Device Screen Real Height(in pixels).
- */
 @RequiresApi(Build.VERSION_CODES.R)
-private fun getScreenRealHeightApi30(context: Context): Int {
-    var orientation = context.resources?.configuration?.orientation
-    orientation = if (orientation == 1) 0 else 1
-    if (sRealSizes[orientation] == null) {
-        val point = Point()
-        context.display?.getRealSize(point)
-        sRealSizes[orientation] = point
+private fun getScreenSizeApi30(context: Context): ScreenSize {
+    val orientation = context.resources?.configuration?.orientation
+    val point = Point()
+    context.display?.getRealSize(point)
+    return if(orientation == Configuration.ORIENTATION_PORTRAIT){
+        ScreenSize(point.x, point.y)
+    }else{
+        ScreenSize(point.y, point.x)
     }
-    return sRealSizes[orientation]?.y ?: 0
 }
 
-/**
- * Get screen real height Api 30 Down
- * @param context Context for the transform.
- * @return Device Screen Real Height(in pixels).
- */
-private fun getScreenRealHeightApi30Down(context: Context): Int {
-    var orientation = context.resources?.configuration?.orientation
-    orientation = if (orientation == 1) 0 else 1
-    if (sRealSizes[orientation] == null) {
-        val point = Point()
-        val vm: WindowManager =
-            context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        vm.defaultDisplay.getRealSize(point)
-        sRealSizes[orientation] = point
+private fun getScreenSizeApi30Below(context: Context): ScreenSize {
+    val orientation = context.resources?.configuration?.orientation
+    val point = Point()
+    val vm: WindowManager =
+        context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    vm.defaultDisplay.getRealSize(point)
+    return if(orientation == Configuration.ORIENTATION_PORTRAIT){
+        ScreenSize(point.x, point.y)
+    }else{
+        ScreenSize(point.y, point.x)
     }
-    return sRealSizes[orientation]?.y ?: 0
+}
+
+private fun Context.getMobileScreenSize(): ScreenSize {
+    return when {
+        (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) -> getScreenSizeApi31(this)
+        (Build.VERSION.SDK_INT == Build.VERSION_CODES.R) -> getScreenSizeApi30(this)
+        else -> getScreenSizeApi30Below(this)
+    }
 }
 
 /**
  * Get mobile screen height.
  *
- *
+ * @return The width of the screen, in **pixels**
  */
-fun Context.getMobileScreenHeight(): Int {
-    return when{
-        (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) -> getScreenRealHeightApi31(this)
-        (Build.VERSION.SDK_INT == Build.VERSION_CODES.R) -> getScreenRealHeightApi30(this)
-        else-> getScreenRealHeightApi30Down(this)
-    }
+fun Context.getMobileScreenHeight():Int {
+    mScreenSize = getMobileScreenSize()
+    return mScreenSize.height
 }
 
 /**
@@ -82,4 +102,7 @@ fun Context.getMobileScreenHeight(): Int {
  *
  * @return The width of the screen, in **pixels**
  */
-fun Context.getMobileScreenWidth() = this.resources?.displayMetrics?.widthPixels ?: 0
+fun Context.getMobileScreenWidth():Int {
+    mScreenSize = getMobileScreenSize()
+    return mScreenSize.width
+}

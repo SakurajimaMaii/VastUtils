@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.gcode.vastadapter.base.BaseVastAdapterVH
+import com.gcode.vastadapter.base.VastAdapterVH
 import com.gcode.vastadapter.interfaces.VastAdapterItem
 import com.gcode.vastutils.R
 import com.gcode.vastutils.baseadpexample.model.BExample
@@ -16,7 +16,7 @@ import com.gcode.vastutils.baseadpexample.model.BExample
  * @EditAuthor: Vast Gui
  * @EditDate: 2022/1/19
  */
-class BViewHolder(itemView: View) : BaseVastAdapterVH(itemView) {
+class BViewHolder(itemView: View) : VastAdapterVH(itemView) {
 
     private val iv: ImageView
 
@@ -30,7 +30,7 @@ class BViewHolder(itemView: View) : BaseVastAdapterVH(itemView) {
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
-        ): BaseVastAdapterVH {
+        ): VastAdapterVH {
             val inflater = LayoutInflater.from(parent.context)
             val itemView: View = inflater.inflate(R.layout.item_imageview, parent, false)
             return BViewHolder(itemView)

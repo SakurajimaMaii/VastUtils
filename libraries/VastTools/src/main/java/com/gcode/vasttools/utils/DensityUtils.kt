@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 @file:JvmName("DensityUtils")
 
 package com.gcode.vasttools.utils
@@ -29,11 +30,10 @@ import android.content.res.Resources
 import android.util.TypedValue
 
 /**
- * Density util
- *
- * If you have any questions about the concept of various size units,
- * you can visit the link:
- * [Dimension](https://developer.android.google.cn/guide/topics/resources/more-resources?hl=zh-cn#Dimension)
+ * @Author: Vast Gui
+ * @Date: 2022/3/10 15:27
+ * @Description: Provides some basic conversion methods between different dimension.
+ * @Documentation:
  */
 
 fun px2dp(pxValue: Float): Float {
@@ -61,13 +61,14 @@ fun dp2sp(dpValue: Float): Float {
     return px2sp(dpValue * scale)
 }
 
-fun sp2dp(spValue:Float):Float{
+fun sp2dp(spValue: Float): Float {
     val fontScale = Resources.getSystem().displayMetrics.scaledDensity
     return px2dp(spValue * fontScale)
 }
 
 /**
- * @return The complex floating point value multiplied by the appropriate metrics(in dp).
+ * @return The complex floating point value multiplied by the
+ *     appropriate metrics(in density-independent pixels).
  */
 val Float.dp
     get() = TypedValue.applyDimension(
@@ -77,7 +78,8 @@ val Float.dp
     )
 
 /**
- * @return The complex floating point value multiplied by the appropriate metrics(in sp).
+ * @return The complex floating point value multiplied by the
+ *     appropriate metrics(in scale-independent pixels).
  */
 val Float.sp
     get() = TypedValue.applyDimension(
@@ -87,7 +89,8 @@ val Float.sp
     )
 
 /**
- * @return The complex floating point value multiplied by the appropriate metrics(in px).
+ * @return The complex floating point value multiplied by the
+ *     appropriate metrics(in pixels).
  */
 val Float.px
     get() = TypedValue.applyDimension(
@@ -97,7 +100,8 @@ val Float.px
     )
 
 /**
- * @return The complex floating point value multiplied by the appropriate metrics(in pt).
+ * @return The complex floating point value multiplied by the
+ *     appropriate metrics(in points).
  */
 val Float.pt
     get() = TypedValue.applyDimension(
@@ -107,7 +111,8 @@ val Float.pt
     )
 
 /**
- * @return The complex floating point value multiplied by the appropriate metrics(in in).
+ * @return The complex floating point value multiplied by the
+ *     appropriate metrics(in inches).
  */
 val Float.inches
     get() = TypedValue.applyDimension(
@@ -117,7 +122,8 @@ val Float.inches
     )
 
 /**
- * @return The complex floating point value multiplied by the appropriate metrics(in in).
+ * @return The complex floating point value multiplied by the
+ *     appropriate metrics(in millimeters).
  */
 val Float.mm
     get() = TypedValue.applyDimension(

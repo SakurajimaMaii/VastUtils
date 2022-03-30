@@ -87,12 +87,12 @@ internal class VastSwipeWrapperAdapter(
         val leftMenuList:MutableList<VastSwipeMenu> = ArrayList()
         val rightMenuList:MutableList<VastSwipeMenu> = ArrayList()
         manager.mSwipeMenuCreator?.onCreateMenu(leftMenuList, rightMenuList, position)
-        val leftMenu:VastSwipeMenuView = (itemView.getChildAt(0) as VastSwipeMenuView).apply {
+        (itemView.getChildAt(0) as VastSwipeMenuView).apply {
             setManager(manager)
             setPosition(position)
             setMenu(leftMenuList)
         }
-        val rightMenu:VastSwipeMenuView = (itemView.getChildAt(2) as VastSwipeMenuView).apply {
+        (itemView.getChildAt(2) as VastSwipeMenuView).apply {
             setManager(manager)
             setPosition(position)
             setMenu(rightMenuList)

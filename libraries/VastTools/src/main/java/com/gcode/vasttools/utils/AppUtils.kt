@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2021 码上夏雨
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 @file:JvmName("AppUtils")
 
 package com.gcode.vasttools.utils
@@ -12,19 +36,25 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 
 /**
- * App info utils
- * Get information about App
- * @constructor Create empty App utils
+ * @Author: Vast Gui
+ * @Email: guihy2019@gmail.com
+ * @Date: 2022/3/10 15:27
+ * @Description: Get information about App
+ * @Documentation:
+ */
+
+/**
+ * @return app name
  */
 @Synchronized
-fun getAppName(context: Context): String? {
+fun Context.getAppName(): String? {
     try {
-        val packageManager: PackageManager = context.packageManager
+        val packageManager: PackageManager = this.packageManager
         val packageInfo: PackageInfo = packageManager.getPackageInfo(
-            context.packageName, 0
+            this.packageName, 0
         )
         val labelRes = packageInfo.applicationInfo.labelRes
-        return context.resources.getString(labelRes)
+        return this.resources.getString(labelRes)
     } catch (e: Exception) {
         e.printStackTrace()
     }
@@ -32,15 +62,14 @@ fun getAppName(context: Context): String? {
 }
 
 /**
- * @param context
  * @return The version name of the current application
  */
 @Synchronized
-fun getVersionName(context: Context): String? {
+fun Context.getVersionName(): String? {
     try {
-        val packageManager = context.packageManager
+        val packageManager = this.packageManager
         val packageInfo = packageManager.getPackageInfo(
-            context.packageName, 0
+            this.packageName, 0
         )
         return packageInfo.versionName
     } catch (e: Exception) {
@@ -50,15 +79,14 @@ fun getVersionName(context: Context): String? {
 }
 
 /**
- * Get VersionCode
  * @return The version code of the current application
  */
 @Synchronized
-fun getVersionCode(context: Context) =
+fun Context.getVersionCode() =
     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
-        getVersionCodeApi28Above(context)
+        getVersionCodeApi28Above(this)
     }else{
-        getVersionCodeApi28Down(context)
+        getVersionCodeApi28Down(this)
     }
 
 
@@ -99,7 +127,6 @@ internal fun getVersionCodeApi28Down(context: Context): Int{
 }
 
 /**
- * @param context
  * @return The package name of the application
  */
 @Synchronized
@@ -117,18 +144,17 @@ fun getPackageName(context: Context): String? {
 }
 
 /**
- * @param context
  * @return The icon of the application
  */
 @Synchronized
-fun getAppBitmap(context: Context): Bitmap? {
+fun Context.getAppBitmap(): Bitmap? {
     var packageManager: PackageManager? = null
     var applicationInfo: ApplicationInfo?
     try {
-        packageManager = context.applicationContext
+        packageManager = this.applicationContext
             .packageManager
         applicationInfo = packageManager.getApplicationInfo(
-            context.packageName, 0
+            this.packageName, 0
         )
     } catch (e: PackageManager.NameNotFoundException) {
         applicationInfo = null
@@ -139,10 +165,14 @@ fun getAppBitmap(context: Context): Bitmap? {
     return bd.bitmap
 }
 
+
+/**
+ * @return true if the app is debuggable.false otherwise.
+ */
 @Synchronized
-fun getAppDebug(context: Context): Boolean {
+fun Context.getAppDebug(): Boolean {
     return try {
-        val info = context.applicationInfo
+        val info = this.applicationInfo
         info.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
     } catch (e: java.lang.Exception) {
         false

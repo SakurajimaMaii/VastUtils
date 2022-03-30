@@ -2,44 +2,39 @@ package com.gcode.vastutils.activity
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.gcode.vasttools.base.VastVbActivity
 import com.gcode.vastutils.baseadpexample.BaseAdapterActivity
 import com.gcode.vastutils.basebindadpexample.BaseBindingAdapterActivity
 import com.gcode.vastutils.databinding.ActivityMainBinding
 import com.gcode.vastutils.swipeexample.SwipeActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : VastVbActivity<ActivityMainBinding>() {
 
-    private lateinit var binding: ActivityMainBinding
+    override fun initView(savedInstanceState: Bundle?) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-
-        binding.loadingPage.setOnClickListener {
+        mBinding.loadingPage.setOnClickListener {
             startActivity(Intent(this, NetStateActivity::class.java))
         }
 
-        binding.swipeListViewPage.setOnClickListener {
+        mBinding.swipeListViewPage.setOnClickListener {
             startActivity(Intent(this, SwipeActivity::class.java))
         }
 
-        binding.baseAdapter.setOnClickListener {
+        mBinding.baseAdapter.setOnClickListener {
             startActivity(Intent(this, BaseAdapterActivity::class.java))
         }
 
-        binding.baseBindAdapter.setOnClickListener {
+        mBinding.baseBindAdapter.setOnClickListener {
             startActivity(Intent(this, BaseBindingAdapterActivity::class.java))
         }
 
-        binding.intent.setOnClickListener {
+        mBinding.intent.setOnClickListener {
             startActivity(Intent(this,IntentActivity::class.java))
         }
 
-        binding.shape.setOnClickListener {
+        mBinding.shape.setOnClickListener {
             startActivity(Intent(this,ShapeActivity::class.java))
         }
     }
+
 }

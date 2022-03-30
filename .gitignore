@@ -41,3 +41,7 @@ docs/
 
 gradle.properties
 publish-mavencentral.gradle
+
+#output
+debug/
+release/

@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 @file:JvmName("RegexUtils")
 
 package com.gcode.vasttools.utils
@@ -28,15 +29,15 @@ package com.gcode.vasttools.utils
 import androidx.annotation.IntRange
 
 /**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
- * @EditDate: 2022/3/9
+ * @Author: Vast Gui
+ * @Email: guihy2019@gmail.com
+ * @Date: 2022/3/10 15:27
+ * @Description: Provides regex checks for some common strings.
+ * @Documentation:
  */
 
 /**
  * @receiver String to match.
- *
  * @return true if the String is a email address, false otherwise.
  */
 fun String.isEmail(): Boolean {
@@ -45,24 +46,24 @@ fun String.isEmail(): Boolean {
 
 /**
  * @receiver String to match.
- *
- * @param case 0 Password contains at least numbers and letters.
- *             1 Password contains two or more types:numbers, letters, and characters.
- *             2 Password contains at least numbers and letters, and can have characters.
+ * @param case 0 Password contains at least numbers and letters. 1
+ *     Password contains two or more types:numbers,
+ *     letters, and characters. 2 Password contains at
+ *     least numbers and letters, and can have characters.
  * @param minLength Minimum password length.
  * @param maxLength Maximum password length.
- *
  * @return true if the String is a password, false otherwise.
  */
 @JvmOverloads
 fun String.isPwd(
     @IntRange(from = 0, to = 2) case: Int = 0,
     @IntRange(from = 0) minLength: Int = 6,
-    @IntRange(from = 0) maxLength: Int = 20): Boolean {
-    if(minLength > maxLength){
+    @IntRange(from = 0) maxLength: Int = 20
+): Boolean {
+    if (minLength > maxLength) {
         throw IllegalArgumentException("minLength should be less than maxLength")
     }
-    if((this.length < minLength) or (this.length > maxLength)){
+    if ((this.length < minLength) or (this.length > maxLength)) {
         throw IllegalArgumentException("Password length does not meet requirements")
     }
     return when (case) {
@@ -82,38 +83,29 @@ fun String.isPwd(
  *
  * @return true if the String is a qq number, false otherwise.
  */
-fun String.isQQ():Boolean{
+fun String.isQQ(): Boolean {
     return Regex("[1-9][0-9]{4,}").matches(this)
 }
 
 /**
- * String to match.By default, it is verified according to the Chinese resident ID number.
+ * String to match.By default, it is verified according to the Chinese
+ * phone number.
  *
- * @param otherCountryPattern Other National ID Card Number Formats.
- *
- * @return true if the String is a id card number, false otherwise.
+ * @param otherCountryPattern Other National Phone Number Formats.
+ * @return true if the String is a phone number, false otherwise.
  */
 @JvmOverloads
-fun String.isIdCardNumber(otherCountryPattern: String? = null): Boolean{
-    return if(null != otherCountryPattern){
+fun String.isPhoneNumber(otherCountryPattern: String? = null): Boolean {
+    return if (null != otherCountryPattern) {
         Regex(otherCountryPattern).matches(this)
-    }else{
-        Regex("(^\\d{15}\$)|(^\\d{18}\$)|(^\\d{17}(\\d|X|x)\$)").matches(this)
+    } else {
+        Regex("1(3\\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\\d|9[0-35-9])\\d{8}").matches(this)
     }
 }
 
 /**
- * String to match.By default, it is verified according to the Chinese phone number.
- *
- * @param otherCountryPattern Other National Phone Number Formats.
- *
- * @return true if the String is a phone number, false otherwise.
+ * @return true if the String is a number, false otherwise.
  */
-@JvmOverloads
-fun String.isPhoneNumber(otherCountryPattern: String? = null): Boolean{
-    return if(null != otherCountryPattern){
-        Regex(otherCountryPattern).matches(this)
-    }else{
-        Regex("1(3\\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\\d|9[0-35-9])\\d{8}").matches(this)
-    }
+fun String.isNumeric(): Boolean {
+    return Regex("[0-9]*").matches(this)
 }

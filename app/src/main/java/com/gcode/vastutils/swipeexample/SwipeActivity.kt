@@ -1,7 +1,6 @@
 package com.gcode.vastutils.swipeexample
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.gcode.vasttools.base.VastVbActivity
-import com.gcode.vastadapter.base.BaseVastBindAdapter
+import com.gcode.vastadapter.base.VastBindAdapter
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vastswiperecyclerview.VastSwipeRvMgr
 import com.gcode.vastswiperecyclerview.annotation.ICON_TITLE
@@ -18,6 +16,7 @@ import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemLongClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeMenuCreator
 import com.gcode.vastswiperecyclerview.model.VastSwipeMenu
+import com.gcode.vasttools.base.VastVbActivity
 import com.gcode.vasttools.utils.dp
 import com.gcode.vasttools.utils.showShortMsg
 import com.gcode.vastutils.BR
@@ -41,7 +40,7 @@ class SwipeActivity : VastVbActivity<ActivitySwipeBinding>(){
         return list
     }
 
-    class Adapter(data:MutableList<VastBindAdapterItem>):BaseVastBindAdapter(data){
+    class Adapter(data:MutableList<VastBindAdapterItem>):VastBindAdapter(data){
 
         override fun setVariableId(): Int {
             return BR.item
@@ -49,8 +48,7 @@ class SwipeActivity : VastVbActivity<ActivitySwipeBinding>(){
 
     }
 
-    override fun onActCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-
+    override fun initView(savedInstanceState: Bundle?) {
         lists = initData()
 
         val manager = VastSwipeRvMgr(this).apply {
@@ -92,10 +90,6 @@ class SwipeActivity : VastVbActivity<ActivitySwipeBinding>(){
                 i++
             }
         })
-
-        val tv = TextView(this).apply {
-
-        }
 
         mBinding.swipeRv.apply {
             setManager(manager)

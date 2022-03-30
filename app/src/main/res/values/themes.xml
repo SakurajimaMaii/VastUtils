@@ -1,16 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.VastUtils" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+    <style name="VastTheme.DayNight" parent="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/vast_skin_primary</item>
+        <item name="colorPrimaryVariant">@color/vast_skin_primary_variant</item>
+        <item name="colorOnPrimary">@color/vast_skin_on_primary</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="colorSecondary">@color/vast_skin_secondary</item>
+        <item name="colorSecondaryVariant">@color/vast_skin_primary_variant</item>
+        <item name="colorOnSecondary">@color/vast_skin_on_secondary</item>
+        <!-- Surface color. -->
+        <item name="colorSurface">@color/vast_skin_surface</item>
+        <item name="colorOnSurface">@color/vast_skin_on_surface</item>
+        <!-- Background color. -->
+        <item name="backgroundColor">@color/vast_skin_background</item>
+        <item name="colorOnBackground">@color/vast_skin_on_background</item>
+        <!-- Error color. -->
+        <item name="colorError">@color/vast_skin_error</item>
+        <item name="colorOnError">@color/vast_skin_on_error</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 </resources>

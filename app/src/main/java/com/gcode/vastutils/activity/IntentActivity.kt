@@ -1,25 +1,16 @@
 package com.gcode.vastutils.activity
 
-import android.Manifest
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Button
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.app.ComponentActivity
+import android.os.PersistableBundle
+import com.gcode.vasttools.base.VastVbActivity
 import com.gcode.vasttools.utils.*
-import com.gcode.vastutils.R
 import com.gcode.vastutils.databinding.ActivityIntentBinding
 
-class IntentActivity : AppCompatActivity() {
+class IntentActivity : VastVbActivity<ActivityIntentBinding>() {
 
-    private lateinit var mBinding:ActivityIntentBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mBinding = ActivityIntentBinding.inflate(layoutInflater)
-        setContentView(mBinding.root)
-
+    @SuppressLint("MissingPermission")
+    override fun initView(savedInstanceState: Bundle?) {
         mBinding.callBtn.setOnClickListener {
             dialPhoneNumber("12345678910")
         }
@@ -44,4 +35,6 @@ class IntentActivity : AppCompatActivity() {
             createAlarm("你好",12,30)
         }
     }
+
+
 }

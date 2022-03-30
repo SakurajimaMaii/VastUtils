@@ -7,4 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Default Light color. -->
+    <color name="vast_skin_primary">#FF6200EE</color>
+    <color name="vast_skin_on_primary">#FFFFFFFF</color>
+    <color name="vast_skin_primary_variant">#FF3700B3</color>
+    <color name="vast_skin_secondary">#FF03DAC6</color>
+    <color name="vast_skin_on_secondary">#FF000000</color>
+    <color name="vast_skin_secondary_variant">#FF018786</color>
+    <color name="vast_skin_surface">#FFFFFFFF</color>
+    <color name="vast_skin_on_surface">#FF000000</color>
+    <color name="vast_skin_background">#FFFFFFFF</color>
+    <color name="vast_skin_on_background">#FF000000</color>
+    <color name="vast_skin_error">#FFB00020</color>
+    <color name="vast_skin_on_error">#FFFFFFFF</color>
 </resources>

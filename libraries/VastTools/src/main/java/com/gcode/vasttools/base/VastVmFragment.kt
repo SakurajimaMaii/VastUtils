@@ -30,15 +30,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.gcode.vasttools.extension.getVmClass
+import com.gcode.vasttools.base.extension.getVmClass
 
 /**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
- * @EditDate: 2022/2/19
+ * @Author: Vast Gui
+ * @Email: guihy2019@gmail.com
+ * @Date: 2022/3/10 16:18
+ * @Description:
+ * @Documentation:
  */
-abstract class VastVmFragment<VM:ViewModel>: VastFragment() {
+
+abstract class VastVmFragment<VM : ViewModel> : VastBaseFragment() {
 
     protected lateinit var mViewModel: VM
 
@@ -48,12 +50,18 @@ abstract class VastVmFragment<VM:ViewModel>: VastFragment() {
         savedInstanceState: Bundle?
     ): View? {
         mViewModel = createViewModel()
-
-        return dataBindView ?: inflater.inflate(layoutId, container, false)
+        return dataBindView ?: super.onCreateView(inflater, container, savedInstanceState)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView(savedInstanceState)
+    }
+
+    abstract fun initView(savedInstanceState: Bundle?)
+
     private fun createViewModel(): VM {
-        return ViewModelProvider(this).get(getVmClass(this))
+        return ViewModelProvider(this).get(getVmClass(this, 0))
     }
 
 }

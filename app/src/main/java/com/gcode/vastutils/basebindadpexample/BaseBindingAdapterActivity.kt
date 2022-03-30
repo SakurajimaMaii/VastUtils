@@ -3,31 +3,21 @@ package com.gcode.vastutils.basebindadpexample
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gcode.vastadapter.base.VAapClickEvent
-import com.gcode.vastadapter.base.VAdpLongClickEvent
+import com.gcode.vastadapter.interfaces.VAapClickEventListener
+import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vasttools.utils.showShortMsg
 import com.gcode.vastutils.R
-import com.gcode.vastutils.databinding.ActivityBaseBindingAdapterBinding
 import com.gcode.vastutils.basebindadpexample.model.Person
 import com.gcode.vastutils.basebindadpexample.model.Picture
+import com.gcode.vastutils.databinding.ActivityBaseBindingAdapterBinding
 
 class BaseBindingAdapterActivity:AppCompatActivity() {
 
     private lateinit var binding:ActivityBaseBindingAdapterBinding
 
     private val datas:MutableList<VastBindAdapterItem> = ArrayList()
-
-    private val click:VAapClickEvent = { _: View, pos:Int->
-        showShortMsg("Hello,User.And position is $pos")
-    }
-
-    private val longClick:VAdpLongClickEvent = { _: View, pos:Int->
-        showShortMsg("Hello,User.And position is $pos")
-        true
-    }
 
     override fun onCreate(savedInstanceState:Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +33,17 @@ class BaseBindingAdapterActivity:AppCompatActivity() {
 
     private fun initData() {
         for(i in 0..10){
-            datas.add(Person(i.toString(),i.toString(),click,null))
-            datas.add(Picture(R.drawable.ic_knots,null,longClick))
+            datas.add(Person(i.toString(),i.toString(),object :VAapClickEventListener{
+                override fun vAapClickEvent(view: View, pos: Int) {
+                    showShortMsg("Hello,User.And position is $pos")
+                }
+            },null))
+            datas.add(Picture(R.drawable.ic_knots,null,object :VAdpLongClickEventListener{
+                override fun vAdpLongClickEvent(view: View, pos: Int): Boolean {
+                    showShortMsg("Hello,User.And position is $pos")
+                    return true
+                }
+            }))
         }
     }
 }

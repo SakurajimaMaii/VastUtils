@@ -24,30 +24,47 @@
 
 package com.gcode.vasttools.base
 
+import android.os.Build
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.view.View
+import android.view.WindowInsetsController
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.gcode.vasttools.extension.getVmClass
+import com.gcode.vasttools.base.extension.getVmClass
+import com.gcode.vasttools.base.extension.initSettings
 
 /**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
- * @EditDate: 2022/2/19
+ * @Author: Vast Gui
+ * @Email: guihy2019@gmail.com
+ * @Date: 2022/3/10 16:14
+ * @Description:
+ * @Documentation:
  */
-abstract class VastVmActivity<VM : ViewModel> : ComponentActivity() {
+
+abstract class VastVmActivity<VM : ViewModel> : VastBaseActivity() {
+
+    protected abstract val layoutId: Int
 
     protected lateinit var mViewModel: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setContentView(layoutId)
         mViewModel = createViewModel()
+        initView(savedInstanceState)
+        initSettings()
     }
 
+    abstract fun initView(
+        savedInstanceState: Bundle?
+    )
+
     private fun createViewModel(): VM {
-        return ViewModelProvider(this).get(getVmClass(this))
+        return ViewModelProvider(this).get(getVmClass(this, 0))
     }
 
 }

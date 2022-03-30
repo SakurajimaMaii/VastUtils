@@ -1,28 +1,27 @@
 package com.gcode.vastutils.activity
 
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
-import androidx.appcompat.app.AppCompatActivity
+import android.os.*
 import com.gcode.vastnetstatelayout.interfaces.VastEmptyDataListener
 import com.gcode.vastnetstatelayout.interfaces.VastLoadingErrorListener
-import com.gcode.vastnetstatelayout.interfaces.VastNetErrorListener
 import com.gcode.vastnetstatelayout.interfaces.VastLoadingListener
+import com.gcode.vastnetstatelayout.interfaces.VastNetErrorListener
 import com.gcode.vastnetstatelayout.view.VastNetStateMgr
+import com.gcode.vasttools.base.VastVbActivity
 import com.gcode.vastutils.R
 import com.gcode.vastutils.databinding.ActivityNetStateBinding
 
 
-class NetStateActivity : AppCompatActivity() {
+class NetStateActivity : VastVbActivity<ActivityNetStateBinding>() {
 
-    private lateinit var mBinding:ActivityNetStateBinding
+    private val mHandler: Handler = object : Handler(Looper.getMainLooper()) {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mBinding = ActivityNetStateBinding.inflate(layoutInflater)
-        setContentView(mBinding.root)
+            mBinding.netStateLayout.showSuccess()
+        }
+    }
 
+    override fun initView(savedInstanceState: Bundle?) {
         val vastNetStateMgr = VastNetStateMgr(this)
         vastNetStateMgr.setNetErrorListener(object :VastNetErrorListener{
             override fun onNetWorkError() {
@@ -54,13 +53,5 @@ class NetStateActivity : AppCompatActivity() {
         mBinding.netStateLayout.showNetError()
 
         //mHandler.sendEmptyMessageDelayed(0, 1000)
-    }
-
-    private val mHandler: Handler = object : Handler(Looper.getMainLooper()) {
-        override fun handleMessage(msg: Message) {
-            super.handleMessage(msg)
-
-            mBinding.netStateLayout.showSuccess()
-        }
     }
 }

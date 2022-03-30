@@ -7,7 +7,7 @@ import android.widget.ImageView
 import androidx.annotation.IntRange
 import androidx.annotation.Nullable
 import androidx.databinding.BindingAdapter
-import com.gcode.vastadapter.base.BaseVastBindAdapter
+import com.gcode.vastadapter.base.VastBindAdapter
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vastutils.BR
 
@@ -20,7 +20,7 @@ import com.gcode.vastutils.BR
  */
 class BaseBindingAdapter(
     private val dataSource:MutableList<VastBindAdapterItem>
-):BaseVastBindAdapter(dataSource) {
+):VastBindAdapter(dataSource) {
     companion object {
         @JvmStatic @BindingAdapter("android:src")
         fun setImageUri(view: ImageView, imageUri: String?) {

@@ -12,10 +12,13 @@ import androidx.lifecycle.ViewModel
  */
 class BaseVM:ViewModel() {
 
-    private val _str:MutableLiveData<String> = MutableLiveData()
+    private val _count:MutableLiveData<Int> = MutableLiveData(0)
 
-    val str:LiveData<String>
-        get() = _str
+    val count:LiveData<Int>
+        get() = _count
 
+    fun addOne(){
+        _count.postValue(_count.value?.plus(1) ?: 0)
+    }
 
 }

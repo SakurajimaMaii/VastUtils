@@ -1,9 +1,5 @@
 package com.gcode.vastadapter.interfaces
 
-import android.view.View
-import com.gcode.vastadapter.base.VAapClickEvent
-import com.gcode.vastadapter.base.VAdpLongClickEvent
-
 /**
  * @OriginalAuthor: Vast Gui
  * @OriginalDate:
@@ -11,9 +7,9 @@ import com.gcode.vastadapter.base.VAdpLongClickEvent
  * @EditDate: 2022/1/19
  */
 interface VastAdapterItem {
-    var vAdpClickEvent: VAapClickEvent
+    var vAdpClickEventListener: VAapClickEventListener?
 
-    var vAdpLongClickEvent: VAdpLongClickEvent
+    var vAdpLongClickEventListener: VAdpLongClickEventListener?
 
     fun getVAdpItemType(): String
 }

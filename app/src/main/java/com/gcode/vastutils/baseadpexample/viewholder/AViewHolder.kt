@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.gcode.vastadapter.base.BaseVastAdapterVH
+import com.gcode.vastadapter.base.VastAdapterVH
 import com.gcode.vastadapter.interfaces.VastAdapterItem
 import com.gcode.vastutils.R
 import com.gcode.vastutils.baseadpexample.model.AExample
@@ -15,7 +15,7 @@ import com.gcode.vastutils.baseadpexample.model.AExample
  * @EditAuthor: Vast Gui
  * @EditDate: 2022/1/19
  */
-class AViewHolder(itemView: View): BaseVastAdapterVH(itemView) {
+class AViewHolder(itemView: View): VastAdapterVH(itemView) {
     private val tv:TextView
 
     override fun onBindData(item: VastAdapterItem) {
@@ -24,7 +24,7 @@ class AViewHolder(itemView: View): BaseVastAdapterVH(itemView) {
     }
 
     class Factory:BVAdpVHFactory{
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseVastAdapterVH {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VastAdapterVH {
             return AViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_textview,parent,false))
         }
 

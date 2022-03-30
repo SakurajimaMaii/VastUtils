@@ -5,8 +5,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gcode.vastadapter.base.VAapClickEvent
-import com.gcode.vastadapter.base.VAdpLongClickEvent
+import com.gcode.vastadapter.interfaces.VAapClickEventListener
+import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
 import com.gcode.vastadapter.interfaces.VastAdapterItem
 import com.gcode.vasttools.utils.showShortMsg
 import com.gcode.vastutils.R
@@ -24,13 +24,17 @@ class BaseAdapterActivity : AppCompatActivity() {
 
     private val datas:MutableList<VastAdapterItem> = ArrayList()
 
-    private val click:VAapClickEvent = { _: View, pos:Int,->
-        showShortMsg("Click event and pos is $pos.")
+    private val click = object :VAapClickEventListener{
+        override fun vAapClickEvent(view: View, pos: Int) {
+            showShortMsg("Click event and pos is $pos.")
+        }
     }
 
-    private val longClick:VAdpLongClickEvent = { _: View, pos:Int,->
-        showShortMsg("Long click event and pos is $pos.")
-        true
+    private val longClick = object :VAdpLongClickEventListener{
+        override fun vAdpLongClickEvent(view: View, pos: Int): Boolean {
+            showShortMsg("Long click event and pos is $pos.")
+            return true
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

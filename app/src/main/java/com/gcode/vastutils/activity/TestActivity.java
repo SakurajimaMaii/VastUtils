@@ -1,19 +1,34 @@
 package com.gcode.vastutils.activity;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.gcode.vasttools.base.VastVbActivity;
-import com.gcode.vasttools.utils.LogUtils;
 import com.gcode.vastutils.databinding.ActivityTestBinding;
 
-public class TestActivity extends VastVbActivity<ActivityTestBinding> {
+import java.lang.reflect.Constructor;
+import java.util.HashMap;
+import java.util.Map;
+
+public class TestActivity extends AppCompatActivity {
+
+    private ActivityTestBinding mBinding;
+
+    private static final Map<String,Constructor<? extends View>> mConstructorMap = new HashMap<>();
+
+    private static final Class<?>[] mConstructorSignature = new Class[]{
+            Context.class, AttributeSet.class
+    };
 
     @Override
-    public void onActCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        LogUtils.INSTANCE.d("hello","hello");
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mBinding = ActivityTestBinding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
     }
 
 }

@@ -1,6 +1,6 @@
 package com.gcode.vastutils
 
-import com.gcode.vasttools.utils.LogUtils
+import com.gcode.vasttools.utils.*
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -14,6 +14,6 @@ class ExampleUnitTest {
 
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        assertEquals("123456789".isNumeric(), true)
     }
 }

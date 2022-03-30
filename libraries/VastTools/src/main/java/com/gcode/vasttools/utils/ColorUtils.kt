@@ -30,10 +30,16 @@ import android.content.res.Resources
 import android.graphics.Color
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 
 /**
- * @OriginalAuthor: Vast Gui @OriginalDate: @EditAuthor: Vast Gui
- * @EditDate: 2022/2/18
+ * @Author: Vast Gui @Email: guihy2019@gmail.com @Date: 2022/3/10 15:27
+ * @Description: Provides methods for get Color resources
+ *
+ *               and converting between different formats
+ *               of Color.
+ * @Documentation:
  */
 
 /**
@@ -43,7 +49,7 @@ import androidx.annotation.ColorRes
  * @return The int value of the color
  */
 fun getColor(@ColorRes resId: Int): Int {
-    return Resources.getSystem().getColor(resId, null)
+    return ResourcesCompat.getColor(Resources.getSystem(), resId, null)
 }
 
 /**
@@ -59,7 +65,7 @@ fun colorHex2Int(colorHex: String): Int {
  * Color hexadecimal string convert to an array of RGB.
  *
  * @param colorHex Color hexadecimal string,for example:#12c2e9.
- * @return For example: **{63,226,197}**.
+ * @return For example: **{18,194,233}**.
  */
 fun colorHex2RGB(colorHex: String): IntArray {
     val colorInt = colorHex2Int(colorHex)

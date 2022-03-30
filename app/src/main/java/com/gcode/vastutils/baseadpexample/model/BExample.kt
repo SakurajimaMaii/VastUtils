@@ -1,7 +1,7 @@
 package com.gcode.vastutils.baseadpexample.model
 
-import com.gcode.vastadapter.base.VAapClickEvent
-import com.gcode.vastadapter.base.VAdpLongClickEvent
+import com.gcode.vastadapter.interfaces.VAapClickEventListener
+import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
 import com.gcode.vastadapter.interfaces.VastAdapterItem
 
 /**
@@ -12,8 +12,8 @@ import com.gcode.vastadapter.interfaces.VastAdapterItem
  */
 class BExample(
     val drawable:Int,
-    override var vAdpClickEvent: VAapClickEvent,
-    override var vAdpLongClickEvent: VAdpLongClickEvent
+    override var vAdpClickEventListener: VAapClickEventListener?,
+    override var vAdpLongClickEventListener: VAdpLongClickEventListener?
 ) : VastAdapterItem {
     override fun getVAdpItemType(): String {
         return "picture"

@@ -3,8 +3,8 @@ package com.gcode.vastutils.baseadpexample
 import android.annotation.SuppressLint
 import androidx.annotation.IntRange
 import androidx.annotation.Nullable
-import com.gcode.vastadapter.base.BaseVastAdapter
-import com.gcode.vastadapter.base.BaseVastAdapterVH
+import com.gcode.vastadapter.base.VastAdapter
+import com.gcode.vastadapter.base.VastAdapterVH
 import com.gcode.vastadapter.interfaces.VastAdapterItem
 
 /**
@@ -15,8 +15,8 @@ import com.gcode.vastadapter.interfaces.VastAdapterItem
  */
 class BaseAdapter(
     private val items: MutableList<VastAdapterItem>,
-    factories: MutableList<BaseVastAdapterVH.BVAdpVHFactory>
-) : BaseVastAdapter(items, factories) {
+    factories: MutableList<VastAdapterVH.BVAdpVHFactory>
+) : VastAdapter(items, factories) {
 
     /**
      * Returns `true` if the collection is empty (contains no elements), `false` otherwise.
@@ -42,7 +42,7 @@ class BaseAdapter(
      * @param item Item you want to add.
      * @return The result `false` means adding failed or item is `null`
      */
-    fun addItem(@Nullable item: VastAdapterItem?): Boolean {
+    fun addItem(item: VastAdapterItem?): Boolean {
         return if (item != null) {
             val flag = items.add(item)
             if (flag) {

@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2021 码上夏雨
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 @file:JvmName("MergeBmpUtils")
 
 package com.gcode.vasttools.utils
@@ -5,18 +29,23 @@ package com.gcode.vasttools.utils
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
-import androidx.annotation.Nullable
 
 /**
- * Merge the two bitmaps into one bitmap,
- * based on the length and width of the [bottomBitmap].
+ * @Author: Vast Gui
+ * @Email: guihy2019@gmail.com
+ * @Date: 2022/3/10 15:27
+ * @Description: Provides some methods for merging Bitmaps.
+ * @Documentation:
+ */
+
+/**
+ * Merge the two bitmaps into one bitmap, based on the length and width
+ * of the [bottomBitmap].
  *
  * @param bottomBitmap Bitmap at the bottom
  * @param topBitmap Bitmap at the top
- *
  * @return `null` if one of the bitmaps is recycled.
  */
-@Nullable
 fun mergeBmp(bottomBitmap: Bitmap, topBitmap: Bitmap): Bitmap? {
     if (bottomBitmap.isRecycled || topBitmap.isRecycled
     ) {
@@ -34,9 +63,10 @@ fun mergeBmp(bottomBitmap: Bitmap, topBitmap: Bitmap): Bitmap? {
  *
  * @param leftBitmap Bitmap shown on the left.
  * @param rightBitmap Bitmap shown on the right.
- * @param isBaseMax Whether to take the bitmap with large width as the standard,
- *                  `true` means that the small image is stretched proportionally,
- *                  `false` means that the larger image is compressed proportionally.
+ * @param isBaseMax Whether to take the bitmap with large width as the
+ *     standard, `true` means that the small image is
+ *     stretched proportionally, `false` means that
+ *     the larger image is compressed proportionally.
  * @return `null` if one of the bitmaps is recycled.
  */
 fun mergeBmpLR(leftBitmap: Bitmap, rightBitmap: Bitmap, isBaseMax: Boolean): Bitmap? {
@@ -90,9 +120,10 @@ fun mergeBmpLR(leftBitmap: Bitmap, rightBitmap: Bitmap, isBaseMax: Boolean): Bit
  *
  * @param topBitmap Bitmap shown on the top.
  * @param bottomBitmap Bitmap shown on the bottom.
- * @param isBaseMax Whether to take the bitmap with a large height as the standard,
- *                  `true` means that the small image is stretched proportionally,
- *                  `false` means that the larger image is compressed proportionally
+ * @param isBaseMax Whether to take the bitmap with a large height as
+ *     the standard, `true` means that the small image
+ *     is stretched proportionally, `false` means that
+ *     the larger image is compressed proportionally
  * @return `null` if one of the bitmaps is recycled.
  */
 fun mergeBmpTB(topBitmap: Bitmap, bottomBitmap: Bitmap, isBaseMax: Boolean): Bitmap? {

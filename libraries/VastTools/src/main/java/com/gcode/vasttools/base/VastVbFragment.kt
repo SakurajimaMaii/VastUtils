@@ -28,19 +28,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.gcode.vasttools.base.extension.getVbClass
+import com.gcode.vasttools.base.extension.getVmClass
 import java.lang.reflect.ParameterizedType
 
 /**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
- * @EditDate: 2022/2/19
+ * @Author: Vast Gui
+ * @Email: guihy2019@gmail.com
+ * @Date: 2022/3/11 22:58
+ * @Description:
+ * @Documentation:
  */
-abstract class VastVbFragment<VB: ViewBinding,VM: ViewModel>: VastVmFragment<VM>() {
 
-    protected lateinit var mBinding:VB
+abstract class VastVbFragment<VB : ViewBinding>:VastBaseFragment() {
+
+    protected lateinit var mBinding: VB
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,13 +55,18 @@ abstract class VastVbFragment<VB: ViewBinding,VM: ViewModel>: VastVmFragment<VM>
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView(savedInstanceState)
+    }
+
+    abstract fun initView(savedInstanceState: Bundle?)
+
     @Suppress("UNCHECKED_CAST")
-    private fun initDataBind(){
+    private fun initDataBind() {
         val superClass = javaClass.genericSuperclass
-        val clazz = (superClass as ParameterizedType).actualTypeArguments[0] as Class<*>
-        val method = clazz.getMethod("inflate", LayoutInflater::class.java)
-        mBinding = method.invoke(null, layoutInflater) as VB
-        if(dataBindView != null){
+        mBinding = getVbClass(this,0,layoutInflater)
+        if (dataBindView != null) {
             (dataBindView!!.parent as? ViewGroup)?.removeView(dataBindView)
         }
         dataBindView = mBinding.root

@@ -1,24 +1,17 @@
 package com.gcode.vastutils.activity
 
-import android.graphics.drawable.GradientDrawable.OVAL
 import android.graphics.drawable.GradientDrawable.RECTANGLE
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.gcode.vasttools.utils.LogUtils
-import com.gcode.vasttools.utils.ShapeAndStateUtils
-import com.gcode.vasttools.utils.colorHex2Int
-import com.gcode.vasttools.utils.colorInt2Hex
-import com.gcode.vastutils.R
+import android.os.PersistableBundle
+import com.gcode.vasttools.base.VastVbActivity
+import com.gcode.vasttools.utils.*
 import com.gcode.vastutils.databinding.ActivityShapeBinding
 
-class ShapeActivity : AppCompatActivity() {
+class ShapeActivity : VastVbActivity<ActivityShapeBinding>() {
 
-    private lateinit var mBinding:ActivityShapeBinding
+    override fun initView(savedInstanceState: Bundle?) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mBinding = ActivityShapeBinding.inflate(layoutInflater)
-        setContentView(mBinding.root)
+        validateIDCardNumber("123456789101112131")
 
         val states = arrayOfNulls<IntArray>(6).apply {
             set(0, intArrayOf(android.R.attr.state_pressed, android.R.attr.state_enabled))
@@ -54,7 +47,6 @@ class ShapeActivity : AppCompatActivity() {
         mBinding.btn1.background = btnbk1
 
         //mBinding.btn2.background = btnbk2
-
-        LogUtils.i("test", colorInt2Hex(colorHex2Int("#0F2027")))
     }
+
 }

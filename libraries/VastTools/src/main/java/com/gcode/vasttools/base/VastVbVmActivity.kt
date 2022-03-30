@@ -24,42 +24,54 @@
 
 package com.gcode.vasttools.base
 
+import android.os.Build
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.LayoutInflater
+import android.view.View
+import android.view.WindowInsetsController
+import android.view.WindowManager
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.gcode.vasttools.base.extension.getVbClass
+import com.gcode.vasttools.base.extension.getVmClass
+import com.gcode.vasttools.base.extension.initSettings
 import java.lang.reflect.ParameterizedType
 
-abstract class VastVbVmActivity<VB: ViewBinding,VM: ViewModel> : VastVmActivity<VM>() {
+/**
+ * @Author: Vast Gui
+ * @Email: guihy2019@gmail.com
+ * @Date: 2022/3/10 16:13
+ * @Description:
+ * @Documentation:
+ */
 
-    protected lateinit var mBinding:VB
+abstract class VastVbVmActivity<VB : ViewBinding, VM : ViewModel> : VastBaseActivity() {
+
+    protected lateinit var mBinding: VB
+    protected lateinit var mViewModel: VM
 
     final override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initDataBind()
-        onActCreate(savedInstanceState,null)
+        mViewModel = createViewModel()
+        initView(savedInstanceState)
+        initSettings()
     }
 
-    final override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-        initDataBind()
-        onActCreate(savedInstanceState, persistentState)
-    }
-
-    /**
-     * Used to replace the original onCreate method
-     *
-     * By default, persistentState value is null
-     */
-    abstract fun onActCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle? = null)
+    abstract fun initView(
+        savedInstanceState: Bundle?
+    )
 
     @Suppress("UNCHECKED_CAST")
     private fun initDataBind() {
-        val superClass = javaClass.genericSuperclass
-        val clazz = (superClass as ParameterizedType).actualTypeArguments[0] as Class<*>
-        val method = clazz.getMethod("inflate", LayoutInflater::class.java)
-        mBinding = method.invoke(null, layoutInflater) as VB
+        mBinding = getVbClass(this,0,layoutInflater)
         setContentView(mBinding.root)
+    }
+
+    private fun createViewModel(): VM {
+        return ViewModelProvider(this).get(getVmClass(this, 1))
     }
 }

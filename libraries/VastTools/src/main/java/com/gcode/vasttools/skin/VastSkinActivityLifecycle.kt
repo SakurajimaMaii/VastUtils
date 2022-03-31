@@ -42,7 +42,7 @@ import java.util.*
  * @Description:
  * @Documentation:
  */
-internal class ApplicationActivityLifecycle constructor(private val mObservable: Observable) :
+internal class VastSkinActivityLifecycle constructor(private val mObservable: Observable) :
     Application.ActivityLifecycleCallbacks {
     private val mLayoutInflaterFactories: ArrayMap<Activity, VastSkinLayoutInflaterFactory> =
         ArrayMap()

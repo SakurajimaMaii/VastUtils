@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gcode.vastadapter.base.VastAdapter
 import com.gcode.vastadapter.interfaces.VAapClickEventListener
 import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
 import com.gcode.vastadapter.interfaces.VastAdapterItem
@@ -44,6 +45,18 @@ class BaseAdapterActivity : AppCompatActivity() {
         initData()
 
         adapter = BaseAdapter(datas, mutableListOf(AViewHolder.Factory(), BViewHolder.Factory()))
+
+        adapter.setOnItemClickListener(object :VastAdapter.OnItemClickListener{
+            override fun onItemClick(view: View, position: Int) {
+                // Something you want to do
+            }
+        })
+        adapter.setOnItemLongClickListener(object:VastAdapter.OnItemLongClickListener{
+            override fun onItemLongClick(view: View, position: Int): Boolean {
+                // Something you want to do
+                return true
+            }
+        })
 
         binding.dataList.adapter = adapter
         binding.dataList.layoutManager = LinearLayoutManager(this)

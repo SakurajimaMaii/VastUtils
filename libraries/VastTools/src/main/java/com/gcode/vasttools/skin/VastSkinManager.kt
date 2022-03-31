@@ -36,7 +36,7 @@ import java.util.*
 object VastSkinManager : Observable() {
 
     private lateinit var originalApplication:Application
-    private lateinit var skinActivityLifecycle: ApplicationActivityLifecycle
+    private lateinit var skinActivityLifecycle: VastSkinActivityLifecycle
 
     /**
      * You should init [VastSkinManager] in application.
@@ -49,7 +49,7 @@ object VastSkinManager : Observable() {
             originalApplication = application
             VastSkinResources.initSkinResources(originalApplication)
             // Register the original application as Observer.
-            skinActivityLifecycle = ApplicationActivityLifecycle(this)
+            skinActivityLifecycle = VastSkinActivityLifecycle(this)
             originalApplication.registerActivityLifecycleCallbacks(skinActivityLifecycle)
             // Load the skin setting in the last time.
             loadSkin(VastSkinMMKV.skin)
@@ -59,7 +59,7 @@ object VastSkinManager : Observable() {
     /**
      * Get the theme and apply it.
      *
-     * @param skinPath Theme path,if empty use default theme.
+     * @param skinPath Theme path,if empty use default skin.
      */
     fun loadSkin(skinPath: String?) {
         if (TextUtils.isEmpty(skinPath)) {

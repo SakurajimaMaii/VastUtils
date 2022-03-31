@@ -30,7 +30,11 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.ViewCompat
-import com.gcode.vasttools.skin.VastSkinSupport
+import com.gcode.vasttools.skin.*
+import com.gcode.vasttools.skin.CHANGEABLY_BACKGROUND
+import com.gcode.vasttools.skin.CHANGEABLY_DRAWABLE_LEFT
+import com.gcode.vasttools.skin.CHANGEABLY_SRC
+import com.gcode.vasttools.skin.CHANGEABLY_TEXT_COLOR
 import com.gcode.vasttools.skin.utils.VastSkinResources
 
 /**
@@ -54,17 +58,16 @@ internal class VastSkinView(private var view: View, private var skinPairs: List<
             var right: Drawable? = null
             var bottom: Drawable? = null
             when (skinPair.attributeName) {
-                "background" -> {
+                CHANGEABLY_BACKGROUND -> {
                     val background: Any? =
                         VastSkinResources.getBackground(skinPair.resId)
-                    //背景可能是 @color 也可能是 @drawable
                     if (background is Int) {
                         view.setBackgroundColor(background)
                     } else if (null != background) {
                         ViewCompat.setBackground(view, background as Drawable)
                     }
                 }
-                "src" -> {
+                CHANGEABLY_SRC -> {
                     val background = VastSkinResources.getBackground(skinPair.resId)
                     if (background is Int) {
                         (view as ImageView).setImageDrawable(ColorDrawable(background))
@@ -72,22 +75,19 @@ internal class VastSkinView(private var view: View, private var skinPairs: List<
                         (view as ImageView).setImageDrawable(background as Drawable?)
                     }
                 }
-                "textColor" -> (view as TextView).setTextColor(
+                CHANGEABLY_TEXT_COLOR -> (view as TextView).setTextColor(
                     VastSkinResources.getColorStateList(skinPair.resId)
                 )
-                "drawableLeft" -> left = VastSkinResources.getDrawable(skinPair.resId)
-                "drawableTop" -> top = VastSkinResources.getDrawable(skinPair.resId)
-                "drawableRight" -> right =
+                CHANGEABLY_DRAWABLE_LEFT -> left = VastSkinResources.getDrawable(skinPair.resId)
+                CHANGEABLY_DRAWABLE_TOP -> top = VastSkinResources.getDrawable(skinPair.resId)
+                CHANGEABLY_DRAWABLE_RIGHT -> right =
                     VastSkinResources.getDrawable(skinPair.resId)
-                "drawableBottom" -> bottom =
+                CHANGEABLY_DRAWABLE_BOTTOM -> bottom =
                     VastSkinResources.getDrawable(skinPair.resId)
                 else -> {}
             }
             if (null != left || null != right || null != top || null != bottom) {
-                (view as TextView).setCompoundDrawablesWithIntrinsicBounds(
-                    left, top, right,
-                    bottom
-                )
+                (view as TextView).setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom)
             }
         }
     }

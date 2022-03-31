@@ -1,4 +1,5 @@
 include ':app'
+include ':appjava'
 rootProject.name = "VastUtils"
 
 // =======
@@ -13,6 +14,17 @@ def libs = [
 ]
 
 libs.forEach {
-    include(":libraries:$it")
+     include(":libraries:$it")
 }
-include ':darkskin'
+
+// =======
+// = Skin =
+// =======
+
+def skin = [
+        "darkskin"
+]
+
+skin.forEach {
+     include(":skin:$it")
+}

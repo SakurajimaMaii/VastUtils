@@ -47,52 +47,53 @@ object ImgUtils {
         ActivityLauncher.init(activity)
             .startActivityForResult(takePhotoIntent,object : ActivityLauncher.Callback {
             override fun onActivityResult(resultCode: Int, data: Intent?) {
-                bitmap = cropPhoto(activity, photoUri)
+                bitmap = null//cropPhoto(activity, photoUri)
             }
         })
         return bitmap
     }
 
-    fun cropPhoto(activity: FragmentActivity,photoUri:Uri):Bitmap?{
-        val cropPhotoIntent = Intent("com.android.camera.action.CROP")
-        cropPhotoIntent.setDataAndType(photoUri,"image/*")
-        cropPhotoIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        val mOutPutFile:File
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            //android 11
-            val path: String =
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                    .path
-            //storage/emulated/0/Pictures
-            mOutPutFile = File(path, System.currentTimeMillis().toString() + ".png")
-            cropPhotoIntent.putExtra(
-                MediaStore.EXTRA_OUTPUT,
-                Uri.parse("file://" + mOutPutFile.absolutePath)
-            )
-        } else {
-            //storage/emulated/0/Android/data/com.xxxxx/cache
-            val sdPath = activity.applicationContext.getExternalFilesDir(BuildConfig.LIBRARY_PACKAGE_NAME)
-                ?.absolutePath
-            mOutPutFile = File(sdPath, System.currentTimeMillis().toString() + ".png")
-            cropPhotoIntent.putExtra(
-                MediaStore.EXTRA_OUTPUT,
-                Uri.parse("file://" + mOutPutFile.absolutePath)
-            )
-        }
-        var bitmap:Bitmap? = null
-        ActivityLauncher.init(activity)
-            .startActivityForResult(cropPhotoIntent,object : ActivityLauncher.Callback {
-            override fun onActivityResult(resultCode: Int, data: Intent?) {
-                val file:File = File(mOutPutFile.path)
-                bitmap = if(file.exists()){
-                    BitmapFactory.decodeFile(mOutPutFile.path)
-                }else{
-                    null
-                }
-            }
-        })
-        return bitmap
-    }
+//    错误代码
+//    fun cropPhoto(activity: FragmentActivity,photoUri:Uri):Bitmap?{
+//        val cropPhotoIntent = Intent("com.android.camera.action.CROP")
+//        cropPhotoIntent.setDataAndType(photoUri,"image/*")
+//        cropPhotoIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+//        val mOutPutFile:File
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            //android 11
+//            val path: String =
+//                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+//                    .path
+//            //storage/emulated/0/Pictures
+//            mOutPutFile = File(path, System.currentTimeMillis().toString() + ".png")
+//            cropPhotoIntent.putExtra(
+//                MediaStore.EXTRA_OUTPUT,
+//                Uri.parse("file://" + mOutPutFile.absolutePath)
+//            )
+//        } else {
+//            //storage/emulated/0/Android/data/com.xxxxx/cache
+//            val sdPath = activity.applicationContext.getExternalFilesDir(BuildConfig.LIBRARY_PACKAGE_NAME)
+//                ?.absolutePath
+//            mOutPutFile = File(sdPath, System.currentTimeMillis().toString() + ".png")
+//            cropPhotoIntent.putExtra(
+//                MediaStore.EXTRA_OUTPUT,
+//                Uri.parse("file://" + mOutPutFile.absolutePath)
+//            )
+//        }
+//        var bitmap:Bitmap? = null
+//        ActivityLauncher.init(activity)
+//            .startActivityForResult(cropPhotoIntent,object : ActivityLauncher.Callback {
+//            override fun onActivityResult(resultCode: Int, data: Intent?) {
+//                val file:File = File(mOutPutFile.path)
+//                bitmap = if(file.exists()){
+//                    BitmapFactory.decodeFile(mOutPutFile.path)
+//                }else{
+//                    null
+//                }
+//            }
+//        })
+//        return bitmap
+//    }
 
     fun choiceFromAlbum(activity: Activity){
         val openAlbumIntent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)

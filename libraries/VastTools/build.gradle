@@ -49,7 +49,7 @@ dependencies {
 ext {
     PUBLISH_GROUP_ID = "io.github.sakurajimamaii"
     PUBLISH_ARTIFACT_ID = 'VastTools'
-    PUBLISH_VERSION = '0.0.6'
+    PUBLISH_VERSION = '0.0.7'
     PUBLISH_DESCRIPTION = 'Easy Quick Android Tools for you to faster project development.'
     PUBLISH_URL = 'https://github.com/SakurajimaMaii/VastUtils/tree/master/libraries/VastTools' 
 }

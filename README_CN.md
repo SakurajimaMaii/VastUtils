@@ -3,9 +3,9 @@
 <p align="center">一款加快你安卓开发的安卓工具集</p>
 
 <p align="center">
-<img src="https://img.shields.io/badge/compile%20sdk%20version-31-blue"/>
+<img src="https://img.shields.io/badge/compile--sdk--version-32-blue"/>
 <img src="https://img.shields.io/badge/min%20sdk%20version-23-yellowgreen"/>
-<img src="https://img.shields.io/badge/target%20sdk%20version-31-orange"/>
+<img src="https://img.shields.io/badge/target--sdk--version-32-orange"/>
 <img src="https://img.shields.io/badge/jdk%20version-11-%2300b894"/>
 </p>
 
@@ -26,7 +26,7 @@ implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.3'
 ### VastTools
 
 ```groovy
-implementation 'io.github.sakurajimamaii:VastTools:0.0.6'
+implementation 'io.github.sakurajimamaii:VastTools:0.0.7'
 ```
 
 ### VastAdapter

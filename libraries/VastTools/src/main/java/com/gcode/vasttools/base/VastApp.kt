@@ -42,6 +42,7 @@ open class VastApp:Application() {
     override fun onCreate() {
         super.onCreate()
         MMKV.initialize(this)
+        LogUtils.syncIsDeBug(this)
         VastSkinManager.initVastThemeManager(this)
     }
 

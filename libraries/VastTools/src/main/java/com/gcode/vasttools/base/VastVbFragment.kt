@@ -28,11 +28,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.gcode.vasttools.base.extension.getVbClass
-import com.gcode.vasttools.base.extension.getVmClass
-import java.lang.reflect.ParameterizedType
 
 /**
  * @Author: Vast Gui
@@ -64,7 +61,6 @@ abstract class VastVbFragment<VB : ViewBinding>:VastBaseFragment() {
 
     @Suppress("UNCHECKED_CAST")
     private fun initDataBind() {
-        val superClass = javaClass.genericSuperclass
         mBinding = getVbClass(this,0,layoutInflater)
         if (dataBindView != null) {
             (dataBindView!!.parent as? ViewGroup)?.removeView(dataBindView)

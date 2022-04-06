@@ -36,21 +36,10 @@ import androidx.core.content.res.ResourcesCompat
 /**
  * @Author: Vast Gui @Email: guihy2019@gmail.com @Date: 2022/3/10 15:27
  * @Description: Provides methods for get Color resources
- *
  *               and converting between different formats
  *               of Color.
  * @Documentation:
  */
-
-/**
- * Get color int value by [resId]
- *
- * @param resId The resource id of color
- * @return The int value of the color
- */
-fun getColor(@ColorRes resId: Int): Int {
-    return ResourcesCompat.getColor(Resources.getSystem(), resId, null)
-}
 
 /**
  * Color hexadecimal string convert to int.

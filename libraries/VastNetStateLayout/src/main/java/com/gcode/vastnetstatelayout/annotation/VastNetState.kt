@@ -35,7 +35,7 @@ const val CONTENT_STATE_SHOW_EMPTY_DATA = 0X04
  */
 const val CONTENT_STATE_SHOW_SUCCESS = 0X05
 
-@kotlin.annotation.Retention(AnnotationRetention.SOURCE)
+@Retention(AnnotationRetention.SOURCE)
 @IntDef(
     CONTENT_STATE_SHOW_LOADING,
     CONTENT_STATE_SHOW_NET_ERROR,

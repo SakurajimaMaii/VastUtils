@@ -24,6 +24,8 @@
 
 package com.gcode.vastadapter.interfaces
 
+import com.gcode.vastadapter.base.VastBindAdapter
+
 /**
  * @Author: Vast Gui
  * @Email: guihy2019@gmail.com
@@ -31,10 +33,24 @@ package com.gcode.vastadapter.interfaces
  * @Description:
  * @Documentation:
  */
+
+/**
+ * Please make sure that your list class implement [VastBindAdapterItem]
+ * when you use [VastBindAdapter]
+ */
 interface VastBindAdapterItem {
-    var vbAdpClickEventListener: VAapClickEventListener?
 
-    var vbAdpLongClickEventListener: VAdpLongClickEventListener?
+    fun setVBAapClickEventListener(l:VAapClickEventListener?)
 
+    fun getVBAapClickEventListener():VAapClickEventListener?
+
+    fun setVBAdpLongClickEventListener(l:VAdpLongClickEventListener?)
+
+    fun getVBAdpLongClickEventListener():VAdpLongClickEventListener?
+
+    /**
+     * @return The item layout resource id.
+     */
     fun getVBAdpItemType(): Int
+
 }

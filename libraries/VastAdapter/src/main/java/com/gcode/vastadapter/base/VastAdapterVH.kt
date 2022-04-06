@@ -23,11 +23,8 @@ open class VastAdapterVH(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun onCreateViewHolder(parent: ViewGroup,viewType:Int):VastAdapterVH
 
         /**
-         * Should be the same as the type returned by the corresponding item.
-         *
-         * For example,If the VH corresponding to person is pVH, then the
-         * getVAdpItemType method of person returns **"per"**, and the return
-         * value of getVAdpVHType corresponding to pVH should also be **"per"**.
+         * @return A string which is same as the value you set in [VastAdapterItem.getVAdpItemType].
+         *         In this way, the data item can be matched to the corresponding ViewHolder.
          */
         fun getVAdpVHType():String
     }

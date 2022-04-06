@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.gcode.vastadapter.exception.VastAdapterValueError
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 
 /**
@@ -18,7 +17,7 @@ abstract class VastBindAdapter constructor(
     private val dataSource: MutableList<VastBindAdapterItem>,
 ) : RecyclerView.Adapter<VastBindAdapter.BindingHolder>() {
 
-    // Fix https://github.com/SakurajimaMaii/VastUtils/issues/35
+    // Fix https://github.com/SakurajimaMaii/VastUtils/issues/36
     private var onItemClickListener: OnItemClickListener? = null
     private var onItemLongClickListener: OnItemLongClickListener? = null
 
@@ -26,15 +25,15 @@ abstract class VastBindAdapter constructor(
         val item = dataSource[position]
         holder.bindData(setVariableId(), item)
         holder.itemView.setOnClickListener {
-            if (null != item.vbAdpClickEventListener) {
-                item.vbAdpClickEventListener!!.vAapClickEvent(holder.itemView,position)
+            if (null != item.getVBAapClickEventListener()) {
+                item.getVBAapClickEventListener()!!.vAapClickEvent(holder.itemView,position)
             } else {
                 onItemClickListener?.onItemClick(holder.itemView, position)
             }
         }
         holder.itemView.setOnLongClickListener {
-            val res = if (null != item.vbAdpLongClickEventListener) {
-                item.vbAdpLongClickEventListener!!.vAdpLongClickEvent(holder.itemView, position)
+            val res = if (null != item.getVBAdpLongClickEventListener()) {
+                item.getVBAdpLongClickEventListener()!!.vAdpLongClickEvent(holder.itemView, position)
             } else {
                 onItemLongClickListener?.onItemLongClick(holder.itemView, position)
             }
@@ -57,7 +56,7 @@ abstract class VastBindAdapter constructor(
     final override fun getItemViewType(position: Int):Int {
         val viewType = dataSource[position].getVBAdpItemType()
         if (viewType == -1){
-            throw VastAdapterValueError("Please check if you have set the correct layout id")
+            throw RuntimeException("Please check if you have set the correct layout id")
         }
         return viewType
     }

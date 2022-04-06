@@ -27,9 +27,7 @@ package com.gcode.vastutils.activity
 import android.os.Bundle
 import com.gcode.vasttools.base.VastVbActivity
 import com.gcode.vasttools.skin.VastSkinManager
-import com.gcode.vasttools.utils.LogUtils
-import com.gcode.vasttools.utils.colorHex2Int
-import com.gcode.vasttools.utils.colorInt2Hex
+import com.gcode.vasttools.utils.*
 import com.gcode.vastutils.databinding.ActivityThemeBinding
 
 class ThemeActivity : VastVbActivity<ActivityThemeBinding>() {
@@ -46,8 +44,9 @@ class ThemeActivity : VastVbActivity<ActivityThemeBinding>() {
             VastSkinManager.loadSkin("")
         }
 
-        LogUtils.d(tag, colorInt2Hex(mBinding.start.currentTextColor))
-
+        LogUtils.d(tag, "Is WIFI:"+isWIFI().toString())
+        LogUtils.d(tag, "Is mobile:"+isMobile().toString())
+        LogUtils.d(tag, "Is network available:"+isNetworkAvailable())
     }
 
 }

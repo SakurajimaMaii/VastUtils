@@ -58,30 +58,30 @@ public class Picture implements VastBindAdapterItem {
         this.drawable = drawable;
     }
 
-    @Nullable
-    @Override
-    public VAapClickEventListener getVbAdpClickEventListener() {
-        return null;
-    }
-
-    @Override
-    public void setVbAdpClickEventListener(@Nullable VAapClickEventListener value) {
-
-    }
-
-    @Nullable
-    @Override
-    public VAdpLongClickEventListener getVbAdpLongClickEventListener() {
-        return null;
-    }
-
-    @Override
-    public void setVbAdpLongClickEventListener(@Nullable VAdpLongClickEventListener value) {
-
-    }
-
     @Override
     public int getVBAdpItemType() {
         return R.layout.item_bind_imageview;
+    }
+
+    @Override
+    public void setVBAapClickEventListener(@Nullable VAapClickEventListener l) {
+        clickEventListener = l;
+    }
+
+    @Nullable
+    @Override
+    public VAapClickEventListener getVBAapClickEventListener() {
+        return clickEventListener;
+    }
+
+    @Override
+    public void setVBAdpLongClickEventListener(@Nullable VAdpLongClickEventListener l) {
+        longClickEventListener = l;
+    }
+
+    @Nullable
+    @Override
+    public VAdpLongClickEventListener getVBAdpLongClickEventListener() {
+        return longClickEventListener;
     }
 }

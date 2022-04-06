@@ -33,7 +33,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.gcode.vasttools.base.extension.getVbClass
 import com.gcode.vasttools.base.extension.getVmClass
-import java.lang.reflect.ParameterizedType
 
 /**
  * @Author: Vast Gui

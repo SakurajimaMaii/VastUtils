@@ -72,7 +72,7 @@ object LogUtils {
 
     /** Sync is debug. */
     @Synchronized
-    fun syncIsDeBug(context: Context) {
+    internal fun syncIsDeBug(context: Context) {
         isDeBug = context.getAppDebug()
     }
 

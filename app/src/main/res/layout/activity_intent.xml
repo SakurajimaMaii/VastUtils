@@ -37,4 +37,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Alarm" />
+    <Button
+        android:id="@+id/wifiSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wireless Setting" />
 </LinearLayout>

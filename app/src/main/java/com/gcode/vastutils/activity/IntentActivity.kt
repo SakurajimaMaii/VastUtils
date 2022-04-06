@@ -34,7 +34,10 @@ class IntentActivity : VastVbActivity<ActivityIntentBinding>() {
         mBinding.createAlarm.setOnClickListener {
             createAlarm("你好",12,30)
         }
+
+        mBinding.wifiSetting.setOnClickListener {
+            openWirelessSettings()
+        }
+
     }
-
-
 }

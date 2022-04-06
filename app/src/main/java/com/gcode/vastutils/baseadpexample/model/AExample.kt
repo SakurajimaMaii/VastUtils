@@ -12,9 +12,26 @@ import com.gcode.vastadapter.interfaces.VastAdapterItem
  */
 class AExample(
     val data: String,
-    override var vAdpClickEventListener: VAapClickEventListener?,
-    override var vAdpLongClickEventListener: VAdpLongClickEventListener?,
+    var clickEventListener: VAapClickEventListener?,
+    var longClickEventListener: VAdpLongClickEventListener?,
 ):VastAdapterItem {
+
+    override fun setVAapClickEventListener(l: VAapClickEventListener?) {
+        clickEventListener = l
+    }
+
+    override fun getVAapClickEventListener(): VAapClickEventListener? {
+        return clickEventListener
+    }
+
+    override fun setVAdpLongClickEventListener(l: VAdpLongClickEventListener?) {
+        longClickEventListener = l
+    }
+
+    override fun getVAdpLongClickEventListener(): VAdpLongClickEventListener? {
+        return longClickEventListener
+    }
+
     override fun getVAdpItemType(): String {
         return "person"
     }

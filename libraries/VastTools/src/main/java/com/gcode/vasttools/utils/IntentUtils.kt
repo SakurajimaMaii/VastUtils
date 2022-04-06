@@ -34,6 +34,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.AlarmClock
+import android.provider.Settings
 import android.util.Log
 import androidx.annotation.IntRange
 import androidx.annotation.RequiresPermission
@@ -55,7 +56,6 @@ import androidx.annotation.RequiresPermission
  *
  * @param phoneNumber Phone number you want to call.
  */
-@SuppressLint("QueryPermissionsNeeded")
 @RequiresPermission(Manifest.permission.CALL_PHONE)
 fun Context.dialPhoneNumber(phoneNumber: String) {
     val intent = Intent(Intent.ACTION_DIAL).apply {
@@ -73,7 +73,6 @@ fun Context.dialPhoneNumber(phoneNumber: String) {
  *
  * @param query Content you want to search.
  */
-@SuppressLint("QueryPermissionsNeeded")
 @RequiresPermission(Manifest.permission.INTERNET)
 fun Context.searchWeb(query: String) {
     val intent = Intent(Intent.ACTION_WEB_SEARCH).apply {
@@ -92,7 +91,6 @@ fun Context.searchWeb(query: String) {
  *
  * @param url Url you want to open.
  */
-@SuppressLint("QueryPermissionsNeeded")
 fun Context.openWebPage(url: String) {
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
     if (intent.resolveActivity(packageManager) != null) {
@@ -143,7 +141,6 @@ fun Context.sendMmsMessage(
  * @param subject Subject of the email.Default value is ""
  * @param text Text of the email.Default value is ""
  */
-@SuppressLint("QueryPermissionsNeeded")
 @JvmOverloads
 fun Context.openEmail(addresses: Array<String>, subject: String = "", text: String = "") {
     val intent = Intent(Intent.ACTION_SENDTO).apply {
@@ -218,6 +215,18 @@ fun Context.createAlarm(
     if (intent.resolveActivity(packageManager) != null) {
         startActivity(intent)
     } else {
+        resolveActivityNullHint()
+    }
+}
+
+/**
+ * Open wifi settings.
+ */
+fun Context.openWirelessSettings(){
+    val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
+    if(intent.resolveActivity(packageManager) != null){
+        startActivity(intent)
+    }else{
         resolveActivityNullHint()
     }
 }

@@ -17,20 +17,20 @@
 
 ## 添加依赖
 
+### VastNetStateLayout
+
+```groovy
+implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.3'
+```
+
 ### VastTools
 
 ```groovy
-implementation 'io.github.sakurajimamaii:VastTools:0.0.5'
+implementation 'io.github.sakurajimamaii:VastTools:0.0.6'
 ```
 
 ### VastAdapter
 
 ```groovy
-implementation 'io.github.sakurajimamaii:VastAdapter:0.0.3'
-```
-
-### VastNetStateLayout
-
-```groovy
-implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.3'
+implementation 'io.github.sakurajimamaii:VastAdapter:0.0.4'
 ```

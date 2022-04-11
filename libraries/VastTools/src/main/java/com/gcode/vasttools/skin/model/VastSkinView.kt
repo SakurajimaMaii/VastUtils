@@ -53,41 +53,44 @@ internal class VastSkinView(private var view: View, private var skinPairs: List<
     fun applySkin() {
         applySkinSupport()
         for (skinPair in skinPairs) {
-            var left: Drawable? = null
-            var top: Drawable? = null
-            var right: Drawable? = null
-            var bottom: Drawable? = null
-            when (skinPair.attributeName) {
-                CHANGEABLY_BACKGROUND -> {
-                    val background: Any? =
-                        VastSkinResources.getBackground(skinPair.resId)
-                    if (background is Int) {
-                        view.setBackgroundColor(background)
-                    } else if (null != background) {
-                        ViewCompat.setBackground(view, background as Drawable)
+            // Fix https://github.com/SakurajimaMaii/VastUtils/issues/38
+            if(0 != skinPair.resId){
+                var left: Drawable? = null
+                var top: Drawable? = null
+                var right: Drawable? = null
+                var bottom: Drawable? = null
+                when (skinPair.attributeName) {
+                    CHANGEABLY_BACKGROUND -> {
+                        val background: Any? =
+                            VastSkinResources.getBackground(skinPair.resId)
+                        if (background is Int) {
+                            view.setBackgroundColor(background)
+                        } else if (null != background) {
+                            ViewCompat.setBackground(view, background as Drawable)
+                        }
                     }
-                }
-                CHANGEABLY_SRC -> {
-                    val background = VastSkinResources.getBackground(skinPair.resId)
-                    if (background is Int) {
-                        (view as ImageView).setImageDrawable(ColorDrawable(background))
-                    } else {
-                        (view as ImageView).setImageDrawable(background as Drawable?)
+                    CHANGEABLY_SRC -> {
+                        val background = VastSkinResources.getBackground(skinPair.resId)
+                        if (background is Int) {
+                            (view as ImageView).setImageDrawable(ColorDrawable(background))
+                        } else {
+                            (view as ImageView).setImageDrawable(background as Drawable?)
+                        }
                     }
+                    CHANGEABLY_TEXT_COLOR -> (view as TextView).setTextColor(
+                        VastSkinResources.getColorStateList(skinPair.resId)
+                    )
+                    CHANGEABLY_DRAWABLE_LEFT -> left = VastSkinResources.getDrawable(skinPair.resId)
+                    CHANGEABLY_DRAWABLE_TOP -> top = VastSkinResources.getDrawable(skinPair.resId)
+                    CHANGEABLY_DRAWABLE_RIGHT -> right =
+                        VastSkinResources.getDrawable(skinPair.resId)
+                    CHANGEABLY_DRAWABLE_BOTTOM -> bottom =
+                        VastSkinResources.getDrawable(skinPair.resId)
+                    else -> {}
                 }
-                CHANGEABLY_TEXT_COLOR -> (view as TextView).setTextColor(
-                    VastSkinResources.getColorStateList(skinPair.resId)
-                )
-                CHANGEABLY_DRAWABLE_LEFT -> left = VastSkinResources.getDrawable(skinPair.resId)
-                CHANGEABLY_DRAWABLE_TOP -> top = VastSkinResources.getDrawable(skinPair.resId)
-                CHANGEABLY_DRAWABLE_RIGHT -> right =
-                    VastSkinResources.getDrawable(skinPair.resId)
-                CHANGEABLY_DRAWABLE_BOTTOM -> bottom =
-                    VastSkinResources.getDrawable(skinPair.resId)
-                else -> {}
-            }
-            if (null != left || null != right || null != top || null != bottom) {
-                (view as TextView).setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom)
+                if (null != left || null != right || null != top || null != bottom) {
+                    (view as TextView).setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom)
+                }
             }
         }
     }

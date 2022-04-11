@@ -29,13 +29,11 @@ import android.util.Log
 import androidx.annotation.IntRange
 import java.util.*
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/10 15:27
- * @Description: A log utils.
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 15:27
+// Description: A log utils.
+// Documentation: [LogUtils](https://sakurajimamaii.github.io/VastDocs/document/en/IDCardUtils.html)
 
 object LogUtils {
 

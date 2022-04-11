@@ -30,13 +30,11 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/10 15:27
- * @Description: Provides some methods for merging Bitmaps.
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 15:27
+// Description: Provides some methods for merging Bitmaps.
+// Documentation: [MergeBmpUtils](https://sakurajimamaii.github.io/VastDocs/document/en/MergeBmpUtils.html)
 
 /**
  * Merge the two bitmaps into one bitmap, based on the length and width

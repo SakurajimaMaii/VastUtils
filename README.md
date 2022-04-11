@@ -15,7 +15,7 @@
 
 The **VastDocs** provides you with detailed usage examples, click [here](https://sakurajimamaii.github.io/VastDocs/en/) to view the detailed documentation
 
-## 🚀 How to
+## Add to your project
 
 ### VastNetStateLayout
 

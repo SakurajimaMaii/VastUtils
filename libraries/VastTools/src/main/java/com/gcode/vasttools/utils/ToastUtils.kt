@@ -28,13 +28,11 @@ import android.content.Context
 import android.widget.Toast
 import androidx.annotation.StringRes
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/10 15:27
- * @Description: Toast utils.
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 15:27
+// Description: Toast utils.
+// Documentation: [ToastUtils](https://sakurajimamaii.github.io/VastDocs/document/en/ToastUtils.html)
 
 object ToastUtils {
     /**

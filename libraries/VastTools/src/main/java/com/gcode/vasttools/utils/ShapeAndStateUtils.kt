@@ -33,13 +33,11 @@ import androidx.annotation.FloatRange
 import androidx.annotation.IntDef
 import androidx.annotation.IntRange
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/10 15:27
- * @Description: Help you to quickly build GradientDrawable.
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 15:27
+// Description: Help you to quickly build GradientDrawable.
+// Documentation: [ShapeAndStateUtils](https://sakurajimamaii.github.io/VastDocs/document/en/ShapeAndStateUtils.html)
 
 @Retention(AnnotationRetention.SOURCE)
 @IntDef(

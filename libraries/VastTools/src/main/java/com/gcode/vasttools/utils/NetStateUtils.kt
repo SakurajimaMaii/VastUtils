@@ -37,13 +37,11 @@ import android.telephony.TelephonyManager
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/4/2 9:03
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/4/2 9:03
+// Description: With NetStateUtils, you can easily check some network status about your device
+// Documentation: [NetStateUtils](https://sakurajimamaii.github.io/VastDocs/document/en/NetStateUtils.html)
 
 @Throws(RuntimeException::class)
 internal fun Context.getNetWorkInfo(): NetworkInfo? {

@@ -28,13 +28,11 @@ package com.gcode.vasttools.utils
 
 import androidx.annotation.IntRange
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/10 15:27
- * @Description: Provides regex checks for some common strings.
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 15:27
+// Description: Provides regex checks for some common strings.
+// Documentation: [RegexUtils](https://sakurajimamaii.github.io/VastDocs/document/en/RegexUtils.html)
 
 /**
  * @receiver String to match.

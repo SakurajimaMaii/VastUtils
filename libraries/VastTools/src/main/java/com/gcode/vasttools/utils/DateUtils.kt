@@ -30,13 +30,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.jvm.Throws
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/10 15:27
- * @Description: Help you get time and other related information.
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 15:27
+// Description: Help you get time and other related information.
+// Documentation: [DateUtils](https://sakurajimamaii.github.io/VastDocs/document/en/DateUtils.html)
+
 
 // Time Format
 const val DATE_FORMAT = "yyyy-MM-dd"

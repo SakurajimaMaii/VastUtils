@@ -31,13 +31,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-/**
- * @Author: lt
- * @Email: lt.dygzs@qq.com
- * @Date: 2022/3/10 18:32
- * @Description: Validates the Chinese ID card number.
- * @Documentation:
- */
+// Author: lt
+// Email: lt.dygzs@qq.com
+// Date: 2022/3/10 18:32
+// Description: Validates the Chinese ID card number.
+// Documentation: [IDCardUtils](https://sakurajimamaii.github.io/VastDocs/document/en/IDCardUtils.html)
 
 fun validateIDCardNumber(IDStr: String): String {
     var errorInfo: String

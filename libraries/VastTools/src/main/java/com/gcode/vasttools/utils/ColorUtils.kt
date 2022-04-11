@@ -33,16 +33,14 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 
-/**
- * @Author: Vast Gui @Email: guihy2019@gmail.com @Date: 2022/3/10 15:27
- * @Description: Provides methods for get Color resources
- *               and converting between different formats
- *               of Color.
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 15:27
+// Description: ColorUtils Provides methods for converting between different formats of Color.
+// Documentation: [ColorUtils](https://sakurajimamaii.github.io/VastDocs/document/en/ColorUtils.html)
 
 /**
- * Color hexadecimal string convert to int.
+ * Converting Color hexadecimal string to int.
  *
  * @param colorHex Color hexadecimal string,for example:#12c2e9.
  */
@@ -51,10 +49,10 @@ fun colorHex2Int(colorHex: String): Int {
 }
 
 /**
- * Color hexadecimal string convert to an array of RGB.
+ * Converting color hexadecimal string to an array of RGB.
  *
  * @param colorHex Color hexadecimal string,for example:#12c2e9.
- * @return For example: **{18,194,233}**.
+ * @return For example: {18,194,233}.
  */
 fun colorHex2RGB(colorHex: String): IntArray {
     val colorInt = colorHex2Int(colorHex)
@@ -62,9 +60,9 @@ fun colorHex2RGB(colorHex: String): IntArray {
 }
 
 /**
- * Color int convert to hexadecimal string.
+ * Converting color int to hexadecimal string.
  *
- * @return Color hexadecimal string.For example:**#3FE2C5**.
+ * @return Color hexadecimal string.For example:#3FE2C5.
  */
 fun colorInt2Hex(@ColorInt colorInt: Int): String {
     val rgb = colorInt2RGB(colorInt)
@@ -72,7 +70,7 @@ fun colorInt2Hex(@ColorInt colorInt: Int): String {
 }
 
 /**
- * Color int convert to an array of RGB.
+ * Converting color int to an array of RGB.
  *
  * @param colorInt Color int.
  * @return For example: **{63,226,197}**.
@@ -86,7 +84,7 @@ fun colorInt2RGB(@ColorInt colorInt: Int): IntArray {
 }
 
 /**
- * An array of RGB convert to color hexadecimal string.
+ * Converting an array of RGB to color hexadecimal string.
  *
  * @param rgb For example: **{63,226,197}**.
  * @return Color hexadecimal string.For example:**#3FE2C5**.
@@ -110,7 +108,7 @@ fun colorRGB2Hex(rgb: IntArray): String {
 }
 
 /**
- * An array of RGB convert to color int.
+ * Converting an array of RGB to color int.
  *
  * @param rgb For example: **{63,226,197}**.
  * @return Color int

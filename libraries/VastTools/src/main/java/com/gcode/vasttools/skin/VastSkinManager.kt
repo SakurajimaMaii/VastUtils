@@ -33,6 +33,12 @@ import android.text.TextUtils
 import com.gcode.vasttools.skin.utils.VastSkinResources
 import java.util.*
 
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/27 18:35
+// Description: VastSkin is a non-intrusive skinning framework based on the replacement LayoutInflater.Factory2
+// Documentation: [VastSkin](https://sakurajimamaii.github.io/VastDocs/document/en/VastSkin.html)
+
 object VastSkinManager : Observable() {
 
     private lateinit var originalApplication:Application
@@ -57,7 +63,7 @@ object VastSkinManager : Observable() {
     }
 
     /**
-     * Get the theme and apply it.
+     * Get the skin and apply it.
      *
      * @param skinPath Theme path,if empty use default skin.
      */

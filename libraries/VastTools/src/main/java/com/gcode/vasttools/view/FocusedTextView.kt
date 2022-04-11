@@ -28,14 +28,16 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/4/9 21:59
+// Description:
+// Documentation:
+
 /**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/4/9 21:59
- * @Description:
- * @Documentation:
+ * When you want to show the marquee effect, you can use [FocusedTextView]
  */
-class FocusedTextView: AppCompatTextView {
+open class FocusedTextView: AppCompatTextView {
 
     constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)

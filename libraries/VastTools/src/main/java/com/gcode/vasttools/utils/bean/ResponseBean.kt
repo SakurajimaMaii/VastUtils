@@ -24,11 +24,17 @@
 
 package com.gcode.vasttools.utils.bean
 
+//Author: Vast Gui
+//Email: guihy2019@gmail.com
+//Date: 2022/3/17 12:21
+//Documentation: [Bean](https://sakurajimamaii.github.io/VastDocs/document/en/Bean.html)
+
 /**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/17 12:21
- * @Description:
- * @Documentation:
+ * Base results for network requests.
+ *
+ * @param T Type of the result data.
+ * @property code Result code.
+ * @property msg Result message.
+ * @property data Result data.
  */
 open class ResponseBean<T:Any> (val code:Int, val msg:String, val data:T)

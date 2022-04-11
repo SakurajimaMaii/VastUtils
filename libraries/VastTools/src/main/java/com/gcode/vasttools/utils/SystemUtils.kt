@@ -29,13 +29,11 @@ package com.gcode.vasttools.utils
 import android.os.Build
 import java.util.*
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/10 15:27
- * @Description: Help you to get the system information.
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 15:27
+// Description: Help you to get the system information.
+// Documentation: [SystemUtils](https://sakurajimamaii.github.io/VastDocs/document/en/SystemUtils.html)
 
 /**
  * Returns the language code of this Locale.

@@ -29,12 +29,11 @@ package com.gcode.vasttools.utils
 import android.content.res.Resources
 import android.util.TypedValue
 
-/**
- * @Author: Vast Gui
- * @Date: 2022/3/10 15:27
- * @Description: Provides some basic conversion methods between different dimension.
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 15:27
+// Description: DensityUtils provide you with some methods to convert different dimensions.
+// Documentation: [DensityUtils](https://sakurajimamaii.github.io/VastDocs/document/en/DensityUtils.html)
 
 fun px2dp(pxValue: Float): Float {
     val scale: Float = Resources.getSystem().displayMetrics.density

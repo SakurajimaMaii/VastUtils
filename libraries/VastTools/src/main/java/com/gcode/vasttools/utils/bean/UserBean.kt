@@ -24,11 +24,15 @@
 
 package com.gcode.vasttools.utils.bean
 
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/17 12:21
+// Documentation: [Bean](https://sakurajimamaii.github.io/VastDocs/document/en/Bean.html)
+
 /**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/17 12:21
- * @Description:
- * @Documentation:
+ * User bean.
+ *
+ * @property username username.
+ * @property password password.
  */
 open class UserBean(val username: String, val password:String)

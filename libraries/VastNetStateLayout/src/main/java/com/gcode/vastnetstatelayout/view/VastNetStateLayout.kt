@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2021 码上夏雨
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.gcode.vastnetstatelayout.view
 
 import android.content.Context
@@ -5,12 +29,15 @@ import android.util.AttributeSet
 import android.util.SparseArray
 import android.view.View
 import android.widget.FrameLayout
-import com.gcode.vastnetstatelayout.annotation.*
+import com.gcode.vastnetstatelayout.interfaces.BaseNetStateLayout
 
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2021/11/5
+// Description:
+// Documentation:
 
 /**
- * Created by Vast Gui on 2021/11/5
- *
  * [VastNetStateLayout] is a layout to set customized network state ui.
  *
  * You can use [showLoading]、[showLoadingError]、[showNetError]、[showEmptyData]
@@ -22,10 +49,10 @@ import com.gcode.vastnetstatelayout.annotation.*
  * ```kotlin
  * val vastNetStateMgr = VastNetStateMgr(this)
  * vastNetStateMgr.setLoadingView(R.layout.simple_net_error_view)
- * vastNetStateMgr.setVastRetryClickListener(object :VastRetryClickListener{
- *     override fun onRetry() {
- *
- *     }
+ * vastNetStateMgr.setLoadingErrorListener(object :VastLoadingErrorListener{
+ *          override fun onLoadingError() {
+ *                  // Something to do when loading error
+ *          }
  * })
  * mNetStateLayout.setVastNetStateMgr(vastNetStateMgr)
  * ```
@@ -35,7 +62,7 @@ import com.gcode.vastnetstatelayout.annotation.*
  */
 class VastNetStateLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null,defStyleAttr:Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+) : FrameLayout(context, attrs, defStyleAttr),BaseNetStateLayout {
     /**
      * Set default vastNetStateMgr.
      */
@@ -47,7 +74,7 @@ class VastNetStateLayout @JvmOverloads constructor(
      */
     private val layoutSparseArray: SparseArray<View> = SparseArray<View>()
 
-    fun setVastNetStateMgr(mgr: VastNetStateMgr){
+    override fun setVastNetStateMgr(mgr: VastNetStateMgr){
         vastNetStateMgr = mgr
         addNetStateView()
     }
@@ -64,7 +91,7 @@ class VastNetStateLayout @JvmOverloads constructor(
         }
     }
 
-    fun showLoading(){
+    override fun showLoading(){
         if(!::vastNetStateMgr.isInitialized){
             vastNetStateMgr = VastNetStateMgr(context)
             addNetStateView()
@@ -74,7 +101,7 @@ class VastNetStateLayout @JvmOverloads constructor(
         }
     }
 
-    fun showNetError(){
+    override fun showNetError(){
         if(!::vastNetStateMgr.isInitialized){
             vastNetStateMgr = VastNetStateMgr(context)
             addNetStateView()
@@ -84,7 +111,7 @@ class VastNetStateLayout @JvmOverloads constructor(
         }
     }
 
-    fun showLoadingError(){
+    override fun showLoadingError(){
         if(!::vastNetStateMgr.isInitialized){
             vastNetStateMgr = VastNetStateMgr(context)
             addNetStateView()
@@ -94,7 +121,7 @@ class VastNetStateLayout @JvmOverloads constructor(
         }
     }
 
-    fun showEmptyData(){
+    override fun showEmptyData(){
         if(!::vastNetStateMgr.isInitialized){
             vastNetStateMgr = VastNetStateMgr(context)
             addNetStateView()
@@ -104,7 +131,7 @@ class VastNetStateLayout @JvmOverloads constructor(
         }
     }
 
-    fun showSuccess(){
+    override fun showSuccess(){
         if(!::vastNetStateMgr.isInitialized){
             vastNetStateMgr = VastNetStateMgr(context)
             addNetStateView()

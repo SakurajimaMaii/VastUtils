@@ -34,13 +34,10 @@ import java.lang.reflect.Constructor
 import java.util.*
 import kotlin.collections.HashMap
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/27 18:35
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/27 18:35
+
 class VastSkinLayoutInflaterFactory(private val activity: Activity) : LayoutInflater.Factory2,
     Observer {
 

@@ -31,17 +31,11 @@ import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import androidx.core.content.res.ResourcesCompat
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/30 18:52
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/30 18:52
+// Description: Used to loading skin resource from original app or skin apk.
 
-/**
- * Used to loading skin resource from original app or skin apk.
- */
 object VastSkinResources {
     private var themePackageName: String? = null
     private var isDefaultTheme = true

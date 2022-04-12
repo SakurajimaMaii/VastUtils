@@ -1,3 +1,27 @@
+<!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2021 码上夏雨
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
 <vector android:height="30dp" android:viewportHeight="1024"
     android:viewportWidth="1024" android:width="30dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#FFFFFFFF" android:pathData="M960,416V192l-73.06,73.06a447.71,447.71 0,0 0,-373.6 -201.09C265.92,63.97 65.31,264.54 65.31,512S265.92,960.03 513.34,960.03a448.06,448.06 0,0 0,415.23 -279.49,38.37 38.37,0 1,0 -71.14,-28.9 371.36,371.36 0,0 1,-344.1 231.58C308.32,883.23 142.11,717.02 142.11,512S308.32,140.77 513.34,140.77c132.45,0 251.94,70.08 318.02,179.84L736,416h224z"/>

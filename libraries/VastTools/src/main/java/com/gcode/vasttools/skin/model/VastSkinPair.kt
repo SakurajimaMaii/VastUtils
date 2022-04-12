@@ -24,15 +24,9 @@
 
 package com.gcode.vasttools.skin.model
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/30 20:00
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/30 20:00
+// Description: VastSkinPair is used to record the name and id of the attr that can be changed.
 
-/**
- * VastSkinPair is used to record the name and id of the attr that can be changed.
- */
 internal class VastSkinPair(var attributeName: String, var resId: Int)

@@ -24,23 +24,15 @@
 
 package com.gcode.vasttools.base
 
-import android.os.Build
 import android.os.Bundle
-import android.view.*
-import androidx.core.view.WindowInsetsCompat
 import androidx.viewbinding.ViewBinding
 import com.gcode.vasttools.base.extension.getVbClass
 import com.gcode.vasttools.base.extension.initSettings
-import java.lang.reflect.ParameterizedType
 
-
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/10 16:05
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 16:05
+// Description: Please make sure that the activity extends VastVbActivity when the activity using viewbinding.
 
 abstract class VastVbActivity<VB : ViewBinding> : VastBaseActivity() {
 

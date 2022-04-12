@@ -34,13 +34,11 @@ import androidx.viewbinding.ViewBinding
 import com.gcode.vasttools.base.extension.getVbClass
 import com.gcode.vasttools.base.extension.getVmClass
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/10 16:11
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 16:11
+// Description:
+// Documentation:
 
 abstract class VastVbVmFragment<VB : ViewBinding, VM : ViewModel> : VastBaseFragment() {
 

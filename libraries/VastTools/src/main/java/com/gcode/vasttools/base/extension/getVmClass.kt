@@ -28,12 +28,10 @@ package com.gcode.vasttools.base.extension
 
 import java.lang.reflect.ParameterizedType
 
-/**
- * @Author: Vast Gui
- * @Date: 2022/3/10 16:51
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Date: 2022/3/10 16:51
+// Description:
+// Documentation:
 
 internal fun <VM> getVmClass(obj: Any, index: Int): VM {
     return (obj.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as VM

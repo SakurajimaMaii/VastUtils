@@ -24,29 +24,19 @@
 
 package com.gcode.vasttools.base
 
-import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.WindowInsetsController
-import android.view.WindowManager
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.gcode.vasttools.base.extension.getVbClass
 import com.gcode.vasttools.base.extension.getVmClass
 import com.gcode.vasttools.base.extension.initSettings
-import java.lang.reflect.ParameterizedType
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/10 16:13
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 16:13
+// Description:
+// Documentation:
 
 abstract class VastVbVmActivity<VB : ViewBinding, VM : ViewModel> : VastBaseActivity() {
 

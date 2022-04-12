@@ -27,13 +27,10 @@ package com.gcode.vasttools.base
 import androidx.appcompat.app.AppCompatActivity
 import com.gcode.vasttools.base.interfaces.BaseActivity
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/10 16:20
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 16:20
+// Description: BaseVastActivity.
 
 abstract class VastBaseActivity : AppCompatActivity(), BaseActivity {
 

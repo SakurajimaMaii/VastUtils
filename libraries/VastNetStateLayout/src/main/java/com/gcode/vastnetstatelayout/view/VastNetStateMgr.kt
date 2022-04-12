@@ -1,34 +1,80 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2021 码上夏雨
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.gcode.vastnetstatelayout.view
 
 import android.content.Context
 import android.view.ViewStub
+import androidx.annotation.IntDef
 import androidx.annotation.LayoutRes
 import com.gcode.vastnetstatelayout.R
-import com.gcode.vastnetstatelayout.interfaces.VastEmptyDataListener
-import com.gcode.vastnetstatelayout.interfaces.VastLoadingErrorListener
-import com.gcode.vastnetstatelayout.interfaces.VastNetErrorListener
-import com.gcode.vastnetstatelayout.interfaces.VastLoadingListener
+import com.gcode.vastnetstatelayout.interfaces.*
+
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2021/11/16
+// Description:
+// Documentation:
+
+// show customized network error view
+const val CONTENT_STATE_SHOW_LOADING = 0X01
+
+// show customized network loading view
+const val CONTENT_STATE_SHOW_NET_ERROR = 0X02
+
+// show customized network loading error view
+const val CONTENT_STATE_SHOW_LOADING_ERROR = 0X03
+
+// show customized network empty view
+const val CONTENT_STATE_SHOW_EMPTY_DATA = 0X04
+
+// show customized success view
+const val CONTENT_STATE_SHOW_SUCCESS = 0X05
+
+@Retention(AnnotationRetention.SOURCE)
+@IntDef(
+    CONTENT_STATE_SHOW_LOADING,
+    CONTENT_STATE_SHOW_NET_ERROR,
+    CONTENT_STATE_SHOW_LOADING_ERROR,
+    CONTENT_STATE_SHOW_EMPTY_DATA,
+    CONTENT_STATE_SHOW_SUCCESS
+)
+annotation class NetStateView
 
 /**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
- * @EditDate: 2021/11/16
- */
-
-/**
- * [VastNetStateMgr] mainly used to manage
- * the view of different network status
+ * [VastNetStateMgr] used to manage the view
+ * of different network status.
  *
  * Currently mainly supports four view:
- * **EMPTY DATA** , **NET ERROR** , **LOADING ERROR** , **LOADING**
+ * EMPTY DATA,NET ERROR,LOADING ERROR,LOADING.
  *
  * If you want to customize the view, you can use
- * [setEmptyDataView] , [setNetErrorView] ,
- * [setLoadingView] , [setLoadingView] ,
+ * [setEmptyDataView],[setNetErrorView],
+ * [setLoadingView],[setLoadingView],
  * otherwise the default view will be used.
  */
-class VastNetStateMgr(private val context: Context) {
+class VastNetStateMgr(private val context: Context):BaseNetStateMgr {
 
     internal var loadingVs: ViewStub
         private set
@@ -51,25 +97,25 @@ class VastNetStateMgr(private val context: Context) {
         private set
 
     /**
-     * It will be called when the layout state is [com.gcode.vastnetstatelayout.annotation.CONTENT_STATE_SHOW_LOADING].
+     * It will be called when the layout state is [CONTENT_STATE_SHOW_LOADING].
      */
     internal var loadingListener: VastLoadingListener? = null
         private set
 
     /**
-     * It will be called when the layout state is [com.gcode.vastnetstatelayout.annotation.CONTENT_STATE_SHOW_NET_ERROR].
+     * It will be called when the layout state is [CONTENT_STATE_SHOW_NET_ERROR].
      */
     internal var netErrorListener: VastNetErrorListener? = null
         private set
 
     /**
-     * It will be called when the layout state is [com.gcode.vastnetstatelayout.annotation.CONTENT_STATE_SHOW_EMPTY_DATA].
+     * It will be called when the layout state is [CONTENT_STATE_SHOW_EMPTY_DATA].
      */
     internal var emptyDataListener: VastEmptyDataListener? = null
         private set
 
     /**
-     * It will be called when the layout state is [com.gcode.vastnetstatelayout.annotation.CONTENT_STATE_SHOW_LOADING_ERROR].
+     * It will be called when the layout state is [CONTENT_STATE_SHOW_LOADING_ERROR].
      */
     internal var loadingErrorListener: VastLoadingErrorListener? = null
         private set
@@ -79,7 +125,7 @@ class VastNetStateMgr(private val context: Context) {
      *
      * @param loadingViewId Your custom net loading view id.
      */
-    fun setLoadingView(@LayoutRes loadingViewId: Int){
+    override fun setLoadingView(@LayoutRes loadingViewId: Int){
         this.loadingViewId = loadingViewId
         loadingVs = ViewStub(context).apply {
             layoutResource = loadingViewId
@@ -91,7 +137,7 @@ class VastNetStateMgr(private val context: Context) {
      *
      * @param netErrorRetryViewId Your custom net error view id.
      */
-    fun setNetErrorView(@LayoutRes netErrorRetryViewId:Int){
+    override fun setNetErrorView(@LayoutRes netErrorRetryViewId:Int){
         this.netErrorRetryViewId = netErrorRetryViewId
         netErrorRetryVs = ViewStub(context).apply {
             layoutResource = netErrorRetryViewId
@@ -103,7 +149,7 @@ class VastNetStateMgr(private val context: Context) {
      *
      * @param emptyDataRetryViewId Your custom empty data view id.
      */
-    fun setEmptyDataView(@LayoutRes emptyDataRetryViewId:Int){
+    override fun setEmptyDataView(@LayoutRes emptyDataRetryViewId:Int){
         this.emptyDataRetryViewId = emptyDataRetryViewId
         emptyDataVs = ViewStub(context).apply {
             layoutResource = emptyDataRetryViewId
@@ -115,7 +161,7 @@ class VastNetStateMgr(private val context: Context) {
      *
      * @param loadingErrorRetryViewId Your custom loading error view id.
      */
-    fun setLoadingErrorView(@LayoutRes loadingErrorRetryViewId:Int){
+    override fun setLoadingErrorView(@LayoutRes loadingErrorRetryViewId:Int){
         this.loadingErrorRetryViewId = loadingErrorRetryViewId
         loadingErrorVs = ViewStub(context).apply {
             layoutResource = loadingErrorRetryViewId
@@ -126,7 +172,7 @@ class VastNetStateMgr(private val context: Context) {
      * You can set the view click event including
      * the following status:**NET ERROR**
      */
-    fun setNetErrorListener(netErrorListener: VastNetErrorListener?){
+    override fun setNetErrorListener(netErrorListener: VastNetErrorListener?){
         this.netErrorListener = netErrorListener
     }
 
@@ -134,7 +180,7 @@ class VastNetStateMgr(private val context: Context) {
      * You can set the view click event including
      * the following status:**LOADING**
      */
-    fun setLoadingListener(loadingListener: VastLoadingListener?){
+    override fun setLoadingListener(loadingListener: VastLoadingListener?){
         this.loadingListener = loadingListener
     }
 
@@ -142,7 +188,7 @@ class VastNetStateMgr(private val context: Context) {
      * You can set the view click event including
      * the following status:**EMPTY DATA**
      */
-    fun setEmptyDataListener(emptyDataListener: VastEmptyDataListener?){
+    override fun setEmptyDataListener(emptyDataListener: VastEmptyDataListener?){
         this.emptyDataListener = emptyDataListener
     }
 
@@ -150,7 +196,7 @@ class VastNetStateMgr(private val context: Context) {
      * You can set the view click event including
      * the following status:**LOADING ERROR**
      */
-    fun setLoadingErrorListener(loadingErrorListener: VastLoadingErrorListener?){
+    override fun setLoadingErrorListener(loadingErrorListener: VastLoadingErrorListener?){
         this.loadingErrorListener = loadingErrorListener
     }
 

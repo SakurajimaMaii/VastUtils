@@ -29,13 +29,11 @@ import com.gcode.vasttools.skin.VastSkinManager
 import com.gcode.vasttools.utils.LogUtils
 import com.tencent.mmkv.MMKV
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/13 18:06
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/13 18:06
+// Description:
+// Documentation:
 
 open class VastApp:Application() {
 

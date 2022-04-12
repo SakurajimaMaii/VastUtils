@@ -30,23 +30,18 @@ import com.gcode.vasttools.skin.model.VastSkinPair
 import com.gcode.vasttools.skin.model.VastSkinView
 import com.gcode.vasttools.skin.utils.VastSkinUtils
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/27 18:37
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/27 18:37
+// Description: VastSkinAttribute used to change the attr of view.
 
-/**
- * VastSkinAttribute used to change the attr of view.
- */
 class VastSkinAttribute {
 
     private val mSkinViews: MutableList<VastSkinView> = ArrayList()
 
     /**
-     * Firstly,select the attributes that the [view] can modify.
+     * Firstly,select the attributes that the [view] changeably.
+     *
      * Secondly,change the attributes of the [view].
      */
     fun look(view: View, attrs: AttributeSet) {

@@ -37,17 +37,11 @@ import com.gcode.vasttools.skin.CHANGEABLY_SRC
 import com.gcode.vasttools.skin.CHANGEABLY_TEXT_COLOR
 import com.gcode.vasttools.skin.utils.VastSkinResources
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/30 20:05
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/30 20:05
+// Description: VastSkinView is used to change the attr of the view specified in skinPairs.
 
-/**
- * VastSkinView is used to change the attr of the [view] specified in [skinPairs]
- */
 internal class VastSkinView(private var view: View, private var skinPairs: List<VastSkinPair>) {
 
     fun applySkin() {

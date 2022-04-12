@@ -26,13 +26,10 @@ package com.gcode.vastadapter.interfaces
 
 import com.gcode.vastadapter.base.VastBindAdapter
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/30 7:34
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/30 7:34
+// Description: Please make sure that your list class implement VastBindAdapterItem when you use VastBindAdapter.
 
 /**
  * Please make sure that your list class implement [VastBindAdapterItem]

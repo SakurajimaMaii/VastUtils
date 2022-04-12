@@ -22,22 +22,24 @@
  * SOFTWARE.
  */
 
-@file:Suppress("UNCHECKED_CAST")
+package com.gcode.vastnetstatelayout.interfaces
 
-package com.gcode.vasttools.base.extension
+import com.gcode.vastnetstatelayout.view.VastNetStateMgr
 
-import android.view.LayoutInflater
-import java.lang.reflect.ParameterizedType
-
-// Author: Vast Gui
+// Author: Vast Gui 
 // Email: guihy2019@gmail.com
-// Date: 2022/3/11 23:01
+// Date: 2022/4/12 7:53
 // Description:
 // Documentation:
 
-internal fun <VB> getVbClass(obj: Any, index: Int,layoutInflater: LayoutInflater): VB {
-    val superClass = obj.javaClass.genericSuperclass
-    val clazz = (superClass as ParameterizedType).actualTypeArguments[index] as Class<*>
-    val method = clazz.getMethod("inflate", LayoutInflater::class.java)
-    return method.invoke(null, layoutInflater) as VB
+interface BaseNetStateLayout {
+
+    fun setVastNetStateMgr(mgr: VastNetStateMgr)
+
+    fun showLoading()
+    fun showNetError()
+    fun showLoadingError()
+    fun showEmptyData()
+    fun showSuccess()
+
 }

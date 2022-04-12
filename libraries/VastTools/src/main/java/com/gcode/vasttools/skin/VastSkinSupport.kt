@@ -24,13 +24,10 @@
 
 package com.gcode.vasttools.skin
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/27 18:17
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/27 18:17
+
 interface VastSkinSupport {
 
     fun applySkin()

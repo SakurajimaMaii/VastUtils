@@ -35,13 +35,10 @@ import androidx.core.view.LayoutInflaterCompat
 import com.gcode.vasttools.skin.utils.VastSkinUtils
 import java.util.*
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/27 19:45
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/27 19:45
+
 internal class VastSkinActivityLifecycle constructor(private val mObservable: Observable) :
     Application.ActivityLifecycleCallbacks {
     private val mLayoutInflaterFactories: ArrayMap<Activity, VastSkinLayoutInflaterFactory> =

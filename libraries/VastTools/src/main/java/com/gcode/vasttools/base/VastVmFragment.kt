@@ -32,13 +32,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.gcode.vasttools.base.extension.getVmClass
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/10 16:18
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/10 16:18
+// Description:
+// Documentation:
 
 abstract class VastVmFragment<VM : ViewModel> : VastBaseFragment() {
 

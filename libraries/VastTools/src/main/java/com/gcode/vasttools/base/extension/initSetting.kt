@@ -31,13 +31,10 @@ import android.view.WindowManager
 import androidx.core.view.WindowInsetsCompat
 import com.gcode.vasttools.base.VastBaseActivity
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/12 21:26
- * @Description:
- * @Documentation:
- */
+// @Author: Vast Gui
+// @Email: guihy2019@gmail.com
+// @Date: 2022/3/12 21:26
+// @Description: Used to initialize some ui settings of VastBaseActivity.
 
 internal fun VastBaseActivity.initSettings(){
     if (!enableActionBar) {

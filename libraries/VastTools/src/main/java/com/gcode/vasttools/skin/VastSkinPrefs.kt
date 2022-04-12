@@ -24,13 +24,9 @@
 
 package com.gcode.vasttools.skin
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/30 18:41
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/30 18:41
 
 internal const val THEME_FILE = "com.gcode.vastskin"
 internal const val THEME_PATH = "com.gcode.vastskin.path"

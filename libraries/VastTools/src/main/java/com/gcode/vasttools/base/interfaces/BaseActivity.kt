@@ -24,13 +24,11 @@
 
 package com.gcode.vasttools.base.interfaces
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/23 15:53
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/23 15:53
+// Description: BaseActivity for VastBaseActivity.
+
 internal interface BaseActivity {
 
     /**

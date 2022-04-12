@@ -24,20 +24,15 @@
 
 package com.gcode.vasttools.adapter
 
-import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-// @Author: Vast Gui
-// @Email: guihy2019@gmail.com
-// @Date: 2022/4/10 19:47
-// @Description:
-// @Documentation:
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/4/10 19:47
+// Description: Base fragment adapter for viewpager2 when activity is [AppCompatActivity].
 
-/**
- * Base fragment adapter for viewpager2 when activity is [AppCompatActivity]
- */
 open class BaseFragmentAdapter(
     private val activity: AppCompatActivity,
     protected val fragments:MutableList<Fragment>

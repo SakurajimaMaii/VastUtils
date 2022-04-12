@@ -31,13 +31,12 @@ import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener;
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem;
 import com.gcode.vastutilsjava.R;
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/31 13:57
- * @Description:
- * @Documentation:
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/31 13:57
+// Description:
+// Documentation:
+
 public class Picture implements VastBindAdapterItem {
 
     private int drawable;
@@ -63,25 +62,26 @@ public class Picture implements VastBindAdapterItem {
         return R.layout.item_bind_imageview;
     }
 
-    @Override
-    public void setVBAapClickEventListener(@Nullable VAapClickEventListener l) {
-        clickEventListener = l;
-    }
 
     @Nullable
     @Override
-    public VAapClickEventListener getVBAapClickEventListener() {
+    public VAapClickEventListener getVbAapClickEventListener() {
         return clickEventListener;
     }
 
     @Override
-    public void setVBAdpLongClickEventListener(@Nullable VAdpLongClickEventListener l) {
-        longClickEventListener = l;
+    public void setVbAapClickEventListener(@Nullable VAapClickEventListener value) {
+        clickEventListener = value;
     }
 
     @Nullable
     @Override
-    public VAdpLongClickEventListener getVBAdpLongClickEventListener() {
+    public VAdpLongClickEventListener getVbAdpLongClickEventListener() {
         return longClickEventListener;
+    }
+
+    @Override
+    public void setVbAdpLongClickEventListener(@Nullable VAdpLongClickEventListener value) {
+        longClickEventListener = value;
     }
 }

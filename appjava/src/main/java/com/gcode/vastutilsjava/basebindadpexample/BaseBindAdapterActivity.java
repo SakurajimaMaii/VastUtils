@@ -54,7 +54,7 @@ public class BaseBindAdapterActivity extends VastVbActivity<ActivityBaseBindAdap
             datas.add(new Picture(R.drawable.ic_knots, click, null));
         }
 
-        BaseBindAdapter adapter = new BaseBindAdapter(datas);
+        BaseBindAdapter adapter = new BaseBindAdapter(datas,this);
 
         adapter.setOnItemClickListener((view, position) -> {
             // Something you want to do

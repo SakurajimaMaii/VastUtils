@@ -37,13 +37,15 @@ import com.gcode.vastadapter.base.VastBindAdapter
  */
 interface VastBindAdapterItem {
 
-    fun setVBAapClickEventListener(l:VAapClickEventListener?)
+    /**
+     * Item click event listener.
+     */
+    var vbAapClickEventListener:VAapClickEventListener?
 
-    fun getVBAapClickEventListener():VAapClickEventListener?
-
-    fun setVBAdpLongClickEventListener(l:VAdpLongClickEventListener?)
-
-    fun getVBAdpLongClickEventListener():VAdpLongClickEventListener?
+    /**
+     * Item long click event listener.
+     */
+    var vbAdpLongClickEventListener:VAdpLongClickEventListener?
 
     /**
      * @return The item layout resource id.

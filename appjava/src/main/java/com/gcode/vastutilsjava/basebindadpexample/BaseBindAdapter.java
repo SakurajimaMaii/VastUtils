@@ -24,6 +24,8 @@
 
 package com.gcode.vastutilsjava.basebindadpexample;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import com.gcode.vastadapter.base.VastBindAdapter;
@@ -43,9 +45,10 @@ import java.util.List;
 public class BaseBindAdapter extends VastBindAdapter {
 
     private ArrayList<VastBindAdapterItem> datas;
+    private Context mContext;
 
-    public BaseBindAdapter(@NonNull List<VastBindAdapterItem> dataSource) {
-        super(dataSource);
+    public BaseBindAdapter(@NonNull List<VastBindAdapterItem> dataSource,@NonNull Context mContext) {
+        super(dataSource,mContext);
         datas.addAll(dataSource);
     }
 

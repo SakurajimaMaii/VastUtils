@@ -65,15 +65,15 @@ abstract class VastAdapter(
         val itemData: VastAdapterItem = dataSource[position]
         holder.onBindData(itemData)
         holder.itemView.setOnClickListener {
-            if (null != itemData.getVAapClickEventListener()) {
-                itemData.getVAapClickEventListener()!!.vAapClickEvent(holder.itemView,position)
+            if (null != itemData.vAapClickEventListener) {
+                itemData.vAapClickEventListener!!.vAapClickEvent(holder.itemView,position)
             } else {
                 onItemClickListener?.onItemClick(holder.itemView, position)
             }
         }
         holder.itemView.setOnLongClickListener {
-            val res = if (null != itemData.getVAdpLongClickEventListener()) {
-                itemData.getVAdpLongClickEventListener()!!.vAdpLongClickEvent(holder.itemView, position)
+            val res = if (null != itemData.vAdpLongClickEventListener) {
+                itemData.vAdpLongClickEventListener!!.vAdpLongClickEvent(holder.itemView, position)
             } else {
                 onItemLongClickListener?.onItemLongClick(holder.itemView, position)
             }

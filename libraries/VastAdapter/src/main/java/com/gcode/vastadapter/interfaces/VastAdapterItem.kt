@@ -38,13 +38,16 @@ import com.gcode.vastadapter.base.VastAdapterVH
  */
 interface VastAdapterItem {
 
-    fun setVAapClickEventListener(l: VAapClickEventListener?)
+    /**
+     * Item click event listener.
+     */
+    var vAapClickEventListener:VAapClickEventListener?
 
-    fun getVAapClickEventListener(): VAapClickEventListener?
+    /**
+     * Item long click event listener.
+     */
+    var vAdpLongClickEventListener:VAdpLongClickEventListener?
 
-    fun setVAdpLongClickEventListener(l: VAdpLongClickEventListener?)
-
-    fun getVAdpLongClickEventListener(): VAdpLongClickEventListener?
 
     /**
      * @return A string which is same as the value you set in [VastAdapterVH.BVAdpVHFactory.getVAdpVHType].

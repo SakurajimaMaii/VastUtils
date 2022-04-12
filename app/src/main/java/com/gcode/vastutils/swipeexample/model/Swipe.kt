@@ -37,27 +37,12 @@ import com.gcode.vastutils.R
  */
 class Swipe(
     val str:String,
-    var vbAdpClickEventListener: VAapClickEventListener?,
-    var vbAdpLongClickEventListener: VAdpLongClickEventListener?,
+    override var vbAapClickEventListener: VAapClickEventListener?,
+    override var vbAdpLongClickEventListener: VAdpLongClickEventListener?,
 ) :VastBindAdapterItem {
-
-    override fun setVBAapClickEventListener(l: VAapClickEventListener?) {
-        vbAdpClickEventListener = l
-    }
-
-    override fun getVBAapClickEventListener(): VAapClickEventListener? {
-        return vbAdpClickEventListener
-    }
-
-    override fun setVBAdpLongClickEventListener(l: VAdpLongClickEventListener?) {
-        vbAdpLongClickEventListener = l
-    }
-
-    override fun getVBAdpLongClickEventListener(): VAdpLongClickEventListener? {
-        return vbAdpLongClickEventListener
-    }
 
     override fun getVBAdpItemType(): Int {
         return R.layout.item_menu
     }
+
 }

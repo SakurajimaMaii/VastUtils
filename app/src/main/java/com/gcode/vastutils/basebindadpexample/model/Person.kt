@@ -35,25 +35,9 @@ import com.gcode.vastutils.R
  */
 class Person(
     val firstName: String, val lastName: String,
-    var vbAdpClickEventListener: VAapClickEventListener? = null,
-    var vbAdpLongClickEventListener: VAdpLongClickEventListener? = null,
+    override var vbAapClickEventListener: VAapClickEventListener? = null,
+    override var vbAdpLongClickEventListener: VAdpLongClickEventListener? = null,
 ) :VastBindAdapterItem {
-
-    override fun setVBAapClickEventListener(l: VAapClickEventListener?) {
-        vbAdpClickEventListener = l
-    }
-
-    override fun getVBAapClickEventListener(): VAapClickEventListener? {
-        return vbAdpClickEventListener
-    }
-
-    override fun setVBAdpLongClickEventListener(l: VAdpLongClickEventListener?) {
-        vbAdpLongClickEventListener = l
-    }
-
-    override fun getVBAdpLongClickEventListener(): VAdpLongClickEventListener? {
-        return vbAdpLongClickEventListener
-    }
 
     override fun getVBAdpItemType(): Int {
         return R.layout.item_bind_textview

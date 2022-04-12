@@ -46,7 +46,7 @@ class BaseBindingAdapterActivity: VastVbActivity<ActivityBaseBindingAdapterBindi
 
         initData()
 
-        val adapter = BaseBindingAdapter(datas)
+        val adapter = BaseBindingAdapter(datas,this)
 
         adapter.setOnItemClickListener(null)
         object :VastBindAdapter.OnItemClickListener{

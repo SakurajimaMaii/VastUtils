@@ -25,6 +25,7 @@
 package com.gcode.vastutils.basebindadpexample
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.widget.ImageView
@@ -43,8 +44,9 @@ import com.gcode.vastutils.BR
  * @EditDate: 2022/1/28
  */
 class BaseBindingAdapter(
-    private val dataSource:MutableList<VastBindAdapterItem>
-):VastBindAdapter(dataSource) {
+    private val dataSource:MutableList<VastBindAdapterItem>,
+    private val mContext: Context
+):VastBindAdapter(dataSource,mContext) {
     companion object {
         @JvmStatic @BindingAdapter("android:src")
         fun setImageUri(view: ImageView, imageUri: String?) {

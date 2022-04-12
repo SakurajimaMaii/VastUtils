@@ -64,14 +64,6 @@ class SwipeActivity : VastVbActivity<ActivitySwipeBinding>(){
         return list
     }
 
-    class Adapter(data:MutableList<VastBindAdapterItem>):VastBindAdapter(data){
-
-        override fun setVariableId(): Int {
-            return BR.item
-        }
-
-    }
-
     override fun initView(savedInstanceState: Bundle?) {
         lists = initData()
 

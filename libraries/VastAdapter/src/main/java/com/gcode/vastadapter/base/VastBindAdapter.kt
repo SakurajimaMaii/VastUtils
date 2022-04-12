@@ -24,6 +24,7 @@
 
 package com.gcode.vastadapter.base
 
+import android.content.Context
 import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
@@ -41,6 +42,7 @@ import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 
 abstract class VastBindAdapter constructor(
     private val dataSource: MutableList<VastBindAdapterItem>,
+    private val mContext: Context
 ) : RecyclerView.Adapter<VastBindAdapter.BindingHolder>() {
 
     // Fix https://github.com/SakurajimaMaii/VastUtils/issues/36
@@ -83,7 +85,7 @@ abstract class VastBindAdapter constructor(
         val viewType = dataSource[position].getVBAdpItemType()
         try {
             // Identify whether there is a resource file for the resource id.
-            Resources.getSystem().getLayout(viewType)
+            mContext.resources.getLayout(viewType)
         }catch(e:Resources.NotFoundException){
             throw RuntimeException("Please check if the return value of the getVBAdpItemType method in ${dataSource[position].javaClass.simpleName}.kt is correct.")
         }

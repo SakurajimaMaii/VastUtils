@@ -27,7 +27,6 @@ package com.gcode.vasttools.base
 import android.app.Application
 import com.gcode.vasttools.skin.VastSkinManager
 import com.gcode.vasttools.utils.LogUtils
-import com.tencent.mmkv.MMKV
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -39,7 +38,6 @@ open class VastApp:Application() {
 
     override fun onCreate() {
         super.onCreate()
-        MMKV.initialize(this)
         LogUtils.syncIsDeBug(this)
         VastSkinManager.initVastThemeManager(this)
     }

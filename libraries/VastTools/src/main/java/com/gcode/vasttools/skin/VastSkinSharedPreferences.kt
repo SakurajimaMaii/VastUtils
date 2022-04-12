@@ -24,8 +24,6 @@
 
 package com.gcode.vasttools.skin
 
-import com.tencent.mmkv.MMKV
-
 /**
  * @Author: Vast Gui
  * @Email: guihy2019@gmail.com
@@ -33,18 +31,22 @@ import com.tencent.mmkv.MMKV
  * @Description:
  * @Documentation:
  */
-object VastSkinMMKV {
-
-    private val themeMMKV = MMKV.mmkvWithID(THEME_FILE)
+object VastSkinSharedPreferences {
 
     fun reset() {
-        themeMMKV.removeValueForKey(THEME_PATH)
+        VastSkinManager.sharedPreferences.edit().apply {
+            remove(THEME_PATH)
+            apply()
+        }
     }
 
     var skin: String?
-        get() = themeMMKV.decodeString(THEME_PATH, null)
+        get() = VastSkinManager.sharedPreferences.getString(THEME_PATH, null)
         set(skinPath) {
-            themeMMKV.encode(THEME_PATH, skinPath)
+            VastSkinManager.sharedPreferences.edit().apply {
+                putString(THEME_PATH, skinPath)
+                apply()
+            }
         }
 
 }

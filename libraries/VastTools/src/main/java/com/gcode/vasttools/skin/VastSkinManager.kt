@@ -26,6 +26,8 @@
 package com.gcode.vasttools.skin
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.AssetManager
 import android.content.res.Resources
@@ -43,6 +45,8 @@ object VastSkinManager : Observable() {
 
     private lateinit var originalApplication:Application
     private lateinit var skinActivityLifecycle: VastSkinActivityLifecycle
+    // Fix https://github.com/SakurajimaMaii/VastUtils/issues/39
+    internal lateinit var sharedPreferences:SharedPreferences
 
     /**
      * You should init [VastSkinManager] in application.
@@ -54,11 +58,12 @@ object VastSkinManager : Observable() {
         if(!this::originalApplication.isInitialized and !this::skinActivityLifecycle.isInitialized){
             originalApplication = application
             VastSkinResources.initSkinResources(originalApplication)
+            sharedPreferences = application.getSharedPreferences(THEME_FILE, Context.MODE_PRIVATE)
             // Register the original application as Observer.
             skinActivityLifecycle = VastSkinActivityLifecycle(this)
             originalApplication.registerActivityLifecycleCallbacks(skinActivityLifecycle)
             // Load the skin setting in the last time.
-            loadSkin(VastSkinMMKV.skin)
+            loadSkin(VastSkinSharedPreferences.skin)
         }
     }
 
@@ -69,7 +74,7 @@ object VastSkinManager : Observable() {
      */
     fun loadSkin(skinPath: String?) {
         if (TextUtils.isEmpty(skinPath)) {
-            VastSkinMMKV.reset()
+            VastSkinSharedPreferences.reset()
             VastSkinResources.reset()
         } else {
             try {
@@ -93,7 +98,7 @@ object VastSkinManager : Observable() {
                 val info = mPm.getPackageArchiveInfo(skinPath!!, PackageManager.GET_ACTIVITIES)
                 val packageName = info!!.packageName
                 VastSkinResources.applySkin(themeResource, packageName)
-                VastSkinMMKV.skin = skinPath
+                VastSkinSharedPreferences.skin = skinPath
             } catch (e: Exception) {
                 e.printStackTrace()
             }

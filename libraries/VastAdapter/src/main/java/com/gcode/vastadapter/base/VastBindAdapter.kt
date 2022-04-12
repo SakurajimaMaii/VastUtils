@@ -24,6 +24,7 @@
 
 package com.gcode.vastadapter.base
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,8 +81,11 @@ abstract class VastBindAdapter constructor(
 
     final override fun getItemViewType(position: Int):Int {
         val viewType = dataSource[position].getVBAdpItemType()
-        if (viewType == -1){
-            throw RuntimeException("Please check if you have set the correct layout id")
+        try {
+            // Identify whether there is a resource file for the resource id.
+            Resources.getSystem().getLayout(viewType)
+        }catch(e:Resources.NotFoundException){
+            throw RuntimeException("Please check if the return value of the getVBAdpItemType method in ${dataSource[position].javaClass.simpleName}.kt is correct.")
         }
         return viewType
     }

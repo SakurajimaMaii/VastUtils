@@ -22,24 +22,26 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.vastactfrag
+package com.gcode.vastutils.activity.baseadpexample.model
 
-import android.os.Bundle
-import com.gcode.vasttools.base.VastVmActivity
-import com.gcode.vastutils.R
-import com.gcode.vastutils.viewModel.BaseVM
+import com.gcode.vastadapter.interfaces.VAapClickEventListener
+import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
+import com.gcode.vastadapter.interfaces.VastAdapterItem
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/13 17:23
- * @Description:
- * @Documentation:
- */
-class BaseVmFragment(override val layoutId: Int = R.layout.fragment_base_vm) :VastVmActivity<BaseVM>() {
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/2/16
+// Description:
+// Documentation:
 
-    override fun initView(savedInstanceState: Bundle?) {
-        TODO("Not yet implemented")
+class BExample(
+    val drawable:Int,
+    override var vAapClickEventListener: VAapClickEventListener? = null,
+    override var vAdpLongClickEventListener: VAdpLongClickEventListener? = null
+) : VastAdapterItem {
+
+    override fun getVAdpItemType(): String {
+        return BExample::class.java.simpleName
     }
 
 }

@@ -22,25 +22,26 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.vastactfrag
+package com.gcode.vastutils.model
 
-import android.content.Context
-import android.os.Bundle
-import com.gcode.vasttools.base.VastVbVmFragment
-import com.gcode.vasttools.utils.ToastUtils
-import com.gcode.vasttools.utils.showShortMsg
-import com.gcode.vastutils.databinding.FragmentBaseVbBinding
-import com.gcode.vastutils.viewModel.BaseVM
+import com.gcode.vastadapter.interfaces.VAapClickEventListener
+import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
+import com.gcode.vastadapter.interfaces.VastBindAdapterItem
+import com.gcode.vastutils.R
 
+// Author: Vast Gui 
+// Email: guihy2019@gmail.com
+// Date: 2022/4/13 19:01
+// Description:
+// Documentation:
 
-class BaseVbFragment(override val layoutId: Int = 0) : VastVbVmFragment<FragmentBaseVbBinding, BaseVM>() {
+class IntentSelect @JvmOverloads constructor(val name: String,
+                   override var vbAapClickEventListener: VAapClickEventListener? = null,
+                   override var vbAdpLongClickEventListener: VAdpLongClickEventListener? = null
+):VastBindAdapterItem{
 
-    override fun initView(savedInstanceState: Bundle?) {
-
-        mBinding.tv.setOnClickListener {
-
-        }
-
+    override fun getVBAdpItemType(): Int {
+        return R.layout.item_main_rv
     }
 
 }

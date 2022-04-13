@@ -22,17 +22,14 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.vastactfrag
+package com.gcode.vastutils.activity
 
 import android.os.Bundle
 import com.gcode.vasttools.base.VastVbVmActivity
-import com.gcode.vasttools.utils.LogUtils
-import com.gcode.vasttools.utils.getMobileScreenHeight
-import com.gcode.vasttools.utils.getMobileScreenWidth
 import com.gcode.vastutils.databinding.ActivityBaseVbBinding
 import com.gcode.vastutils.viewModel.BaseVM
 
-class BaseVbVmActivity : VastVbVmActivity<ActivityBaseVbBinding,BaseVM>() {
+class VbVmActivity : VastVbVmActivity<ActivityBaseVbBinding,BaseVM>() {
 
     override fun initView(savedInstanceState: Bundle?) {
 

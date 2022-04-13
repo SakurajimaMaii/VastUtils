@@ -22,27 +22,26 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.basebindadpexample.model
+package com.gcode.vastutils.activity.baseadpexample.model
 
 import com.gcode.vastadapter.interfaces.VAapClickEventListener
 import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
-import com.gcode.vastadapter.interfaces.VastBindAdapterItem
-import com.gcode.vastutils.R
+import com.gcode.vastadapter.interfaces.VastAdapterItem
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
-// Date: 2022/1/20 15:54
+// Date: 2022/2/16
 // Description:
 // Documentation:
 
-class Picture(
-    val drawable: Int,
-    override var vbAapClickEventListener: VAapClickEventListener?,
-    override var vbAdpLongClickEventListener: VAdpLongClickEventListener? = null,
-) : VastBindAdapterItem {
+class AExample(
+    val data: String,
+    override var vAapClickEventListener: VAapClickEventListener? = null,
+    override var vAdpLongClickEventListener: VAdpLongClickEventListener? = null,
+):VastAdapterItem {
 
-    override fun getVBAdpItemType(): Int {
-        return R.layout.item_bind_imageview
+    override fun getVAdpItemType(): String {
+        return AExample::class.java.simpleName
     }
 
 }

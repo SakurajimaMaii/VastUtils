@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.basebindadpexample
+package com.gcode.vastutils.activity.basebindadpexample
 
 import android.annotation.SuppressLint
 import android.content.Context

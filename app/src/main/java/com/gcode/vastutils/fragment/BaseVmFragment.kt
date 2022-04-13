@@ -22,51 +22,24 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.baseadpexample.viewholder
+package com.gcode.vastutils.fragment
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import com.gcode.vastadapter.base.VastAdapterVH
-import com.gcode.vastadapter.interfaces.VastAdapterItem
+import android.os.Bundle
+import com.gcode.vasttools.base.VastVmFragment
 import com.gcode.vastutils.R
-import com.gcode.vastutils.baseadpexample.model.AExample
-import com.gcode.vastutils.baseadpexample.model.BExample
+import com.gcode.vastutils.viewModel.BaseVM
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
-// Date: 2022/1/19
+// Date: 2022/3/13 17:23
 // Description:
 // Documentation:
 
-class BViewHolder(itemView: View) : VastAdapterVH(itemView) {
+class BaseVmFragment(override val layoutId: Int = R.layout.fragment_base_vm) :
+    VastVmFragment<BaseVM>() {
 
-    private val iv: ImageView
-
-    override fun onBindData(item: VastAdapterItem) {
-        super.onBindData(item)
-        iv.setImageResource((item as BExample).drawable)
+    override fun initView(savedInstanceState: Bundle?) {
+        TODO("Not yet implemented")
     }
 
-    class Factory : BVAdpVHFactory {
-
-        override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-        ): VastAdapterVH {
-            val inflater = LayoutInflater.from(parent.context)
-            val itemView: View = inflater.inflate(R.layout.item_imageview, parent, false)
-            return BViewHolder(itemView)
-        }
-
-        override fun getVAdpVHType(): String {
-            return BExample::class.java.simpleName
-        }
-
-    }
-
-    init {
-        iv = itemView.findViewById(R.id.item_image)
-    }
 }

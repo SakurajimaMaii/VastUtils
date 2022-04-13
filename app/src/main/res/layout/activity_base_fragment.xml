@@ -28,9 +28,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.basebindadpexample.BaseBindingAdapterActivity">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dataRv"
+    tools:context=".activity.BaseFragmentActivity">
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

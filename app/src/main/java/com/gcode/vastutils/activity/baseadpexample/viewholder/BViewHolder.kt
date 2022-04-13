@@ -22,27 +22,51 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.basebindadpexample.model
+package com.gcode.vastutils.activity.baseadpexample.viewholder
 
-import com.gcode.vastadapter.interfaces.VAapClickEventListener
-import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
-import com.gcode.vastadapter.interfaces.VastBindAdapterItem
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import com.gcode.vastadapter.base.VastAdapterVH
+import com.gcode.vastadapter.interfaces.VastAdapterItem
 import com.gcode.vastutils.R
+import com.gcode.vastutils.activity.baseadpexample.model.AExample
+import com.gcode.vastutils.activity.baseadpexample.model.BExample
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
-// Date: 2021/4/2 15:54
+// Date: 2022/1/19
 // Description:
 // Documentation:
 
-class Person(
-    val firstName: String, val lastName: String,
-    override var vbAapClickEventListener: VAapClickEventListener? = null,
-    override var vbAdpLongClickEventListener: VAdpLongClickEventListener? = null,
-) :VastBindAdapterItem {
+class BViewHolder(itemView: View) : VastAdapterVH(itemView) {
 
-    override fun getVBAdpItemType(): Int {
-        return R.layout.item_bind_textview
+    private val iv: ImageView
+
+    override fun onBindData(item: VastAdapterItem) {
+        super.onBindData(item)
+        iv.setImageResource((item as BExample).drawable)
     }
 
+    class Factory : BVAdpVHFactory {
+
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): VastAdapterVH {
+            val inflater = LayoutInflater.from(parent.context)
+            val itemView: View = inflater.inflate(R.layout.item_imageview, parent, false)
+            return BViewHolder(itemView)
+        }
+
+        override fun getVAdpVHType(): String {
+            return BExample::class.java.simpleName
+        }
+
+    }
+
+    init {
+        iv = itemView.findViewById(R.id.item_image)
+    }
 }

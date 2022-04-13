@@ -22,69 +22,67 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.baseadpexample
+package com.gcode.vastutils.activity.basebindadpexample
 
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gcode.vastadapter.base.VastAdapter
+import com.gcode.vastadapter.base.VastBindAdapter
 import com.gcode.vastadapter.interfaces.VAapClickEventListener
 import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
-import com.gcode.vastadapter.interfaces.VastAdapterItem
+import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vasttools.base.VastVbActivity
 import com.gcode.vasttools.utils.showShortMsg
 import com.gcode.vastutils.R
-import com.gcode.vastutils.baseadpexample.model.AExample
-import com.gcode.vastutils.baseadpexample.model.BExample
-import com.gcode.vastutils.baseadpexample.viewholder.AViewHolder
-import com.gcode.vastutils.baseadpexample.viewholder.BViewHolder
-import com.gcode.vastutils.databinding.ActivityBaseAdapterBinding
+import com.gcode.vastutils.activity.basebindadpexample.model.Person
+import com.gcode.vastutils.activity.basebindadpexample.model.Picture
+import com.gcode.vastutils.databinding.ActivityBaseBindingAdapterBinding
 
-class BaseAdapterActivity : VastVbActivity<ActivityBaseAdapterBinding>() {
+class BaseBindingAdapterActivity : VastVbActivity<ActivityBaseBindingAdapterBinding>() {
 
-    private lateinit var adapter: BaseAdapter
-
-    private val datas: MutableList<VastAdapterItem> = ArrayList()
-
-    private val click = object : VAapClickEventListener {
-        override fun vAapClickEvent(view: View, pos: Int) {
-            showShortMsg("Click event and pos is $pos.")
-        }
-    }
-
-    private val longClick = object : VAdpLongClickEventListener {
-        override fun vAdpLongClickEvent(view: View, pos: Int): Boolean {
-            showShortMsg("Long click event and pos is $pos.")
-            return true
-        }
-    }
+    private val datas: MutableList<VastBindAdapterItem> = ArrayList()
 
     override fun initView(savedInstanceState: Bundle?) {
 
         initData()
 
-        adapter = BaseAdapter(datas, mutableListOf(AViewHolder.Factory(), BViewHolder.Factory()))
+        val adapter = BaseBindingAdapter(datas, this)
 
-        adapter.setOnItemClickListener(object : VastAdapter.OnItemClickListener {
+        adapter.setOnItemClickListener(object : VastBindAdapter.OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
                 // Something you want to do
             }
         })
-        adapter.setOnItemLongClickListener(object : VastAdapter.OnItemLongClickListener {
+        adapter.setOnItemLongClickListener(object : VastBindAdapter.OnItemLongClickListener {
             override fun onItemLongClick(view: View, position: Int): Boolean {
                 // Something you want to do
                 return true
             }
         })
 
-        mBinding.dataList.adapter = adapter
-        mBinding.dataList.layoutManager = LinearLayoutManager(this)
+
+        mBinding.dataRv.adapter = adapter
+        mBinding.dataRv.layoutManager = LinearLayoutManager(this)
     }
 
     private fun initData() {
+
+        val click = object : VAapClickEventListener {
+            override fun vAapClickEvent(view: View, pos: Int) {
+                showShortMsg("Click event and pos is $pos.")
+            }
+        }
+
+        val longClick = object : VAdpLongClickEventListener {
+            override fun vAdpLongClickEvent(view: View, pos: Int): Boolean {
+                showShortMsg("Long click event and pos is $pos.")
+                return true
+            }
+        }
+
         for (i in 0..10) {
-            datas.add(AExample(i.toString(), click, null))
-            datas.add(BExample(R.drawable.ic_knots, null, longClick))
+            datas.add(Person(i.toString(), i.toString(), click, null))
+            datas.add(Picture(R.drawable.ic_knots, null, longClick))
         }
     }
 }

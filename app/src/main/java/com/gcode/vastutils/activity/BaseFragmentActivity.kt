@@ -22,42 +22,36 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.baseadpexample.viewholder
+package com.gcode.vastutils.activity
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import com.gcode.vastadapter.base.VastAdapterVH
-import com.gcode.vastadapter.interfaces.VastAdapterItem
-import com.gcode.vastutils.R
-import com.gcode.vastutils.baseadpexample.model.AExample
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import com.gcode.vasttools.adapter.BaseFragmentAdapter
+import com.gcode.vasttools.base.VastVbActivity
+import com.gcode.vastutils.databinding.ActivityBaseFragmentBinding
+import com.gcode.vastutils.fragment.BaseVbFragment
+import com.gcode.vastutils.fragment.BaseVbVmFragment
+import com.gcode.vastutils.fragment.BaseVmFragment
 
-// Author: Vast Gui
+// Author: Vast Gui 
 // Email: guihy2019@gmail.com
-// Date: 2022/1/19
+// Date: 2022/4/13 19:45
 // Description:
 // Documentation:
 
-class AViewHolder(itemView: View): VastAdapterVH(itemView) {
-    private val tv:TextView
+class BaseFragmentActivity : VastVbActivity<ActivityBaseFragmentBinding>() {
 
-    override fun onBindData(item: VastAdapterItem) {
-        super.onBindData(item)
-        tv.text = (item as AExample).data
-    }
-
-    class Factory:BVAdpVHFactory{
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VastAdapterVH {
-            return AViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_textview,parent,false))
-        }
-
-        override fun getVAdpVHType(): String {
-            return AExample::class.java.simpleName
+    override fun initView(savedInstanceState: Bundle?) {
+        mBinding.vp2.apply {
+            /**
+             * [BaseFragmentAdapter] 使用示例
+             */
+            adapter = BaseFragmentAdapter(this@BaseFragmentActivity,ArrayList<Fragment>().apply {
+                add(BaseVbFragment())
+                add(BaseVmFragment())
+                add(BaseVbVmFragment())
+            })
         }
     }
 
-    init {
-        tv = itemView.findViewById(R.id.text)
-    }
 }

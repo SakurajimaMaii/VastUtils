@@ -22,26 +22,42 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.baseadpexample.model
+package com.gcode.vastutils.activity.baseadpexample.viewholder
 
-import com.gcode.vastadapter.interfaces.VAapClickEventListener
-import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import com.gcode.vastadapter.base.VastAdapterVH
 import com.gcode.vastadapter.interfaces.VastAdapterItem
+import com.gcode.vastutils.R
+import com.gcode.vastutils.activity.baseadpexample.model.AExample
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
-// Date: 2022/2/16
+// Date: 2022/1/19
 // Description:
 // Documentation:
 
-class BExample(
-    val drawable:Int,
-    override var vAapClickEventListener: VAapClickEventListener? = null,
-    override var vAdpLongClickEventListener: VAdpLongClickEventListener? = null
-) : VastAdapterItem {
+class AViewHolder(itemView: View): VastAdapterVH(itemView) {
+    private val tv:TextView
 
-    override fun getVAdpItemType(): String {
-        return BExample::class.java.simpleName
+    override fun onBindData(item: VastAdapterItem) {
+        super.onBindData(item)
+        tv.text = (item as AExample).data
     }
 
+    class Factory:BVAdpVHFactory{
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VastAdapterVH {
+            return AViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_textview,parent,false))
+        }
+
+        override fun getVAdpVHType(): String {
+            return AExample::class.java.simpleName
+        }
+    }
+
+    init {
+        tv = itemView.findViewById(R.id.text)
+    }
 }

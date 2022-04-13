@@ -22,28 +22,27 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.activity
+package com.gcode.vastutils.activity.basebindadpexample.model
 
-import android.os.Bundle
-import com.gcode.vasttools.base.VastVbActivity
-import com.gcode.vasttools.skin.VastSkinManager
-import com.gcode.vasttools.utils.*
-import com.gcode.vastutils.databinding.ActivityThemeBinding
+import com.gcode.vastadapter.interfaces.VAapClickEventListener
+import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
+import com.gcode.vastadapter.interfaces.VastBindAdapterItem
+import com.gcode.vastutils.R
 
-class ThemeActivity : VastVbActivity<ActivityThemeBinding>() {
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/1/20 15:54
+// Description:
+// Documentation:
 
-    private val tag = this.javaClass.simpleName
+class Picture(
+    val drawable: Int,
+    override var vbAapClickEventListener: VAapClickEventListener?,
+    override var vbAdpLongClickEventListener: VAdpLongClickEventListener? = null,
+) : VastBindAdapterItem {
 
-    override fun initView(savedInstanceState: Bundle?) {
-
-        mBinding.start.setOnClickListener {
-            VastSkinManager.loadSkin("data/data/com.gcode.vastutils/files/darkskin-debug.apk")
-        }
-
-        mBinding.end.setOnClickListener {
-            VastSkinManager.loadSkin("")
-        }
-
+    override fun getVBAdpItemType(): Int {
+        return R.layout.item_bind_imageview
     }
 
 }

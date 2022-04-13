@@ -22,26 +22,17 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.baseadpexample.model
+package com.gcode.vastutils.fragment
 
-import com.gcode.vastadapter.interfaces.VAapClickEventListener
-import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
-import com.gcode.vastadapter.interfaces.VastAdapterItem
+import android.os.Bundle
+import com.gcode.vasttools.base.VastVbVmFragment
+import com.gcode.vastutils.databinding.FragmentBaseVbVmBinding
+import com.gcode.vastutils.viewModel.BaseVM
 
-// Author: Vast Gui
-// Email: guihy2019@gmail.com
-// Date: 2022/2/16
-// Description:
-// Documentation:
+class BaseVbVmFragment(override val layoutId: Int = 0) : VastVbVmFragment<FragmentBaseVbVmBinding,BaseVM>() {
 
-class AExample(
-    val data: String,
-    override var vAapClickEventListener: VAapClickEventListener? = null,
-    override var vAdpLongClickEventListener: VAdpLongClickEventListener? = null,
-):VastAdapterItem {
+    override fun initView(savedInstanceState: Bundle?) {
 
-    override fun getVAdpItemType(): String {
-        return AExample::class.java.simpleName
     }
 
 }

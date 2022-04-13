@@ -24,40 +24,113 @@
 
 package com.gcode.vastutils.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.gcode.vastadapter.base.VastBindAdapter
+import com.gcode.vastadapter.interfaces.VAapClickEventListener
+import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vasttools.base.VastVbActivity
-import com.gcode.vastutils.baseadpexample.BaseAdapterActivity
-import com.gcode.vastutils.basebindadpexample.BaseBindingAdapterActivity
+import com.gcode.vastutils.BR
+import com.gcode.vastutils.R
+import com.gcode.vastutils.activity.baseadpexample.BaseAdapterActivity
+import com.gcode.vastutils.activity.basebindadpexample.BaseBindingAdapterActivity
 import com.gcode.vastutils.databinding.ActivityMainBinding
-import com.gcode.vastutils.swipeexample.SwipeActivity
+import com.gcode.vastutils.model.IntentSelect
 
 class MainActivity : VastVbActivity<ActivityMainBinding>() {
 
+    // 列表rv适配器
+    inner class Adapter(
+        data:MutableList<VastBindAdapterItem>,
+        context: Context
+    ): VastBindAdapter(data,context) {
+        override fun setVariableId(): Int {
+            return BR.intentSelect
+        }
+    }
+
+    // 列表数据源
+    private val data:MutableList<VastBindAdapterItem> = ArrayList()
+
+    private val context = this
+
     override fun initView(savedInstanceState: Bundle?) {
+        initData()
 
-        mBinding.loadingPage.setOnClickListener {
-            startActivity(Intent(this, NetStateActivity::class.java))
+        mBinding.rv.apply{
+            adapter = Adapter(data,context)
+            layoutManager = LinearLayoutManager(context)
         }
 
-        mBinding.swipeListViewPage.setOnClickListener {
-            startActivity(Intent(this, SwipeActivity::class.java))
-        }
+    }
 
-        mBinding.baseAdapter.setOnClickListener {
-            startActivity(Intent(this, BaseAdapterActivity::class.java))
-        }
+    private fun initData(){
+        data.apply {
+            add(IntentSelect(
+                context.resources.getString(R.string.loading_page),
+                object: VAapClickEventListener{
+                    override fun vAapClickEvent(view: View, pos: Int) {
+                        context.startActivity(Intent(context, NetStateActivity::class.java))
+                    }
+                }
+            ))
 
-        mBinding.baseBindAdapter.setOnClickListener {
-            startActivity(Intent(this, BaseBindingAdapterActivity::class.java))
-        }
+            add(IntentSelect(
+                context.resources.getString(R.string.base_adapter),
+                object: VAapClickEventListener{
+                    override fun vAapClickEvent(view: View, pos: Int) {
+                        context.startActivity(Intent(context, BaseAdapterActivity::class.java))
+                    }
+                }
+            ))
 
-        mBinding.intent.setOnClickListener {
-            startActivity(Intent(this,IntentActivity::class.java))
-        }
+            add(IntentSelect(
+                context.resources.getString(R.string.base_bind_adapter),
+                object: VAapClickEventListener{
+                    override fun vAapClickEvent(view: View, pos: Int) {
+                        context.startActivity(Intent(context, BaseBindingAdapterActivity::class.java))
+                    }
+                }
+            ))
 
-        mBinding.shape.setOnClickListener {
-            startActivity(Intent(this,ShapeActivity::class.java))
+            add(IntentSelect(
+                context.resources.getString(R.string.base_intent),
+                object: VAapClickEventListener{
+                    override fun vAapClickEvent(view: View, pos: Int) {
+                        context.startActivity(Intent(context, IntentActivity::class.java))
+                    }
+                }
+            ))
+
+            add(IntentSelect(
+                context.resources.getString(R.string.shape),
+                object: VAapClickEventListener{
+                    override fun vAapClickEvent(view: View, pos: Int) {
+                        context.startActivity(Intent(context, ShapeActivity::class.java))
+                    }
+                }
+            ))
+
+            add(IntentSelect(
+                context.resources.getString(R.string.base_fragment_activity),
+                object: VAapClickEventListener{
+                    override fun vAapClickEvent(view: View, pos: Int) {
+                        context.startActivity(Intent(context, BaseFragmentActivity::class.java))
+                    }
+                }
+            ))
+
+            add(IntentSelect(
+                context.resources.getString(R.string.theme),
+                object: VAapClickEventListener{
+                    override fun vAapClickEvent(view: View, pos: Int) {
+                        context.startActivity(Intent(context, ThemeActivity::class.java))
+                    }
+                }
+            ))
         }
     }
 

@@ -53,7 +53,7 @@ ext {
     PUBLISH_URL = 'https://github.com/SakurajimaMaii/VastUtils/tree/master/libraries/VastTools' 
 }
 
-dokkaGfm {
+dokkaHtml {
     outputDirectory.set(file("$rootDir/docs/vasttools"))
     moduleName.set("VastTools")
     suppressInheritedMembers.set(false)

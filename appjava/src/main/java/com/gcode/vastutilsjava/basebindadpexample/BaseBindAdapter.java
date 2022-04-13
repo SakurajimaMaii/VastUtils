@@ -35,21 +35,16 @@ import com.gcode.vastutilsjava.BR;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/31 14:11
- * @Description:
- * @Documentation:
- */
-public class BaseBindAdapter extends VastBindAdapter {
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/31 14:11
+// Description:
+// Documentation:
 
-    private ArrayList<VastBindAdapterItem> datas;
-    private Context mContext;
+public class BaseBindAdapter extends VastBindAdapter {
 
     public BaseBindAdapter(@NonNull List<VastBindAdapterItem> dataSource,@NonNull Context mContext) {
         super(dataSource,mContext);
-        datas.addAll(dataSource);
     }
 
     @Override
@@ -58,7 +53,7 @@ public class BaseBindAdapter extends VastBindAdapter {
     }
 
     public Boolean isEmpty(){
-        return datas.isEmpty();
+        return getDataSource().isEmpty();
     }
 
 }

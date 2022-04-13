@@ -31,15 +31,15 @@ import android.widget.ImageView
 import com.gcode.vastadapter.base.VastAdapterVH
 import com.gcode.vastadapter.interfaces.VastAdapterItem
 import com.gcode.vastutils.R
+import com.gcode.vastutils.baseadpexample.model.AExample
 import com.gcode.vastutils.baseadpexample.model.BExample
 
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/1/19
+// Description:
+// Documentation:
 
-/**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
- * @EditDate: 2022/1/19
- */
 class BViewHolder(itemView: View) : VastAdapterVH(itemView) {
 
     private val iv: ImageView
@@ -61,7 +61,7 @@ class BViewHolder(itemView: View) : VastAdapterVH(itemView) {
         }
 
         override fun getVAdpVHType(): String {
-            return "picture"
+            return BExample::class.java.simpleName
         }
 
     }

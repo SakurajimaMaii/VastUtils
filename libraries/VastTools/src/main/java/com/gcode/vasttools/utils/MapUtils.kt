@@ -22,27 +22,29 @@
  * SOFTWARE.
  */
 
-package com.gcode.vastutils.basebindadpexample.model
+@file:JvmName("MapUtils")
 
-import com.gcode.vastadapter.interfaces.VAapClickEventListener
-import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
-import com.gcode.vastadapter.interfaces.VastBindAdapterItem
-import com.gcode.vastutils.R
+package com.gcode.vasttools.utils
 
-// Author: Vast Gui
+import android.content.Context
+import android.location.LocationManager
+
+// Author: Vast Gui 
 // Email: guihy2019@gmail.com
-// Date: 2021/4/2 15:54
+// Date: 2022/4/13 17:41
 // Description:
 // Documentation:
 
-class Person(
-    val firstName: String, val lastName: String,
-    override var vbAapClickEventListener: VAapClickEventListener? = null,
-    override var vbAdpLongClickEventListener: VAdpLongClickEventListener? = null,
-) :VastBindAdapterItem {
-
-    override fun getVBAdpItemType(): Int {
-        return R.layout.item_bind_textview
+fun Context.isOPen(): Boolean {
+    val locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    // Through GPS satellite positioning, the positioning level can be accurate to the street
+    // (through 24 satellite positioning, the positioning is accurate and fast in outdoor and open places).
+    val gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+    // Position determined by WLAN or mobile network (3G/2G) (also called AGPS, Assisted GPS Positioning.
+    // Mainly used for positioning indoors or in densely covered places (buildings or dense deep forest, etc.).
+    val network = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+    if (gps && network) {
+        return true
     }
-
+    return false
 }

@@ -33,12 +33,12 @@ import com.gcode.vastadapter.interfaces.VastAdapterItem
 import com.gcode.vastutils.R
 import com.gcode.vastutils.baseadpexample.model.AExample
 
-/**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
- * @EditDate: 2022/1/19
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/1/19
+// Description:
+// Documentation:
+
 class AViewHolder(itemView: View): VastAdapterVH(itemView) {
     private val tv:TextView
 
@@ -53,7 +53,7 @@ class AViewHolder(itemView: View): VastAdapterVH(itemView) {
         }
 
         override fun getVAdpVHType(): String {
-            return "person"
+            return AExample::class.java.simpleName
         }
     }
 

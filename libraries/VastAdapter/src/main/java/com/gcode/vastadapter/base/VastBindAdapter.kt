@@ -41,8 +41,8 @@ import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 // Documentation:
 
 abstract class VastBindAdapter constructor(
-    private val dataSource: MutableList<VastBindAdapterItem>,
-    private val mContext: Context
+    protected var dataSource: MutableList<VastBindAdapterItem>,
+    protected var mContext: Context
 ) : RecyclerView.Adapter<VastBindAdapter.BindingHolder>() {
 
     // Fix https://github.com/SakurajimaMaii/VastUtils/issues/36

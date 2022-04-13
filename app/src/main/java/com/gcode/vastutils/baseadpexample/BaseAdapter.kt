@@ -31,12 +31,12 @@ import com.gcode.vastadapter.base.VastAdapter
 import com.gcode.vastadapter.base.VastAdapterVH
 import com.gcode.vastadapter.interfaces.VastAdapterItem
 
-/**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
- * @EditDate: 2022/1/19
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/1/19
+// Description:
+// Documentation:
+
 class BaseAdapter(
     private val items: MutableList<VastAdapterItem>,
     factories: MutableList<VastAdapterVH.BVAdpVHFactory>

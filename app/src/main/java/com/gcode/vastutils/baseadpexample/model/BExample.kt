@@ -28,12 +28,12 @@ import com.gcode.vastadapter.interfaces.VAapClickEventListener
 import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
 import com.gcode.vastadapter.interfaces.VastAdapterItem
 
-/**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
- * @EditDate: 2022/2/16
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/2/16
+// Description:
+// Documentation:
+
 class BExample(
     val drawable:Int,
     override var vAapClickEventListener: VAapClickEventListener? = null,
@@ -41,6 +41,7 @@ class BExample(
 ) : VastAdapterItem {
 
     override fun getVAdpItemType(): String {
-        return "picture"
+        return BExample::class.java.simpleName
     }
+
 }

@@ -29,12 +29,12 @@ import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vastutils.R
 
-/**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
- * @EditDate: 2022/1/20
- */
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/1/20 15:54
+// Description:
+// Documentation:
+
 class Picture(
     val drawable: Int,
     override var vbAapClickEventListener: VAapClickEventListener?,

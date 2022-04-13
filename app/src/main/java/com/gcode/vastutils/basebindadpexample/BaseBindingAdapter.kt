@@ -36,19 +36,19 @@ import com.gcode.vastadapter.base.VastBindAdapter
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vastutils.BR
 
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/1/28
+// Description:
+// Documentation:
 
-/**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
- * @EditDate: 2022/1/28
- */
 class BaseBindingAdapter(
-    private val dataSource:MutableList<VastBindAdapterItem>,
-    private val mContext: Context
-):VastBindAdapter(dataSource,mContext) {
+    dataSource: MutableList<VastBindAdapterItem>,
+    mContext: Context
+) : VastBindAdapter(dataSource, mContext) {
     companion object {
-        @JvmStatic @BindingAdapter("android:src")
+        @JvmStatic
+        @BindingAdapter("android:src")
         fun setImageUri(view: ImageView, imageUri: String?) {
             if (imageUri == null) {
                 view.setImageURI(null)
@@ -57,17 +57,20 @@ class BaseBindingAdapter(
             }
         }
 
-        @JvmStatic @BindingAdapter("android:src")
+        @JvmStatic
+        @BindingAdapter("android:src")
         fun setImageUri(view: ImageView, imageUri: Uri?) {
             view.setImageURI(imageUri)
         }
 
-        @JvmStatic @BindingAdapter("android:src")
+        @JvmStatic
+        @BindingAdapter("android:src")
         fun setImageDrawable(view: ImageView, drawable: Drawable?) {
             view.setImageDrawable(drawable)
         }
 
-        @JvmStatic @BindingAdapter("android:src")
+        @JvmStatic
+        @BindingAdapter("android:src")
         fun setImageResource(imageView: ImageView, resource: Int) {
             imageView.setImageResource(resource)
         }

@@ -24,12 +24,15 @@
 
 package com.gcode.vastutilsjava.basebindadpexample;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.gcode.vastadapter.interfaces.VAapClickEventListener;
+import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener;
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem;
 import com.gcode.vasttools.base.VastVbActivity;
 import com.gcode.vasttools.utils.ToastUtils;
@@ -47,14 +50,19 @@ public class BaseBindAdapterActivity extends VastVbActivity<ActivityBaseBindAdap
     public void initView(@Nullable Bundle savedInstanceState) {
 
         VAapClickEventListener click = (view, pos) -> {
-            ToastUtils.showShortMsg(this,"Hello");
+            ToastUtils.showShortMsg(this, "Click event and pos is " + pos);
+        };
+
+        VAdpLongClickEventListener longClick = (view, pos) -> {
+            ToastUtils.showShortMsg(this, "Long click event and pos is " + pos);
+            return true;
         };
 
         for (int i = 0; i < 10; i++) {
-            datas.add(new Picture(R.drawable.ic_knots, click, null));
+            datas.add(new Picture(R.drawable.ic_knots, click, longClick));
         }
 
-        BaseBindAdapter adapter = new BaseBindAdapter(datas,this);
+        BaseBindAdapter adapter = new BaseBindAdapter(datas, this);
 
         adapter.setOnItemClickListener((view, position) -> {
             // Something you want to do

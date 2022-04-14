@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'org.jetbrains.dokka'
 }
 
 android {
@@ -44,17 +43,6 @@ ext {
     PUBLISH_VERSION = '0.0.3'
     PUBLISH_DESCRIPTION = 'A layout to set customized network state ui.'
     PUBLISH_URL = 'https://github.com/SakurajimaMaii/VastUtils/tree/master/libraries/VastNetStateLayout'
-}
-
-dokkaGfm {
-    outputDirectory.set(file("$rootDir/docs/vastnetstatelayout"))
-    moduleName.set("VastNetStateLayout")
-    suppressInheritedMembers.set(false)
-    dokkaSourceSets {
-        configureEach {
-            includeNonPublic.set(true)
-        }
-    }
 }
 
 apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"

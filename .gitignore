@@ -45,3 +45,6 @@ publish-mavencentral.gradle
 #output
 debug/
 release/
+
+#VastUtils
+libraries/VastUtils

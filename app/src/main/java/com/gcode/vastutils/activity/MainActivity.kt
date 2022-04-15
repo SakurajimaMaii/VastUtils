@@ -123,6 +123,15 @@ class MainActivity : VastVbActivity<ActivityMainBinding>() {
                     }
                 }
             ))
+
+            add(IntentSelect(
+                context.resources.getString(R.string.download),
+                object: VAapClickEventListener{
+                    override fun vAapClickEvent(view: View, pos: Int) {
+                        context.startActivity(Intent(context, DownloadActivity::class.java))
+                    }
+                }
+            ))
         }
     }
 

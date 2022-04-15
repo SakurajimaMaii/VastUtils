@@ -27,6 +27,14 @@ import android.location.LocationManager
 // Description:
 // Documentation:
 
+/**
+ * Determine if GPS is turned on.
+ *
+ * @receiver [Context]
+ * @return True if GPS is turned on, false otherwise.
+ *
+ * @since 0.0.8
+ */
 fun Context.isOPen(): Boolean {
     val locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
     // Through GPS satellite positioning, the positioning level can be accurate to the street

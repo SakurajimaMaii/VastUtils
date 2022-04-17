@@ -89,6 +89,18 @@ fun String.isQQ(): Boolean {
 }
 
 /**
+ * String verified according to the Chinese phone number.
+ *
+ * @receiver String to match.
+ * @return true if the String is a phone number, false otherwise.
+ *
+ * @since 0.0.8
+ */
+fun String.isPhoneNumber(): Boolean {
+    return Regex("1(3\\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\\d|9[0-35-9])\\d{8}").matches(this)
+}
+
+/**
  * String to match.By default, it is verified according to the Chinese
  * phone number.
  *
@@ -98,8 +110,11 @@ fun String.isQQ(): Boolean {
  *
  * @since 0.0.6
  */
-@JvmOverloads
-fun String.isPhoneNumber(otherCountryPattern: String? = null): Boolean {
+@Deprecated(
+    "The function is deprecated!",
+    ReplaceWith("isPhoneNumber()"),
+    DeprecationLevel.WARNING)
+fun String.isPhoneNumber(otherCountryPattern: String?): Boolean {
     return if (null != otherCountryPattern) {
         Regex(otherCountryPattern).matches(this)
     } else {

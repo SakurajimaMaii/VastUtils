@@ -16,6 +16,8 @@
 
 package com.gcode.vasttools.base
 
+import android.content.Context
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.gcode.vasttools.base.interfaces.BaseActivity
 
@@ -32,5 +34,12 @@ abstract class VastBaseActivity : AppCompatActivity(), BaseActivity {
     override var enableActionBar = true
 
     override var enableFullScreen = false
+
+    override lateinit var mContext: Context
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mContext = this
+    }
 
 }

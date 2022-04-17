@@ -16,6 +16,8 @@
 
 package com.gcode.vasttools.base.interfaces
 
+import android.content.Context
+
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2022/3/23 15:53
@@ -25,6 +27,8 @@ internal interface BaseActivity {
 
     /**
      * True if you want to show the ActionBar,false otherwise.
+     *
+     * @since 0.0.6
      */
     var enableActionBar:Boolean
 
@@ -33,7 +37,15 @@ internal interface BaseActivity {
      *
      * If you set [enableFullScreen] to true,the ActionBar
      * will not be shown.
+     *
+     * @since 0.0.6
      */
     var enableFullScreen:Boolean
 
+    /**
+     * The [Context] of the activity.
+     *
+     * @since 0.0.8
+     */
+    val mContext: Context
 }

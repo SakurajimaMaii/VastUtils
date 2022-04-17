@@ -24,12 +24,29 @@ import com.gcode.vastadapter.interfaces.VastAdapterItem
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2021/4/2
-// Description:
-// Documentation:
+// Description: VastAdapter help you to create a recyclerView adapter.
+// Documentation: [VastAdapter](https://sakurajimamaii.github.io/VastDocs/document/zh/VastAdapter.html)
 
+/**
+ * VastAdapter.
+ *
+ * Here is an example in kotlin:
+ * ```kotlin
+ * class BaseAdapter(
+ *     private val items: MutableList<VastAdapterItem>,
+ *     factories: MutableList<VastAdapterVH.BVAdpVHFactory>
+ * ) : VastAdapter(items, factories)
+ * ```
+ * For more settings, please refer to the documentation.
+ *
+ * @property dataSource data source.
+ * @property factories viewHolder factories.
+ *
+ * @since 0.0.1
+ */
 abstract class VastAdapter(
-    private val dataSource: MutableList<VastAdapterItem>,
-    private val factories: MutableList<VastAdapterVH.BVAdpVHFactory>
+    protected val dataSource: MutableList<VastAdapterItem>,
+    protected val factories: MutableList<VastAdapterVH.BVAdpVHFactory>
 ) : RecyclerView.Adapter<VastAdapterVH>() {
 
     private val type2ItemType: MutableMap<String, Int> = HashMap()
@@ -58,7 +75,7 @@ abstract class VastAdapter(
         holder.onBindData(itemData)
         holder.itemView.setOnClickListener {
             if (null != itemData.vAapClickEventListener) {
-                itemData.vAapClickEventListener!!.vAapClickEvent(holder.itemView,position)
+                itemData.vAapClickEventListener!!.vAapClickEvent(holder.itemView, position)
             } else {
                 onItemClickListener?.onItemClick(holder.itemView, position)
             }
@@ -89,18 +106,42 @@ abstract class VastAdapter(
         }
     }
 
+    /**
+     * Register a click listener for adapter.
+     *
+     * @param onItemClickListener a click listener.
+     *
+     * @since 0.0.4
+     */
     fun setOnItemClickListener(onItemClickListener: OnItemClickListener?) {
         this.onItemClickListener = onItemClickListener
     }
 
+    /**
+     * Register a long click listener for adapter.
+     *
+     * @param onItemLongClickListener a long click listener.
+     *
+     * @since 0.0.4
+     */
     fun setOnItemLongClickListener(onItemLongClickListener: OnItemLongClickListener?) {
         this.onItemLongClickListener = onItemLongClickListener
     }
 
+    /**
+     * Adapter item click listener.
+     *
+     * @since 0.0.4
+     */
     interface OnItemClickListener {
         fun onItemClick(view: View, position: Int)
     }
 
+    /**
+     * Adapter item click listener.
+     *
+     * @since 0.0.4
+     */
     interface OnItemLongClickListener {
         fun onItemLongClick(view: View, position: Int): Boolean
     }

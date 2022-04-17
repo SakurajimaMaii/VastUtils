@@ -38,6 +38,7 @@ dependencies {
     implementation project(':libraries:VastTools')
     implementation project(':libraries:VastAdapter')
 
+    implementation 'io.github.sakurajimamaii:VastTools:0.0.7'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'

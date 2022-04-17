@@ -25,6 +25,9 @@ import android.view.View
 // Documentation:
 
 // Fix https://github.com/SakurajimaMaii/VastUtils/issues/35
+/**
+ * @since 0.0.4
+ */
 interface VAapClickEventListener {
     fun vAapClickEvent(view: View, pos: Int)
 }

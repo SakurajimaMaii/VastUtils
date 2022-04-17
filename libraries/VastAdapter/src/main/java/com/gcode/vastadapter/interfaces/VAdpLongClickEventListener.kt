@@ -27,6 +27,9 @@ import android.view.View
  */
 
 // Fix https://github.com/SakurajimaMaii/VastUtils/issues/35
+/**
+ * @since 0.0.4
+ */
 interface VAdpLongClickEventListener {
     fun vAdpLongClickEvent(view: View, pos: Int):Boolean
 }

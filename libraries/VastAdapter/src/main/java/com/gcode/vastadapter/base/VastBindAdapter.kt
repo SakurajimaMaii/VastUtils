@@ -29,9 +29,26 @@ import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2021/4/2
-// Description:
-// Documentation:
+// Description: VastBindAdapter help you to create a recyclerView adapter.
+// Documentation: [VastBindAdapter](https://sakurajimamaii.github.io/VastDocs/document/zh/VastBindAdapter.html)
 
+/**
+ * VastBindAdapter.
+ *
+ * Here is an example in kotlin:
+ * ```kotlin
+ * class BaseBindingAdapter(
+ *     dataSource: MutableList<VastBindAdapterItem>,
+ *     mContext: Context
+ * ) : VastBindAdapter(dataSource, mContext)
+ * ```
+ * For more settings, please refer to the documentation.
+ *
+ * @property dataSource data source.
+ * @property mContext [Context].
+ *
+ * @since 0.0.1
+ */
 abstract class VastBindAdapter constructor(
     protected var dataSource: MutableList<VastBindAdapterItem>,
     protected var mContext: Context
@@ -110,18 +127,42 @@ abstract class VastBindAdapter constructor(
         }
     }
 
+    /**
+     * Register a click listener for adapter.
+     *
+     * @param onItemClickListener a click listener.
+     *
+     * @since 0.0.4
+     */
     fun setOnItemClickListener(onItemClickListener: OnItemClickListener?) {
         this.onItemClickListener = onItemClickListener
     }
 
+    /**
+     * Register a long click listener for adapter.
+     *
+     * @param onItemLongClickListener a long click listener.
+     *
+     * @since 0.0.4
+     */
     fun setOnItemLongClickListener(onItemLongClickListener: OnItemLongClickListener?) {
         this.onItemLongClickListener = onItemLongClickListener
     }
 
+    /**
+     * Adapter item click listener.
+     *
+     * @since 0.0.4
+     */
     interface OnItemClickListener {
         fun onItemClick(view: View, position: Int)
     }
 
+    /**
+     * Adapter item click listener.
+     *
+     * @since 0.0.4
+     */
     interface OnItemLongClickListener {
         fun onItemLongClick(view: View, position: Int): Boolean
     }

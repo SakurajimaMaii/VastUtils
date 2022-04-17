@@ -18,13 +18,16 @@ package com.gcode.vastutils.fragment
 
 import android.os.Bundle
 import com.gcode.vasttools.base.VastVbVmFragment
-import com.gcode.vastutils.databinding.FragmentBaseVbVmBinding
-import com.gcode.vastutils.viewModel.BaseVM
+import com.gcode.vastutils.databinding.FragmentTwoBinding
+import com.gcode.vastutils.viewModel.MainSharedVM
 
-class BaseVbVmFragment(override val layoutId: Int = 0) : VastVbVmFragment<FragmentBaseVbVmBinding,BaseVM>() {
+class TwoFragment(override val layoutId: Int = 0) :
+    VastVbVmFragment<FragmentTwoBinding, MainSharedVM>() {
 
     override fun initView(savedInstanceState: Bundle?) {
-
+        mViewModel.count.observe(requireActivity()){
+            mBinding.count.text = it.toString()
+        }
     }
 
 }

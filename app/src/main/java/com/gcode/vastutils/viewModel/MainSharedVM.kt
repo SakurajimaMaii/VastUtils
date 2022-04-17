@@ -14,24 +14,27 @@
  * limitations under the License.
  */
 
-package com.gcode.vastutils.fragment
+package com.gcode.vastutils.viewModel
 
-import android.os.Bundle
-import com.gcode.vasttools.base.VastVmFragment
-import com.gcode.vastutils.R
-import com.gcode.vastutils.viewModel.BaseVM
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-// Author: Vast Gui
-// Email: guihy2019@gmail.com
-// Date: 2022/3/13 17:23
-// Description:
-// Documentation:
+/**
+ * @OriginalAuthor: Vast Gui
+ * @OriginalDate:
+ * @EditAuthor: Vast Gui
+ * @EditDate: 2022/2/19
+ */
+class MainSharedVM:ViewModel() {
 
-class BaseVmFragment(override val layoutId: Int = R.layout.fragment_base_vm) :
-    VastVmFragment<BaseVM>() {
+    private val _count:MutableLiveData<Int> = MutableLiveData(0)
 
-    override fun initView(savedInstanceState: Bundle?) {
-        TODO("Not yet implemented")
+    val count:LiveData<Int>
+        get() = _count
+
+    fun addOne(){
+        _count.postValue(_count.value?.plus(1) ?: 0)
     }
 
 }

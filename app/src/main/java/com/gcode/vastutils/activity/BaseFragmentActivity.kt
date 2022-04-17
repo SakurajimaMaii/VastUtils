@@ -21,9 +21,9 @@ import androidx.fragment.app.Fragment
 import com.gcode.vasttools.adapter.BaseFragmentAdapter
 import com.gcode.vasttools.base.VastVbActivity
 import com.gcode.vastutils.databinding.ActivityBaseFragmentBinding
-import com.gcode.vastutils.fragment.BaseVbFragment
-import com.gcode.vastutils.fragment.BaseVbVmFragment
-import com.gcode.vastutils.fragment.BaseVmFragment
+import com.gcode.vastutils.fragment.OneFragment
+import com.gcode.vastutils.fragment.TwoFragment
+import com.gcode.vastutils.fragment.ThreeFragment
 
 // Author: Vast Gui 
 // Email: guihy2019@gmail.com
@@ -39,9 +39,9 @@ class BaseFragmentActivity : VastVbActivity<ActivityBaseFragmentBinding>() {
              * [BaseFragmentAdapter] 使用示例
              */
             adapter = BaseFragmentAdapter(this@BaseFragmentActivity,ArrayList<Fragment>().apply {
-                add(BaseVbFragment())
-                add(BaseVmFragment())
-                add(BaseVbVmFragment())
+                add(OneFragment())
+                add(TwoFragment())
+                add(ThreeFragment())
             })
         }
     }

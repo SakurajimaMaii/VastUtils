@@ -18,17 +18,21 @@ package com.gcode.vastutils.fragment
 
 import android.os.Bundle
 import com.gcode.vasttools.base.VastVbVmFragment
-import com.gcode.vastutils.databinding.FragmentBaseVbBinding
-import com.gcode.vastutils.viewModel.BaseVM
+import com.gcode.vasttools.base.VastVmFragment
+import com.gcode.vastutils.R
+import com.gcode.vastutils.databinding.FragmentThreeBinding
+import com.gcode.vastutils.viewModel.MainSharedVM
 
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/13 17:23
+// Description:
+// Documentation:
 
-class BaseVbFragment(override val layoutId: Int = 0) : VastVbVmFragment<FragmentBaseVbBinding, BaseVM>() {
+class ThreeFragment(override val layoutId: Int = 0) :
+    VastVbVmFragment<FragmentThreeBinding, MainSharedVM>() {
 
     override fun initView(savedInstanceState: Bundle?) {
-
-        mBinding.tv.setOnClickListener {
-
-        }
 
     }
 

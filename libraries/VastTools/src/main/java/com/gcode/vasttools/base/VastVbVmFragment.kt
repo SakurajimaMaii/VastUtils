@@ -82,7 +82,9 @@ abstract class VastVbVmFragment<VB : ViewBinding, VM : ViewModel> : VastBaseFrag
     }
 
     private fun createViewModel(): VM {
-        return ViewModelProvider(this).get(getVmClass(this, 1))
+        // Fix https://github.com/SakurajimaMaii/VastUtils/issues/42
+        // Change this to requireActivity()
+        return ViewModelProvider(requireActivity()).get(getVmClass(this, 1))
     }
 
 }

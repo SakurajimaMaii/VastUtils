@@ -14,27 +14,25 @@
  * limitations under the License.
  */
 
-package com.gcode.vastutils.viewModel
+package com.gcode.vastutils.fragment
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.os.Bundle
+import com.gcode.vasttools.base.VastVbVmFragment
+import com.gcode.vastutils.databinding.FragmentOneBinding
+import com.gcode.vastutils.viewModel.MainSharedVM
 
-/**
- * @OriginalAuthor: Vast Gui
- * @OriginalDate:
- * @EditAuthor: Vast Gui
- * @EditDate: 2022/2/19
- */
-class BaseVM:ViewModel() {
 
-    private val _count:MutableLiveData<Int> = MutableLiveData(0)
+class OneFragment(override val layoutId: Int = 0) :
+    VastVbVmFragment<FragmentOneBinding, MainSharedVM>() {
 
-    val count:LiveData<Int>
-        get() = _count
+    override fun initView(savedInstanceState: Bundle?) {
+        mBinding.addOne.setOnClickListener {
+            mViewModel.addOne()
+        }
 
-    fun addOne(){
-        _count.postValue(_count.value?.plus(1) ?: 0)
+        mViewModel.count.observe(requireActivity()){
+            mBinding.count.text = it.toString()
+        }
     }
 
 }

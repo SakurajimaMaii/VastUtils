@@ -20,6 +20,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gcode.vastadapter.base.VastBindAdapter
 import com.gcode.vastadapter.interfaces.VAapClickEventListener
@@ -36,99 +37,113 @@ class MainActivity : VastVbActivity<ActivityMainBinding>() {
 
     // 列表rv适配器
     inner class Adapter(
-        data:MutableList<VastBindAdapterItem>,
+        data: MutableList<VastBindAdapterItem>,
         context: Context
-    ): VastBindAdapter(data,context) {
+    ) : VastBindAdapter(data, context) {
         override fun setVariableId(): Int {
             return BR.intentSelect
         }
     }
 
     // 列表数据源
-    private val data:MutableList<VastBindAdapterItem> = ArrayList()
-
-    private val context = this
+    private val data: MutableList<VastBindAdapterItem> = ArrayList()
 
     override fun initView(savedInstanceState: Bundle?) {
         initData()
 
-        mBinding.rv.apply{
-            adapter = Adapter(data,context)
-            layoutManager = LinearLayoutManager(context)
+        mBinding.rv.apply {
+            adapter = Adapter(data, mContext)
+            layoutManager = LinearLayoutManager(mContext)
+            addItemDecoration(DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL))
         }
 
     }
 
-    private fun initData(){
+    private fun initData() {
         data.apply {
             add(IntentSelect(
-                context.resources.getString(R.string.loading_page),
-                object: VAapClickEventListener{
+                mContext.resources.getString(R.string.loading_page),
+                object : VAapClickEventListener {
                     override fun vAapClickEvent(view: View, pos: Int) {
-                        context.startActivity(Intent(context, NetStateActivity::class.java))
+                        mContext.startActivity(Intent(mContext, NetStateActivity::class.java))
                     }
                 }
             ))
 
             add(IntentSelect(
-                context.resources.getString(R.string.base_adapter),
-                object: VAapClickEventListener{
+                mContext.resources.getString(R.string.base_adapter),
+                object : VAapClickEventListener {
                     override fun vAapClickEvent(view: View, pos: Int) {
-                        context.startActivity(Intent(context, BaseAdapterActivity::class.java))
+                        mContext.startActivity(
+                            Intent(
+                                mContext,
+                                BaseAdapterActivity::class.java
+                            )
+                        )
                     }
                 }
             ))
 
             add(IntentSelect(
-                context.resources.getString(R.string.base_bind_adapter),
-                object: VAapClickEventListener{
+                mContext.resources.getString(R.string.base_bind_adapter),
+                object : VAapClickEventListener {
                     override fun vAapClickEvent(view: View, pos: Int) {
-                        context.startActivity(Intent(context, BaseBindingAdapterActivity::class.java))
+                        mContext.startActivity(
+                            Intent(
+                                mContext,
+                                BaseBindingAdapterActivity::class.java
+                            )
+                        )
                     }
                 }
             ))
 
             add(IntentSelect(
-                context.resources.getString(R.string.base_intent),
-                object: VAapClickEventListener{
+                mContext.resources.getString(R.string.base_intent),
+                object : VAapClickEventListener {
                     override fun vAapClickEvent(view: View, pos: Int) {
-                        context.startActivity(Intent(context, IntentActivity::class.java))
+                        mContext.startActivity(Intent(mContext, IntentActivity::class.java))
                     }
                 }
             ))
 
             add(IntentSelect(
-                context.resources.getString(R.string.shape),
-                object: VAapClickEventListener{
+                mContext.resources.getString(R.string.shape),
+                object : VAapClickEventListener {
                     override fun vAapClickEvent(view: View, pos: Int) {
-                        context.startActivity(Intent(context, ShapeActivity::class.java))
+                        mContext.startActivity(Intent(mContext, ShapeActivity::class.java))
                     }
                 }
             ))
 
             add(IntentSelect(
-                context.resources.getString(R.string.base_fragment_activity),
-                object: VAapClickEventListener{
+                mContext.resources.getString(R.string.base_fragment_activity),
+                object : VAapClickEventListener {
                     override fun vAapClickEvent(view: View, pos: Int) {
-                        context.startActivity(Intent(context, BaseFragmentActivity::class.java))
+                        mContext.startActivity(
+                            Intent(
+                                mContext,
+                                BaseFragmentActivity::class.java
+                            )
+                        )
                     }
                 }
             ))
 
             add(IntentSelect(
-                context.resources.getString(R.string.theme),
-                object: VAapClickEventListener{
+                mContext.resources.getString(R.string.theme),
+                object : VAapClickEventListener {
                     override fun vAapClickEvent(view: View, pos: Int) {
-                        context.startActivity(Intent(context, ThemeActivity::class.java))
+                        mContext.startActivity(Intent(mContext, ThemeActivity::class.java))
                     }
                 }
             ))
 
             add(IntentSelect(
-                context.resources.getString(R.string.download),
-                object: VAapClickEventListener{
+                mContext.resources.getString(R.string.download),
+                object : VAapClickEventListener {
                     override fun vAapClickEvent(view: View, pos: Int) {
-                        context.startActivity(Intent(context, DownloadActivity::class.java))
+                        mContext.startActivity(Intent(mContext, DownloadActivity::class.java))
                     }
                 }
             ))

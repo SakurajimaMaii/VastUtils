@@ -68,7 +68,9 @@ abstract class VastVmFragment<VM : ViewModel> : VastBaseFragment() {
     abstract fun initView(savedInstanceState: Bundle?)
 
     private fun createViewModel(): VM {
-        return ViewModelProvider(this).get(getVmClass(this, 0))
+        // Fix https://github.com/SakurajimaMaii/VastUtils/issues/42
+        // Change this to requireActivity()
+        return ViewModelProvider(requireActivity()).get(getVmClass(this, 0))
     }
 
 }

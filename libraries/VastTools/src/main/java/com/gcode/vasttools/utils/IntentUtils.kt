@@ -40,11 +40,14 @@ import androidx.annotation.RequiresPermission
 /**
  * Dial phone number
  *
- * **This method does not verify the phone number.** If you want to know
+ * This method does not verify the phone number. If you want to know
  * if your mobile phone number meets the rules,you can click this link
- * [Rules of International Mobile Phone Numbers](https://support.huaweicloud.com/intl/en-us/productdesc-msgsms/phone_numbers.html)
+ * [Rules of International Mobile Phone Numbers](https://support.huaweicloud.com/intl/en-us/productdesc-msgsms/phone_numbers.html).
  *
+ * @receiver [Context].
  * @param phoneNumber Phone number you want to call.
+ *
+ * @since 0.0.1
  */
 @RequiresPermission(Manifest.permission.CALL_PHONE)
 fun Context.dialPhoneNumber(phoneNumber: String) {
@@ -61,7 +64,10 @@ fun Context.dialPhoneNumber(phoneNumber: String) {
 /**
  * Search [query] by webView
  *
+ * @receiver [Context].
  * @param query Content you want to search.
+ *
+ * @since 0.0.1
  */
 @RequiresPermission(Manifest.permission.INTERNET)
 fun Context.searchWeb(query: String) {
@@ -79,7 +85,10 @@ fun Context.searchWeb(query: String) {
 /**
  * Open [url] by WebView
  *
+ * @receiver [Context].
  * @param url Url you want to open.
+ *
+ * @since 0.0.1
  */
 fun Context.openWebPage(url: String) {
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
@@ -93,14 +102,16 @@ fun Context.openWebPage(url: String) {
 /**
  * Send message only by SMS app (not other email or social apps)
  *
+ * @receiver [Context].
  * @param message What you want to send.
- * @param phoneNumber Who you want to send.Default value is `null`
+ * @param phoneNumber Who you want to send.Default value is `null`.
  * @param attachment Point to the Uri of the image or video to be
  *     attached. If you are using the ACTION_SEND_MULTIPLE
  *     operation, this extra should be an ArrayList pointing to the
- *     image/video Uri to be attached.And default value is `null`
+ *     image/video Uri to be attached.And default value is `null`.
+ *
+ * @since 0.0.1
  */
-@SuppressLint("QueryPermissionsNeeded")
 @JvmOverloads
 @Throws(SecurityException::class)
 fun Context.sendMmsMessage(
@@ -126,10 +137,13 @@ fun Context.sendMmsMessage(
 /**
  * Open email only by email apps (not other SMS or social apps)
  *
+ * @receiver [Context].
  * @param addresses A string array containing all the email addresses of
  *     the recipients of the "primary sender".
- * @param subject Subject of the email.Default value is ""
- * @param text Text of the email.Default value is ""
+ * @param subject Subject of the email.Default value is "".
+ * @param text Text of the email.Default value is "".
+ *
+ * @since 0.0.1
  */
 @JvmOverloads
 fun Context.openEmail(addresses: Array<String>, subject: String = "", text: String = "") {
@@ -148,8 +162,12 @@ fun Context.openEmail(addresses: Array<String>, subject: String = "", text: Stri
 
 
 /**
- * Create once alarm If any param perplexes you,please see
+ * Create once alarm.If any param perplexes you,please see
  * [createAlarm].
+ *
+ * @receiver [Context].
+ *
+ * @since 0.0.1
  */
 @RequiresPermission(Manifest.permission.SET_ALARM)
 @JvmOverloads
@@ -167,6 +185,7 @@ fun Context.createOnceAlarm(
 /**
  * Create alarm
  *
+ * @receiver [Context].
  * @param message A custom message for the alarm or timer.
  * @param hour The hour of the alarm.
  * @param minutes The minutes of the alarm.
@@ -181,6 +200,8 @@ fun Context.createOnceAlarm(
  *     [Calendar.SATURDAY] The [days] default is `null`.
  * @param music A ringtone to be played with this alarm. Default value
  *     is `null`.
+ *
+ * @since 0.0.1
  */
 @RequiresPermission(Manifest.permission.SET_ALARM)
 @JvmOverloads
@@ -211,6 +232,10 @@ fun Context.createAlarm(
 
 /**
  * Open wifi settings.
+ *
+ * @receiver [Context].
+ *
+ * @since 0.0.6
  */
 fun Context.openWirelessSettings(){
     val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
@@ -221,6 +246,11 @@ fun Context.openWirelessSettings(){
     }
 }
 
+/**
+ * Print a warning message when resolve activity is null.
+ *
+ * @since 0.0.5
+ */
 internal fun resolveActivityNullHint() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         Log.w("IntentUtils", "Maybe you don't adding a <queries> declaration to your manifest")

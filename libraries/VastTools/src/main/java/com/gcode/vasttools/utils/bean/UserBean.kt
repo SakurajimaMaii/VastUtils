@@ -26,5 +26,7 @@ package com.gcode.vasttools.utils.bean
  *
  * @property username username.
  * @property password password.
+ *
+ * @since 0.0.5
  */
 open class UserBean(val username: String, val password:String)

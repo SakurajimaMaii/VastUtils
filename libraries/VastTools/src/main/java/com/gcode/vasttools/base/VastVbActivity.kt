@@ -26,6 +26,23 @@ import com.gcode.vasttools.base.extension.initSettings
 // Date: 2022/3/10 16:05
 // Description: Please make sure that the activity extends VastVbActivity when the activity using viewbinding.
 
+
+/**
+ * VastVbActivity.
+ *
+ * Here is an example in kotlin:
+ * ```kotlin
+ * class MainActivity : VastVbActivity<ActivityMainBinding>() {
+ *     override fun initView(savedInstanceState: Bundle?) {
+ *          // Something to do
+ *     }
+ * }
+ * ```
+ *
+ * @param VB [ViewBinding] of the activity layout.
+ *
+ * @since 0.0.6
+ */
 abstract class VastVbActivity<VB : ViewBinding> : VastBaseActivity() {
 
     protected lateinit var mBinding: VB

@@ -26,6 +26,9 @@ import androidx.fragment.app.Fragment
 // Email: guihy2019@gmail.com
 // Date: 2022/3/10 16:04
 
+/**
+ * @since 0.0.6
+ */
 abstract class VastBaseFragment : Fragment() {
 
     protected abstract val layoutId: Int

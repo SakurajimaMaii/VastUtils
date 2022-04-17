@@ -30,6 +30,23 @@ import com.gcode.vasttools.base.extension.getVmClass
 // Description:
 // Documentation:
 
+/**
+ * VastVmActivity.
+ *
+ * Here is an example in kotlin:
+ * ```kotlin
+ * // Because don't using the ViewBinding,so just set the layoutId to layout id.
+ * class MainFragment(override val layoutId: Int = R.layout.fragment_main) :VastVmFragment<MainViewModel>() {
+ *     override fun initView(savedInstanceState: Bundle?) {
+ *          // Something to do
+ *     }
+ * }
+ * ```
+ *
+ * @param VM [ViewModel] of the fragment.
+ *
+ * @since 0.0.6
+ */
 abstract class VastVmFragment<VM : ViewModel> : VastBaseFragment() {
 
     protected lateinit var mViewModel: VM

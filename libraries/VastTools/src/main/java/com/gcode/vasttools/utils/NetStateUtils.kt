@@ -35,6 +35,14 @@ import androidx.appcompat.app.AppCompatActivity
 // Description: With NetStateUtils, you can easily check some network status about your device
 // Documentation: [NetStateUtils](https://sakurajimamaii.github.io/VastDocs/document/en/NetStateUtils.html)
 
+/**
+ * Get [NetworkInfo]
+ *
+ * @receiver [Context].
+ * @return [NetworkInfo] object.
+ *
+ * @since 0.0.6
+ */
 @Throws(RuntimeException::class)
 internal fun Context.getNetWorkInfo(): NetworkInfo? {
     return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
@@ -45,6 +53,14 @@ internal fun Context.getNetWorkInfo(): NetworkInfo? {
     }
 }
 
+/**
+ * Get [NetworkCapabilities]
+ *
+ * @receiver [Context].
+ * @return [NetworkCapabilities] object.
+ *
+ * @since 0.0.6
+ */
 @RequiresApi(Build.VERSION_CODES.Q)
 @Throws(RuntimeException::class)
 internal fun Context.getNetworkCapabilities(): NetworkCapabilities? {
@@ -60,7 +76,10 @@ internal fun Context.getNetworkCapabilities(): NetworkCapabilities? {
 /**
  * Is network available
  *
+ * @receiver [Context].
  * @return True if network is available,false otherwise.
+ *
+ * @since 0.0.6
  */
 fun Context.isNetworkAvailable(): Boolean {
     return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
@@ -87,7 +106,10 @@ fun Context.isNetworkAvailable(): Boolean {
 /**
  * Is WIFI
  *
+ * @receiver [Context].
  * @return True if network is wifi mode,false otherwise.
+ *
+ * @since 0.0.6
  */
 fun Context.isWIFI(): Boolean {
     return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
@@ -104,7 +126,10 @@ fun Context.isWIFI(): Boolean {
 /**
  * Is mobile net
  *
+ * @receiver [Context].
  * @return True if network is wifi mode,false otherwise.
+ *
+ * @since 0.0.6
  */
 fun Context.isMobile(): Boolean {
     return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
@@ -121,8 +146,11 @@ fun Context.isMobile(): Boolean {
 /**
  * Get wifi signal strength.
  *
+ * @receiver [Context].
  * @return Return -1 when wifi is disconnected or unable,when wifi is connected,
  *         the signal strength is represented by 0-4.
+ *
+ * @since 0.0.6
  */
 fun Context.getWifiDBM(): Int {
     if (!isWIFI()) return -1

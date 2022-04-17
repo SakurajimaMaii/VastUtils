@@ -26,34 +26,78 @@ import androidx.annotation.StringRes
 // Description: Toast utils.
 // Documentation: [ToastUtils](https://sakurajimamaii.github.io/VastDocs/document/en/ToastUtils.html)
 
+/**
+ * ToastUtils
+ *
+ * Here is an example:
+ * ```Java
+ * ToastUtils.INSTANCE.showShortMsg(this,message);
+ * ```
+ *
+ * @since 0.0.6
+ */
 object ToastUtils {
     /**
-     * @param context Context
-     * @param msg String
+     * @param context Context.
+     * @param msg String.
+     *
+     * @since 0.0.1
      */
-    @JvmStatic
     fun showShortMsg(context: Context, msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 
     /**
-     * @param context Context
-     * @param msg String
+     * @param context Context.
+     * @param msg String.
+     *
+     * @since 0.0.1
      */
-    @JvmStatic
     fun showLongMsg(context: Context, msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
     }
 }
 
+/**
+ * Show short message.
+ *
+ * @receiver [Context].
+ * @param msg message to show.
+ *
+ * @since 0.0.5
+ */
 fun Context.showShortMsg(msg: String) = ToastUtils.showShortMsg(this, msg)
 
+/**
+ * Show short message.
+ *
+ * @receiver [Context].
+ * @param id the resource id of message to show.
+ *
+ * @since 0.0.5
+ */
 fun Context.showShortMsg(@StringRes id: Int) = ToastUtils.showShortMsg(
     this, this.resources.getString(id)
 )
 
+/**
+ * Show long message.
+ *
+ * @receiver [Context].
+ * @param msg message to show.
+ *
+ * @since 0.0.5
+ */
 fun Context.showLongMsg(msg: String) = ToastUtils.showShortMsg(this, msg)
 
+/**
+ * Show long message.
+ *
+ * @receiver [Context].
+ * @param id the resource id of message to show.
+ *
+ * @since 0.0.5
+ */
 fun Context.showLongMsg(@StringRes id: Int) = ToastUtils.showShortMsg(
     this, this.resources.getString(id)
 )

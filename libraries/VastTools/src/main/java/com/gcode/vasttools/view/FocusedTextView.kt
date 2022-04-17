@@ -28,6 +28,8 @@ import androidx.appcompat.widget.AppCompatTextView
 
 /**
  * When you want to show the marquee effect, you can use [FocusedTextView]
+ *
+ * @since 0.0.8
  */
 open class FocusedTextView: AppCompatTextView {
 

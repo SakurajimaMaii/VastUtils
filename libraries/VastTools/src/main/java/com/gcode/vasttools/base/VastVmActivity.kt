@@ -19,6 +19,7 @@ package com.gcode.vasttools.base
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 import com.gcode.vasttools.base.extension.getVmClass
 import com.gcode.vasttools.base.extension.initSettings
 
@@ -28,6 +29,22 @@ import com.gcode.vasttools.base.extension.initSettings
 // Description:
 // Documentation:
 
+/**
+ * VastVmActivity.
+ *
+ * Here is an example in kotlin:
+ * ```kotlin
+ * class MainActivity : VastVmActivity<MainViewModel>() {
+ *     override fun initView(savedInstanceState: Bundle?) {
+ *          // Something to do
+ *     }
+ * }
+ * ```
+ *
+ * @param VM [ViewModel] of the activity.
+ *
+ * @since 0.0.6
+ */
 abstract class VastVmActivity<VM : ViewModel> : VastBaseActivity() {
 
     protected abstract val layoutId: Int

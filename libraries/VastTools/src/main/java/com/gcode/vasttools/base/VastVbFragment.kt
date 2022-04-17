@@ -29,6 +29,23 @@ import com.gcode.vasttools.base.extension.getVbClass
 // Description:
 // Documentation:
 
+/**
+ * VastVbFragment.
+ *
+ * Here is an example in kotlin:
+ * ```kotlin
+ * // Because using the ViewBinding,so just set the layoutId to 0.
+ * class MainFragment(override val layoutId: Int = 0) : VastVbFragment<FragmentMainBinding>() {
+ *     override fun initView(savedInstanceState: Bundle?) {
+ *          // Something to do
+ *     }
+ * }
+ * ```
+ *
+ * @param VB [ViewBinding] of the fragment layout.
+ *
+ * @since 0.0.6
+ */
 abstract class VastVbFragment<VB : ViewBinding>:VastBaseFragment() {
 
     protected lateinit var mBinding: VB

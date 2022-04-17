@@ -30,6 +30,23 @@ import com.gcode.vasttools.base.extension.initSettings
 // Description:
 // Documentation:
 
+/**
+ * VastVbVmActivity.
+ *
+ * Here is an example in kotlin:
+ * ```kotlin
+ * class MainActivity : VastVbVmActivity<ActivityMainBinding,MainViewModel>() {
+ *     override fun initView(savedInstanceState: Bundle?) {
+ *          // Something to do
+ *     }
+ * }
+ * ```
+ *
+ * @param VB [ViewBinding] of the activity layout.
+ * @param VM [ViewModel] of the activity.
+ *
+ * @since 0.0.6
+ */
 abstract class VastVbVmActivity<VB : ViewBinding, VM : ViewModel> : VastBaseActivity() {
 
     protected lateinit var mBinding: VB

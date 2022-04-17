@@ -18,12 +18,8 @@
 
 package com.gcode.vasttools.utils
 
-import android.content.res.Resources
 import android.graphics.Color
 import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -35,6 +31,8 @@ import androidx.core.content.res.ResourcesCompat
  * Converting Color hexadecimal string to int.
  *
  * @param colorHex Color hexadecimal string,for example:#12c2e9.
+ *
+ * @since 0.0.5
  */
 fun colorHex2Int(colorHex: String): Int {
     return Color.parseColor(colorHex)
@@ -45,6 +43,8 @@ fun colorHex2Int(colorHex: String): Int {
  *
  * @param colorHex Color hexadecimal string,for example:#12c2e9.
  * @return For example: {18,194,233}.
+ *
+ * @since 0.0.5
  */
 fun colorHex2RGB(colorHex: String): IntArray {
     val colorInt = colorHex2Int(colorHex)
@@ -55,6 +55,8 @@ fun colorHex2RGB(colorHex: String): IntArray {
  * Converting color int to hexadecimal string.
  *
  * @return Color hexadecimal string.For example:#3FE2C5.
+ *
+ * @since 0.0.5
  */
 fun colorInt2Hex(@ColorInt colorInt: Int): String {
     val rgb = colorInt2RGB(colorInt)
@@ -66,6 +68,8 @@ fun colorInt2Hex(@ColorInt colorInt: Int): String {
  *
  * @param colorInt Color int.
  * @return For example: **{63,226,197}**.
+ *
+ * @since 0.0.5
  */
 fun colorInt2RGB(@ColorInt colorInt: Int): IntArray {
     val result = intArrayOf(0, 0, 0)
@@ -80,6 +84,8 @@ fun colorInt2RGB(@ColorInt colorInt: Int): IntArray {
  *
  * @param rgb For example: **{63,226,197}**.
  * @return Color hexadecimal string.For example:**#3FE2C5**.
+ *
+ * @since 0.0.5
  */
 fun colorRGB2Hex(rgb: IntArray): String {
     var hexCode = "#"
@@ -104,6 +110,8 @@ fun colorRGB2Hex(rgb: IntArray): String {
  *
  * @param rgb For example: **{63,226,197}**.
  * @return Color int
+ *
+ * @since 0.0.5.
  */
 fun colorRGB2Int(rgb: IntArray): Int {
     return Color.rgb(rgb[0], rgb[1], rgb[2])

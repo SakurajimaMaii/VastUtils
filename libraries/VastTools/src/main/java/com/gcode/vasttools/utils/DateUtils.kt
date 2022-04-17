@@ -73,6 +73,11 @@ const val GMT_MINUS_TEN = "GMT-10:00"
 const val GMT_MINUS_ELEVEN = "GMT-11:00"
 const val GMT_MINUS_TWELVE = "GMT-12:00"
 
+/**
+ * The pattern describing the date and time format.
+ *
+ * @since 0.0.4
+ */
 @Retention(AnnotationRetention.SOURCE)
 @StringDef(
     DATE_FORMAT,
@@ -93,6 +98,11 @@ const val GMT_MINUS_TWELVE = "GMT-12:00"
 )
 annotation class DateFormatString
 
+/**
+ * The ID for a TimeZone.
+ *
+ * @since 0.0.4
+ */
 @Retention(AnnotationRetention.SOURCE)
 @StringDef(
     GMT_PLUS_ZONE,
@@ -123,13 +133,20 @@ annotation class DateFormatString
 )
 annotation class GmtFormatString
 
+/**
+ * The pattern describing the year format.
+ *
+ * @since 0.0.4
+ */
 @Retention(AnnotationRetention.SOURCE)
 @StringDef(DATE_FORMAT, FORMAT_YYYY_MM, FORMAT_YYYY, FORMAT_YYYY2MM2DD)
 annotation class YearFormatString
 
 object DateUtils {
     /**
-     * Get current time
+     * Get current time.
+     *
+     * @since 0.0.4
      */
     val currentTime: String
         get() {
@@ -137,7 +154,9 @@ object DateUtils {
         }
 
     /**
-     * Get current time zone
+     * Get current time zone.
+     *
+     * @since 0.0.4
      */
     val currentTimeZone: String
         get() {
@@ -146,6 +165,8 @@ object DateUtils {
 
     /**
      * Get min time
+     *
+     * @since 0.0.2
      */
     fun minDate(): Date {
         val result = Date()
@@ -157,7 +178,10 @@ object DateUtils {
     }
 
     /**
+     * @param dateFormat The pattern describing the date and time format.
      * @return Get the minimum time string in the given format.
+     *
+     * @since 0.0.5
      */
     @JvmOverloads
     fun minDateToString(@DateFormatString dateFormat: String = TIME_FORMAT): String {
@@ -165,7 +189,12 @@ object DateUtils {
     }
 
     /**
-     * Returns the date and time formatting object.
+     * Constructs a SimpleDateFormat using the [dateFormat] and the [Locale.getDefault].
+     *
+     * @param dateFormat The pattern describing the date and time format.
+     * @return [SimpleDateFormat] using the [dateFormat] and the [Locale.getDefault].
+     *
+     * @since 0.0.1
      */
     private fun datetimeFormat(
         @DateFormatString dateFormat: String
@@ -176,8 +205,11 @@ object DateUtils {
     /**
      * Get date object by parsing [timeString] in [timeStringFormat] format.
      *
+     * @param timeStringFormat The pattern describing the date and time format.
      * @return If [timeString] parsing fails, it returns 'null' object.Otherwise, it returns date object.
      * @throws [ParseException] If [timeString] parsing fails.
+     *
+     * @since 0.0.1
      */
     @Throws(ParseException::class)
     fun datetimeFromString(
@@ -193,11 +225,16 @@ object DateUtils {
     }
 
     /**
-     * Parse [date] according to the format of [dateFormat]
-     * into a date/time string.
+     * Formats a [Date] into a date/time string by parsing
+     * [dateFormat].
      *
      * If you don't set the [date] or [dateFormat],it will
      * parse current time in [dateFormat] format by default.
+     *
+     * @param date [Date] object.
+     * @return the formatted time string.
+     *
+     * @since 0.0.1
      */
     @JvmOverloads
     fun datetimeToString(
@@ -208,12 +245,17 @@ object DateUtils {
     }
 
     /**
-     * According to the [dateFormat] format,
-     * returns a time string in the time zone
-     * given by the [gmtFormat].
+     * Formats a [Date] into a date/time string by parsing
+     * [dateFormat] and [gmtFormat].
      *
      * If you don't set the [gmtFormat] or [dateFormat],it will
      * parse current local time in [TIME_FORMAT] format by default.
+     *
+     * @param gmtFormat the ID for a TimeZone.
+     * @param dateFormat the pattern describing the date and time format.
+     * @return the formatted time string.
+     *
+     * @since 0.0.4
      */
     @JvmOverloads
     fun dateTimeToGMT(
@@ -227,6 +269,12 @@ object DateUtils {
 
     /**
      * Get current local time string by parsing the [utcTime] in [dateFormat] format.
+     *
+     * @param utcTime a time whose beginning should be parsed.
+     * @param dateFormat the pattern describing the date and time format.
+     * @return the formatted time string.
+     *
+     * @since 0.0.1
      */
     fun dateTimeFromGMT(
         utcTime: String,
@@ -247,10 +295,13 @@ object DateUtils {
     }
 
     /**
-     * Get the **start** timestamp of the week.
-     * **Monday is the first day of the week.**
+     * Get the start timestamp of the week.
+     * Monday is the first day of the week.
      *
-     * @return WeekStartTime parsed in [yearFormat] format
+     * @param yearFormat the pattern describing the year format.
+     * @return WeekStartTime parsed in [yearFormat] format.
+     *
+     * @since 0.0.1
      */
     @JvmOverloads
     fun weekStartTime(@YearFormatString yearFormat: String = DATE_FORMAT): String {
@@ -265,10 +316,13 @@ object DateUtils {
     }
 
     /**
-     * Get the **end** timestamp of the week.
-     * **Monday is the first day of the week.**
+     * Get the end timestamp of the week.
+     * Monday is the first day of the week.
      *
-     * @return WeekEndTime parsed in [yearFormat] format
+     * @param yearFormat the pattern describing the year format.
+     * @return WeekEndTime parsed in [yearFormat] format.
+     *
+     * @since 0.0.1
      */
     @JvmOverloads
     fun weekEndTime(@YearFormatString yearFormat: String = DATE_FORMAT): String {
@@ -283,10 +337,14 @@ object DateUtils {
     }
 
     /**
-     * Get the **start** timestamp of the week.
-     * **SUNDAY is the first day of the week.**
+     * Get the start timestamp of the week.
+     * SUNDAY is the first day of the week.
      *
-     * @return WeekStartTime parsed in [yearFormat] format
+     * @param calendar [Calendar] Object object.
+     * @param yearFormat the pattern describing the year format.
+     * @return WeekStartTime parsed in [yearFormat] format.
+     *
+     * @since 0.0.1
      */
     @JvmOverloads
     fun getWeekStartTime(
@@ -299,10 +357,14 @@ object DateUtils {
     }
 
     /**
-     * Get the **end** timestamp of the week.
-     * **SUNDAY is the first day of the week.**
+     * Get the end timestamp of the week.
+     * SUNDAY is the first day of the week.
      *
-     * @return WeekEndTime parsed in [yearFormat] format
+     * @param calendar [Calendar] Object object.
+     * @param yearFormat the pattern describing the year format.
+     * @return WeekEndTime parsed in [yearFormat] format.
+     *
+     * @since 0.0.1
      */
     @JvmOverloads
     fun getWeekEndTime(

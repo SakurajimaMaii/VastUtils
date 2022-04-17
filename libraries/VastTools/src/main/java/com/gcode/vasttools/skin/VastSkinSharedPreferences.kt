@@ -16,12 +16,18 @@
 
 package com.gcode.vasttools.skin
 
+import android.content.SharedPreferences
+
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/27 19:47
+// Description:
+// Documentation:
+
 /**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/27 19:47
- * @Description:
- * @Documentation:
+ * VastSkinSharedPreferences is used to get the skin path from [SharedPreferences]
+ *
+ * @since 0.0.6
  */
 object VastSkinSharedPreferences {
 

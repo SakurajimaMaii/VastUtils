@@ -31,6 +31,11 @@ import androidx.annotation.IntRange
 // Description: Help you to quickly build GradientDrawable.
 // Documentation: [ShapeAndStateUtils](https://sakurajimamaii.github.io/VastDocs/document/en/ShapeAndStateUtils.html)
 
+/**
+ * The gradient type [ShapeAndStateUtils] supports.
+ *
+ * @since 0.0.5
+ */
 @Retention(AnnotationRetention.SOURCE)
 @IntDef(
     LINEAR_GRADIENT,
@@ -39,14 +44,37 @@ import androidx.annotation.IntRange
 )
 annotation class GradientType
 
+/**
+ * The shape [ShapeAndStateUtils] supports.
+ *
+ * @since 0.0.5
+ */
 @Retention(AnnotationRetention.SOURCE)
 @IntDef(RECTANGLE, OVAL, LINE, RING)
 annotation class DrawableShape
 
+/**
+ * ShapeAndStateUtils
+ *
+ * Here is an example:
+ * ```kotlin
+ * // Use ShapeAndStateUtils to create a background drawable
+ * val btnbk1 = ShapeAndStateUtils
+ *                   .create()
+ *                   .setShape(RECTANGLE)
+ *                   .setRadius(50f)
+ *                   .setGradient(45, colorHex2Int("#12c2e9"),colorHex2Int("#c471ed"),colorHex2Int("#f64f59"))
+ *                   .build()
+ * ```
+ *
+ * @since 0.0.5
+ */
 class ShapeAndStateUtils private constructor(){
 
     /**
      * Gradient type.
+     *
+     * @since 0.0.5
      */
     @setparam:GradientType
     var gradientType: Int = LINEAR_GRADIENT
@@ -54,18 +82,24 @@ class ShapeAndStateUtils private constructor(){
 
     /**
      * Gradient orientation,please check [GradientDrawable.Orientation].
+     *
+     * @since 0.0.5
      */
     var gradientOrientation: Orientation = Orientation.TOP_BOTTOM
         private set
 
     /**
-     * GradientDrawable Colors
+     * GradientDrawable Colors。
+     *
+     * @since 0.0.5
      */
     var colors: IntArray = intArrayOf()
         private set
 
     /**
      * Shape of GradientDrawable.
+     *
+     * @since 0.0.5
      */
     @setparam:DrawableShape
     var shape: Int = RECTANGLE
@@ -75,7 +109,9 @@ class ShapeAndStateUtils private constructor(){
      * Gradient radius
      *
      * When [gradientType] is set to [GradientDrawable.RADIAL_GRADIENT],you should set
-     * [gradientRadius].Otherwise, **0** will be used as the default value
+     * [gradientRadius].Otherwise, **0** will be used as the default value。
+     *
+     * @since 0.0.5
      */
     var gradientRadius: Float = 0f
         private set
@@ -85,18 +121,24 @@ class ShapeAndStateUtils private constructor(){
      * then the drawable is drawn in a round-rectangle, rather than a
      * rectangle. This property is honored only when the shape is of type
      * [GradientDrawable.RECTANGLE].
+     *
+     * @since 0.0.5
      */
     var radius: Float = 0f
         private set
 
     /**
      * Specifies radii for each of the 4 corners.
+     *
+     * @since 0.0.5
      */
     var radii: FloatArray = floatArrayOf(0f,0f,0f,0f,0f,0f,0f,0f)
         private set
 
     /**
      * Left top corner radius(in pixels).
+     *
+     * @since 0.0.5
      */
     var leftTopCornerRadius: Float = 0f
         private set
@@ -104,6 +146,8 @@ class ShapeAndStateUtils private constructor(){
 
     /**
      * Left bottom corner radius(in pixels).
+     *
+     * @since 0.0.5
      */
     var leftBottomCornerRadius: Float = 0f
         private set
@@ -111,6 +155,8 @@ class ShapeAndStateUtils private constructor(){
 
     /**
      * Right top corner radius(in pixels).
+     *
+     * @since 0.0.5
      */
     var rightTopCornerRadius: Float = 0f
         private set
@@ -118,6 +164,8 @@ class ShapeAndStateUtils private constructor(){
 
     /**
      * Right bottom corner radius(in pixels).
+     *
+     * @since 0.0.5
      */
     var rightBottomCornerRadius: Float = 0f
         private set
@@ -125,46 +173,66 @@ class ShapeAndStateUtils private constructor(){
 
     /**
      * Stroke width(in pixels).
+     *
+     * @since 0.0.5
      */
     var strokeWidth: Float = 0f
         private set
 
     /**
      * Stroke color(in 0xAARRGGBB)
+     *
+     * @since 0.0.5
      */
     var strokeColor: Int = 0x00000000
         private set
 
     /**
      * Dash width of stroke(in pixels).
+     *
+     * @since 0.0.5
      */
     var dashWidth: Float = 0f
         private set
 
     /**
      * Dash gap of stroke(in pixels).
+     *
+     * @since 0.0.5
      */
     var dashGap: Float = 0f
         private set
 
     /**
      * Used to define background colors in different states.
+     *
+     * @since 0.0.5
      */
     var bgColorStateList:ColorStateList? = null
         private set
 
     /**
      * Used to define stroke colors in different states.
+     *
+     * @since 0.0.5
      */
     var strokeColorStateList:ColorStateList? = null
         private set
 
+    /**
+     * Density.
+     *
+     * @since 0.0.5
+     */
     private val density = Resources.getSystem().displayMetrics.density
 
     /**
      * Set gradient type of GradientDrawable.
      *
      * @param type You can choose from [GradientDrawable.LINEAR_GRADIENT],[GradientDrawable.SWEEP_GRADIENT],[GradientDrawable.RADIAL_GRADIENT]
+     * @return [ShapeAndStateUtils] object.
+     *
+     * @since 0.0.5
      */
     fun setGradientType(@GradientType type: Int): ShapeAndStateUtils {
         gradientType = type
@@ -172,7 +240,12 @@ class ShapeAndStateUtils private constructor(){
     }
 
     /**
-     * Set bk color
+     * Set background color of GradientDrawable.
+     *
+     * @param color color int value.
+     * @return [ShapeAndStateUtils] object.
+     *
+     * @since 0.0.5
      */
     fun setBkColor(@ColorInt color: Int):ShapeAndStateUtils{
         return setGradient(0,color,color)
@@ -184,6 +257,9 @@ class ShapeAndStateUtils private constructor(){
      * @param angle Must be an integer multiple of 45.
      * @param startColor Start gradient color.
      * @param endColor End gradient color.
+     * @return [ShapeAndStateUtils] object.
+     *
+     * @since 0.0.5
      */
     fun setGradient(
         angle: Int,
@@ -200,6 +276,9 @@ class ShapeAndStateUtils private constructor(){
      * @param orientation Gradient Orientation.
      * @param startColor Start gradient color.
      * @param endColor End gradient color.
+     * @return [ShapeAndStateUtils] object.
+     *
+     * @since 0.0.5
      */
     fun setGradient(
         orientation: Orientation,
@@ -218,6 +297,9 @@ class ShapeAndStateUtils private constructor(){
      * @param startColor Start gradient color.
      * @param centerColor Center gradient color.
      * @param endColor End gradient color.
+     * @return [ShapeAndStateUtils] object.
+     *
+     * @since 0.0.5
      */
     fun setGradient(
         angle: Int,
@@ -236,6 +318,9 @@ class ShapeAndStateUtils private constructor(){
      * @param startColor Start gradient color.
      * @param centerColor Center gradient color.
      * @param endColor End gradient color.
+     * @return [ShapeAndStateUtils] object.
+     *
+     * @since 0.0.5
      */
     fun setGradient(
         orientation: Orientation,
@@ -251,7 +336,10 @@ class ShapeAndStateUtils private constructor(){
     /**
      * Sets the type of shape used to draw the gradient.
      *
-     * @param shape You can choose from [GradientDrawable.OVAL],[GradientDrawable.LINE],[GradientDrawable.RECTANGLE],[GradientDrawable.RING]
+     * @param shape You can choose from [GradientDrawable.OVAL],[GradientDrawable.LINE],[GradientDrawable.RECTANGLE],[GradientDrawable.RING].
+     * @return [ShapeAndStateUtils] object.
+     *
+     * @since 0.0.5
      */
     fun setShape(@DrawableShape shape: Int): ShapeAndStateUtils {
         this.shape = shape
@@ -260,6 +348,11 @@ class ShapeAndStateUtils private constructor(){
 
     /**
      * Set gradient radius when [gradientType] is [GradientDrawable.RADIAL_GRADIENT].
+     *
+     * @param radius the radius of the gradient.
+     * @return [ShapeAndStateUtils] object.
+     *
+     * @since 0.0.5
      */
     fun setGradientRadius(@FloatRange(from = 0.0) radius: Float): ShapeAndStateUtils {
         gradientRadius = radius
@@ -270,6 +363,9 @@ class ShapeAndStateUtils private constructor(){
      * Set specifies radii for corners.
      *
      * @param radius Must be >= 0
+     * @return [ShapeAndStateUtils] object.
+     *
+     * @since 0.0.5
      */
     fun setRadius(@FloatRange(from = 0.0) radius: Float): ShapeAndStateUtils {
         this.radius = radius
@@ -278,6 +374,14 @@ class ShapeAndStateUtils private constructor(){
 
     /**
      * Set specifies radii for each of the 4 corners.
+     *
+     * @param topLeft radius of top left corner.
+     * @param topRight radius of top right corner.
+     * @param bottomLeft radius of bottom left corner.
+     * @param bottomRight radius of bottom right corner.
+     * @return [ShapeAndStateUtils] object.
+     *
+     * @since 0.0.5
      */
     fun setRadius(
         @FloatRange(from = 0.0) topLeft: Float,
@@ -303,6 +407,9 @@ class ShapeAndStateUtils private constructor(){
      *
      * @param width The width of the stroke.
      * @param color The color of the stroke.
+     * @return [ShapeAndStateUtils] object.
+     *
+     * @since 0.0.5
      */
     fun setStroke(
         @FloatRange(from = 0.0) width: Float,
@@ -320,6 +427,9 @@ class ShapeAndStateUtils private constructor(){
      * @param color The color of the stroke.
      * @param dashWidth The width of the dash.
      * @param dashGap The width of the dash.
+     * @return [ShapeAndStateUtils] object.
+     *
+     * @since 0.0.5
      */
     fun setStroke(
         @IntRange(from = 0) width: Int,
@@ -337,6 +447,8 @@ class ShapeAndStateUtils private constructor(){
     /**
      * Creates a background ColorStateList that returns the specified mapping from
      * states to colors.
+     *
+     * @since 0.0.5
      */
     fun setBgColorStateList(state: Array<IntArray?>, colors:IntArray):ShapeAndStateUtils{
         bgColorStateList = ColorStateList(state, colors)
@@ -346,6 +458,8 @@ class ShapeAndStateUtils private constructor(){
     /**
      * Creates a stroke ColorStateList that returns the specified mapping from
      * states to colors.
+     *
+     * @since 0.0.5
      */
     fun setStrokeColorStateList(state: Array<IntArray?>, colors:IntArray):ShapeAndStateUtils{
         strokeColorStateList = ColorStateList(state, colors)
@@ -356,7 +470,9 @@ class ShapeAndStateUtils private constructor(){
      * Angle convert to orientation.
      *
      * @param angle Must be an integer multiple of 45.
-     * @return Default value is [GradientDrawable.Orientation.LEFT_RIGHT]
+     * @return Default value is [GradientDrawable.Orientation.LEFT_RIGHT]。
+     *
+     * @since 0.0.5
      */
     private fun angle2Orientation(angle: Int): Orientation {
         return when (angle) {
@@ -372,6 +488,13 @@ class ShapeAndStateUtils private constructor(){
         }
     }
 
+    /**
+     * Build a [GradientDrawable] object.
+     *
+     * @return [GradientDrawable] object.
+     *
+     * @since 0.0.5
+     */
     fun build(): GradientDrawable {
         val drawable = GradientDrawable()
         drawable.apply {
@@ -402,6 +525,11 @@ class ShapeAndStateUtils private constructor(){
     }
 
     companion object{
+        /**
+         * @return [ShapeAndStateUtils] object.
+         *
+         * @since 0.0.5
+         */
         @JvmStatic
         fun create():ShapeAndStateUtils{
             return ShapeAndStateUtils()

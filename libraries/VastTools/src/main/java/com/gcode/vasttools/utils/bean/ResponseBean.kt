@@ -28,5 +28,7 @@ package com.gcode.vasttools.utils.bean
  * @property code Result code.
  * @property msg Result message.
  * @property data Result data.
+ *
+ * @since 0.0.5
  */
 open class ResponseBean<T:Any> (val code:Int, val msg:String, val data:T)

@@ -18,7 +18,6 @@
 
 package com.gcode.vasttools.utils
 
-import android.annotation.TargetApi
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Point
@@ -33,10 +32,31 @@ import androidx.annotation.RequiresApi
 // Description: Help you to get the width and height of screen.
 // Documentation: [ScreenSizeUtils](https://sakurajimamaii.github.io/VastDocs/document/en/ScreenSizeUtils.html)
 
-data class ScreenSize(val width: Int, val height:Int)
+/**
+ * The screen size.
+ *
+ * @property width width of the screen.
+ * @property height height of the screen.
+ *
+ * @since 0.0.6
+ */
+internal data class ScreenSize(val width: Int, val height:Int)
 
+/**
+ * ScreenSize of your device.
+ *
+ * @since 0.0.6
+ */
 private var mScreenSize = ScreenSize(0,0)
 
+/**
+ * Get the [ScreenSize] of your device in api 31.
+ *
+ * @receiver [Context].
+ * @return [ScreenSize] of your device.
+ *
+ * @since 0.0.6
+ */
 @RequiresApi(Build.VERSION_CODES.S)
 private fun getScreenSizeApi31(context: Context): ScreenSize {
     val vm: WindowMetrics =
@@ -44,6 +64,14 @@ private fun getScreenSizeApi31(context: Context): ScreenSize {
     return ScreenSize(vm.bounds.width(),vm.bounds.height())
 }
 
+/**
+ * Get the [ScreenSize] of your device in api 30.
+ *
+ * @receiver [Context].
+ * @return [ScreenSize] of your device.
+ *
+ * @since 0.0.6
+ */
 @RequiresApi(Build.VERSION_CODES.R)
 private fun getScreenSizeApi30(context: Context): ScreenSize {
     val orientation = context.resources?.configuration?.orientation
@@ -56,6 +84,14 @@ private fun getScreenSizeApi30(context: Context): ScreenSize {
     }
 }
 
+/**
+ * Get the [ScreenSize] of your device below api 30.
+ *
+ * @receiver [Context].
+ * @return [ScreenSize] of your device.
+ *
+ * @since 0.0.6
+ */
 private fun getScreenSizeApi30Below(context: Context): ScreenSize {
     val orientation = context.resources?.configuration?.orientation
     val point = Point()
@@ -69,6 +105,14 @@ private fun getScreenSizeApi30Below(context: Context): ScreenSize {
     }
 }
 
+/**
+ * Get the [ScreenSize] of your device.
+ *
+ * @receiver [Context].
+ * @return [ScreenSize] of your device.
+ *
+ * @since 0.0.6
+ */
 private fun Context.getMobileScreenSize(): ScreenSize {
     return when {
         (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) -> getScreenSizeApi31(this)
@@ -80,7 +124,10 @@ private fun Context.getMobileScreenSize(): ScreenSize {
 /**
  * Get mobile screen height.
  *
- * @return The width of the screen, in **pixels**
+ * @receiver [Context].
+ * @return The width of the screen(in pixels).
+ *
+ * @since 0.0.6
  */
 fun Context.getMobileScreenHeight():Int {
     mScreenSize = getMobileScreenSize()
@@ -90,7 +137,10 @@ fun Context.getMobileScreenHeight():Int {
 /**
  * Get mobile screen width.
  *
- * @return The width of the screen, in **pixels**
+ * @receiver [Context].
+ * @return The width of the screen(in pixels).
+ *
+ * @since 0.0.6
  */
 fun Context.getMobileScreenWidth():Int {
     mScreenSize = getMobileScreenSize()

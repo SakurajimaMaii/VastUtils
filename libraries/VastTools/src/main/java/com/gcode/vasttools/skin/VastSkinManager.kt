@@ -33,6 +33,27 @@ import java.util.*
 // Description: VastSkin is a non-intrusive skinning framework based on the replacement LayoutInflater.Factory2
 // Documentation: [VastSkin](https://sakurajimamaii.github.io/VastDocs/document/en/VastSkin.html)
 
+
+/**
+ * VastSkinManager
+ *
+ * By using [VastSkinManager],you can change the skin of the app.
+ *
+ * Firstly,you need to initialize the [VastSkinManager] in your application
+ * ```kotlin
+ * VastSkinManager.initVastThemeManager(this)
+ * ```
+ * Secondly,use [loadSkin] to load the skin
+ * ```kotlin
+ * VastSkinManager.loadSkin("data/data/com.gcode.vastutils/files/darkskin-debug.apk")
+ * ```
+ * If you want to load the default skin ,just do this
+ * ```kotlin
+ * VastSkinManager.loadSkin(null)
+ * ```
+ *
+ * @since 0.0.6
+ */
 object VastSkinManager : Observable() {
 
     private lateinit var originalApplication:Application

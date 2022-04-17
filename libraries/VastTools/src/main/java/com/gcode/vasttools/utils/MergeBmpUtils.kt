@@ -24,7 +24,7 @@ import android.graphics.Rect
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
-// Date: 2022/3/10 15:27
+// Date: 2021/11/8 15:27
 // Description: Provides some methods for merging Bitmaps.
 // Documentation: [MergeBmpUtils](https://sakurajimamaii.github.io/VastDocs/document/en/MergeBmpUtils.html)
 
@@ -32,9 +32,11 @@ import android.graphics.Rect
  * Merge the two bitmaps into one bitmap, based on the length and width
  * of the [bottomBitmap].
  *
- * @param bottomBitmap Bitmap at the bottom
- * @param topBitmap Bitmap at the top
+ * @param bottomBitmap Bitmap at the bottom.
+ * @param topBitmap Bitmap at the top.
  * @return `null` if one of the bitmaps is recycled.
+ *
+ * @since 0.0.4
  */
 fun mergeBmp(bottomBitmap: Bitmap, topBitmap: Bitmap): Bitmap? {
     if (bottomBitmap.isRecycled || topBitmap.isRecycled
@@ -58,6 +60,8 @@ fun mergeBmp(bottomBitmap: Bitmap, topBitmap: Bitmap): Bitmap? {
  *     stretched proportionally, `false` means that
  *     the larger image is compressed proportionally.
  * @return `null` if one of the bitmaps is recycled.
+ *
+ * @since 0.0.4
  */
 fun mergeBmpLR(leftBitmap: Bitmap, rightBitmap: Bitmap, isBaseMax: Boolean): Bitmap? {
     if (leftBitmap.isRecycled || rightBitmap.isRecycled
@@ -115,6 +119,8 @@ fun mergeBmpLR(leftBitmap: Bitmap, rightBitmap: Bitmap, isBaseMax: Boolean): Bit
  *     is stretched proportionally, `false` means that
  *     the larger image is compressed proportionally
  * @return `null` if one of the bitmaps is recycled.
+ *
+ * @since 0.0.4
  */
 fun mergeBmpTB(topBitmap: Bitmap, bottomBitmap: Bitmap, isBaseMax: Boolean): Bitmap? {
     if (topBitmap.isRecycled || bottomBitmap.isRecycled

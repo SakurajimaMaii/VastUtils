@@ -25,6 +25,24 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 // Date: 2022/4/10 19:47
 // Description: Base fragment adapter for viewpager2 when activity is [AppCompatActivity].
 
+/**
+ * Base fragment adapter for viewpager2.
+ *
+ * ```kotlin
+ * // Use in activity
+ * // vp2 is viewpager2
+ * vp2.adapter = BaseFragmentAdapter(this,ArrayList<Fragment>().apply {
+ *      add(BaseVbFragment())
+ *      add(BaseVmFragment())
+ *      add(BaseVbVmFragment())
+ * })
+ * ```
+ *
+ * @property activity The activity that owns the fragments.
+ * @property fragments The fragments in the [activity].
+ *
+ * @since 0.0.8
+ */
 open class BaseFragmentAdapter(
     private val activity: AppCompatActivity,
     protected val fragments:MutableList<Fragment>

@@ -27,9 +27,29 @@ import java.util.*
 // Description: A log utils.
 // Documentation: [LogUtils](https://sakurajimamaii.github.io/VastDocs/document/en/IDCardUtils.html)
 
+/**
+ * LogUtils
+ *
+ * Firstly,you need to sync debug state:
+ * ```kotlin
+ * // this is important and required
+ * LogUtils.syncIsDeBug(this)
+ * ```
+ * Secondly,print log:
+ * ```kotlin
+ * LogUtils.i(this.javaClass.simpleName,"Hello,This is a info")
+ * ```
+ * For more settings, please refer to the documentation.
+ *
+ * @since 0.0.1
+ */
 object LogUtils {
 
-    /** Log content. */
+    /**
+     * Log content.
+     *
+     * @since 0.0.1
+     */
     private var logContent: LogContent? = null
 
     /**
@@ -37,41 +57,75 @@ object LogUtils {
      *
      * Notes:Considering fault tolerance, 1000 is set here instead of
      * 1024.
+     *
+     * @since 0.0.5
      */
     private const val defaultCharLength = 1000
 
-    /** Default max print repeat times. */
+    /**
+     * Default max print repeat times.
+     *
+     * @since 0.0.3
+     */
     private const val defaultMaxPrintTimes = 5
 
-    /** Maximum length of chars printed of a single log. */
+    /**
+     * Maximum length of chars printed of a single log.
+     *
+     * @since 0.0.5
+     */
     var singleLogCharLength = defaultCharLength
         private set
 
-    /** Max print repeat times. */
+    /**
+     * Max print repeat times.
+     *
+     * @since 0.0.3
+     */
     var maxPrintTimes: Int = defaultMaxPrintTimes
         private set
 
     /**
      * `true` if you want to print log,`false` if you don't want to
      * print the log.
+     *
+     * @since 0.0.1
      */
     var logEnabled = true
 
-    /** `true` if app in debug,`false` otherwise. */
+    /**
+     * `true` if app in debug,`false` otherwise.
+     *
+     * @since 0.0.6
+     */
     private var isDeBug: Boolean = true
 
-    /** Sync is debug. */
+    /**
+     * Sync is debug.
+     *
+     * @param context [Context] of application or activity.
+     *
+     * @since 0.0.6
+     */
     @Synchronized
     fun syncIsDeBug(context: Context) {
         isDeBug = context.getAppDebug()
     }
 
-    /** Set [singleLogCharLength]. */
+    /**
+     * Set [singleLogCharLength].
+     *
+     * @since 0.0.5
+     */
     fun setSingleLogCharLength(@IntRange(from = 0, to = 1000) charLength: Int) {
         singleLogCharLength = charLength
     }
 
-    /** Set [maxPrintTimes]. */
+    /**
+     * Set [maxPrintTimes].
+     *
+     * @since 0.0.5
+     */
     fun setMaxPrintTimes(@IntRange(from = 0) maxPrint: Int) {
         maxPrintTimes = maxPrint
     }
@@ -81,6 +135,8 @@ object LogUtils {
      *
      * @param key Message keyboard.
      * @param content Message content.
+     *
+     * @since 0.0.1
      */
     fun i(key: String?, content: String?) {
         if (logEnabled && isDeBug) {
@@ -93,6 +149,8 @@ object LogUtils {
      *
      * @param key Message keyboard.
      * @param content Message content.
+     *
+     * @since 0.0.1
      */
     fun v(key: String?, content: String?) {
         if (logEnabled && isDeBug) {
@@ -105,6 +163,8 @@ object LogUtils {
      *
      * @param key Message keyboard.
      * @param content Message content.
+     *
+     * @since 0.0.1
      */
     fun w(key: String?, content: String?) {
         if (logEnabled && isDeBug) {
@@ -117,6 +177,8 @@ object LogUtils {
      *
      * @param key Message keyboard.
      * @param content Message content.
+     *
+     * @since 0.0.1
      */
     fun d(key: String?, content: String?) {
         if (logEnabled && isDeBug) {
@@ -129,6 +191,8 @@ object LogUtils {
      *
      * @param key Message keyboard.
      * @param content Message content.
+     *
+     * @since 0.0.1
      */
     fun e(key: String?, content: String?) {
         if (logEnabled && isDeBug) {
@@ -137,20 +201,24 @@ object LogUtils {
     }
 
     /**
-     * Define your log format by implementing [LogContent].
+     * Define your log format by setting [LogUtils.logContent].
      *
-     * @param logContent
+     * @param logContent [LogUtils].
+     *
+     * @since 0.0.1
      */
     fun setLogContentFormat(logContent: LogContent) {
         LogUtils.logContent = logContent
     }
 
     /**
-     * Log print
+     * Log print.
      *
-     * @param priority log level
-     * @param key log keyboard
-     * @param content log message
+     * @param priority log level.
+     * @param key log keyboard.
+     * @param content log message.
+     *
+     * @since 0.0.1
      */
     private fun logPrint(
         priority: Int,
@@ -186,6 +254,8 @@ object LogUtils {
      *     usually identifies the class or
      *     activity where the log call occurs.
      * @param content The message you would like logged.
+     *
+     * @since 0.0.3
      */
     private fun print(priority: Int, tag: String, content: String) {
         /**
@@ -248,8 +318,10 @@ object LogUtils {
      * Truncate the byte array as a string according to
      * [singleLogCharLength].
      *
-     * @param bytes byte array
-     * @return The string obtained by [singleLogCharLength]
+     * @param bytes byte array.
+     * @return The string obtained by [singleLogCharLength].
+     *
+     * @since 0.0.3
      */
     private fun cutStr(bytes: ByteArray?): String? {
         // Return when the bytes is null.
@@ -281,6 +353,11 @@ object LogUtils {
         }
     }
 
+    /**
+     * [LogContent] used to define the log content format.
+     *
+     * @since 0.0.1
+     */
     interface LogContent {
         fun logContentFormat(methodName: String?, key: String?, content: String?): String
     }

@@ -27,14 +27,20 @@ import androidx.annotation.IntRange
 // Documentation: [RegexUtils](https://sakurajimamaii.github.io/VastDocs/document/en/RegexUtils.html)
 
 /**
+ * Check if string is Email address.
+ *
  * @receiver String to match.
  * @return true if the String is a email address, false otherwise.
+ *
+ * @since 0.0.6
  */
 fun String.isEmail(): Boolean {
     return Regex("[A-Za-z0-9-_\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+").matches(this)
 }
 
 /**
+ * Check if string meets password requirements.
+ *
  * @receiver String to match.
  * @param case 0 Password contains at least numbers and letters. 1
  *     Password contains two or more types:numbers,
@@ -43,6 +49,8 @@ fun String.isEmail(): Boolean {
  * @param minLength Minimum password length.
  * @param maxLength Maximum password length.
  * @return true if the String is a password, false otherwise.
+ *
+ * @since 0.0.6
  */
 @JvmOverloads
 fun String.isPwd(
@@ -69,9 +77,12 @@ fun String.isPwd(
 }
 
 /**
- * String to match.
+ * Check if string is QQ number.
  *
+ * @receiver String to match.
  * @return true if the String is a qq number, false otherwise.
+ *
+ * @since 0.0.6
  */
 fun String.isQQ(): Boolean {
     return Regex("[1-9][0-9]{4,}").matches(this)
@@ -81,8 +92,11 @@ fun String.isQQ(): Boolean {
  * String to match.By default, it is verified according to the Chinese
  * phone number.
  *
+ * @receiver String to match.
  * @param otherCountryPattern Other National Phone Number Formats.
  * @return true if the String is a phone number, false otherwise.
+ *
+ * @since 0.0.6
  */
 @JvmOverloads
 fun String.isPhoneNumber(otherCountryPattern: String? = null): Boolean {
@@ -94,7 +108,12 @@ fun String.isPhoneNumber(otherCountryPattern: String? = null): Boolean {
 }
 
 /**
+ * Check if string is a number
+ *
+ * @receiver String to match.
  * @return true if the String is a number, false otherwise.
+ *
+ * @since 0.0.6
  */
 fun String.isNumeric(): Boolean {
     return Regex("[0-9]*").matches(this)

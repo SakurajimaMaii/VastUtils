@@ -24,6 +24,9 @@ import com.gcode.vasttools.base.interfaces.BaseActivity
 // Date: 2022/3/10 16:20
 // Description: BaseVastActivity.
 
+/**
+ * @since 0.0.6
+ */
 abstract class VastBaseActivity : AppCompatActivity(), BaseActivity {
 
     override var enableActionBar = true

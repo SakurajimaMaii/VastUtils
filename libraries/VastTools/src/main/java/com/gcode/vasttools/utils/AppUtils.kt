@@ -34,7 +34,10 @@ import androidx.annotation.RequiresApi
 // Documentation: [AppUtils](https://sakurajimamaii.github.io/VastDocs/document/en/AppUtils.html)
 
 /**
- * @return app name
+ * @receiver [Context]
+ * @return app name,like VastUtilsSampleDemo.
+ *
+ * @since 0.0.1
  */
 @Synchronized
 fun Context.getAppName(): String? {
@@ -52,7 +55,10 @@ fun Context.getAppName(): String? {
 }
 
 /**
- * @return The version name of the current application
+ * @receiver [Context]
+ * @return The version name of the current application,like 1.0.
+ *
+ * @since 0.0.1
  */
 @Synchronized
 fun Context.getVersionName(): String? {
@@ -69,7 +75,10 @@ fun Context.getVersionName(): String? {
 }
 
 /**
- * @return The version code of the current application
+ * @receiver [Context]
+ * @return The version code of the current application,like 1.
+ *
+ * @since 0.0.1
  */
 @Synchronized
 fun Context.getVersionCode() =
@@ -82,7 +91,9 @@ fun Context.getVersionCode() =
 
 /**
  * Get VersionCode (in Api 28 Above)
- * @return The version code of the current application
+ * @return The version code of the current application.
+ *
+ * @since 0.0.1
  */
 @Synchronized
 @RequiresApi(Build.VERSION_CODES.P)
@@ -101,7 +112,9 @@ internal fun getVersionCodeApi28Above(context: Context): Int {
 
 /**
  * Get VersionCode (in Api 28 Down)
- * @return The version code of the current application
+ * @return The version code of the current application.
+ *
+ * @since 0.0.1
  */
 internal fun getVersionCodeApi28Down(context: Context): Int{
     try {
@@ -117,7 +130,10 @@ internal fun getVersionCodeApi28Down(context: Context): Int{
 }
 
 /**
- * @return The package name of the application
+ * @param context [Context]
+ * @return The package name of the application,like com.gcode.vastutils.
+ *
+ * @since 0.0.1
  */
 @Synchronized
 fun getPackageName(context: Context): String? {
@@ -134,7 +150,10 @@ fun getPackageName(context: Context): String? {
 }
 
 /**
- * @return The icon of the application
+ * @receiver [Context]
+ * @return The icon of the application.
+ *
+ * @since 0.0.1
  */
 @Synchronized
 fun Context.getAppBitmap(): Bitmap? {
@@ -157,7 +176,10 @@ fun Context.getAppBitmap(): Bitmap? {
 
 
 /**
+ * @receiver [Context]
  * @return true if the app is debuggable.false otherwise.
+ *
+ * @since 0.0.1
  */
 @Synchronized
 fun Context.getAppDebug(): Boolean {

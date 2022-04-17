@@ -50,7 +50,9 @@ import com.gcode.vastnetstatelayout.interfaces.BaseNetStateLayout
  * ```
  *
  * If you don't set the [vastNetStateMgr],it will take the default value
- * when you call a method like [showLoading]
+ * when you call a method like [showLoading].
+ *
+ * @since 0.0.1
  */
 class VastNetStateLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null,defStyleAttr:Int = 0

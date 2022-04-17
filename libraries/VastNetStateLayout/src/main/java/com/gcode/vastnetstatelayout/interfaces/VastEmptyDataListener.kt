@@ -16,12 +16,19 @@
 
 package com.gcode.vastnetstatelayout.interfaces
 
+import com.gcode.vastnetstatelayout.view.CONTENT_STATE_SHOW_EMPTY_DATA
+
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2022/2/16
 // Description:
 // Documentation:
 
+/**
+ * Net state listener for the [CONTENT_STATE_SHOW_EMPTY_DATA] state.
+ *
+ * @since 0.0.3
+ */
 interface VastEmptyDataListener {
     fun onEmptyData()
 }

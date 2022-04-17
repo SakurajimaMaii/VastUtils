@@ -16,12 +16,19 @@
 
 package com.gcode.vastnetstatelayout.interfaces
 
+import com.gcode.vastnetstatelayout.view.CONTENT_STATE_SHOW_LOADING
+
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2021/11/15
 // Description:
 // Documentation:
 
+/**
+ * Net state listener for the [CONTENT_STATE_SHOW_LOADING] state.
+ *
+ * @since 0.0.3
+ */
 interface VastLoadingListener{
     fun onLoading()
 }

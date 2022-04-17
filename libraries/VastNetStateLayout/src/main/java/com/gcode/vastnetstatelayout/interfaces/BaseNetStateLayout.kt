@@ -17,6 +17,7 @@
 package com.gcode.vastnetstatelayout.interfaces
 
 import com.gcode.vastnetstatelayout.view.VastNetStateMgr
+import com.gcode.vastnetstatelayout.view.VastNetStateLayout
 
 // Author: Vast Gui 
 // Email: guihy2019@gmail.com
@@ -24,7 +25,12 @@ import com.gcode.vastnetstatelayout.view.VastNetStateMgr
 // Description:
 // Documentation:
 
-interface BaseNetStateLayout {
+/**
+ * Interface of [VastNetStateLayout].
+ *
+ * @since 0.0.4
+ */
+internal interface BaseNetStateLayout {
 
     fun setVastNetStateMgr(mgr: VastNetStateMgr)
 

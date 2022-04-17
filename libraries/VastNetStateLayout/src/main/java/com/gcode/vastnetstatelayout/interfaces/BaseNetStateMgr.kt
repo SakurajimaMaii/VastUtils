@@ -17,6 +17,7 @@
 package com.gcode.vastnetstatelayout.interfaces
 
 import androidx.annotation.LayoutRes
+import com.gcode.vastnetstatelayout.view.VastNetStateMgr
 
 // Author: Vast Gui 
 // Email: guihy2019@gmail.com
@@ -24,6 +25,11 @@ import androidx.annotation.LayoutRes
 // Description:
 // Documentation:
 
+/**
+ * Interface of [VastNetStateMgr].
+ *
+ * @since 0.0.4
+ */
 internal interface BaseNetStateMgr {
 
     fun setLoadingView(@LayoutRes loadingViewId: Int)

@@ -43,6 +43,7 @@ object ToastUtils {
      *
      * @since 0.0.1
      */
+    @JvmStatic
     fun showShortMsg(context: Context, msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
@@ -53,6 +54,7 @@ object ToastUtils {
      *
      * @since 0.0.1
      */
+    @JvmStatic
     fun showLongMsg(context: Context, msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
     }

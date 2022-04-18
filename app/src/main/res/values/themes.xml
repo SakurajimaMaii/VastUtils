@@ -15,7 +15,7 @@
   -->
 
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="VastTheme.DayNight" parent="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="VastTheme" parent="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/vast_skin_primary</item>
         <item name="colorPrimaryVariant">@color/vast_skin_primary_variant</item>

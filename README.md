@@ -30,7 +30,7 @@ implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.3'
 Easy Quick Android Tools for you to faster project development.
 
 ```groovy
-implementation 'io.github.sakurajimamaii:VastTools:0.0.7'
+implementation 'io.github.sakurajimamaii:VastTools:0.0.8'
 ```
 
 ### VastAdapter
@@ -38,5 +38,5 @@ implementation 'io.github.sakurajimamaii:VastTools:0.0.7'
 Help you quickly build an Adapter suitable for RecyclerView.
 
 ```groovy
-implementation 'io.github.sakurajimamaii:VastAdapter:0.0.4'
+implementation 'io.github.sakurajimamaii:VastAdapter:0.0.5'
 ```

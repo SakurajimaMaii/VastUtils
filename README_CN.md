@@ -26,11 +26,11 @@ implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.3'
 ### VastTools
 
 ```groovy
-implementation 'io.github.sakurajimamaii:VastTools:0.0.7'
+implementation 'io.github.sakurajimamaii:VastTools:0.0.8'
 ```
 
 ### VastAdapter
 
 ```groovy
-implementation 'io.github.sakurajimamaii:VastAdapter:0.0.4'
+implementation 'io.github.sakurajimamaii:VastAdapter:0.0.5'
 ```

@@ -16,14 +16,15 @@
 
 package com.gcode.vasttools.adapter
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2022/4/10 19:47
 // Description: Base fragment adapter for viewpager2 when activity is [AppCompatActivity].
+// Documentation: [BaseFragmentAdapter](https://sakurajimamaii.github.io/VastDocs/document/zh/BaseFragmentAdapter.html)
 
 /**
  * Base fragment adapter for viewpager2.
@@ -44,7 +45,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
  * @since 0.0.8
  */
 open class BaseFragmentAdapter(
-    private val activity: AppCompatActivity,
+    private val activity: FragmentActivity,
     protected val fragments:MutableList<Fragment>
 ):FragmentStateAdapter(activity) {
     override fun getItemCount() = fragments.size

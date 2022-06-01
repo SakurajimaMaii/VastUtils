@@ -18,6 +18,7 @@ package com.gcode.vastutils.fragment
 
 import android.os.Bundle
 import com.gcode.vasttools.base.VastVbVmFragment
+import com.gcode.vasttools.utils.isGPSOPen
 import com.gcode.vastutils.databinding.FragmentOneBinding
 import com.gcode.vastutils.viewModel.MainSharedVM
 

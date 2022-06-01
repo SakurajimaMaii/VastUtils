@@ -29,8 +29,8 @@ import com.gcode.vasttools.base.extension.getVmClass
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2022/3/10 16:11
-// Description:
-// Documentation:
+// Description: Please make sure that the fragment extends VastVbVmFragment when the fragment using viewBinding and viewModel.
+// Documentation: [VastBaseFragment](https://sakurajimamaii.github.io/VastDocs/document/en/VastBaseFragment.html)
 
 /**
  * VastVbVmFragment.

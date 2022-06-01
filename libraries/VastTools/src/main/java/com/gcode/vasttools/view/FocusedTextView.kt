@@ -23,11 +23,11 @@ import androidx.appcompat.widget.AppCompatTextView
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2022/4/9 21:59
-// Description:
-// Documentation:
+// Description: When you want to show the marquee effect, you can use FocusedTextView.
+// Documentation: [FocusedTextView](https://sakurajimamaii.github.io/VastDocs/document/en/FocusedTextView.html)
 
 /**
- * When you want to show the marquee effect, you can use [FocusedTextView]
+ * When you want to show the marquee effect, you can use [FocusedTextView].
  *
  * @since 0.0.8
  */

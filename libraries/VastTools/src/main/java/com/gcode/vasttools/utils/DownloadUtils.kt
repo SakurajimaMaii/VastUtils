@@ -31,8 +31,8 @@ import java.io.InputStream
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2022/4/14 18:11
-// Description:
-// Documentation:
+// Description: DownloadUtils is based on OKHttp3 and ProgressManager to help you download files.
+// Documentation: [DownloadUtils](https://sakurajimamaii.github.io/VastDocs/document/en/DownloadUtils.html)
 
 /**
  * Download utils.
@@ -41,6 +41,17 @@ import java.io.InputStream
  *
  * Firstly,you need to add dependencies.
  *
+ * Add it in your root build.gradle at the end of repositories:
+ * ```groovy
+ * allprojects {
+ *      repositories {
+ *          ...
+ *          maven { url 'https://jitpack.io' }
+ *      }
+ * }
+ * ```
+ *
+ * Add the dependency:
  * ```groovy
  * implementation 'com.github.SakurajimaMaii:ProgressManager:0.0.1'
  * ```

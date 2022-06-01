@@ -18,13 +18,9 @@ package com.gcode.vastadapter.interfaces
 
 import android.view.View
 
-/**
- * @Author: Vast Gui
- * @Email: guihy2019@gmail.com
- * @Date: 2022/3/30 7:30
- * @Description:
- * @Documentation:
- */
+// @Author: Vast Gui
+// @Email: guihy2019@gmail.com
+// @Date: 2022/3/30 7:30
 
 // Fix https://github.com/SakurajimaMaii/VastUtils/issues/35
 /**

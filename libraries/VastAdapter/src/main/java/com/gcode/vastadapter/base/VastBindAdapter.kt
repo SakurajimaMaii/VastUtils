@@ -30,7 +30,7 @@ import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 // Email: guihy2019@gmail.com
 // Date: 2021/4/2
 // Description: VastBindAdapter help you to create a recyclerView adapter.
-// Documentation: [VastBindAdapter](https://sakurajimamaii.github.io/VastDocs/document/zh/VastBindAdapter.html)
+// Documentation: [VastBindAdapter](https://sakurajimamaii.github.io/VastDocs/document/en/VastBindAdapter.html)
 
 /**
  * VastBindAdapter.
@@ -96,7 +96,7 @@ abstract class VastBindAdapter constructor(
             // Identify whether there is a resource file for the resource id.
             mContext.resources.getLayout(viewType)
         }catch(e:Resources.NotFoundException){
-            throw RuntimeException("Please check if the return value of the getVBAdpItemType method in ${dataSource[position].javaClass.simpleName}.kt is correct.")
+            throw RuntimeException("Please check if the return value of the getVBAdpItemType method in ${dataSource[position].javaClass.simpleName} is correct.")
         }
         return viewType
     }

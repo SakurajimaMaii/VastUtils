@@ -25,7 +25,7 @@ import com.gcode.vastadapter.interfaces.VastAdapterItem
 // Email: guihy2019@gmail.com
 // Date: 2021/4/2
 // Description: VastAdapter help you to create a recyclerView adapter.
-// Documentation: [VastAdapter](https://sakurajimamaii.github.io/VastDocs/document/zh/VastAdapter.html)
+// Documentation: [VastAdapter](https://sakurajimamaii.github.io/VastDocs/document/en/VastAdapter.html)
 
 /**
  * VastAdapter.

@@ -26,18 +26,16 @@
         android:layout_height="200dp"
         app:progress_background_width="20dp"
         app:progress_text_size="12sp"
-        app:progress_background_color="#95afc0"
-        app:progress_color="#f0932b"
-        app:progress_end_color="#6ab04c"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/download"/>
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/download"
         android:text="@string/download"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#2980b9"
         app:layout_constraintTop_toBottomOf="@id/downloadCv"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

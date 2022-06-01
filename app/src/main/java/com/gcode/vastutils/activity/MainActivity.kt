@@ -20,6 +20,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.splashscreen.SplashScreen
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gcode.vastadapter.base.VastBindAdapter
@@ -32,8 +34,13 @@ import com.gcode.vastutils.activity.baseadpexample.BaseAdapterActivity
 import com.gcode.vastutils.activity.basebindadpexample.BaseBindingAdapterActivity
 import com.gcode.vastutils.databinding.ActivityMainBinding
 import com.gcode.vastutils.model.IntentSelect
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import java.lang.Thread.sleep
 
 class MainActivity : VastVbActivity<ActivityMainBinding>() {
+
+    private lateinit var mSplashScreen: SplashScreen
 
     // 列表rv适配器
     inner class Adapter(
@@ -47,6 +54,11 @@ class MainActivity : VastVbActivity<ActivityMainBinding>() {
 
     // 列表数据源
     private val data: MutableList<VastBindAdapterItem> = ArrayList()
+
+    override fun onResume() {
+        super.onResume()
+        sleep(3000)
+    }
 
     override fun initView(savedInstanceState: Bundle?) {
         initData()
@@ -147,7 +159,21 @@ class MainActivity : VastVbActivity<ActivityMainBinding>() {
                     }
                 }
             ))
+
+            add(IntentSelect(
+                mContext.resources.getString(R.string.file),
+                object : VAapClickEventListener {
+                    override fun vAapClickEvent(view: View, pos: Int) {
+                        mContext.startActivity(Intent(mContext, FileActivity::class.java))
+                    }
+                }
+            ))
         }
+    }
+
+    override fun initBeforeOnCreate() {
+        // 初始化启动页
+        mSplashScreen = installSplashScreen()
     }
 
 }

@@ -40,6 +40,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/VastTheme"
         android:supportsRtl="true">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.gcode.vastutils.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <activity
             android:name=".activity.BaseFragmentActivity"
             android:exported="true" >
@@ -67,17 +76,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.gcode.vastutils.fileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true" >
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
-
         <activity
             android:name=".activity.basebindadpexample.BaseBindingAdapterActivity"
             android:exported="true" >
@@ -151,8 +149,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.FileActivity"
             android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true"
+            android:theme="@style/VastTheme.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

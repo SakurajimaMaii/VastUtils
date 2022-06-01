@@ -19,7 +19,7 @@ package com.gcode.vasttools.base
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.gcode.vasttools.base.interfaces.BaseActivity
+import com.gcode.vasttools.base.interfaces.VastBaseActivityInterface
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -29,7 +29,7 @@ import com.gcode.vasttools.base.interfaces.BaseActivity
 /**
  * @since 0.0.6
  */
-abstract class VastBaseActivity : AppCompatActivity(), BaseActivity {
+abstract class VastBaseActivity : AppCompatActivity(), VastBaseActivityInterface {
 
     override var enableActionBar = true
 
@@ -38,6 +38,7 @@ abstract class VastBaseActivity : AppCompatActivity(), BaseActivity {
     override lateinit var mContext: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        initBeforeOnCreate()
         super.onCreate(savedInstanceState)
         mContext = this
     }

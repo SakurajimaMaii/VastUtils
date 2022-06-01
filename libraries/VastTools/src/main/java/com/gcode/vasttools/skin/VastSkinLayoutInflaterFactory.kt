@@ -30,7 +30,7 @@ import kotlin.collections.HashMap
 // Email: guihy2019@gmail.com
 // Date: 2022/3/27 18:35
 
-class VastSkinLayoutInflaterFactory(private val activity: Activity) : LayoutInflater.Factory2,
+internal class VastSkinLayoutInflaterFactory(private val activity: Activity) : LayoutInflater.Factory2,
     Observer {
 
     private val skinAttribute: VastSkinAttribute =

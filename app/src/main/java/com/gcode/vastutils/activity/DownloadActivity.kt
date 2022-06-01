@@ -16,11 +16,15 @@
 
 package com.gcode.vastutils.activity
 
+import android.graphics.LinearGradient
+import android.graphics.Paint
+import android.graphics.Shader
 import android.os.Bundle
 import com.gcode.progressmanager.body.ProgressInfo
 import com.gcode.vasttools.base.VastVbActivity
 import com.gcode.vasttools.utils.DownloadUtils
 import com.gcode.vasttools.utils.LogUtils
+import com.gcode.vasttools.utils.colorHex2Int
 import com.gcode.vastutils.databinding.ActivityDownloadBinding
 
 // Author: Vast Gui 
@@ -46,6 +50,35 @@ class DownloadActivity : VastVbActivity<ActivityDownloadBinding>() {
     private val saveDir = "data/data/com.gcode.vastutils/files/"
 
     override fun initView(savedInstanceState: Bundle?) {
+
+        val colors = intArrayOf(
+            colorHex2Int("#F60C0C"),
+            colorHex2Int("#F3B913"),
+            colorHex2Int("#E7F716"),
+            colorHex2Int("#3DF30B"),
+            colorHex2Int("#0DF6EF"),
+            colorHex2Int("#0829FB"),
+            colorHex2Int("#B709F4")
+        )
+        val pos = floatArrayOf(
+            1f / 7,
+            2f / 7,
+            3f / 7,
+            4f / 7,
+            5f / 7,
+            6f / 7,
+            1f
+        )
+
+        mBinding.downloadCv.apply {
+            setProgressShader(LinearGradient(-700f, 0f, 700f, 0f,
+                colors,pos,
+                Shader.TileMode.CLAMP))
+            setProgressStrokeCap(Paint.Cap.ROUND)
+            setProgressEndColor(colorHex2Int("#4286f4"))
+            setProgressStartAndEndEnabled(false)
+        }
+
         mBinding.download.setOnClickListener {
             downloadApk()
         }
@@ -53,9 +86,9 @@ class DownloadActivity : VastVbActivity<ActivityDownloadBinding>() {
 
     private fun downloadApk() {
         DownloadUtils.download(
-            downloadUrl2,
+            downloadUrl,
             saveDir,
-            "cf.apk",
+            "cfa.apk",
             object : DownloadUtils.OnDownloadListener {
                 override fun onDownloadSuccess() {
                     LogUtils.i(tag, "download success.")

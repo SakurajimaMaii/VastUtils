@@ -34,6 +34,14 @@ import com.gcode.vasttools.skin.utils.VastSkinResources
 // Date: 2022/3/30 20:05
 // Description: VastSkinView is used to change the attr of the view specified in skinPairs.
 
+/**
+ * VastSkinView.
+ *
+ * @property view view which need to change the attributes.
+ * @property skinPairs list of [VastSkinView].
+ *
+ * @since 0.0.6
+ */
 internal class VastSkinView(private var view: View, private var skinPairs: List<VastSkinPair>) {
 
     fun applySkin() {

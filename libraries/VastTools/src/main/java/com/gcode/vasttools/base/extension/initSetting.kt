@@ -28,6 +28,9 @@ import com.gcode.vasttools.base.VastBaseActivity
 // @Date: 2022/3/12 21:26
 // @Description: Used to initialize some ui settings of VastBaseActivity.
 
+/**
+ * @since 0.0.6
+ */
 internal fun VastBaseActivity.initSettings(){
     if (!enableActionBar) {
         supportActionBar?.hide()

@@ -35,9 +35,6 @@ class BaseFragmentActivity : VastVbActivity<ActivityBaseFragmentBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.vp2.apply {
-            /**
-             * [BaseFragmentAdapter] 使用示例
-             */
             adapter = BaseFragmentAdapter(this@BaseFragmentActivity,ArrayList<Fragment>().apply {
                 add(OneFragment())
                 add(TwoFragment())

@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2022/3/10 16:04
+// Description: VastBaseFragment.
 
 /**
  * @since 0.0.6

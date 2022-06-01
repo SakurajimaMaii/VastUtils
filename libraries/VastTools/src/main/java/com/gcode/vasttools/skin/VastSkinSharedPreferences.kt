@@ -29,7 +29,7 @@ import android.content.SharedPreferences
  *
  * @since 0.0.6
  */
-object VastSkinSharedPreferences {
+internal object VastSkinSharedPreferences {
 
     fun reset() {
         VastSkinManager.sharedPreferences.edit().apply {

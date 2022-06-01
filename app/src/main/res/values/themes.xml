@@ -35,4 +35,11 @@
         <item name="colorOnError">@color/vast_skin_on_error</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
+
+    <style name="VastTheme.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">?colorSecondary</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenAnimationDuration">2000</item>
+        <item name="postSplashScreenTheme">@style/VastTheme</item>
+    </style>
 </resources>

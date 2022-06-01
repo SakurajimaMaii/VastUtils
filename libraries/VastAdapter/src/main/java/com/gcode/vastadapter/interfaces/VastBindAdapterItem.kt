@@ -22,6 +22,7 @@ import com.gcode.vastadapter.base.VastBindAdapter
 // Email: guihy2019@gmail.com
 // Date: 2022/3/30 7:34
 // Description: Please make sure that your list class implement VastBindAdapterItem when you use VastBindAdapter.
+// Documentation: [VastBindAdapter](https://sakurajimamaii.github.io/VastDocs/document/en/VastBindAdapter.html)
 
 /**
  * Please make sure that your list class implement [VastBindAdapterItem]

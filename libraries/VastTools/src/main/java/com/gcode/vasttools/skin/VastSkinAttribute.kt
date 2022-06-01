@@ -27,7 +27,7 @@ import com.gcode.vasttools.skin.utils.VastSkinUtils
 // Date: 2022/3/27 18:37
 // Description: VastSkinAttribute used to change the attr of view.
 
-class VastSkinAttribute {
+internal class VastSkinAttribute {
 
     private val mSkinViews: MutableList<VastSkinView> = ArrayList()
 

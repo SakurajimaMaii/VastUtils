@@ -24,9 +24,10 @@ import java.lang.reflect.ParameterizedType
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2022/3/11 23:01
-// Description:
-// Documentation:
 
+/**
+ * @since 0.0.6
+ */
 internal fun <VB> getVbClass(obj: Any, index: Int,layoutInflater: LayoutInflater): VB {
     val superClass = obj.javaClass.genericSuperclass
     val clazz = (superClass as ParameterizedType).actualTypeArguments[index] as Class<*>

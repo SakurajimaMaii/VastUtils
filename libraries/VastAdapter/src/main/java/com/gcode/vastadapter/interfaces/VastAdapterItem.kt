@@ -23,6 +23,7 @@ import com.gcode.vastadapter.base.VastAdapterVH
 // Email: guihy2019@gmail.com
 // Date: 2022/1/19
 // Description: Please make sure that your list class implement VastAdapterItem when you use VastAdapter.
+// Documentation: [VastAdapter](https://sakurajimamaii.github.io/VastDocs/document/en/VastAdapter.html)
 
 /**
  * Please make sure that your list class implement [VastAdapterItem]

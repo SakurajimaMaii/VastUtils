@@ -35,7 +35,7 @@ import android.location.LocationManager
  *
  * @since 0.0.8
  */
-fun Context.isOPen(): Boolean {
+fun Context.isGPSOPen(): Boolean {
     val locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
     // Through GPS satellite positioning, the positioning level can be accurate to the street
     // (through 24 satellite positioning, the positioning is accurate and fast in outdoor and open places).

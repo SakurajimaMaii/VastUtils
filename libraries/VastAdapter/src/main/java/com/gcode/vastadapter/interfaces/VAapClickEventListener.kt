@@ -22,7 +22,7 @@ import android.view.View
 // Email: guihy2019@gmail.com
 // Date: 2022/3/30 7:28
 // Description:
-// Documentation:
+// Documentation: [VastAdapter](https://sakurajimamaii.github.io/VastDocs/document/en/VastAdapter.html)
 
 // Fix https://github.com/SakurajimaMaii/VastUtils/issues/35
 /**

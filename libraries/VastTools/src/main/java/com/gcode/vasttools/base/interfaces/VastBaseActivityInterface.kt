@@ -23,7 +23,12 @@ import android.content.Context
 // Date: 2022/3/23 15:53
 // Description: BaseActivity for VastBaseActivity.
 
-internal interface BaseActivity {
+/**
+ * Interface for VastBaseActivity.
+ *
+ * @since 0.0.6
+ */
+internal interface VastBaseActivityInterface {
 
     /**
      * True if you want to show the ActionBar,false otherwise.
@@ -48,4 +53,11 @@ internal interface BaseActivity {
      * @since 0.0.8
      */
     val mContext: Context
+
+    /**
+     * Initialize some settings before calling super.onCreate()
+     *
+     * @since 0.0.9
+     */
+    fun initBeforeOnCreate(){}
 }

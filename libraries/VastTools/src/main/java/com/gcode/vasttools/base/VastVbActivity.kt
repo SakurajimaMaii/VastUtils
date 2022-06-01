@@ -24,7 +24,8 @@ import com.gcode.vasttools.base.extension.initSettings
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2022/3/10 16:05
-// Description: Please make sure that the activity extends VastVbActivity when the activity using viewbinding.
+// Description: Please make sure that the activity extends VastVbActivity when the activity using viewBinding.
+// Documentation: [VastBaseActivity](https://sakurajimamaii.github.io/VastDocs/document/en/VastBaseActivity.html)
 
 
 /**

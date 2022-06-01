@@ -134,6 +134,8 @@ val Float.sp
 /**
  * @return The complex floating point value multiplied by the
  *     appropriate metrics(in pixels).
+ *
+ * @since 0.0.6
  */
 val Float.px
     get() = TypedValue.applyDimension(
@@ -145,6 +147,8 @@ val Float.px
 /**
  * @return The complex floating point value multiplied by the
  *     appropriate metrics(in points).
+ *
+ * @since 0.0.6
  */
 val Float.pt
     get() = TypedValue.applyDimension(
@@ -156,6 +160,8 @@ val Float.pt
 /**
  * @return The complex floating point value multiplied by the
  *     appropriate metrics(in inches).
+ *
+ * @since 0.0.6
  */
 val Float.inches
     get() = TypedValue.applyDimension(
@@ -167,6 +173,8 @@ val Float.inches
 /**
  * @return The complex floating point value multiplied by the
  *     appropriate metrics(in millimeters).
+ *
+ * @since 0.0.6
  */
 val Float.mm
     get() = TypedValue.applyDimension(

@@ -31,4 +31,5 @@
     <string name="default_count">0</string>
     <string name="add">加一</string>
     <string name="download">下载</string>
+    <string name="file">文件存储</string>
 </resources>

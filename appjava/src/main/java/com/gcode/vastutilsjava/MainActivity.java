@@ -16,6 +16,9 @@
 
 package com.gcode.vastutilsjava;
 
+import static kotlinx.coroutines.CoroutineScopeKt.MainScope;
+import static kotlinx.coroutines.CoroutineScopeKt.coroutineScope;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +28,8 @@ import android.view.View;
 import com.gcode.vasttools.base.VastVbActivity;
 import com.gcode.vasttools.skin.VastSkinManager;
 import com.gcode.vastutilsjava.databinding.ActivityMainBinding;
+
+import kotlinx.coroutines.CoroutineScope;
 
 public class MainActivity extends VastVbActivity<ActivityMainBinding> {
 

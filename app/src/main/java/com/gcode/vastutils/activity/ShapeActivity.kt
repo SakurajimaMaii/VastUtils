@@ -19,7 +19,7 @@ package com.gcode.vastutils.activity
 import android.graphics.drawable.GradientDrawable.RECTANGLE
 import android.os.Bundle
 import android.os.PersistableBundle
-import com.gcode.vasttools.base.VastVbActivity
+import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vasttools.utils.*
 import com.gcode.vastutils.databinding.ActivityShapeBinding
 

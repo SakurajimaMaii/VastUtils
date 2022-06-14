@@ -24,6 +24,7 @@ import android.widget.ImageView
 import androidx.annotation.IntRange
 import androidx.annotation.Nullable
 import androidx.databinding.BindingAdapter
+import androidx.databinding.ViewDataBinding
 import com.gcode.vastadapter.base.VastBindAdapter
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vastutils.BR
@@ -190,6 +191,14 @@ class BaseBindingAdapter(
             dataSource.clear()
             notifyDataSetChanged()
         }
+    }
+
+    class MyVH(binding: ViewDataBinding):BindingHolder(binding){
+
+    }
+
+    override fun setViewHolder(binding: ViewDataBinding): BindingHolder {
+        return MyVH(binding)
     }
 
     override fun setVariableId(): Int {

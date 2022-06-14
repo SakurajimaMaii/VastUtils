@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.base
+package com.gcode.vasttools.activity
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewbinding.ViewBinding
-import com.gcode.vasttools.base.extension.getVmClass
-import com.gcode.vasttools.base.extension.initSettings
+import com.gcode.vasttools.extension.getVmClass
+import com.gcode.vasttools.extension.initSettings
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -51,17 +50,13 @@ abstract class VastVmActivity<VM : ViewModel> : VastBaseActivity() {
 
     protected lateinit var mViewModel: VM
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    final override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId)
         mViewModel = createViewModel()
         initView(savedInstanceState)
         initSettings()
     }
-
-    abstract fun initView(
-        savedInstanceState: Bundle?
-    )
 
     private fun createViewModel(): VM {
         return ViewModelProvider(this).get(getVmClass(this, 0))

@@ -21,7 +21,7 @@ import android.graphics.Paint
 import android.graphics.Shader
 import android.os.Bundle
 import com.gcode.progressmanager.body.ProgressInfo
-import com.gcode.vasttools.base.VastVbActivity
+import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vasttools.utils.DownloadUtils
 import com.gcode.vasttools.utils.LogUtils
 import com.gcode.vasttools.utils.colorHex2Int

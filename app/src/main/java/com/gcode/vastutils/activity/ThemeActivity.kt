@@ -17,7 +17,7 @@
 package com.gcode.vastutils.activity
 
 import android.os.Bundle
-import com.gcode.vasttools.base.VastVbActivity
+import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vasttools.skin.VastSkinManager
 import com.gcode.vasttools.utils.*
 import com.gcode.vastutils.databinding.ActivityThemeBinding

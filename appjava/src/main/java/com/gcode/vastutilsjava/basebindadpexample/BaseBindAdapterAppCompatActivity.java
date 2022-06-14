@@ -16,17 +16,15 @@
 
 package com.gcode.vastutilsjava.basebindadpexample;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.os.Bundle;
-import android.view.View;
 
 import com.gcode.vastadapter.interfaces.VAapClickEventListener;
 import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener;
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem;
-import com.gcode.vasttools.base.VastVbActivity;
+import com.gcode.vasttools.activity.VastVbActivity;
 import com.gcode.vasttools.utils.ToastUtils;
 import com.gcode.vastutilsjava.R;
 import com.gcode.vastutilsjava.basebindadpexample.model.Picture;
@@ -34,7 +32,7 @@ import com.gcode.vastutilsjava.databinding.ActivityBaseBindAdapterBinding;
 
 import java.util.ArrayList;
 
-public class BaseBindAdapterActivity extends VastVbActivity<ActivityBaseBindAdapterBinding> {
+public class BaseBindAdapterAppCompatActivity extends VastVbActivity<ActivityBaseBindAdapterBinding> {
 
     private ArrayList<VastBindAdapterItem> datas = new ArrayList<>();
 

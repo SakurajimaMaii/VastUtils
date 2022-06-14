@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.base
+package com.gcode.vasttools.activity
 
 import android.content.Context
 import android.os.Bundle
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
-import com.gcode.vasttools.base.interfaces.VastBaseActivityInterface
+import com.gcode.vasttools.activity.VastBaseAppCompatActivity
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -29,7 +30,7 @@ import com.gcode.vasttools.base.interfaces.VastBaseActivityInterface
 /**
  * @since 0.0.6
  */
-abstract class VastBaseActivity : AppCompatActivity(), VastBaseActivityInterface {
+abstract class VastBaseActivity : AppCompatActivity(), VastBaseAppCompatActivity {
 
     override var enableActionBar = true
 
@@ -42,5 +43,19 @@ abstract class VastBaseActivity : AppCompatActivity(), VastBaseActivityInterface
         super.onCreate(savedInstanceState)
         mContext = this
     }
+
+    /**
+     * Initialize some settings before calling super.onCreate().
+     *
+     * @since 0.0.9
+     */
+    protected open fun initBeforeOnCreate(){}
+
+    /**
+     * Used to replace the [Activity.onCreate] method.
+     *
+     * @since 0.0.6
+     */
+    protected abstract fun initView(savedInstanceState: Bundle?)
 
 }

@@ -27,10 +27,10 @@
         android:name="com.gcode.vasttools.base.VastApp"
         android:theme="@style/Theme.VastUtils">
         <activity
-            android:name=".basebindadpexample.BaseBindAdapterActivity"
+            android:name=".basebindadpexample.BaseBindAdapterAppCompatActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MainAppCompatActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

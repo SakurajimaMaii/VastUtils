@@ -16,22 +16,15 @@
 
 package com.gcode.vastutilsjava;
 
-import static kotlinx.coroutines.CoroutineScopeKt.MainScope;
-import static kotlinx.coroutines.CoroutineScopeKt.coroutineScope;
+import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.view.View;
-
-import com.gcode.vasttools.base.VastVbActivity;
+import com.gcode.vasttools.activity.VastVbActivity;
 import com.gcode.vasttools.skin.VastSkinManager;
 import com.gcode.vastutilsjava.databinding.ActivityMainBinding;
 
-import kotlinx.coroutines.CoroutineScope;
-
-public class MainActivity extends VastVbActivity<ActivityMainBinding> {
+public class MainAppCompatActivity extends VastVbActivity<ActivityMainBinding> {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState) {

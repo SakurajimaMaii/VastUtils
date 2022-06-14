@@ -22,7 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.gcode.vasttools.base.VastVbActivity
+import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vastutils.databinding.ActivityCameraBinding
 
 class CameraActivity : VastVbActivity<ActivityCameraBinding>() {

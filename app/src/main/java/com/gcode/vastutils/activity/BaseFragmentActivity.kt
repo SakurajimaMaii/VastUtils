@@ -18,8 +18,8 @@ package com.gcode.vastutils.activity
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vasttools.adapter.BaseFragmentAdapter
-import com.gcode.vasttools.base.VastVbActivity
 import com.gcode.vastutils.databinding.ActivityBaseFragmentBinding
 import com.gcode.vastutils.fragment.OneFragment
 import com.gcode.vastutils.fragment.TwoFragment

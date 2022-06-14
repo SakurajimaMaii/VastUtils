@@ -14,50 +14,49 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.base
+package com.gcode.vasttools.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.gcode.vasttools.base.extension.getVmClass
+import androidx.viewbinding.ViewBinding
+import com.gcode.vasttools.extension.getVbClass
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
-// Date: 2022/3/10 16:18
-// Description: Please make sure that the fragment extends VastVmFragment when the fragment using viewModel.
+// Date: 2022/3/11 22:58
+// Description: Please make sure that the fragment extends VastVbFragment when the fragment using viewBinding.
 // Documentation: [VastBaseFragment](https://sakurajimamaii.github.io/VastDocs/document/en/VastBaseFragment.html)
 
 /**
- * VastVmActivity.
+ * VastVbFragment.
  *
  * Here is an example in kotlin:
  * ```kotlin
- * // Because don't using the ViewBinding,so just set the layoutId to layout id.
- * class MainFragment(override val layoutId: Int = R.layout.fragment_main) :VastVmFragment<MainViewModel>() {
+ * // Because using the ViewBinding,so just set the layoutId to 0.
+ * class MainFragment(override val layoutId: Int = 0) : VastVbFragment<FragmentMainBinding>() {
  *     override fun initView(savedInstanceState: Bundle?) {
  *          // Something to do
  *     }
  * }
  * ```
  *
- * @param VM [ViewModel] of the fragment.
+ * @param VB [ViewBinding] of the fragment layout.
  *
  * @since 0.0.6
  */
-abstract class VastVmFragment<VM : ViewModel> : VastBaseFragment() {
+abstract class VastVbFragment<VB : ViewBinding>: VastBaseFragment() {
 
-    protected lateinit var mViewModel: VM
+    protected lateinit var mBinding: VB
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mViewModel = createViewModel()
-        return dataBindView ?: super.onCreateView(inflater, container, savedInstanceState)
+        initDataBind()
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,12 +64,13 @@ abstract class VastVmFragment<VM : ViewModel> : VastBaseFragment() {
         initView(savedInstanceState)
     }
 
-    abstract fun initView(savedInstanceState: Bundle?)
-
-    private fun createViewModel(): VM {
-        // Fix https://github.com/SakurajimaMaii/VastUtils/issues/42
-        // Change this to requireActivity()
-        return ViewModelProvider(requireActivity()).get(getVmClass(this, 0))
+    @Suppress("UNCHECKED_CAST")
+    private fun initDataBind() {
+        mBinding = getVbClass(this,0,layoutInflater)
+        if (dataBindView != null) {
+            (dataBindView!!.parent as? ViewGroup)?.removeView(dataBindView)
+        }
+        dataBindView = mBinding.root
     }
 
 }

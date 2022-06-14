@@ -24,7 +24,6 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.gcode.vastadapter.base.VastBindAdapter
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vastswiperecyclerview.VastSwipeRvMgr
 import com.gcode.vastswiperecyclerview.annotation.ICON_TITLE
@@ -32,10 +31,9 @@ import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemLongClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeMenuCreator
 import com.gcode.vastswiperecyclerview.model.VastSwipeMenu
-import com.gcode.vasttools.base.VastVbActivity
+import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vasttools.utils.dp
 import com.gcode.vasttools.utils.showShortMsg
-import com.gcode.vastutils.BR
 import com.gcode.vastutils.R
 import com.gcode.vastutils.databinding.ActivitySwipeBinding
 import com.gcode.vastutils.swipeexample.model.Swipe

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.base.extension
+package com.gcode.vasttools.extension
 
 import android.os.Build
 import android.view.View
 import android.view.WindowInsetsController
 import android.view.WindowManager
 import androidx.core.view.WindowInsetsCompat
-import com.gcode.vasttools.base.VastBaseActivity
+import com.gcode.vasttools.activity.VastBaseActivity
 
 // @Author: Vast Gui
 // @Email: guihy2019@gmail.com

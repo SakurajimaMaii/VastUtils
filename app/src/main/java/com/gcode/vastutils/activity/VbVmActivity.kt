@@ -17,11 +17,11 @@
 package com.gcode.vastutils.activity
 
 import android.os.Bundle
-import com.gcode.vasttools.base.VastVbVmActivity
+import com.gcode.vasttools.activity.VastVbVmActivity
 import com.gcode.vastutils.databinding.ActivityBaseVbBinding
 import com.gcode.vastutils.viewModel.MainSharedVM
 
-class VbVmActivity : VastVbVmActivity<ActivityBaseVbBinding,MainSharedVM>() {
+class VbVmActivity : VastVbVmActivity<ActivityBaseVbBinding, MainSharedVM>() {
 
     override fun initView(savedInstanceState: Bundle?) {
 

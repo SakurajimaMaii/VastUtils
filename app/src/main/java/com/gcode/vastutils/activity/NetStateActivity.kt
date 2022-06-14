@@ -22,7 +22,7 @@ import com.gcode.vastnetstatelayout.interfaces.VastLoadingErrorListener
 import com.gcode.vastnetstatelayout.interfaces.VastLoadingListener
 import com.gcode.vastnetstatelayout.interfaces.VastNetErrorListener
 import com.gcode.vastnetstatelayout.view.VastNetStateMgr
-import com.gcode.vasttools.base.VastVbActivity
+import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vastutils.R
 import com.gcode.vastutils.databinding.ActivityNetStateBinding
 

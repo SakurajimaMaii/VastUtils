@@ -17,9 +17,7 @@
 package com.gcode.vastutils.fragment
 
 import android.os.Bundle
-import com.gcode.vasttools.base.VastVbVmFragment
-import com.gcode.vasttools.base.VastVmFragment
-import com.gcode.vastutils.R
+import com.gcode.vasttools.fragment.VastVbVmFragment
 import com.gcode.vastutils.databinding.FragmentThreeBinding
 import com.gcode.vastutils.viewModel.MainSharedVM
 

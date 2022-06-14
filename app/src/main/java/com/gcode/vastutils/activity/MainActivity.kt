@@ -27,7 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gcode.vastadapter.base.VastBindAdapter
 import com.gcode.vastadapter.interfaces.VAapClickEventListener
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
-import com.gcode.vasttools.base.VastVbActivity
+import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vastutils.BR
 import com.gcode.vastutils.R
 import com.gcode.vastutils.activity.baseadpexample.BaseAdapterActivity

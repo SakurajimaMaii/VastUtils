@@ -23,7 +23,7 @@ import com.gcode.vastadapter.base.VastAdapter
 import com.gcode.vastadapter.interfaces.VAapClickEventListener
 import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
 import com.gcode.vastadapter.interfaces.VastAdapterItem
-import com.gcode.vasttools.base.VastVbActivity
+import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vasttools.utils.showShortMsg
 import com.gcode.vastutils.R
 import com.gcode.vastutils.activity.baseadpexample.model.AExample

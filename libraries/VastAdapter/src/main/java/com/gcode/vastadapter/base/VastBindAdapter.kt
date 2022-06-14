@@ -54,10 +54,25 @@ abstract class VastBindAdapter constructor(
     protected var mContext: Context
 ) : RecyclerView.Adapter<VastBindAdapter.BindingHolder>() {
 
-    // Fix https://github.com/SakurajimaMaii/VastUtils/issues/36
+    /**
+     * Register click listener for item in RecyclerView.
+     *
+     * @see VastBindAdapter.setOnItemClickListener
+     * @since 0.0.4
+     */
     private var onItemClickListener: OnItemClickListener? = null
+
+    /**
+     * Register long click listener for item in RecyclerView.
+     *
+     * @see VastBindAdapter.setOnItemLongClickListener
+     * @since 0.0.4
+     */
     private var onItemLongClickListener: OnItemLongClickListener? = null
 
+    /**
+     * @since 0.0.1
+     */
     final override fun onBindViewHolder(holder: BindingHolder, position: Int) {
         val item = dataSource[position]
         holder.bindData(setVariableId(), item)
@@ -78,6 +93,9 @@ abstract class VastBindAdapter constructor(
         }
     }
 
+    /**
+     * @since 0.0.1
+     */
     final override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingHolder {
         val binding = DataBindingUtil.inflate<ViewDataBinding>(
             LayoutInflater.from(parent.context),
@@ -85,11 +103,17 @@ abstract class VastBindAdapter constructor(
             parent,
             false
         )
-        return BindingHolder(binding)
+        return setViewHolder(binding)
     }
 
+    /**
+     * @since 0.0.1
+     */
     final override fun getItemCount() = dataSource.size
 
+    /**
+     * @since 0.0.1
+     */
     final override fun getItemViewType(position: Int):Int {
         val viewType = dataSource[position].getVBAdpItemType()
         try {
@@ -102,26 +126,38 @@ abstract class VastBindAdapter constructor(
     }
 
     /**
-     * Set VariableId value
-     * For example, in the layout file
+     * Set VariableId value.For example, in the layout file
+     * ```xml
      * <data>
      *     <variable
      *     name="item"
-     *     type="com.gcode.gutilssampledemo.Person" />
+     *     type="com.example.gutilssampledemo.Person" />
      * </data>
+     * ```
      *
-     * Then the implementation of the function should be
+     * Then the [setVariableId] should be like this:
+     *
+     * ```kt
      * override fun setVariableId(): Int {
      *      return BR.item
      * }
-     * For more information, please refer to the example given in the link below
-     * https://github.com/SakurajimaMaii/GStyleUtils
+     * ```
+     *
      * @return Int
      */
     abstract fun setVariableId(): Int
 
-    class BindingHolder(private var binding: ViewDataBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    /**
+     * The ViewHolder of the [VastBindAdapter].If you want
+     * to set your own ViewHolder for [VastBindAdapter],you
+     * should making your ViewHolder extends the [BindingHolder]
+     * and make [setViewHolder] return it.
+     *
+     * @property binding
+     *
+     * @since 0.0.1
+     */
+    open class BindingHolder(protected var binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindData(variableId: Int, item: VastBindAdapterItem?) {
             binding.setVariable(variableId, item)
         }
@@ -165,5 +201,14 @@ abstract class VastBindAdapter constructor(
      */
     interface OnItemLongClickListener {
         fun onItemLongClick(view: View, position: Int): Boolean
+    }
+
+    /**
+     * @return The ViewHolder you want to set.
+     *
+     * @since 0.0.6
+     */
+    open fun setViewHolder(binding:ViewDataBinding): BindingHolder {
+        return BindingHolder(binding)
     }
 }

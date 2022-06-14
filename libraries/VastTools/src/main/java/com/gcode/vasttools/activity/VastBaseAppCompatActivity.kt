@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.base.interfaces
+package com.gcode.vasttools.activity
 
 import android.content.Context
 
-// Author: Vast Gui
+
+// Author: SakurajimaMai
 // Email: guihy2019@gmail.com
-// Date: 2022/3/23 15:53
-// Description: BaseActivity for VastBaseActivity.
+// Date: 2022/6/11
+// Description: 
+// Documentation:
 
 /**
- * Interface for VastBaseActivity.
- *
- * @since 0.0.6
+ * @since 0.0.9
  */
-internal interface VastBaseActivityInterface {
+internal interface VastBaseAppCompatActivity {
 
     /**
      * True if you want to show the ActionBar,false otherwise.
@@ -54,10 +54,4 @@ internal interface VastBaseActivityInterface {
      */
     val mContext: Context
 
-    /**
-     * Initialize some settings before calling super.onCreate()
-     *
-     * @since 0.0.9
-     */
-    fun initBeforeOnCreate(){}
 }

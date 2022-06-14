@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.base
+package com.gcode.vasttools.activity
 
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding
-import com.gcode.vasttools.base.extension.getVbClass
-import com.gcode.vasttools.base.extension.initSettings
+import com.gcode.vasttools.extension.getVbClass
+import com.gcode.vasttools.extension.initSettings
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -54,8 +54,6 @@ abstract class VastVbActivity<VB : ViewBinding> : VastBaseActivity() {
         initView(savedInstanceState)
         initSettings()
     }
-
-    abstract fun initView(savedInstanceState: Bundle?)
 
     @Suppress("UNCHECKED_CAST")
     private fun initDataBind() {

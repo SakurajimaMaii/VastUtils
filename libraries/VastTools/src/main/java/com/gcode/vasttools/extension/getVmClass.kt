@@ -16,7 +16,7 @@
 
 @file:Suppress("UNCHECKED_CAST")
 
-package com.gcode.vasttools.base.extension
+package com.gcode.vasttools.extension
 
 import java.lang.reflect.ParameterizedType
 

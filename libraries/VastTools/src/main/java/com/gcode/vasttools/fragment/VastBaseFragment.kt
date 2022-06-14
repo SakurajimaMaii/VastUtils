@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.base
+package com.gcode.vasttools.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -32,9 +32,30 @@ import androidx.fragment.app.Fragment
  */
 abstract class VastBaseFragment : Fragment() {
 
+    /**
+     * When you are not using view binding, you should
+     * set [layoutId] to the corresponding view resource
+     * id of this Fragment.
+     *
+     * @since 0.0.6
+     */
     protected abstract val layoutId: Int
 
+    /**
+     * The binding view of the Fragment
+     *
+     * @since 0.0.6
+     */
     protected var dataBindView: View? = null
+
+    /**
+     *
+     *
+     * @param savedInstanceState
+     *
+     * @since 0.0.6
+     */
+    protected abstract fun initView(savedInstanceState: Bundle?)
 
     override fun onCreateView(
         inflater: LayoutInflater,

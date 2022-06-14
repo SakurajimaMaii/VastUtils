@@ -20,7 +20,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gcode.vastutilsjava.basebindadpexample.BaseBindAdapterActivity">
+    tools:context="com.gcode.vastutilsjava.basebindadpexample.BaseBindAdapterAppCompatActivity">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dataRv"
         android:layout_width="match_parent"

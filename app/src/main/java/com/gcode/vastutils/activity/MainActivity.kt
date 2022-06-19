@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,6 +28,7 @@ import com.gcode.vastadapter.base.VastBindAdapter
 import com.gcode.vastadapter.interfaces.VAapClickEventListener
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vasttools.activity.VastVbActivity
+import com.gcode.vasttools.utils.AppUtils
 import com.gcode.vastutils.BR
 import com.gcode.vastutils.R
 import com.gcode.vastutils.activity.baseadpexample.BaseAdapterActivity

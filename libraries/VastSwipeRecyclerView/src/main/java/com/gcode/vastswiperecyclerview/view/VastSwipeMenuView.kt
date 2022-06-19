@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,21 +23,19 @@ import android.view.Gravity
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.annotation.IntRange
-import androidx.core.view.setMargins
 import com.gcode.vastswiperecyclerview.VastSwipeRvMgr
 import com.gcode.vastswiperecyclerview.annotation.ICON_TITLE
 import com.gcode.vastswiperecyclerview.annotation.ONLY_ICON
 import com.gcode.vastswiperecyclerview.annotation.ONLY_TITLE
 import com.gcode.vastswiperecyclerview.model.VastSwipeMenu
+import androidx.annotation.IntRange
 
 
-/**
- * @OriginalAuthor: Vast Gui @OriginalDate: @EditAuthor: Vast Gui
- * @EditDate: 2021/11/29
- */
-
-/** Vast swipe menu view. */
+// Author: SakurajimaMai
+// Email: guihy2019@gmail.com
+// Date: 2022/6/14
+// Description: 
+// Documentation:
 class VastSwipeMenuView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
@@ -70,7 +68,7 @@ class VastSwipeMenuView @JvmOverloads constructor(
         return ImageView(context).apply {
             setImageDrawable(item.icon)
             layoutParams = LayoutParams(manager.iconSize.toInt(), manager.iconSize.toInt()).apply {
-                setMargins(10)
+                setMargins(10,10,10,10)
             }
         }
     }
@@ -83,7 +81,7 @@ class VastSwipeMenuView @JvmOverloads constructor(
             setTextSize(unit,size)
             layoutParams =
                 LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
-                    setMargins(10)
+                    setMargins(10,10,10,10)
                 }
             setTextColor(item.titleColor)
         }

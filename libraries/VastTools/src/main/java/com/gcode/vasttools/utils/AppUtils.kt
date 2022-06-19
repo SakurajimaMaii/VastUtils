@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,8 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-@file:JvmName("AppUtils")
 
 package com.gcode.vasttools.utils
 
@@ -34,159 +32,182 @@ import androidx.annotation.RequiresApi
 // Documentation: [AppUtils](https://sakurajimamaii.github.io/VastDocs/document/en/AppUtils.html)
 
 /**
- * @receiver [Context]
- * @return app name,like VastUtilsSampleDemo.
- *
  * @since 0.0.1
  */
-@Synchronized
-fun Context.getAppName(): String? {
-    try {
-        val packageManager: PackageManager = this.packageManager
-        val packageInfo: PackageInfo = packageManager.getPackageInfo(
-            this.packageName, 0
-        )
-        val labelRes = packageInfo.applicationInfo.labelRes
-        return this.resources.getString(labelRes)
-    } catch (e: Exception) {
-        e.printStackTrace()
-    }
-    return null
-}
-
-/**
- * @receiver [Context]
- * @return The version name of the current application,like 1.0.
- *
- * @since 0.0.1
- */
-@Synchronized
-fun Context.getVersionName(): String? {
-    try {
-        val packageManager = this.packageManager
-        val packageInfo = packageManager.getPackageInfo(
-            this.packageName, 0
-        )
-        return packageInfo.versionName
-    } catch (e: Exception) {
-        e.printStackTrace()
-    }
-    return null
-}
-
-/**
- * @receiver [Context]
- * @return The version code of the current application,like 1.
- *
- * @since 0.0.1
- */
-@Synchronized
-fun Context.getVersionCode() =
-    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
-        getVersionCodeApi28Above(this)
-    }else{
-        getVersionCodeApi28Down(this)
+object AppUtils {
+    /**
+     * Returns app name,like VastUtilsSampleDemo.
+     *
+     * @param context Context
+     * @return app name,like VastUtilsSampleDemo.
+     *
+     * @since 0.0.1
+     */
+    @JvmStatic
+    @Synchronized
+    fun getAppName(context: Context): String? {
+        try {
+            val packageManager: PackageManager = context.packageManager
+            val packageInfo: PackageInfo = packageManager.getPackageInfo(
+                context.packageName, 0
+            )
+            val labelRes = packageInfo.applicationInfo.labelRes
+            return context.resources.getString(labelRes)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
     }
 
-
-/**
- * Get VersionCode (in Api 28 Above)
- * @return The version code of the current application.
- *
- * @since 0.0.1
- */
-@Synchronized
-@RequiresApi(Build.VERSION_CODES.P)
-internal fun getVersionCodeApi28Above(context: Context): Int {
-    try {
-        val packageManager = context.packageManager
-        val packageInfo = packageManager.getPackageInfo(
-            context.packageName, 0
-        )
-        return packageInfo.longVersionCode.toInt()
-    } catch (e: Exception) {
-        e.printStackTrace()
+    /**
+     * Returns the version name of the current application,like 1.0.
+     *
+     * @param context Context
+     * @return the version name of the current application,like 1.0.
+     *
+     * @since 0.0.1
+     */
+    @JvmStatic
+    @Synchronized
+    fun getVersionName(context: Context): String? {
+        try {
+            val packageManager = context.packageManager
+            val packageInfo = packageManager.getPackageInfo(
+                context.packageName, 0
+            )
+            return packageInfo.versionName
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
     }
-    return 0
-}
 
-/**
- * Get VersionCode (in Api 28 Down)
- * @return The version code of the current application.
- *
- * @since 0.0.1
- */
-internal fun getVersionCodeApi28Down(context: Context): Int{
-    try {
-        val packageManager = context.packageManager
-        val packageInfo = packageManager.getPackageInfo(
-            context.packageName, 0
-        )
-        return packageInfo.versionCode
-    } catch (e: Exception) {
-        e.printStackTrace()
+    /**
+     * Returns the version code of the current application,like 1.
+     *
+     * @param context Context
+     * @return the version code of the current application,like 1.
+     *
+     * @since 0.0.1
+     */
+    @JvmStatic
+    @Synchronized
+    fun getVersionCode(context: Context) =
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+            getVersionCodeApi28Above(context)
+        }else{
+            getVersionCodeApi28Down(context)
+        }
+
+
+    /**
+     * Get VersionCode (in Api 28 Above)
+     * @return The version code of the current application.
+     *
+     * @since 0.0.1
+     */
+    @Synchronized
+    @RequiresApi(Build.VERSION_CODES.P)
+    internal fun getVersionCodeApi28Above(context: Context): Int {
+        try {
+            val packageManager = context.packageManager
+            val packageInfo = packageManager.getPackageInfo(
+                context.packageName, 0
+            )
+            return packageInfo.longVersionCode.toInt()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return 0
     }
-    return 0
-}
 
-/**
- * @param context [Context]
- * @return The package name of the application,like com.gcode.vastutils.
- *
- * @since 0.0.1
- */
-@Synchronized
-fun getPackageName(context: Context): String? {
-    try {
-        val packageManager = context.packageManager
-        val packageInfo = packageManager.getPackageInfo(
-            context.packageName, 0
-        )
-        return packageInfo.packageName
-    } catch (e: Exception) {
-        e.printStackTrace()
+    /**
+     * Get VersionCode (in Api 28 Down)
+     * @return The version code of the current application.
+     *
+     * @since 0.0.1
+     */
+    internal fun getVersionCodeApi28Down(context: Context): Int{
+        try {
+            val packageManager = context.packageManager
+            val packageInfo = packageManager.getPackageInfo(
+                context.packageName, 0
+            )
+            return packageInfo.versionCode
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return 0
     }
-    return null
-}
 
-/**
- * @receiver [Context]
- * @return The icon of the application.
- *
- * @since 0.0.1
- */
-@Synchronized
-fun Context.getAppBitmap(): Bitmap? {
-    var packageManager: PackageManager? = null
-    var applicationInfo: ApplicationInfo?
-    try {
-        packageManager = this.applicationContext
-            .packageManager
-        applicationInfo = packageManager.getApplicationInfo(
-            this.packageName, 0
-        )
-    } catch (e: PackageManager.NameNotFoundException) {
-        applicationInfo = null
+    /**
+     * Returns the package name of the application,like com.gcode.vastutils.
+     *
+     * @param context Context
+     * @return the package name of the application,like com.gcode.vastutils.
+     *
+     * @since 0.0.1
+     */
+    @JvmStatic
+    @Synchronized
+    fun getPackageName(context: Context): String? {
+        try {
+            val packageManager = context.packageManager
+            val packageInfo = packageManager.getPackageInfo(
+                context.packageName, 0
+            )
+            return packageInfo.packageName
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
     }
-    val d =
-        packageManager!!.getApplicationIcon(applicationInfo!!)
-    val bd = d as BitmapDrawable
-    return bd.bitmap
-}
+
+    /**
+     * Returns the icon of the application.
+     *
+     * @param context Context
+     * @return the icon of the application.
+     *
+     * @since 0.0.1
+     */
+    @JvmStatic
+    @Synchronized
+    fun getAppBitmap(context: Context): Bitmap? {
+        var packageManager: PackageManager? = null
+        var applicationInfo: ApplicationInfo?
+        try {
+            packageManager = context.applicationContext
+                .packageManager
+            applicationInfo = packageManager.getApplicationInfo(
+                context.packageName, 0
+            )
+        } catch (e: PackageManager.NameNotFoundException) {
+            applicationInfo = null
+        }
+        val d =
+            packageManager!!.getApplicationIcon(applicationInfo!!)
+        val bd = d as BitmapDrawable
+        return bd.bitmap
+    }
 
 
-/**
- * @receiver [Context]
- * @return true if the app is debuggable.false otherwise.
- *
- * @since 0.0.1
- */
-@Synchronized
-fun Context.getAppDebug(): Boolean {
-    return try {
-        val info = this.applicationInfo
-        info.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
-    } catch (e: java.lang.Exception) {
-        false
+    /**
+     * Returns true if the app is debuggable.false otherwise.
+     *
+     * @param context Context
+     * @return true if the app is debuggable.false otherwise.
+     *
+     * @since 0.0.1
+     */
+    @JvmStatic
+    @Synchronized
+    fun getAppDebug(context: Context): Boolean {
+        return try {
+            val info = context.applicationInfo
+            info.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+        } catch (e: java.lang.Exception) {
+            false
+        }
     }
 }

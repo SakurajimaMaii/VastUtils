@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,8 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-@file:JvmName("MapUtils")
 
 package com.gcode.vasttools.utils
 
@@ -27,24 +25,26 @@ import android.location.LocationManager
 // Description:
 // Documentation:
 
-/**
- * Determine if GPS is turned on.
- *
- * @receiver [Context]
- * @return True if GPS is turned on, false otherwise.
- *
- * @since 0.0.8
- */
-fun Context.isGPSOPen(): Boolean {
-    val locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-    // Through GPS satellite positioning, the positioning level can be accurate to the street
-    // (through 24 satellite positioning, the positioning is accurate and fast in outdoor and open places).
-    val gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-    // Position determined by WLAN or mobile network (3G/2G) (also called AGPS, Assisted GPS Positioning.
-    // Mainly used for positioning indoors or in densely covered places (buildings or dense deep forest, etc.).
-    val network = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-    if (gps && network) {
-        return true
+object MapUtils {
+    /**
+     * Determine if GPS is turned on.
+     *
+     * @param context context.
+     * @return true if GPS is turned on, false otherwise.
+     *
+     * @since 0.0.8
+     */
+    fun isGPSOPen(context: Context): Boolean {
+        val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        // Through GPS satellite positioning, the positioning level can be accurate to the street
+        // (through 24 satellite positioning, the positioning is accurate and fast in outdoor and open places).
+        val gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        // Position determined by WLAN or mobile network (3G/2G) (also called AGPS, Assisted GPS Positioning.
+        // Mainly used for positioning indoors or in densely covered places (buildings or dense deep forest, etc.).
+        val network = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+        if (gps && network) {
+            return true
+        }
+        return false
     }
-    return false
 }

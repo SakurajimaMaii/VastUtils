@@ -5,7 +5,7 @@ buildscript {
         // The version of kotlin
         kotlin_version = "1.6.21"
         // The version of gradle
-        gradle_version = '7.3.0-beta03'
+        gradle_version = '7.4.0-alpha05'
         // The version of activity
         activity_version = "1.4.0"
         // The version of appcompat
@@ -26,6 +26,8 @@ buildscript {
         lifecycle_version = "2.5.0-rc01"
         // The version of okhttp3
         okhttp3_version = "5.0.0-alpha.6"
+        // The version of junit
+        junit_version = "4.13.2"
 
         compile_sdk_version = 31
         min_sdk_version = 23
@@ -41,9 +43,6 @@ buildscript {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,7 +24,7 @@ import com.gcode.vastadapter.interfaces.VAapClickEventListener
 import com.gcode.vastadapter.interfaces.VAdpLongClickEventListener
 import com.gcode.vastadapter.interfaces.VastAdapterItem
 import com.gcode.vasttools.activity.VastVbActivity
-import com.gcode.vasttools.utils.showShortMsg
+import com.gcode.vasttools.utils.ToastUtils.showShortMsg
 import com.gcode.vastutils.R
 import com.gcode.vastutils.activity.baseadpexample.model.AExample
 import com.gcode.vastutils.activity.baseadpexample.model.BExample
@@ -40,13 +40,13 @@ class BaseAdapterActivity : VastVbActivity<ActivityBaseAdapterBinding>() {
 
     private val click = object : VAapClickEventListener {
         override fun vAapClickEvent(view: View, pos: Int) {
-            showShortMsg("Click event and pos is $pos.")
+            showShortMsg(this@BaseAdapterActivity,"Click event and pos is $pos.")
         }
     }
 
     private val longClick = object : VAdpLongClickEventListener {
         override fun vAdpLongClickEvent(view: View, pos: Int): Boolean {
-            showShortMsg("Long click event and pos is $pos.")
+            showShortMsg(this@BaseAdapterActivity,"Long click event and pos is $pos.")
             return true
         }
     }

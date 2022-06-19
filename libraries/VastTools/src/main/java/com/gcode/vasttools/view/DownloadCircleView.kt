@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,8 +27,8 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
 import com.gcode.vasttools.R
+import com.gcode.vasttools.utils.ColorUtils
 import com.gcode.vasttools.utils.LogUtils
-import com.gcode.vasttools.utils.colorHex2Int
 import com.gcode.vasttools.view.interfaces.DownloadCircleViewInterface
 import kotlin.math.cos
 import kotlin.math.sin
@@ -130,7 +130,7 @@ class DownloadCircleView : View,DownloadCircleViewInterface {
      *
      * @since 0.0.8
      */
-    var progressColorInt: Int = colorHex2Int("#3B4463")
+    var progressColorInt: Int = ColorUtils.colorHex2Int("#3B4463")
         private set
 
     /**
@@ -146,7 +146,7 @@ class DownloadCircleView : View,DownloadCircleViewInterface {
      *
      * @since 0.0.8
      */
-    var progressStartColorInt: Int = colorHex2Int("#f0932b")
+    var progressStartColorInt: Int = ColorUtils.colorHex2Int("#f0932b")
         private set
 
     /**
@@ -154,7 +154,7 @@ class DownloadCircleView : View,DownloadCircleViewInterface {
      *
      * @since 0.0.8
      */
-    var progressEndColorInt: Int = colorHex2Int("#f0932b")
+    var progressEndColorInt: Int = ColorUtils.colorHex2Int("#f0932b")
         private set
 
     /**
@@ -212,11 +212,11 @@ class DownloadCircleView : View,DownloadCircleViewInterface {
         progressBackgroundColorInt =
             ta.getColor(R.styleable.DownloadCircleView_progress_background_color, Color.GRAY)
         progressColorInt =
-            ta.getColor(R.styleable.DownloadCircleView_progress_color, colorHex2Int("#3B4463"))
+            ta.getColor(R.styleable.DownloadCircleView_progress_color, ColorUtils.colorHex2Int("#3B4463"))
         progressStartColorInt =
-            ta.getColor(R.styleable.DownloadCircleView_progress_start_color, colorHex2Int("#f0932b"))
+            ta.getColor(R.styleable.DownloadCircleView_progress_start_color, ColorUtils.colorHex2Int("#f0932b"))
         progressEndColorInt =
-            ta.getColor(R.styleable.DownloadCircleView_progress_end_color, colorHex2Int("#f0932b"))
+            ta.getColor(R.styleable.DownloadCircleView_progress_end_color, ColorUtils.colorHex2Int("#f0932b"))
         progressTextColorInt =
             ta.getColor(R.styleable.DownloadCircleView_progress_text_color, Color.WHITE)
         LogUtils.i("test", "$circleRadius and $progressBackgroundWidth")

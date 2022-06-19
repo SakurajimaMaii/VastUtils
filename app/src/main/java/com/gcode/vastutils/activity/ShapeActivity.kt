@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,6 +21,8 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vasttools.utils.*
+import com.gcode.vasttools.utils.DensityUtils.sp
+import com.gcode.vasttools.utils.IDCardUtils.validateIDCardNumber
 import com.gcode.vastutils.databinding.ActivityShapeBinding
 
 class ShapeActivity : VastVbActivity<ActivityShapeBinding>() {
@@ -39,25 +41,25 @@ class ShapeActivity : VastVbActivity<ActivityShapeBinding>() {
         }
 
         val colorList = IntArray(6).apply {
-            set(0, colorHex2Int("#00F260"))
-            set(1, colorHex2Int("#FFFFFF"))
-            set(2, colorHex2Int("#0575E6"))
-            set(3, colorHex2Int("#FFFFFF"))
-            set(4, colorHex2Int("#EF3B36"))
-            set(5, colorHex2Int("#0575E6"))
+            set(0, ColorUtils.colorHex2Int("#00F260"))
+            set(1, ColorUtils.colorHex2Int("#FFFFFF"))
+            set(2, ColorUtils.colorHex2Int("#0575E6"))
+            set(3, ColorUtils.colorHex2Int("#FFFFFF"))
+            set(4, ColorUtils.colorHex2Int("#EF3B36"))
+            set(5, ColorUtils.colorHex2Int("#0575E6"))
         }
 
         val btnbk1 = ShapeAndStateUtils.create()
             .setShape(RECTANGLE)
             .setRadius(50f)
-            .setStroke(15f, colorHex2Int("#3E5151"))
+            .setStroke(15f, ColorUtils.colorHex2Int("#3E5151"))
             .setBgColorStateList(states,colorList)
             .build()
 
         val btnbk2 = ShapeAndStateUtils.create()
             .setShape(RECTANGLE)
             .setRadius(50f)
-            .setGradient(45, colorHex2Int("#0F2027"),colorHex2Int("#78ffd6"))
+            .setGradient(45, ColorUtils.colorHex2Int("#0F2027"),ColorUtils.colorHex2Int("#78ffd6"))
             .build()
 
         mBinding.btn1.background = btnbk1

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -32,8 +32,7 @@ import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemLongClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeMenuCreator
 import com.gcode.vastswiperecyclerview.model.VastSwipeMenu
 import com.gcode.vasttools.activity.VastVbActivity
-import com.gcode.vasttools.utils.dp
-import com.gcode.vasttools.utils.showShortMsg
+import com.gcode.vasttools.utils.DensityUtils.dp
 import com.gcode.vastutils.R
 import com.gcode.vastutils.databinding.ActivitySwipeBinding
 import com.gcode.vastutils.swipeexample.model.Swipe
@@ -62,17 +61,17 @@ class SwipeActivity : VastVbActivity<ActivitySwipeBinding>(){
             setIconSize(40f.dp)
             setMenuWidth(100f.dp)
             setSwipeMenuContentStyle(ICON_TITLE)
-            setSwipeItemClickListener(object: VastSwipeItemClickListener{
-                override fun onClickEvent(view: View, adapterPosition: Int) {
-                    showShortMsg("Hello")
-                }
-            })
-            setSwipeItemLongClickListener(object: VastSwipeItemLongClickListener {
-                override fun onLongClickEvent(view: View, adapterPosition: Int): Boolean {
-                    showShortMsg("Long Hello")
-                    return true
-                }
-            })
+//            setSwipeItemClickListener(object: VastSwipeItemClickListener{
+//                override fun onClickEvent(view: View, adapterPosition: Int) {
+//                    showShortMsg("Hello")
+//                }
+//            })
+//            setSwipeItemLongClickListener(object: VastSwipeItemLongClickListener {
+//                override fun onLongClickEvent(view: View, adapterPosition: Int): Boolean {
+//                    showShortMsg("Long Hello")
+//                    return true
+//                }
+//            })
             setSwipeMenuCreator(object :VastSwipeMenuCreator{
                 override fun onCreateMenu(
                     leftMenu: MutableList<VastSwipeMenu>,

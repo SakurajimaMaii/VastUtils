@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,6 +30,7 @@ import androidx.annotation.StringRes
  * ToastUtils
  *
  * Here is an example:
+ *
  * ```Java
  * ToastUtils.INSTANCE.showShortMsg(this,message);
  * ```
@@ -38,8 +39,8 @@ import androidx.annotation.StringRes
  */
 object ToastUtils {
     /**
-     * @param context Context.
-     * @param msg String.
+     * @param context context.
+     * @param msg message of the toast.
      *
      * @since 0.0.1
      */
@@ -49,8 +50,18 @@ object ToastUtils {
     }
 
     /**
-     * @param context Context.
-     * @param msg String.
+     * @param context context.
+     * @param id message string id of the toast.
+     *
+     * @since 0.0.5
+     */
+    fun showShortMsg(context: Context, @StringRes id: Int) =
+        showShortMsg(context, context.resources.getString(id))
+
+
+    /**
+     * @param context context.
+     * @param msg message of the toast.
      *
      * @since 0.0.1
      */
@@ -58,48 +69,13 @@ object ToastUtils {
     fun showLongMsg(context: Context, msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
     }
+
+    /**
+     * @param context context.
+     * @param id message string id of the toast.
+     *
+     * @since 0.0.5
+     */
+    fun showLongMsg(context: Context, @StringRes id: Int) =
+        showShortMsg(context, context.resources.getString(id))
 }
-
-/**
- * Show short message.
- *
- * @receiver [Context].
- * @param msg message to show.
- *
- * @since 0.0.5
- */
-fun Context.showShortMsg(msg: String) = ToastUtils.showShortMsg(this, msg)
-
-/**
- * Show short message.
- *
- * @receiver [Context].
- * @param id the resource id of message to show.
- *
- * @since 0.0.5
- */
-fun Context.showShortMsg(@StringRes id: Int) = ToastUtils.showShortMsg(
-    this, this.resources.getString(id)
-)
-
-/**
- * Show long message.
- *
- * @receiver [Context].
- * @param msg message to show.
- *
- * @since 0.0.5
- */
-fun Context.showLongMsg(msg: String) = ToastUtils.showShortMsg(this, msg)
-
-/**
- * Show long message.
- *
- * @receiver [Context].
- * @param id the resource id of message to show.
- *
- * @since 0.0.5
- */
-fun Context.showLongMsg(@StringRes id: Int) = ToastUtils.showShortMsg(
-    this, this.resources.getString(id)
-)

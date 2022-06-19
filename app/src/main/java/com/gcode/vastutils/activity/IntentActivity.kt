@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,7 +19,15 @@ package com.gcode.vastutils.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import com.gcode.vasttools.activity.VastVbActivity
-import com.gcode.vasttools.utils.*
+import com.gcode.vasttools.utils.IntentUtils.createAlarm
+import com.gcode.vasttools.utils.IntentUtils.createOnceAlarm
+import com.gcode.vasttools.utils.IntentUtils.dialPhoneNumber
+import com.gcode.vasttools.utils.IntentUtils.openEmail
+import com.gcode.vasttools.utils.IntentUtils.openWebPage
+import com.gcode.vasttools.utils.IntentUtils.openWirelessSettings
+import com.gcode.vasttools.utils.IntentUtils.searchWeb
+import com.gcode.vasttools.utils.IntentUtils.sendMmsMessage
+import com.gcode.vasttools.utils.RegexUtils.isPhoneNumber
 import com.gcode.vastutils.databinding.ActivityIntentBinding
 
 class IntentActivity : VastVbActivity<ActivityIntentBinding>() {
@@ -27,31 +35,35 @@ class IntentActivity : VastVbActivity<ActivityIntentBinding>() {
     @SuppressLint("MissingPermission")
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.callBtn.setOnClickListener {
-            dialPhoneNumber("12345678910")
+            dialPhoneNumber(this, "12345678910")
         }
 
         mBinding.searchWeb.setOnClickListener {
-            searchWeb("12345678910")
+            searchWeb(this, "12345678910")
         }
 
         mBinding.openWebPage.setOnClickListener {
-            openWebPage("http://www.baidu.com")
+            openWebPage(this, "http://www.baidu.com")
         }
 
         mBinding.sendMmsMessage.setOnClickListener {
-            sendMmsMessage("123456","1238489")
+            sendMmsMessage(this, "123456", "1238489")
         }
 
         mBinding.sendEmail.setOnClickListener {
-            openEmail(arrayOf("1550651926@qq.com"))
+            openEmail(this, arrayOf("1550651926@qq.com"))
+        }
+
+        mBinding.createOnceAlarm.setOnClickListener {
+            createOnceAlarm(this, "你好", 12, 30)
         }
 
         mBinding.createAlarm.setOnClickListener {
-            createAlarm("你好",12,30)
+            createAlarm(this, "你好", 12, 30)
         }
 
         mBinding.wifiSetting.setOnClickListener {
-            openWirelessSettings()
+            openWirelessSettings(this)
         }
 
     }

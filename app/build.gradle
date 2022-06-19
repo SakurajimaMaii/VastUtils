@@ -14,7 +14,6 @@ android {
         }
     }
     compileSdkVersion compile_sdk_version as int
-
     defaultConfig {
         applicationId "com.gcode.vastutils"
         minSdkVersion min_sdk_version as int
@@ -24,7 +23,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false

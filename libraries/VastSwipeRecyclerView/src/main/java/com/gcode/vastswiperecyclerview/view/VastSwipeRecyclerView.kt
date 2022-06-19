@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,12 +29,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gcode.vastswiperecyclerview.VastSwipeRvMgr
 import com.gcode.vastswiperecyclerview.adapter.VastSwipeWrapperAdapter
+import com.gcode.vasttools.utils.LogUtils
 import kotlin.math.abs
 
-/**
- * @OriginalAuthor: Vast Gui @OriginalDate: @EditAuthor: Vast Gui
- * @EditDate: 2022/1/10
- */
+
+// Author: SakurajimaMai
+// Email: guihy2019@gmail.com
+// Date: 2022/6/14
+// Description: 
+// Documentation:
+
 class VastSwipeRecyclerView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -104,6 +108,8 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
     /** Manager,you can learn more by check [VastSwipeRvMgr]. */
     private lateinit var manager: VastSwipeRvMgr
 
+    private val tag = this.javaClass.simpleName
+
     override fun onInterceptTouchEvent(e: MotionEvent): Boolean {
         val x = e.x.toInt()
         val y = e.y.toInt()
@@ -111,6 +117,7 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
         when (e.action) {
             // The ACTION_DOWN will be consumed in the onTouchEvent of the VastSwipeViewItem.
             MotionEvent.ACTION_DOWN -> {
+                LogUtils.d(tag,"onInterceptTouchEvent MotionEvent.ACTION_DOWN")
 
                 startX = x.toFloat()
                 firstX = startX
@@ -122,16 +129,9 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
                 if (position != INVALID_POSITION) {
                     // If flingView isInitialized,it maybe not the item you touch now,so call you
                     // should to close the flingView.Then get the item by getChildAt you touch now.
-                    if (::swipeView.isInitialized && swipeView.scrollX != 0) {
-                        Log.d("test", "${swipeView.scrollX}")
-                        closeScroller.startScroll(
-                            swipeView.scrollX,
-                            0,
-                            -swipeView.scrollX,
-                            0,
-                            manager.menuCloseDuration
-                        )
-                        //swipeView.scrollTo(0,0)
+                    if (::swipeView.isInitialized) {
+                        LogUtils.d(tag,"The last position is ${0},the position is $position")
+                        smoothCloseMenu()
                     }
                     // Get the view you touch on the screen.
                     val view =
@@ -145,6 +145,8 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
                     } else {
                         throw RuntimeException("The item of the position you touch is not the type of VastSwipeMenuLayout.")
                     }
+                }else{
+                    LogUtils.i(tag,"你滑动的位置不在列表中")
                 }
             }
             // The ACTION_MOVE will be intercepted if satisfying one of them is considered to be sideslip.
@@ -242,7 +244,6 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
     }
 
     override fun computeScroll() {
-
         if (openScroller.computeScrollOffset()) {
             //Log.d("test","openScroller Hello")
             swipeView.scrollTo(openScroller.currX, openScroller.currY)
@@ -250,8 +251,8 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
         }
 
         if (closeScroller.computeScrollOffset()) {
-            Log.d("test", "closeScroller Hello ${closeScroller.currX} ${closeScroller.currY}")
-            swipeView.scrollTo(closeScroller.currX, closeScroller.currY)
+            LogUtils.d(tag, "closeScroller ${closeScroller.currX}")
+            swipeView.scrollTo(closeScroller.currX, 0)
             invalidate()
         }
     }
@@ -259,10 +260,10 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
     override fun setLayoutManager(layout: LayoutManager?) {
         when (layout) {
             null -> {
-                throw RuntimeException("You should set the LinearLayoutManager as the LayoutManager")
+                Log.i(tag,"You should set the LinearLayoutManager as the LayoutManager")
             }
             !is LinearLayoutManager -> {
-                throw RuntimeException("You should set the LinearLayoutManager as the LayoutManager")
+                Log.e(tag,"You should set the LinearLayoutManager as the LayoutManager")
             }
             else -> {
                 super.setLayoutManager(layout)
@@ -296,6 +297,15 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
         velocityTracker!!.addMovement(event)
     }
 
+    /**
+     * Get the position in the RecyclerView of point where you touch.
+     *
+     * @param x The x coordinate of the point where you touch.
+     * @param y The y coordinate of the point where you touch.
+     * @return The position in the RecyclerView.[INVALID_POSITION] otherwise.
+     *
+     * @since 0.0.1
+     */
     private fun pointToPosition(x: Int, y: Int): Int {
         val firstPosition = (layoutManager as LinearLayoutManager?)!!.findFirstVisibleItemPosition()
         var frame = touchFrame
@@ -316,18 +326,20 @@ class VastSwipeRecyclerView @JvmOverloads constructor(
         return INVALID_POSITION
     }
 
+    /**
+     * Smooth close menu.
+     *
+     * @since 0.0.1
+     */
     private fun smoothCloseMenu() {
-        if (::swipeView.isInitialized) {
-            Log.d("test", "close ${swipeView.scrollX}")
-            closeScroller.startScroll(
-                swipeView.scrollX,
-                0,
-                -swipeView.scrollX,
-                0,
-                manager.menuCloseDuration
-            )
-            postInvalidate()
-        }
+        closeScroller.startScroll(
+            swipeView.scrollX,
+            0,
+            -swipeView.scrollX,
+            0,
+            manager.menuCloseDuration
+        )
+        postInvalidate()
     }
 
     fun setManager(manager: VastSwipeRvMgr) {

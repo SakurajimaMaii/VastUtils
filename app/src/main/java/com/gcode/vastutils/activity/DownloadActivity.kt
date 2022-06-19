@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,9 +22,9 @@ import android.graphics.Shader
 import android.os.Bundle
 import com.gcode.progressmanager.body.ProgressInfo
 import com.gcode.vasttools.activity.VastVbActivity
+import com.gcode.vasttools.utils.ColorUtils
 import com.gcode.vasttools.utils.DownloadUtils
 import com.gcode.vasttools.utils.LogUtils
-import com.gcode.vasttools.utils.colorHex2Int
 import com.gcode.vastutils.databinding.ActivityDownloadBinding
 
 // Author: Vast Gui 
@@ -52,13 +52,13 @@ class DownloadActivity : VastVbActivity<ActivityDownloadBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
 
         val colors = intArrayOf(
-            colorHex2Int("#F60C0C"),
-            colorHex2Int("#F3B913"),
-            colorHex2Int("#E7F716"),
-            colorHex2Int("#3DF30B"),
-            colorHex2Int("#0DF6EF"),
-            colorHex2Int("#0829FB"),
-            colorHex2Int("#B709F4")
+            ColorUtils.colorHex2Int("#F60C0C"),
+            ColorUtils.colorHex2Int("#F3B913"),
+            ColorUtils.colorHex2Int("#E7F716"),
+            ColorUtils.colorHex2Int("#3DF30B"),
+            ColorUtils.colorHex2Int("#0DF6EF"),
+            ColorUtils.colorHex2Int("#0829FB"),
+            ColorUtils.colorHex2Int("#B709F4")
         )
         val pos = floatArrayOf(
             1f / 7,
@@ -75,7 +75,7 @@ class DownloadActivity : VastVbActivity<ActivityDownloadBinding>() {
                 colors,pos,
                 Shader.TileMode.CLAMP))
             setProgressStrokeCap(Paint.Cap.ROUND)
-            setProgressEndColor(colorHex2Int("#4286f4"))
+            setProgressEndColor(ColorUtils.colorHex2Int("#4286f4"))
             setProgressStartAndEndEnabled(false)
         }
 

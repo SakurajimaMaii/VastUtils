@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,7 +22,11 @@ import androidx.annotation.Nullable;
 
 import com.gcode.vasttools.activity.VastVbActivity;
 import com.gcode.vasttools.skin.VastSkinManager;
+import com.gcode.vasttools.utils.ColorUtils;
+import com.gcode.vasttools.utils.LogUtils;
 import com.gcode.vastutilsjava.databinding.ActivityMainBinding;
+
+import java.util.Arrays;
 
 public class MainAppCompatActivity extends VastVbActivity<ActivityMainBinding> {
 
@@ -30,6 +34,16 @@ public class MainAppCompatActivity extends VastVbActivity<ActivityMainBinding> {
     public void initView(@Nullable Bundle savedInstanceState) {
         mBinding.start.setOnClickListener(v ->
                 VastSkinManager.INSTANCE.loadSkin("data/data/com.gcode.vastutils/files/darkskin-debug.apk"));
+
+        LogUtils.INSTANCE.i("test", String.valueOf(ColorUtils.colorHex2Int("#FF000000")));
+        LogUtils.INSTANCE.i("test", Arrays.toString(ColorUtils.colorInt2RGB(-2740175)));
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LogUtils.INSTANCE.i("test","hello");
     }
 
     @Override

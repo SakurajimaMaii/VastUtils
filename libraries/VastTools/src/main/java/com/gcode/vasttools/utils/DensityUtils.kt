@@ -109,6 +109,7 @@ object DensityUtils {
      *     appropriate metrics(in density-independent pixels).
      * @since 0.0.1
      */
+    @JvmStatic
     val Float.dp
         get() = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
@@ -121,6 +122,7 @@ object DensityUtils {
      *     appropriate metrics(in scale-independent pixels).
      * @since 0.0.1
      */
+    @JvmStatic
     val Float.sp
         get() = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_SP,
@@ -145,6 +147,7 @@ object DensityUtils {
      *     appropriate metrics(in points).
      * @since 0.0.6
      */
+    @JvmStatic
     val Float.pt
         get() = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_PT,
@@ -157,6 +160,7 @@ object DensityUtils {
      *     appropriate metrics(in inches).
      * @since 0.0.6
      */
+    @JvmStatic
     val Float.inches
         get() = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_IN,
@@ -169,6 +173,7 @@ object DensityUtils {
      *     appropriate metrics(in millimeters).
      * @since 0.0.6
      */
+    @JvmStatic
     val Float.mm
         get() = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_MM,

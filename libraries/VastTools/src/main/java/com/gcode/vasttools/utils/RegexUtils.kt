@@ -118,7 +118,7 @@ object RegexUtils {
     @JvmStatic
     @Deprecated(
         "The function is deprecated!",
-        ReplaceWith("isPhoneNumber(string)","new.isPhoneNumber"),
+        ReplaceWith("isPhoneNumber(string)", "new.isPhoneNumber"),
         DeprecationLevel.WARNING
     )
     fun isPhoneNumber(string: String, otherCountryPattern: String?): Boolean {

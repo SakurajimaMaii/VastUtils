@@ -37,7 +37,6 @@ object NetStateUtils {
      *
      * @param context context.
      * @return [NetworkInfo] object.
-     *
      * @since 0.0.6
      */
     @JvmStatic
@@ -56,7 +55,6 @@ object NetStateUtils {
      *
      * @param context context.
      * @return [NetworkCapabilities] object.
-     *
      * @since 0.0.6
      */
     @JvmStatic
@@ -77,7 +75,6 @@ object NetStateUtils {
      *
      * @param context context.
      * @return true if network is available,false otherwise.
-     *
      * @since 0.0.6
      */
     @JvmStatic
@@ -108,7 +105,6 @@ object NetStateUtils {
      *
      * @param context context.
      * @return true if network is wifi mode,false otherwise.
-     *
      * @since 0.0.6
      */
     @JvmStatic
@@ -129,7 +125,6 @@ object NetStateUtils {
      *
      * @param context context.
      * @return true if network is wifi mode,false otherwise.
-     *
      * @since 0.0.6
      */
     @JvmStatic
@@ -149,15 +144,14 @@ object NetStateUtils {
      * Get wifi signal strength.
      *
      * @param context context.
-     * @return -1 when wifi is disconnected or unable,when wifi is connected,
-     *         the signal strength is represented by 0-4.
-     *
+     *  -1 when wifi is disconnected or unable,when wifi is connected,
+     *     the signal strength is represented by 0-4.
      * @since 0.0.6
      */
     @JvmStatic
     fun getWifiDBM(context: Context): Int {
         if (!isWIFI(context)) return -1
-        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q){
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
             val wifiManager =
                 context.applicationContext.getSystemService(AppCompatActivity.WIFI_SERVICE) as WifiManager
             val info = wifiManager.connectionInfo
@@ -165,10 +159,11 @@ object NetStateUtils {
                 // Signal strength, 5 means the acquired signal strength value is within 5
                 return WifiManager.calculateSignalLevel(info.rssi, 5)
             }
-        }else{
+        } else {
             val info = getNetworkCapabilities(context)
-            val wm = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
-            if(null != info){
+            val wm =
+                context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+            if (null != info) {
                 return wm.calculateSignalLevel(info.signalStrength)
             }
         }

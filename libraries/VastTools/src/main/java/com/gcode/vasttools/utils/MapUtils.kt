@@ -18,6 +18,7 @@ package com.gcode.vasttools.utils
 
 import android.content.Context
 import android.location.LocationManager
+import com.gcode.vasttools.helper.ContextHelper
 
 // Author: Vast Gui 
 // Email: guihy2019@gmail.com
@@ -29,13 +30,12 @@ object MapUtils {
     /**
      * Determine if GPS is turned on.
      *
-     * @param context context.
      * @return true if GPS is turned on, false otherwise.
-     *
      * @since 0.0.8
      */
-    fun isGPSOPen(context: Context): Boolean {
-        val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    fun isGPSOPen(): Boolean {
+        val locationManager = ContextHelper.getAppContext()
+            .getSystemService(Context.LOCATION_SERVICE) as LocationManager
         // Through GPS satellite positioning, the positioning level can be accurate to the street
         // (through 24 satellite positioning, the positioning is accurate and fast in outdoor and open places).
         val gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)

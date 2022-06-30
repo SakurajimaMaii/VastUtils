@@ -18,6 +18,8 @@ package com.gcode.vasttools.utils
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import com.gcode.vasttools.helper.ContextHelper
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -177,4 +179,5 @@ object ColorUtils {
     fun isColorHex(colorHex: String): Boolean {
         return Regex(COLOR_HEX_REGEX).matches(colorHex)
     }
+
 }

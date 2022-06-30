@@ -17,13 +17,12 @@ package com.gcode.vasttools.skin.utils
 
 import android.app.Activity
 import android.content.Context
-import com.gcode.vasttools.R
 import com.gcode.vasttools.skin.utils.VastSkinResources.getColor
 
 object VastSkinUtils {
 
     private val APPCOMPAT_COLOR_PRIMARY_DARK_ATTRS = intArrayOf(
-        R.attr.colorPrimaryDark
+        android.R.attr.colorPrimaryDark
     )
     private val STATUS_BAR_COLOR_ATTRS = intArrayOf(
         android.R.attr.statusBarColor, android.R.attr.navigationBarColor

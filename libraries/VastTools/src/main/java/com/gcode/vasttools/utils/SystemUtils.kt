@@ -29,11 +29,10 @@ object SystemUtils {
     /**
      * Returns the language code of this Locale.
      *
-     * For example: the current setting is "Chinese-China", then "zh" will
-     * be returned.
+     * For example: the current setting is "Chinese-China", then "zh"
+     * will be returned.
      *
      * @return the language code of this Locale.
-     *
      * @since 0.0.4
      */
     @JvmStatic
@@ -44,7 +43,6 @@ object SystemUtils {
      * Returns an array of all installed locales.
      *
      * @return an array of installed locales.
-     *
      * @since 0.0.4
      */
     @JvmStatic
@@ -55,7 +53,6 @@ object SystemUtils {
      * Get the current mobile phone android version.
      *
      * @return for example: "11" will be returned.
-     *
      * @since 0.0.4
      */
     @JvmStatic
@@ -64,7 +61,6 @@ object SystemUtils {
 
     /**
      * @return the end-user-visible name for the end product.
-     *
      * @since 0.0.4
      */
     @JvmStatic
@@ -72,9 +68,8 @@ object SystemUtils {
         get() = Build.MODEL
 
     /**
-     * @return the consumer-visible brand with which the product/hardware
-     *         will be associated, if any.
-     *
+     * @return the consumer-visible brand with which the
+     *     product/hardware will be associated, if any.
      * @since 0.0.4
      */
     @JvmStatic

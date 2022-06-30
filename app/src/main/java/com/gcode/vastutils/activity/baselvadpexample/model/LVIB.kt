@@ -16,20 +16,19 @@
 
 package com.gcode.vastutils.activity.baselvadpexample.model
 
-import com.gcode.vasttools.adapter.BaseListViewItem
+import com.gcode.vasttools.adapter.VastBaseAdapter
 import com.gcode.vastutils.R
 
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2022/6/19
-// Description: 
+// Description:
 // Documentation:
 
-class LVIB(val string: String) : BaseListViewItem {
+class LVIB(val string: String) : VastBaseAdapter.BaseItem {
 
-    override fun getLayoutId(): Int {
-        return R.layout.lv_item_lvib
+    override fun getItemType(): String {
+        return LVIB::class.java.simpleName
     }
-
 }

@@ -25,13 +25,12 @@ import android.util.TypedValue
 // Description: DensityUtils provide you with some methods to convert different dimensions.
 // Documentation: [DensityUtils](https://sakurajimamaii.github.io/VastDocs/document/en/DensityUtils.html)
 
-object DensityUtils{
+object DensityUtils {
     /**
      * Converting px to dp.
      *
      * @param pxValue a px value.
      * @return a dp value.
-     *
      * @since 0.0.1
      */
     @JvmStatic
@@ -45,7 +44,6 @@ object DensityUtils{
      *
      * @param dpValue a dp value.
      * @return a px value.
-     *
      * @since 0.0.1
      */
     @JvmStatic
@@ -59,7 +57,6 @@ object DensityUtils{
      *
      * @param pxValue a px value.
      * @return a sp value.
-     *
      * @since 0.0.1
      */
     @JvmStatic
@@ -73,7 +70,6 @@ object DensityUtils{
      *
      * @param spValue a sp value.
      * @return a px value.
-     *
      * @since 0.0.1
      */
     @JvmStatic
@@ -87,7 +83,6 @@ object DensityUtils{
      *
      * @param dpValue a dp value.
      * @return a sp value.
-     *
      * @since 0.0.1
      */
     @JvmStatic
@@ -101,7 +96,6 @@ object DensityUtils{
      *
      * @param spValue a sp value.
      * @return a dp value.
-     *
      * @since 0.0.5
      */
     @JvmStatic
@@ -113,7 +107,6 @@ object DensityUtils{
     /**
      * @return The complex floating point value multiplied by the
      *     appropriate metrics(in density-independent pixels).
-     *
      * @since 0.0.1
      */
     val Float.dp
@@ -126,7 +119,6 @@ object DensityUtils{
     /**
      * @return The complex floating point value multiplied by the
      *     appropriate metrics(in scale-independent pixels).
-     *
      * @since 0.0.1
      */
     val Float.sp
@@ -139,7 +131,6 @@ object DensityUtils{
     /**
      * @return The complex floating point value multiplied by the
      *     appropriate metrics(in pixels).
-     *
      * @since 0.0.6
      */
     val Float.px
@@ -152,7 +143,6 @@ object DensityUtils{
     /**
      * @return The complex floating point value multiplied by the
      *     appropriate metrics(in points).
-     *
      * @since 0.0.6
      */
     val Float.pt
@@ -165,7 +155,6 @@ object DensityUtils{
     /**
      * @return The complex floating point value multiplied by the
      *     appropriate metrics(in inches).
-     *
      * @since 0.0.6
      */
     val Float.inches
@@ -178,7 +167,6 @@ object DensityUtils{
     /**
      * @return The complex floating point value multiplied by the
      *     appropriate metrics(in millimeters).
-     *
      * @since 0.0.6
      */
     val Float.mm

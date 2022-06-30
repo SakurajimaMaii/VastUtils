@@ -16,7 +16,7 @@
 
 package com.gcode.vasttools.utils
 
-import android.content.Context
+import com.gcode.vasttools.helper.ContextHelper
 import java.io.File
 import java.io.FileWriter
 import java.io.IOException
@@ -36,7 +36,8 @@ object FileUtils {
      *
      * [FLAG_SUCCESS] means running successful.
      *
-     * [FLAG_PARENT_NOT_EXISTS] means the parent of the file is not exist.
+     * [FLAG_PARENT_NOT_EXISTS] means the parent of the file is not
+     * exist.
      *
      * [FLAG_EXISTS] means the file or directory is exist.
      *
@@ -54,26 +55,26 @@ object FileUtils {
 
     /** @since 0.0.9 */
     @JvmStatic
-    fun appInternalFilesDir(context: Context): File = context.filesDir
+    fun appInternalFilesDir(): File = ContextHelper.getAppContext().filesDir
 
     /** @since 0.0.9 */
     @JvmStatic
-    fun appInternalCacheDir(context: Context): File = context.cacheDir
+    fun appInternalCacheDir(): File = ContextHelper.getAppContext().cacheDir
 
     /** @since 0.0.9 */
     @JvmStatic
-    fun appExternalFilesDir(context: Context, path: String) = context.getExternalFilesDir(path)
+    fun appExternalFilesDir(path: String) = ContextHelper.getAppContext().getExternalFilesDir(path)
 
     /** @since 0.0.9 */
     @JvmStatic
-    fun appExternalCacheDir(context: Context) = context.externalCacheDir
+    fun appExternalCacheDir() = ContextHelper.getAppContext().externalCacheDir
 
     /**
-     * Save file.If the file is exist,the original file
-     * will be deleted and create a new file.
+     * Save file.If the file is exist,the original file will be deleted
+     * and create a new file.
      *
-     * For example,if you want create a file named test.txt and write Hello
-     * World into this file.
+     * For example,if you want create a file named test.txt and write
+     * Hello World into this file.
      *
      * ```
      * fileSave(appInternalFilesDir().path,"test.txt",object :WriteEventListener{
@@ -86,7 +87,6 @@ object FileUtils {
      * @param saveParent The dir you want to save.
      * @param saveChild The name of the file.
      * @param writeListener Register a listener when write to file.
-     *
      * @since 0.0.9
      */
     @JvmStatic
@@ -108,7 +108,6 @@ object FileUtils {
      *
      * @param saveUri The uri you want to save.
      * @param writeListener Register a listener when write to file.
-     *
      * @since 0.0.9
      */
     @JvmStatic
@@ -122,12 +121,11 @@ object FileUtils {
      *
      * @param file The file you want to save.
      * @param writeListener Register a listener when write to file.
-     *
      * @since 0.0.9
      */
     @JvmStatic
     @JvmOverloads
-    fun saveFile(file:File,writeListener: WriteEventListener? = null){
+    fun saveFile(file: File, writeListener: WriteEventListener? = null) {
         file.realFileWrite(writeListener)
     }
 
@@ -136,18 +134,17 @@ object FileUtils {
      *
      * @param file the file you want to delete.
      * @return [FileOperationsResult]
-     *
      * @since 0.0.9
      */
     @JvmStatic
-    fun deleteFile(file: File):FileOperationsResult{
-        return if(file.isFile){
-            if(file.delete()){
+    fun deleteFile(file: File): FileOperationsResult {
+        return if (file.isFile) {
+            if (file.delete()) {
                 FileOperationsResult.FLAG_SUCCESS
-            }else{
+            } else {
                 FileOperationsResult.FLAG_FAILED
             }
-        }else{
+        } else {
             FileOperationsResult.FLAG_FAILED
         }
     }
@@ -156,6 +153,7 @@ object FileUtils {
      * Make directory.
      *
      * For example,if you want create a directory named vast.
+     *
      * ```
      * directoryMake(appInternalFilesDir().path+"/"+"vast")
      * // or
@@ -164,7 +162,6 @@ object FileUtils {
      *
      * @param dirPath The path of the directory.
      * @return Operations result.
-     *
      * @since 0.0.9
      */
     @JvmOverloads
@@ -190,10 +187,9 @@ object FileUtils {
      * @param dirPath The path of the directory.
      * @param dirName The name of the directory.
      * @return Operations result.
-     *
      * @since 0.0.9
      */
-    fun deleteDir(dirPath: String, dirName: String? = null):FileOperationsResult{
+    fun deleteDir(dirPath: String, dirName: String? = null): FileOperationsResult {
         val dir = if (null != dirName) {
             File(dirPath, dirName)
         } else File(dirPath)
@@ -205,17 +201,16 @@ object FileUtils {
      *
      * @param file The directory you want to delete.
      * @return Operations result.
-     *
      * @since 0.0.9
      */
-    fun deleteDir(file:File):FileOperationsResult{
-        if(!file.exists()){
+    fun deleteDir(file: File): FileOperationsResult {
+        if (!file.exists()) {
             return FileOperationsResult.FLAG_FAILED
         }
-        for(f in file.listFiles()!!){
-            if(f.isFile){
+        for (f in file.listFiles()!!) {
+            if (f.isFile) {
                 f.delete()
-            }else if(f.isDirectory){
+            } else if (f.isDirectory) {
                 deleteDir(f)
             }
         }
@@ -229,22 +224,21 @@ object FileUtils {
      * @param file The file or directory you want to rename.
      * @param newName The new name.
      * @return Operations result.
-     *
      * @since 0.0.9
      */
-    fun rename(file:File,newName:String):FileOperationsResult{
-        if(!file.exists()){
+    fun rename(file: File, newName: String): FileOperationsResult {
+        if (!file.exists()) {
             return FileOperationsResult.FLAG_NOT_EXISTS
-        }else if(newName == file.name){
+        } else if (newName == file.name) {
             return FileOperationsResult.FLAG_SUCCESS
-        }else{
-            return if(null == file.parent){
+        } else {
+            return if (null == file.parent) {
                 FileOperationsResult.FLAG_FAILED
-            }else{
+            } else {
                 val newFile = File(file.parent!! + File.separator + newName)
-                if(file.renameTo(newFile)){
+                if (file.renameTo(newFile)) {
                     FileOperationsResult.FLAG_SUCCESS
-                }else{
+                } else {
                     FileOperationsResult.FLAG_FAILED
                 }
             }
@@ -260,7 +254,8 @@ object FileUtils {
         /**
          * Define write event.
          *
-         * @param fileWriter Convenience class for writing character files.
+         * @param fileWriter Convenience class for writing character
+         *     files.
          * @since 0.0.9
          */
         fun writeEvent(fileWriter: FileWriter)

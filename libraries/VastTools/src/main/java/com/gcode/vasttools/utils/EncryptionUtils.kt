@@ -38,10 +38,10 @@ object EncryptionUtils {
         try {
             val instance: MessageDigest = MessageDigest.getInstance("MD5")
             //对字符串加密，返回字节数组
-            val digest:ByteArray = instance.digest(text.toByteArray())
+            val digest: ByteArray = instance.digest(text.toByteArray())
             val sb = StringBuffer()
             for (b in digest) {
-                val i :Int = b.toInt() and 0xff
+                val i: Int = b.toInt() and 0xff
                 var hexString = Integer.toHexString(i)
                 if (hexString.length < 2) {
                     hexString = "0$hexString"

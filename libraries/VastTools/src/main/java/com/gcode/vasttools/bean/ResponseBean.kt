@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.utils.bean
+package com.gcode.vasttools.bean
 
 //Author: Vast Gui
 //Email: guihy2019@gmail.com

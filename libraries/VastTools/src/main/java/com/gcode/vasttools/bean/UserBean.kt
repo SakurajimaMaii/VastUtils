@@ -14,36 +14,19 @@
  * limitations under the License.
  */
 
-package com.gcode.vastutils
+package com.gcode.vasttools.bean
 
-import android.app.Activity
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/3/17 12:21
+// Documentation: [Bean](https://sakurajimamaii.github.io/VastDocs/document/en/Bean.html)
 
 /**
- * @Author: Vast Gui
- * @Date: 2022/3/10 15:27
- * @Description:
- * @Documentation:
+ * User bean.
+ *
+ * @property username username.
+ * @property password password.
+ *
+ * @since 0.0.5
  */
-
-object ActivityUtils {
-
-    private val activities = ArrayList<Activity>()
-
-    fun addActivity(activity: Activity) {
-        activities.add(activity)
-    }
-
-    fun removeActivity(activity: Activity) {
-        activities.remove(activity)
-    }
-
-    fun finishAllActivity() {
-        for (activity in activities) {
-            if (!activity.isFinishing) {
-                activity.finish()
-            }
-        }
-        activities.clear()
-    }
-
-}
+open class UserBean(val username: String, val password:String)

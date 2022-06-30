@@ -32,7 +32,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
  * ```kotlin
  * // Use in activity
  * // vp2 is viewpager2
- * vp2.adapter = BaseFragmentAdapter(this,ArrayList<Fragment>().apply {
+ * vp2.adapter = VastFragmentAdapter(this,ArrayList<Fragment>().apply {
  *      add(BaseVbFragment())
  *      add(BaseVmFragment())
  *      add(BaseVbVmFragment())
@@ -44,8 +44,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
  *
  * @since 0.0.8
  */
-open class BaseFragmentAdapter(
-    private val activity: FragmentActivity,
+open class VastFragmentAdapter(
+    protected val activity: FragmentActivity,
     protected val fragments:MutableList<Fragment>
 ):FragmentStateAdapter(activity) {
     override fun getItemCount() = fragments.size

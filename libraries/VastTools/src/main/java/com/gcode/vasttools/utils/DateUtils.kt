@@ -178,9 +178,9 @@ object DateUtils {
     }
 
     /**
-     * @param dateFormat The pattern describing the date and time format.
+     * @param dateFormat The pattern describing the date and time
+     *     format.
      * @return Get the minimum time string in the given format.
-     *
      * @since 0.0.5
      */
     @JvmOverloads
@@ -189,11 +189,13 @@ object DateUtils {
     }
 
     /**
-     * Constructs a SimpleDateFormat using the [dateFormat] and the [Locale.getDefault].
+     * Constructs a SimpleDateFormat using the [dateFormat] and the
+     * [Locale.getDefault].
      *
-     * @param dateFormat The pattern describing the date and time format.
-     * @return [SimpleDateFormat] using the [dateFormat] and the [Locale.getDefault].
-     *
+     * @param dateFormat The pattern describing the date and time
+     *     format.
+     * @return [SimpleDateFormat] using the [dateFormat] and the
+     *     [Locale.getDefault].
      * @since 0.0.1
      */
     private fun datetimeFormat(
@@ -203,12 +205,14 @@ object DateUtils {
     }
 
     /**
-     * Get date object by parsing [timeString] in [timeStringFormat] format.
+     * Get date object by parsing [timeString] in [timeStringFormat]
+     * format.
      *
-     * @param timeStringFormat The pattern describing the date and time format.
-     * @return If [timeString] parsing fails, it returns 'null' object.Otherwise, it returns date object.
+     * @param timeStringFormat The pattern describing the date and time
+     *     format.
+     * @return If [timeString] parsing fails, it returns 'null'
+     *     object.Otherwise, it returns date object.
      * @throws [ParseException] If [timeString] parsing fails.
-     *
      * @since 0.0.1
      */
     @Throws(ParseException::class)
@@ -225,15 +229,13 @@ object DateUtils {
     }
 
     /**
-     * Formats a [Date] into a date/time string by parsing
-     * [dateFormat].
+     * Formats a [Date] into a date/time string by parsing [dateFormat].
      *
-     * If you don't set the [date] or [dateFormat],it will
-     * parse current time in [dateFormat] format by default.
+     * If you don't set the [date] or [dateFormat],it will parse current
+     * time in [dateFormat] format by default.
      *
      * @param date [Date] object.
      * @return the formatted time string.
-     *
      * @since 0.0.1
      */
     @JvmOverloads
@@ -245,16 +247,16 @@ object DateUtils {
     }
 
     /**
-     * Formats a [Date] into a date/time string by parsing
-     * [dateFormat] and [gmtFormat].
+     * Formats a [Date] into a date/time string by parsing [dateFormat]
+     * and [gmtFormat].
      *
-     * If you don't set the [gmtFormat] or [dateFormat],it will
-     * parse current local time in [TIME_FORMAT] format by default.
+     * If you don't set the [gmtFormat] or [dateFormat],it will parse
+     * current local time in [TIME_FORMAT] format by default.
      *
      * @param gmtFormat the ID for a TimeZone.
-     * @param dateFormat the pattern describing the date and time format.
+     * @param dateFormat the pattern describing the date and time
+     *     format.
      * @return the formatted time string.
-     *
      * @since 0.0.4
      */
     @JvmOverloads
@@ -268,12 +270,13 @@ object DateUtils {
     }
 
     /**
-     * Get current local time string by parsing the [utcTime] in [dateFormat] format.
+     * Get current local time string by parsing the [utcTime] in
+     * [dateFormat] format.
      *
      * @param utcTime a time whose beginning should be parsed.
-     * @param dateFormat the pattern describing the date and time format.
+     * @param dateFormat the pattern describing the date and time
+     *     format.
      * @return the formatted time string.
-     *
      * @since 0.0.1
      */
     fun dateTimeFromGMT(
@@ -295,12 +298,11 @@ object DateUtils {
     }
 
     /**
-     * Get the start timestamp of the week.
-     * Monday is the first day of the week.
+     * Get the start timestamp of the week. Monday is the first day of
+     * the week.
      *
      * @param yearFormat the pattern describing the year format.
      * @return WeekStartTime parsed in [yearFormat] format.
-     *
      * @since 0.0.1
      */
     @JvmOverloads
@@ -316,12 +318,11 @@ object DateUtils {
     }
 
     /**
-     * Get the end timestamp of the week.
-     * Monday is the first day of the week.
+     * Get the end timestamp of the week. Monday is the first day of the
+     * week.
      *
      * @param yearFormat the pattern describing the year format.
      * @return WeekEndTime parsed in [yearFormat] format.
-     *
      * @since 0.0.1
      */
     @JvmOverloads
@@ -337,13 +338,12 @@ object DateUtils {
     }
 
     /**
-     * Get the start timestamp of the week.
-     * SUNDAY is the first day of the week.
+     * Get the start timestamp of the week. SUNDAY is the first day of
+     * the week.
      *
      * @param calendar [Calendar] Object object.
      * @param yearFormat the pattern describing the year format.
      * @return WeekStartTime parsed in [yearFormat] format.
-     *
      * @since 0.0.1
      */
     @JvmOverloads
@@ -357,13 +357,12 @@ object DateUtils {
     }
 
     /**
-     * Get the end timestamp of the week.
-     * SUNDAY is the first day of the week.
+     * Get the end timestamp of the week. SUNDAY is the first day of the
+     * week.
      *
      * @param calendar [Calendar] Object object.
      * @param yearFormat the pattern describing the year format.
      * @return WeekEndTime parsed in [yearFormat] format.
-     *
      * @since 0.0.1
      */
     @JvmOverloads

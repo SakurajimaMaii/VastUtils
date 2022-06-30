@@ -3,9 +3,9 @@
 buildscript {
     ext{
         // The version of kotlin
-        kotlin_version = "1.6.21"
+        kotlin_version = "1.7.0"
         // The version of gradle
-        gradle_version = '7.4.0-alpha05'
+        gradle_version = '7.4.0-alpha07'
         // The version of activity
         activity_version = "1.4.0"
         // The version of appcompat
@@ -28,6 +28,8 @@ buildscript {
         okhttp3_version = "5.0.0-alpha.6"
         // The version of junit
         junit_version = "4.13.2"
+        // The start up version
+        start_up_version = "1.1.1"
 
         compile_sdk_version = 31
         min_sdk_version = 23

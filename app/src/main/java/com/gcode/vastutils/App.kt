@@ -14,27 +14,26 @@
  * limitations under the License.
  */
 
-package com.gcode.vastutils.activity
+package com.gcode.vastutils
 
-import android.os.Bundle
-import com.gcode.vasttools.activity.VastVbVmActivity
-import com.gcode.vastutils.databinding.ActivityBaseVbBinding
-import com.gcode.vastutils.viewModel.MainSharedVM
+import android.app.Application
+import com.gcode.vasttools.helper.ContextHelper
+import com.gcode.vasttools.utils.LogUtils
+import com.gcode.vasttools.utils.MapUtils
 
-class VbVmActivity : VastVbVmActivity<ActivityBaseVbBinding, MainSharedVM>() {
 
-    override fun initView(savedInstanceState: Bundle?) {
+// Author: Vast Gui
+// Email: guihy2019@gmail.com
+// Date: 2022/6/20
+// Description: 
+// Documentation:
 
-        enableFullScreen = true // 启用全面屏
+class App: Application() {
 
-        mBinding.addOne.setOnClickListener {
-            mViewModel.addOne()
-        }
-
-        mViewModel.count.observe(this){
-            mBinding.count.text = it.toString()
-        }
-
+    override fun onCreate() {
+        super.onCreate()
+        ContextHelper.init(this)
+        LogUtils.i("test",MapUtils.isGPSOPen().toString())
     }
 
 }

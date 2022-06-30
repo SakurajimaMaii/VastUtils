@@ -17,6 +17,7 @@
 package com.gcode.vasttools.utils
 
 import android.Manifest
+import android.app.Activity
 import android.app.SearchManager
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -232,6 +233,22 @@ object IntentUtils {
     fun openWirelessSettings(context: Context) {
         val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
         startIntent(context, intent)
+    }
+
+    /**
+     * Start activity with anim.
+     *
+     * @param activity activity.
+     * @param intent intent.
+     * @param enterAnim resource id of enter anim.
+     * @param exitAnim resource id of exit anim.
+     * @since 0.0.9
+     */
+    @JvmStatic
+    @JvmOverloads
+    fun startActivityWithAnim(activity: Activity,intent: Intent,enterAnim:Int = 0,exitAnim:Int = 0){
+        activity.startActivity(intent)
+        activity.overridePendingTransition(enterAnim, exitAnim)
     }
 
     /**

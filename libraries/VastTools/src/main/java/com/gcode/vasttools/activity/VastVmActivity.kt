@@ -46,13 +46,23 @@ import com.gcode.vasttools.extension.initSettings
  */
 abstract class VastVmActivity<VM : ViewModel> : VastBaseActivity() {
 
+    /**
+     * The layout resource id for this activity.
+     *
+     * If you want to use [VastVmActivity] for [Jetpack Compose](https://developer.android.com/jetpack/compose),
+     * please set 0 to [layoutId].
+     *
+     * @since 0.0.6
+     */
     protected abstract val layoutId: Int
 
     protected lateinit var mViewModel: VM
 
     final override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layoutId)
+        if(0 != layoutId){
+            setContentView(layoutId)
+        }
         mViewModel = createViewModel()
         initView(savedInstanceState)
         initSettings()

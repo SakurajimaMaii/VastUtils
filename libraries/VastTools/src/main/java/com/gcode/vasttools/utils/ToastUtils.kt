@@ -41,7 +41,6 @@ object ToastUtils {
     /**
      * @param context context.
      * @param msg message of the toast.
-     *
      * @since 0.0.1
      */
     @JvmStatic
@@ -52,7 +51,6 @@ object ToastUtils {
     /**
      * @param context context.
      * @param id message string id of the toast.
-     *
      * @since 0.0.5
      */
     fun showShortMsg(context: Context, @StringRes id: Int) =
@@ -62,7 +60,6 @@ object ToastUtils {
     /**
      * @param context context.
      * @param msg message of the toast.
-     *
      * @since 0.0.1
      */
     @JvmStatic
@@ -73,7 +70,6 @@ object ToastUtils {
     /**
      * @param context context.
      * @param id message string id of the toast.
-     *
      * @since 0.0.5
      */
     fun showLongMsg(context: Context, @StringRes id: Int) =

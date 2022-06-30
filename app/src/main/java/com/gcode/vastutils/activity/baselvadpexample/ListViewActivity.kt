@@ -18,24 +18,28 @@ package com.gcode.vastutils.activity.baselvadpexample
 
 import android.os.Bundle
 import com.gcode.vasttools.activity.VastVbActivity
-import com.gcode.vasttools.adapter.BaseListViewAdapter
-import com.gcode.vasttools.adapter.BaseListViewItem
+import com.gcode.vasttools.adapter.VastBaseAdapter
 import com.gcode.vastutils.activity.baselvadpexample.model.LVIA
 import com.gcode.vastutils.activity.baselvadpexample.model.LVIB
 import com.gcode.vastutils.activity.baselvadpexample.viewHolder.LVIAVH
+import com.gcode.vastutils.activity.baselvadpexample.viewHolder.LVIBVH
 import com.gcode.vastutils.databinding.ActivityListViewBinding
 
 class ListViewActivity : VastVbActivity<ActivityListViewBinding>() {
 
-    private val data:ArrayList<BaseListViewItem> = ArrayList<BaseListViewItem>().apply {
+    private val tag = this.javaClass.simpleName
+
+    private val data:ArrayList<VastBaseAdapter.BaseItem> = ArrayList<VastBaseAdapter.BaseItem>().apply {
         for(i in 0..100){
             add(LVIA(i.toString()))
+            add(LVIB(i.toString()))
         }
     }
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        mBinding.dataList.adapter = ListViewAdapter(this,data, mutableListOf(LVIAVH.Factory()))
+        mBinding.dataList.adapter = ListViewAdapter(this,data, mutableListOf(LVIAVH.Factory(),
+            LVIBVH.Factory()))
 
     }
 }

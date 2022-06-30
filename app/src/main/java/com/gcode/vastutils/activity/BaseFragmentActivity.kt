@@ -19,7 +19,7 @@ package com.gcode.vastutils.activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.gcode.vasttools.activity.VastVbActivity
-import com.gcode.vasttools.adapter.BaseFragmentAdapter
+import com.gcode.vasttools.adapter.VastFragmentAdapter
 import com.gcode.vastutils.databinding.ActivityBaseFragmentBinding
 import com.gcode.vastutils.fragment.OneFragment
 import com.gcode.vastutils.fragment.TwoFragment
@@ -35,7 +35,7 @@ class BaseFragmentActivity : VastVbActivity<ActivityBaseFragmentBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         mBinding.vp2.apply {
-            adapter = BaseFragmentAdapter(this@BaseFragmentActivity,ArrayList<Fragment>().apply {
+            adapter = VastFragmentAdapter(this@BaseFragmentActivity,ArrayList<Fragment>().apply {
                 add(OneFragment())
                 add(TwoFragment())
                 add(ThreeFragment())

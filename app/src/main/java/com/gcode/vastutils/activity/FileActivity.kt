@@ -18,6 +18,7 @@ package com.gcode.vastutils.activity
 
 import android.os.Bundle
 import com.gcode.vasttools.activity.VastVbActivity
+import com.gcode.vasttools.helper.ContextHelper
 import com.gcode.vasttools.utils.*
 import com.gcode.vasttools.utils.FileUtils.appExternalCacheDir
 import com.gcode.vasttools.utils.FileUtils.appInternalCacheDir
@@ -39,23 +40,23 @@ class FileActivity : VastVbActivity<ActivityFileBinding>() {
     private val tag = this.javaClass.simpleName
 
     override fun initView(savedInstanceState: Bundle?) {
-        LogUtils.i(tag, appInternalFilesDir(this).path)
-        LogUtils.i(tag, appInternalFilesDir(this).absolutePath)
-        LogUtils.i(tag, appInternalCacheDir(this).path)
-        LogUtils.i(tag, appInternalCacheDir(this).absolutePath)
-        LogUtils.i(tag, appExternalCacheDir(this)?.path)
+        LogUtils.i(tag, appInternalFilesDir().path)
+        LogUtils.i(tag, appInternalFilesDir().absolutePath)
+        LogUtils.i(tag, appInternalCacheDir().path)
+        LogUtils.i(tag, appInternalCacheDir().absolutePath)
+        LogUtils.i(tag, appExternalCacheDir()?.path)
 
-        saveFile(appInternalFilesDir(this).path, "test.txt", object : FileUtils.WriteEventListener {
+        saveFile(appInternalFilesDir().path, "test.txt", object : FileUtils.WriteEventListener {
             override fun writeEvent(fileWriter: FileWriter) {
                 fileWriter.write("Hello World")
             }
         })
 
-        FileUtils.makeDir(appInternalFilesDir(this).path, "a")
+        FileUtils.makeDir(appInternalFilesDir().path, "a")
 
-        FileUtils.rename(File(appInternalFilesDir(this).path, "a"), "b")
+        FileUtils.rename(File(appInternalFilesDir().path, "a"), "b")
 
-        LogUtils.i(tag, File(appInternalFilesDir(this).path).listFiles()?.toList().toString())
+        LogUtils.i(tag, File(appInternalFilesDir().path).listFiles()?.toList().toString())
     }
 
 }

@@ -31,12 +31,7 @@ import java.util.*
 /**
  * LogUtils
  *
- * Firstly,you need to sync debug state:
- * ```kotlin
- * // this is important and required
- * LogUtils.syncIsDeBug(this)
- * ```
- * Secondly,print log:
+ * Printing log:
  * ```kotlin
  * LogUtils.i(this.javaClass.simpleName,"Hello,This is a info")
  * ```
@@ -109,7 +104,7 @@ object LogUtils {
      * @since 0.0.6
      */
     @Synchronized
-    fun syncIsDeBug(context: Context) {
+    internal fun syncIsDeBug(context: Context) {
         isDeBug = getAppDebug(context)
     }
 

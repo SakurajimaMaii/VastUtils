@@ -23,37 +23,37 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.gcode.vasttools.adapter.VastBaseAdapter
 import com.gcode.vastutils.R
-import com.gcode.vastutils.activity.baselvadpexample.model.LVIA
+import com.gcode.vastutils.activity.baselvadpexample.model.LVIB
 
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
-// Date: 2022/6/19
+// Date: 2022/6/20
 // Description:
 // Documentation:
 
-class LVIAVH(val item: View) :
+class LVIBVH(val item: View) :
     VastBaseAdapter.VastBaseViewHolder(item) {
 
-    private val tv: TextView = itemView.findViewById(R.id.lvia_content)
+    private val tv: TextView = itemView.findViewById(R.id.lvib_content)
 
     override fun bindData(item: VastBaseAdapter.BaseItem) {
-        tv.text = (item as LVIA).string
+        tv.text = (item as LVIB).string
     }
 
-    class Factory:BaseFactory{
+    class Factory : BaseFactory {
 
         override fun getViewHolder(
             context: Context,
             convertView: View?,
             parent: ViewGroup?
         ): VastBaseAdapter.VastBaseViewHolder {
-            val view = LayoutInflater.from(context).inflate(R.layout.lv_item_lvia, null)
-            return LVIAVH(view)
+            val view = LayoutInflater.from(context).inflate(R.layout.lv_item_lvib, null)
+            return LVIBVH(view)
         }
 
         override fun getItemType(): String {
-            return LVIA::class.java.simpleName
+            return LVIB::class.java.simpleName
         }
 
     }

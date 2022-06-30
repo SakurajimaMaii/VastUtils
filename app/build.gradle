@@ -12,6 +12,12 @@ android {
             keyPassword myKeyPassword as String
             keyAlias myKeyAlias as String
         }
+        release {
+            storeFile file('D:\\AndroidKey\\VastUtils.jks')
+            storePassword myStorePassword as String
+            keyPassword myKeyPassword as String
+            keyAlias myKeyAlias as String
+        }
     }
     compileSdkVersion compile_sdk_version as int
     defaultConfig {

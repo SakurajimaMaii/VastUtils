@@ -23,6 +23,7 @@ import android.os.Build
 import android.view.WindowManager
 import android.view.WindowMetrics
 import androidx.annotation.RequiresApi
+import com.gcode.vasttools.helper.ContextHelper
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -36,37 +37,34 @@ object ScreenSizeUtils {
      *
      * @property width width of the screen.
      * @property height height of the screen.
-     *
      * @since 0.0.6
      */
-    internal data class ScreenSize(val width: Int, val height:Int)
+    private data class ScreenSize(val width: Int, val height: Int)
 
     /**
      * ScreenSize of your device.
      *
      * @since 0.0.6
      */
-    private var mScreenSize = ScreenSize(0,0)
+    private var mScreenSize = ScreenSize(0, 0)
 
     /**
      * Get the [ScreenSize] of your device in api 31.
      *
      * @return [ScreenSize] of your device.
-     *
      * @since 0.0.6
      */
     @RequiresApi(Build.VERSION_CODES.S)
     private fun getScreenSizeApi31(context: Context): ScreenSize {
         val vm: WindowMetrics =
             (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).currentWindowMetrics
-        return ScreenSize(vm.bounds.width(),vm.bounds.height())
+        return ScreenSize(vm.bounds.width(), vm.bounds.height())
     }
 
     /**
      * Get the [ScreenSize] of your device in api 30.
      *
      * @return [ScreenSize] of your device.
-     *
      * @since 0.0.6
      */
     @RequiresApi(Build.VERSION_CODES.R)
@@ -74,9 +72,9 @@ object ScreenSizeUtils {
         val orientation = context.resources?.configuration?.orientation
         val point = Point()
         context.display?.getRealSize(point)
-        return if(orientation == Configuration.ORIENTATION_PORTRAIT){
+        return if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             ScreenSize(point.x, point.y)
-        }else{
+        } else {
             ScreenSize(point.y, point.x)
         }
     }
@@ -85,7 +83,6 @@ object ScreenSizeUtils {
      * Get the [ScreenSize] of your device below api 30.
      *
      * @return [ScreenSize] of your device.
-     *
      * @since 0.0.6
      */
     private fun getScreenSizeApi30Below(context: Context): ScreenSize {
@@ -94,9 +91,9 @@ object ScreenSizeUtils {
         val vm: WindowManager =
             context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         vm.defaultDisplay.getRealSize(point)
-        return if(orientation == Configuration.ORIENTATION_PORTRAIT){
+        return if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             ScreenSize(point.x, point.y)
-        }else{
+        } else {
             ScreenSize(point.y, point.x)
         }
     }
@@ -105,7 +102,6 @@ object ScreenSizeUtils {
      * Get the [ScreenSize] of your device.
      *
      * @return [ScreenSize] of your device.
-     *
      * @since 0.0.6
      */
     private fun getMobileScreenSize(context: Context): ScreenSize {
@@ -119,11 +115,25 @@ object ScreenSizeUtils {
     /**
      * Get mobile screen height.
      *
-     * @return The width of the screen(in pixels).
+     * @return The height of the screen(in pixels).
+     * @since 0.0.9
+     */
+    @JvmStatic
+    fun getMobileScreenHeight() = getMobileScreenHeight(ContextHelper.getAppContext())
+
+    /**
+     * Get mobile screen height.
      *
+     * @return The height of the screen(in pixels).
      * @since 0.0.6
      */
-    fun getMobileScreenHeight(context: Context):Int {
+    @JvmStatic
+    @Deprecated(
+        "The function is deprecated!It will remove in 0.1.0",
+        ReplaceWith("getMobileScreenHeight()","new.getMobileScreenHeight"),
+        DeprecationLevel.WARNING
+    )
+    fun getMobileScreenHeight(context: Context): Int {
         mScreenSize = getMobileScreenSize(context)
         return mScreenSize.height
     }
@@ -132,10 +142,24 @@ object ScreenSizeUtils {
      * Get mobile screen width.
      *
      * @return The width of the screen(in pixels).
+     * @since 0.0.9
+     */
+    @JvmStatic
+    fun getMobileScreenWidth() = getMobileScreenWidth(ContextHelper.getAppContext())
+
+    /**
+     * Get mobile screen width.
      *
+     * @return The width of the screen(in pixels).
      * @since 0.0.6
      */
-    fun getMobileScreenWidth(context: Context):Int {
+    @JvmStatic
+    @Deprecated(
+        "The function is deprecated!It will remove in 0.1.0",
+        ReplaceWith("getMobileScreenWidth()","new.getMobileScreenWidth"),
+        DeprecationLevel.WARNING
+    )
+    fun getMobileScreenWidth(context: Context): Int {
         mScreenSize = getMobileScreenSize(context)
         return mScreenSize.width
     }

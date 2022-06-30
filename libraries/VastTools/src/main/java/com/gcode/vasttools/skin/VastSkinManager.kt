@@ -25,6 +25,7 @@ import android.content.res.AssetManager
 import android.content.res.Resources
 import android.text.TextUtils
 import com.gcode.vasttools.skin.utils.VastSkinResources
+import com.gcode.vasttools.helper.ContextHelper
 import java.util.*
 
 // Author: Vast Gui
@@ -37,13 +38,7 @@ import java.util.*
 /**
  * VastSkinManager
  *
- * By using [VastSkinManager],you can change the skin of the app.
- *
- * Firstly,you need to initialize the [VastSkinManager] in your application
- * ```kotlin
- * VastSkinManager.initVastThemeManager(this)
- * ```
- * Secondly,use [loadSkin] to load the skin
+ * Using [loadSkin] to load the skin
  * ```kotlin
  * VastSkinManager.loadSkin("data/data/com.gcode.vastutils/files/darkskin-debug.apk")
  * ```
@@ -62,12 +57,12 @@ object VastSkinManager : Observable() {
     internal lateinit var sharedPreferences:SharedPreferences
 
     /**
-     * You should init [VastSkinManager] in application.
+     * [VastSkinManager] will be initialized in [ContextHelper].
      *
      * If [originalApplication] and [skinActivityLifecycle] is initialized,
      * when you call [initVastThemeManager],it will do nothing.
      */
-    fun initVastThemeManager(application:Application){
+    internal fun initVastThemeManager(application:Application){
         if(!this::originalApplication.isInitialized and !this::skinActivityLifecycle.isInitialized){
             originalApplication = application
             VastSkinResources.initSkinResources(originalApplication)

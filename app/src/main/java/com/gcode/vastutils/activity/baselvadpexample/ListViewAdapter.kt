@@ -17,18 +17,16 @@
 package com.gcode.vastutils.activity.baselvadpexample
 
 import android.content.Context
-import com.gcode.vasttools.adapter.BaseListViewAdapter
-import com.gcode.vasttools.adapter.BaseListViewItem
-import com.gcode.vasttools.adapter.BaseListViewVH
+import com.gcode.vasttools.adapter.VastBaseAdapter
 
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2022/6/19
-// Description: 
+// Description:
 // Documentation:
 
 class ListViewAdapter(context: Context,
-                      dataSources: ArrayList<BaseListViewItem>,
-                      factories: MutableList<BaseListViewVH.BaseFactory>
-) : BaseListViewAdapter(context, dataSources, factories)
+                      dataSources: ArrayList<BaseItem>,
+                      factories: MutableList<VastBaseViewHolder.BaseFactory>
+) : VastBaseAdapter(context, dataSources, factories)

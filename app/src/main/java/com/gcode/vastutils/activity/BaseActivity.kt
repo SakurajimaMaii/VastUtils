@@ -14,23 +14,27 @@
  * limitations under the License.
  */
 
-package com.gcode.vastutils.activity.baselvadpexample.model
+package com.gcode.vastutils.activity
 
-import com.gcode.vasttools.adapter.VastBaseAdapter
+import android.os.Bundle
+import com.gcode.vasttools.activity.VastVbVmActivity
+import com.gcode.vastutils.databinding.ActivityBaseVbBinding
+import com.gcode.vastutils.viewModel.MainSharedVM
 
+class BaseActivity : VastVbVmActivity<ActivityBaseVbBinding, MainSharedVM>() {
 
-// Author: Vast Gui
-// Email: guihy2019@gmail.com
-// Date: 2022/6/19
-// Description:
-// Documentation:
+    override fun initView(savedInstanceState: Bundle?) {
 
-class LVIA(
-    val string: String
-):VastBaseAdapter.BaseItem {
+        enableFullScreen = true // 启用全面屏
 
-    override fun getItemType(): String {
-        return LVIA::class.java.simpleName
+        mBinding.addOne.setOnClickListener {
+            mViewModel.addOne()
+        }
+
+        mViewModel.count.observe(this){
+            mBinding.count.text = it.toString()
+        }
+
     }
 
 }

@@ -24,6 +24,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.gcode.vasttools.helper.ContextHelper
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -31,20 +32,33 @@ import androidx.annotation.RequiresApi
 // Description: Help you to get app information.
 // Documentation: [AppUtils](https://sakurajimamaii.github.io/VastDocs/document/en/AppUtils.html)
 
-/**
- * @since 0.0.1
- */
+/** @since 0.0.1 */
 object AppUtils {
+
+    /**
+     * Returns app name,like VastUtilsSampleDemo.
+     *
+     * @return app name,like VastUtilsSampleDemo.
+     * @since 0.0.9
+     */
+    @JvmStatic
+    @Synchronized
+    fun getAppName() = AppUtils.getAppName(ContextHelper.getAppContext())
+
     /**
      * Returns app name,like VastUtilsSampleDemo.
      *
      * @param context Context
      * @return app name,like VastUtilsSampleDemo.
-     *
      * @since 0.0.1
      */
     @JvmStatic
     @Synchronized
+    @Deprecated(
+        "The function is deprecated!It will remove in 0.1.0",
+        ReplaceWith("getAppName()", "new.getAppName"),
+        DeprecationLevel.WARNING
+    )
     fun getAppName(context: Context): String? {
         try {
             val packageManager: PackageManager = context.packageManager
@@ -62,13 +76,27 @@ object AppUtils {
     /**
      * Returns the version name of the current application,like 1.0.
      *
+     * @return the version name of the current application,like 1.0.
+     * @since 0.0.9
+     */
+    @JvmStatic
+    @Synchronized
+    fun getVersionName() = getVersionName(ContextHelper.getAppContext())
+
+    /**
+     * Returns the version name of the current application,like 1.0.
+     *
      * @param context Context
      * @return the version name of the current application,like 1.0.
-     *
      * @since 0.0.1
      */
     @JvmStatic
     @Synchronized
+    @Deprecated(
+        "The function is deprecated!It will remove in 0.1.0",
+        ReplaceWith("getVersionName()", "new.getVersionName"),
+        DeprecationLevel.WARNING
+    )
     fun getVersionName(context: Context): String? {
         try {
             val packageManager = context.packageManager
@@ -85,25 +113,39 @@ object AppUtils {
     /**
      * Returns the version code of the current application,like 1.
      *
+     * @return the version code of the current application,like 1.
+     * @since 0.0.9
+     */
+    @JvmStatic
+    @Synchronized
+    fun getVersionCode() = getVersionCode(ContextHelper.getAppContext())
+
+    /**
+     * Returns the version code of the current application,like 1.
+     *
      * @param context Context
      * @return the version code of the current application,like 1.
-     *
      * @since 0.0.1
      */
     @JvmStatic
     @Synchronized
+    @Deprecated(
+        "The function is deprecated!It will remove in 0.1.0",
+        ReplaceWith("getVersionCode()", "new.getVersionCode"),
+        DeprecationLevel.WARNING
+    )
     fun getVersionCode(context: Context) =
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             getVersionCodeApi28Above(context)
-        }else{
+        } else {
             getVersionCodeApi28Down(context)
         }
 
 
     /**
      * Get VersionCode (in Api 28 Above)
-     * @return The version code of the current application.
      *
+     * @return The version code of the current application.
      * @since 0.0.1
      */
     @Synchronized
@@ -123,11 +165,11 @@ object AppUtils {
 
     /**
      * Get VersionCode (in Api 28 Down)
-     * @return The version code of the current application.
      *
+     * @return The version code of the current application.
      * @since 0.0.1
      */
-    internal fun getVersionCodeApi28Down(context: Context): Int{
+    internal fun getVersionCodeApi28Down(context: Context): Int {
         try {
             val packageManager = context.packageManager
             val packageInfo = packageManager.getPackageInfo(
@@ -141,15 +183,33 @@ object AppUtils {
     }
 
     /**
-     * Returns the package name of the application,like com.gcode.vastutils.
+     * Returns the package name of the application,like
+     * com.gcode.vastutils.
+     *
+     * @return the package name of the application,like
+     *     com.gcode.vastutils.
+     * @since 0.0.9
+     */
+    @JvmStatic
+    @Synchronized
+    fun getPackageName() = getPackageName(ContextHelper.getAppContext())
+
+    /**
+     * Returns the package name of the application,like
+     * com.gcode.vastutils.
      *
      * @param context Context
-     * @return the package name of the application,like com.gcode.vastutils.
-     *
+     * @return the package name of the application,like
+     *     com.gcode.vastutils.
      * @since 0.0.1
      */
     @JvmStatic
     @Synchronized
+    @Deprecated(
+        "The function is deprecated!It will remove in 0.1.0",
+        ReplaceWith("getPackageName()", "new.getPackageName"),
+        DeprecationLevel.WARNING
+    )
     fun getPackageName(context: Context): String? {
         try {
             val packageManager = context.packageManager
@@ -166,13 +226,27 @@ object AppUtils {
     /**
      * Returns the icon of the application.
      *
+     * @return the icon of the application.
+     * @since 0.0.9
+     */
+    @JvmStatic
+    @Synchronized
+    fun getAppBitmap() = getAppBitmap(ContextHelper.getAppContext())
+
+    /**
+     * Returns the icon of the application.
+     *
      * @param context Context
      * @return the icon of the application.
-     *
      * @since 0.0.1
      */
     @JvmStatic
     @Synchronized
+    @Deprecated(
+        "The function is deprecated!It will remove in 0.1.0",
+        ReplaceWith("getAppBitmap()", "new.getAppBitmap"),
+        DeprecationLevel.WARNING
+    )
     fun getAppBitmap(context: Context): Bitmap? {
         var packageManager: PackageManager? = null
         var applicationInfo: ApplicationInfo?
@@ -191,17 +265,31 @@ object AppUtils {
         return bd.bitmap
     }
 
+    /**
+     * Returns true if the app is debuggable.false otherwise.
+     *
+     * @return true if the app is debuggable.false otherwise.
+     * @since 0.0.9
+     */
+    @JvmStatic
+    @Synchronized
+    fun getAppDebug() = getAppDebug(ContextHelper.getAppContext())
+
 
     /**
      * Returns true if the app is debuggable.false otherwise.
      *
      * @param context Context
      * @return true if the app is debuggable.false otherwise.
-     *
      * @since 0.0.1
      */
     @JvmStatic
     @Synchronized
+    @Deprecated(
+        "The function is deprecated!It will remove in 0.1.0",
+        ReplaceWith("getAppDebug()", "new.getAppDebug"),
+        DeprecationLevel.WARNING
+    )
     fun getAppDebug(context: Context): Boolean {
         return try {
             val info = context.applicationInfo

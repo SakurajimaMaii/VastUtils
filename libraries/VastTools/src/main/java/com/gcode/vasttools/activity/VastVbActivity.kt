@@ -18,8 +18,6 @@ package com.gcode.vasttools.activity
 
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding
-import com.gcode.vasttools.extension.getVbClass
-import com.gcode.vasttools.extension.initSettings
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -55,7 +53,7 @@ abstract class VastVbActivity<VB : ViewBinding> : VastActivity() {
         super.onCreate(savedInstanceState)
         initDataBind()
         initView(savedInstanceState)
-        initSettings()
+        initWindow()
     }
 
     @Suppress("UNCHECKED_CAST")

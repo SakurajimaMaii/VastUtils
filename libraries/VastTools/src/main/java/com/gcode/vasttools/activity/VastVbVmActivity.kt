@@ -20,9 +20,6 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import com.gcode.vasttools.extension.getVbClass
-import com.gcode.vasttools.extension.getVmClass
-import com.gcode.vasttools.extension.initSettings
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -57,7 +54,7 @@ abstract class VastVbVmActivity<VB : ViewBinding, VM : ViewModel> : VastActivity
         initDataBind()
         mViewModel = createViewModel()
         initView(savedInstanceState)
-        initSettings()
+        initWindow()
     }
 
     @Suppress("UNCHECKED_CAST")

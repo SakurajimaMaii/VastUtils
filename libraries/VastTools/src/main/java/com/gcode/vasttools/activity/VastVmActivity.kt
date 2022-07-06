@@ -19,8 +19,6 @@ package com.gcode.vasttools.activity
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.gcode.vasttools.extension.getVmClass
-import com.gcode.vasttools.extension.initSettings
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -65,7 +63,7 @@ abstract class VastVmActivity<VM : ViewModel> : VastActivity() {
         }
         mViewModel = createViewModel()
         initView(savedInstanceState)
-        initSettings()
+        initWindow()
     }
 
     private fun createViewModel(): VM {

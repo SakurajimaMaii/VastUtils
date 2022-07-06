@@ -3,7 +3,7 @@
 buildscript {
     ext{
         // The version of kotlin
-        kotlin_version = "1.7.0"
+        kotlin_version = "1.6.21"
         // The version of gradle
         gradle_version = '7.4.0-alpha07'
         // The version of activity
@@ -30,6 +30,8 @@ buildscript {
         junit_version = "4.13.2"
         // The start up version
         start_up_version = "1.1.1"
+        // The compose version
+        compose_version = '1.2.0-beta01'
 
         compile_sdk_version = 31
         min_sdk_version = 23

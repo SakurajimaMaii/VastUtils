@@ -1,5 +1,6 @@
 include ':app'
 include ':appjava'
+include ':appcompose'
 rootProject.name = "VastUtils"
 
 // =======

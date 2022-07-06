@@ -21,6 +21,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.gcode.vasttools.activity.VastVbActivity
+import com.gcode.vasttools.activity.VastVbVmActivity
+import com.gcode.vasttools.activity.VastVmActivity
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -49,8 +52,17 @@ abstract class VastBaseFragment : Fragment() {
     protected var dataBindView: View? = null
 
     /**
+     * Default tag for log.
      *
+     * The value of [defaultTag] will be the class name that extends
+     * [VastVbFragment] , [VastVmFragment] or [VastVbVmFragment].
      *
+     * @since 0.0.9
+     */
+    protected val defaultTag:String
+        get() = this.javaClass.simpleName
+
+    /**
      * @param savedInstanceState
      *
      * @since 0.0.6

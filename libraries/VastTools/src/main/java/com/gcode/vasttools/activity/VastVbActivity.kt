@@ -31,6 +31,9 @@ import com.gcode.vasttools.extension.initSettings
 /**
  * VastVbActivity.
  *
+ * If your Activity contains to 0 or more ViewModels,
+ * I recommend you use [VastVbActivity].
+ *
  * Here is an example in kotlin:
  * ```kotlin
  * class MainActivity : VastVbActivity<ActivityMainBinding>() {

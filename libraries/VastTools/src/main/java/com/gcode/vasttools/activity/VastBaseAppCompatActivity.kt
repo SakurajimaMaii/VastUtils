@@ -54,4 +54,14 @@ internal interface VastBaseAppCompatActivity {
      */
     val mContext: Context
 
+    /**
+     * Default tag for log.
+     *
+     * The value of [defaultTag] will be the class name that extends
+     * [VastVbActivity] , [VastVmActivity] or [VastVbVmActivity].
+     *
+     * @since 0.0.9
+     */
+    val defaultTag:String
+
 }

@@ -38,6 +38,9 @@ abstract class VastBaseActivity : AppCompatActivity(), VastBaseAppCompatActivity
 
     override lateinit var mContext: Context
 
+    final override val defaultTag: String
+        get() = this.javaClass.simpleName
+
     override fun onCreate(savedInstanceState: Bundle?) {
         initBeforeOnCreate()
         super.onCreate(savedInstanceState)

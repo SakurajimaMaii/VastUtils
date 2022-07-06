@@ -17,6 +17,8 @@
 package com.gcode.vasttools.activity
 
 import android.content.Context
+import android.os.Bundle
+import androidx.activity.ComponentActivity
 
 
 // Author: Vast Gui
@@ -26,27 +28,21 @@ import android.content.Context
 // Documentation:
 
 /**
- * Base Activity.
+ * If you use [Jetpack Compose](https://developer.android.com/jetpack/compose),
+ * you can make your activity extends [VastComposeActivity].
  *
  * @since 0.0.9
  */
-internal interface VastBaseActivity {
+abstract class VastComposeActivity : ComponentActivity(), VastBaseActivity {
 
-    /**
-     * The [Context] of the activity.
-     *
-     * @since 0.0.8
-     */
-    val mContext: Context
+    override lateinit var mContext: Context
 
-    /**
-     * Default tag for log.
-     *
-     * The value of [defaultTag] will be the class name that extends
-     * [VastVbActivity] , [VastVmActivity] or [VastVbVmActivity].
-     *
-     * @since 0.0.9
-     */
-    val defaultTag:String
+    final override val defaultTag: String
+        get() = this.javaClass.simpleName
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mContext = this
+    }
 
 }

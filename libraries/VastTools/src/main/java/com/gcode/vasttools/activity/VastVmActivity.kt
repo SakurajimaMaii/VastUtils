@@ -44,7 +44,7 @@ import com.gcode.vasttools.extension.initSettings
  *
  * @since 0.0.6
  */
-abstract class VastVmActivity<VM : ViewModel> : VastBaseActivity() {
+abstract class VastVmActivity<VM : ViewModel> : VastActivity() {
 
     /**
      * The layout resource id for this activity.

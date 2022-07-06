@@ -47,7 +47,7 @@ import com.gcode.vasttools.extension.initSettings
  *
  * @since 0.0.6
  */
-abstract class VastVbVmActivity<VB : ViewBinding, VM : ViewModel> : VastBaseActivity() {
+abstract class VastVbVmActivity<VB : ViewBinding, VM : ViewModel> : VastActivity() {
 
     protected lateinit var mBinding: VB
     protected lateinit var mViewModel: VM

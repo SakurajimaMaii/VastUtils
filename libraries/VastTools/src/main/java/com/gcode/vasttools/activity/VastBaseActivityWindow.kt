@@ -16,19 +16,19 @@
 
 package com.gcode.vasttools.activity
 
-import android.content.Context
 
-
-// Author: SakurajimaMai
+// Author: Vast Gui
 // Email: guihy2019@gmail.com
-// Date: 2022/6/11
+// Date: 2022/7/6
 // Description: 
 // Documentation:
 
 /**
+ * Some settings for activity window.
+ *
  * @since 0.0.9
  */
-internal interface VastBaseAppCompatActivity {
+internal interface VastBaseActivityWindow {
 
     /**
      * True if you want to show the ActionBar,false otherwise.
@@ -46,22 +46,5 @@ internal interface VastBaseAppCompatActivity {
      * @since 0.0.6
      */
     var enableFullScreen:Boolean
-
-    /**
-     * The [Context] of the activity.
-     *
-     * @since 0.0.8
-     */
-    val mContext: Context
-
-    /**
-     * Default tag for log.
-     *
-     * The value of [defaultTag] will be the class name that extends
-     * [VastVbActivity] , [VastVmActivity] or [VastVbVmActivity].
-     *
-     * @since 0.0.9
-     */
-    val defaultTag:String
 
 }

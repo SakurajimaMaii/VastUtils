@@ -21,9 +21,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.viewbinding.ViewBinding
 import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vasttools.activity.VastVbVmActivity
 import com.gcode.vasttools.activity.VastVmActivity
+import java.lang.reflect.ParameterizedType
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -33,7 +36,7 @@ import com.gcode.vasttools.activity.VastVmActivity
 /**
  * @since 0.0.6
  */
-abstract class VastBaseFragment : Fragment() {
+sealed class VastBaseFragment : Fragment() {
 
     /**
      * When you are not using view binding, you should
@@ -79,6 +82,27 @@ abstract class VastBaseFragment : Fragment() {
         }else{
             dataBindView
         }
+    }
+
+    /**
+     * Get the [ViewBinding] class.
+     *
+     * @since 0.0.6
+     */
+    internal fun <VB> getVbClass(obj: Any, index: Int,layoutInflater: LayoutInflater): VB {
+        val superClass = obj.javaClass.genericSuperclass
+        val clazz = (superClass as ParameterizedType).actualTypeArguments[index] as Class<*>
+        val method = clazz.getMethod("inflate", LayoutInflater::class.java)
+        return method.invoke(null, layoutInflater) as VB
+    }
+
+    /**
+     * Get the [ViewModel] class.
+     *
+     * @since 0.0.6
+     */
+    internal fun <VM> getVmClass(obj: Any, index: Int): VM {
+        return (obj.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[index] as VM
     }
 
 }

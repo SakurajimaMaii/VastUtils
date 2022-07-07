@@ -22,7 +22,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.gcode.vasttools.extension.getVmClass
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com

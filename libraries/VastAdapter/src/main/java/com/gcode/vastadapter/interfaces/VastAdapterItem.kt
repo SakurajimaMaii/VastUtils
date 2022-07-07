@@ -16,8 +16,8 @@
 
 package com.gcode.vastadapter.interfaces
 
-import com.gcode.vastadapter.base.VastAdapter
-import com.gcode.vastadapter.base.VastAdapterVH
+import com.gcode.vastadapter.adapter.VastAdapter
+import com.gcode.vastadapter.adapter.VastAdapterVH
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com

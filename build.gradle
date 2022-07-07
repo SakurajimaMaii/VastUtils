@@ -5,7 +5,7 @@ buildscript {
         // The version of kotlin
         kotlin_version = "1.6.21"
         // The version of gradle
-        gradle_version = '7.4.0-alpha07'
+        gradle_version = '7.4.0-alpha08'
         // The version of activity
         activity_version = "1.4.0"
         // The version of appcompat

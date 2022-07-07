@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gcode.vastadapter.base
+package com.gcode.vastadapter.adapter
 
 import android.content.Context
 import android.content.res.Resources

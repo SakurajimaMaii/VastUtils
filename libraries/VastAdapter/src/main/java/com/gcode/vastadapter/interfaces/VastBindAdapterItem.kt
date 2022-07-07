@@ -16,7 +16,7 @@
 
 package com.gcode.vastadapter.interfaces
 
-import com.gcode.vastadapter.base.VastBindAdapter
+import com.gcode.vastadapter.adapter.VastBindAdapter
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com

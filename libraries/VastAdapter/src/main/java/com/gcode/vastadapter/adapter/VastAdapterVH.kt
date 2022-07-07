@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gcode.vastadapter.base
+package com.gcode.vastadapter.adapter
 
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +39,7 @@ open class VastAdapterVH(itemView: View): RecyclerView.ViewHolder(itemView) {
         /**
          * Create the current ViewHolder instance.
          */
-        fun onCreateViewHolder(parent: ViewGroup,viewType:Int):VastAdapterVH
+        fun onCreateViewHolder(parent: ViewGroup,viewType:Int): VastAdapterVH
 
         /**
          * @return A string which is same as the value you set in [VastAdapterItem.getVAdpItemType].

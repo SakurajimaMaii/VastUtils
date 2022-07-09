@@ -2,36 +2,28 @@
 
 buildscript {
     ext{
-        // The version of kotlin
-        kotlin_version = "1.6.21"
-        // The version of gradle
-        gradle_version = '7.4.0-alpha08'
-        // The version of activity
-        activity_version = "1.5.0"
-        // The version of appcompat
+        activity_version = "1.4.0"
+        annotation_version = "1.4.0"
         appcompat_version = "1.4.2"
-        // The version of fragment
-        fragment_version = "1.5.0"
-        // The version of camerax
         camerax_version = "1.0.0-alpha06"
-        // The version of dokka
-        dokka_version = "1.6.10"
-        // The version of material
-        material_version = "1.6.1"
-        // The version of kotlin-reflect
-        kotlin_reflect_version = "1.6.21"
-        // The version of androidx.core:core-ktx
-        core_ktx_version = "1.8.0"
-        // The version of lifecycle
-        lifecycle_version = "2.5.0-rc01"
-        // The version of okhttp3
-        okhttp3_version = "5.0.0-alpha.6"
-        // The version of junit
-        junit_version = "4.13.2"
-        // The start up version
-        start_up_version = "1.1.1"
-        // The compose version
         compose_version = '1.2.0-beta01'
+        constraintlayout_version = "2.1.4"
+        core_ktx_version = "1.8.0"
+        dokka_version = "1.6.10"
+        espresso_core_version = "3.4.0"
+        ext_junit_version = "1.1.3"
+        fragment_version = "1.4.0"
+        gradle_version = '7.4.0-alpha08'
+        junit_version = "4.13.2"
+        kotlin_reflect_version = "1.7.0"
+        kotlin_version = "1.6.21"
+        lifecycle_version = "2.5.0-rc01"
+        material_version = "1.6.1"
+        okhttp3_version = "5.0.0-alpha.6"
+        progress_manager_version = "0.0.1"
+        recyclerview_version = "1.2.1"
+        splashscreen_version = "1.0.0-rc01"
+        start_up_version = "1.1.1"
 
         compile_sdk_version = 31
         min_sdk_version = 23

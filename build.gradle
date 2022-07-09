@@ -7,11 +7,11 @@ buildscript {
         // The version of gradle
         gradle_version = '7.4.0-alpha08'
         // The version of activity
-        activity_version = "1.4.0"
+        activity_version = "1.5.0"
         // The version of appcompat
         appcompat_version = "1.4.2"
         // The version of fragment
-        fragment_version = "1.4.1"
+        fragment_version = "1.5.0"
         // The version of camerax
         camerax_version = "1.0.0-alpha06"
         // The version of dokka

@@ -18,11 +18,10 @@ package com.gcode.vastutils.activity
 
 import android.graphics.drawable.GradientDrawable.RECTANGLE
 import android.os.Bundle
-import android.os.PersistableBundle
 import com.gcode.vasttools.activity.VastVbActivity
-import com.gcode.vasttools.utils.*
-import com.gcode.vasttools.utils.DensityUtils.sp
+import com.gcode.vasttools.utils.ColorUtils
 import com.gcode.vasttools.utils.IDCardUtils.validateIDCardNumber
+import com.gcode.vasttools.utils.ShapeAndStateUtils
 import com.gcode.vastutils.databinding.ActivityShapeBinding
 
 class ShapeActivity : VastVbActivity<ActivityShapeBinding>() {

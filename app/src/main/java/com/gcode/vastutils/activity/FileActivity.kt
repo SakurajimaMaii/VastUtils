@@ -17,6 +17,7 @@
 package com.gcode.vastutils.activity
 
 import android.os.Bundle
+import android.util.Log
 import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vasttools.helper.ContextHelper
 import com.gcode.vasttools.utils.*
@@ -27,6 +28,7 @@ import com.gcode.vasttools.utils.FileUtils.saveFile
 import com.gcode.vastutils.databinding.ActivityFileBinding
 import java.io.File
 import java.io.FileWriter
+import java.util.*
 
 
 // Author: SakurajimaMai
@@ -40,6 +42,7 @@ class FileActivity : VastVbActivity<ActivityFileBinding>() {
     private val tag = this.javaClass.simpleName
 
     override fun initView(savedInstanceState: Bundle?) {
+        Log.i("VU", EncryptionUtils.encode("Hello World!"))
         LogUtils.i(tag, appInternalFilesDir().path)
         LogUtils.i(tag, appInternalFilesDir().absolutePath)
         LogUtils.i(tag, appInternalCacheDir().path)

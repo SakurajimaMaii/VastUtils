@@ -20,7 +20,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import com.gcode.vastadapter.base.VastBindAdapter;
+import com.gcode.vastadapter.adapter.VastBindAdapter;
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem;
 import com.gcode.vastutilsjava.BR;
 

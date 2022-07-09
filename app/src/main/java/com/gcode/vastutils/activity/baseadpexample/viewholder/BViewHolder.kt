@@ -20,7 +20,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.gcode.vastadapter.base.VastAdapterVH
+import com.gcode.vastadapter.adapter.VastAdapterVH
 import com.gcode.vastadapter.interfaces.VastAdapterItem
 import com.gcode.vastutils.R
 import com.gcode.vastutils.activity.baseadpexample.model.AExample

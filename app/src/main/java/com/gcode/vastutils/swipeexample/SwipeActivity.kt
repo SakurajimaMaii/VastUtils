@@ -27,12 +27,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vastswiperecyclerview.VastSwipeRvMgr
 import com.gcode.vastswiperecyclerview.annotation.ICON_TITLE
-import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemClickListener
-import com.gcode.vastswiperecyclerview.interfaces.VastSwipeItemLongClickListener
 import com.gcode.vastswiperecyclerview.interfaces.VastSwipeMenuCreator
 import com.gcode.vastswiperecyclerview.model.VastSwipeMenu
 import com.gcode.vasttools.activity.VastVbActivity
-import com.gcode.vasttools.utils.DensityUtils.dp
+import com.gcode.vasttools.utils.DensityUtils.DP
 import com.gcode.vastutils.R
 import com.gcode.vastutils.databinding.ActivitySwipeBinding
 import com.gcode.vastutils.swipeexample.model.Swipe
@@ -58,8 +56,8 @@ class SwipeActivity : VastVbActivity<ActivitySwipeBinding>(){
 
         val manager = VastSwipeRvMgr(this).apply {
             setTitleSize(20f)
-            setIconSize(40f.dp)
-            setMenuWidth(100f.dp)
+            setIconSize(40f.DP)
+            setMenuWidth(100f.DP)
             setSwipeMenuContentStyle(ICON_TITLE)
 //            setSwipeItemClickListener(object: VastSwipeItemClickListener{
 //                override fun onClickEvent(view: View, adapterPosition: Int) {

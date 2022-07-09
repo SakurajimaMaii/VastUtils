@@ -25,7 +25,7 @@ import androidx.annotation.IntRange
 import androidx.annotation.Nullable
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
-import com.gcode.vastadapter.base.VastBindAdapter
+import com.gcode.vastadapter.adapter.VastBindAdapter
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vastutils.BR
 

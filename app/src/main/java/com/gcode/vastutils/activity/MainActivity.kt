@@ -24,11 +24,13 @@ import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gcode.vastadapter.base.VastBindAdapter
+import com.gcode.vastadapter.adapter.VastBindAdapter
 import com.gcode.vastadapter.interfaces.VAapClickEventListener
 import com.gcode.vastadapter.interfaces.VastBindAdapterItem
 import com.gcode.vasttools.activity.VastVbActivity
 import com.gcode.vasttools.utils.AppUtils
+import com.gcode.vasttools.utils.ColorUtils.colorHex2Int
+import com.gcode.vasttools.utils.LogUtils
 import com.gcode.vastutils.BR
 import com.gcode.vastutils.R
 import com.gcode.vastutils.activity.baseadpexample.BaseAdapterActivity

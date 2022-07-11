@@ -15,25 +15,31 @@
   -->
 
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="VastTheme" parent="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/vast_skin_primary</item>
-        <item name="colorPrimaryVariant">@color/vast_skin_primary_variant</item>
-        <item name="colorOnPrimary">@color/vast_skin_on_primary</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/vast_skin_secondary</item>
-        <item name="colorSecondaryVariant">@color/vast_skin_primary_variant</item>
-        <item name="colorOnSecondary">@color/vast_skin_on_secondary</item>
-        <!-- Surface color. -->
-        <item name="colorSurface">@color/vast_skin_surface</item>
-        <item name="colorOnSurface">@color/vast_skin_on_surface</item>
-        <!-- Background color. -->
-        <item name="backgroundColor">@color/vast_skin_background</item>
-        <item name="colorOnBackground">@color/vast_skin_on_background</item>
-        <!-- Error color. -->
-        <item name="colorError">@color/vast_skin_error</item>
-        <item name="colorOnError">@color/vast_skin_on_error</item>
-        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    <style name="VastTheme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">#0060A9</item>
+        <item name="colorOnPrimary">#ffffff</item>
+        <item name="colorPrimaryContainer">#D3E4FF</item>
+        <item name="colorOnPrimaryContainer">#001C38</item>
+        <item name="colorSecondary">#505F76</item>
+        <item name="colorOnSecondary">#ffffff</item>
+        <item name="colorSecondaryContainer">#D3E4FE</item>
+        <item name="colorOnSecondaryContainer">#0B1C30</item>
+        <item name="colorTertiary">#70547F</item>
+        <item name="colorOnTertiary">#ffffff</item>
+        <item name="colorTertiaryContainer">#F4D9FF</item>
+        <item name="colorOnTertiaryContainer">#291037</item>
+        <item name="colorError">#BA1A1A</item>
+        <item name="colorOnError">#ffffff</item>
+        <item name="colorErrorContainer">#FFDAD6</item>
+        <item name="colorOnErrorContainer">#410002</item>
+        <item name="android:colorBackground">#FDFCFF</item>
+        <item name="colorOnBackground">#1A1C1E</item>
+        <item name="colorSurface">#D9E5F3</item>
+        <item name="colorOnSurface">#1A1C1E</item>
+        <item name="colorSurfaceVariant">#DFE2EB</item>
+        <item name="colorOnSurfaceVariant">#43474E</item>
+        <item name="colorOutline">#73777F</item>
+        <item name="colorAccent">?colorOnSurface</item>
     </style>
 
     <style name="VastTheme.Starting" parent="Theme.SplashScreen">

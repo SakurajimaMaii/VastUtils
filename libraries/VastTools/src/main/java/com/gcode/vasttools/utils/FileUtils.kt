@@ -71,46 +71,21 @@ object FileUtils {
     fun appExternalCacheDir() = ContextHelper.getAppContext().externalCacheDir
 
     /**
-     * Save file.If the file is exist,the original file will be deleted
-     * and create a new file.
-     *
-     * @param saveParent The dir you want to save.
-     * @param saveChild The name of the file.
-     * @since 0.0.9
-     */
-    @JvmStatic
-    @JvmOverloads
-    fun saveFile(
-        saveParent: String,
-        saveChild: String? = null,
-    ) {
-        if (saveChild != null) {
-            File(saveParent, saveChild).realFileWrite()
-        } else {
-            File(saveParent).realFileWrite()
-        }
-    }
-
-    /**
-     * Save file to [saveUri]
-     *
-     * @param saveUri The uri you want to save.
-     * @since 0.0.9
-     */
-    @JvmStatic
-    fun saveFile(saveUri: URI) {
-        File(saveUri).realFileWrite()
-    }
-
-    /**
      * Save file.
      *
      * @param file The file you want to save.
      * @since 0.0.9
      */
     @JvmStatic
-    fun saveFile(file: File) {
-        file.realFileWrite()
+    fun saveFile(file: File):ResultSet {
+        if (file.exists() && file.isFile) {
+            file.delete()
+        }
+        if (!file.parentFile?.exists()!!)
+            file.parentFile?.mkdirs()
+        val fileOutputStream = FileOutputStream(file)
+        fileOutputStream.close()
+        return if (file.exists()) FLAG_SUCCESS else FLAG_FAILED
     }
 
     /**
@@ -134,34 +109,25 @@ object FileUtils {
     }
 
     @JvmStatic
-    fun writeFile(file: File, writeEventListener: WriteEventListener) {
-        if ("txt" == getFileExtension(file)) {
+    fun writeFile(file: File, writeEventListener: WriteEventListener): ResultSet {
+        return if (!file.exists())
+            FLAG_FAILED
+        else if ("txt" == getFileExtension(file)) {
             val fileWriter = FileWriter(file)
             writeEventListener.writeEvent(fileWriter)
             fileWriter.close()
-        }
+            FLAG_SUCCESS
+        } else FLAG_FAILED
     }
 
     /**
      * Make directory.
      *
-     * For example,if you want create a directory named vast.
-     *
-     * ```
-     * directoryMake(appInternalFilesDir().path+"/"+"vast")
-     * // or
-     * directoryMake(appInternalFilesDir().path,"vast")
-     * ```
-     *
-     * @param dirPath The path of the directory.
-     * @return Operations result.
+     * @param dir The file of the directory.
+     * @return [ResultSet]
      * @since 0.0.9
      */
-    @JvmOverloads
-    fun makeDir(dirPath: String, dirName: String? = null): ResultSet {
-        val dir = if (null != dirName) {
-            File(dirPath, dirName)
-        } else File(dirPath)
+    fun makeDir(dir: File): ResultSet {
         if (dir.exists()) {
             return FLAG_EXISTS
         }
@@ -172,21 +138,6 @@ object FileUtils {
             return FLAG_SUCCESS
         }
         return FLAG_FAILED
-    }
-
-    /**
-     * Delete directory.
-     *
-     * @param dirPath The path of the directory.
-     * @param dirName The name of the directory.
-     * @return Operations result.
-     * @since 0.0.9
-     */
-    fun deleteDir(dirPath: String, dirName: String? = null): ResultSet {
-        val dir = if (null != dirName) {
-            File(dirPath, dirName)
-        } else File(dirPath)
-        return deleteDir(dir)
     }
 
     /**
@@ -233,7 +184,7 @@ object FileUtils {
                 FLAG_FAILED
             } else {
                 val newFile = File(file.parent!! + File.separator + newName)
-                if (file.renameTo(newFile)) {
+                if (!newFile.exists() && file.renameTo(newFile)) {
                     FLAG_SUCCESS
                 } else {
                     FLAG_FAILED
@@ -242,7 +193,11 @@ object FileUtils {
         }
     }
 
-    /** Get the extension name of the file. */
+    /**
+     * Get the extension name of the file.
+     *
+     * @since 0.0.9
+     */
     fun getFileExtension(file: File): String {
         return file.name.substring(file.name.lastIndexOf(".") + 1)
     }
@@ -286,17 +241,6 @@ object FileUtils {
         fun onFailed(e: Exception) {
             e.printStackTrace()
         }
-    }
-
-    /** @since 0.0.9 */
-    private fun File.realFileWrite() {
-        if (this.exists() && this.isFile) {
-            this.delete()
-        }
-        if (!this.parentFile?.exists()!!)
-            this.parentFile?.mkdirs()
-        val fileOutputStream = FileOutputStream(this)
-        fileOutputStream.close()
     }
 
 }

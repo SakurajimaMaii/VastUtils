@@ -16,15 +16,20 @@
 
 package com.gcode.vastutils.activity
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.activity.result.contract.ActivityResultContracts
 import com.gcode.vasttools.activity.VastVbActivity
-import com.gcode.vasttools.helper.ContextHelper
 import com.gcode.vasttools.utils.*
 import com.gcode.vasttools.utils.FileUtils.appExternalCacheDir
 import com.gcode.vasttools.utils.FileUtils.appInternalCacheDir
 import com.gcode.vasttools.utils.FileUtils.appInternalFilesDir
+import com.gcode.vasttools.utils.FileUtils.deleteDir
+import com.gcode.vasttools.utils.FileUtils.makeDir
+import com.gcode.vasttools.utils.FileUtils.rename
 import com.gcode.vasttools.utils.FileUtils.saveFile
+import com.gcode.vasttools.utils.FileUtils.writeFile
 import com.gcode.vastutils.databinding.ActivityFileBinding
 import java.io.File
 import java.io.FileWriter
@@ -39,27 +44,49 @@ import java.util.*
 
 class FileActivity : VastVbActivity<ActivityFileBinding>() {
 
-    private val tag = this.javaClass.simpleName
+    private val openGalleryLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) {
+            UriUtils.getRealPath(it!!)
+        }
 
     override fun initView(savedInstanceState: Bundle?) {
-        Log.i("VU", EncryptionUtils.encode("Hello World!"))
-        LogUtils.i(tag, appInternalFilesDir().path)
-        LogUtils.i(tag, appInternalFilesDir().absolutePath)
-        LogUtils.i(tag, appInternalCacheDir().path)
-        LogUtils.i(tag, appInternalCacheDir().absolutePath)
-        LogUtils.i(tag, appExternalCacheDir()?.path)
+//        LogUtils.i(defaultTag, appInternalFilesDir().path)
+//        LogUtils.i(defaultTag, appInternalFilesDir().absolutePath)
+//        LogUtils.i(defaultTag, appInternalCacheDir().path)
+//        LogUtils.i(defaultTag, appInternalCacheDir().absolutePath)
+//        LogUtils.i(defaultTag, appExternalCacheDir()?.path)
 
-        saveFile(appInternalFilesDir().path, "test.txt", object : FileUtils.WriteEventListener {
-            override fun writeEvent(fileWriter: FileWriter) {
-                fileWriter.write("Hello World")
-            }
-        })
+        mBinding.openGallery.setOnClickListener {
+            openGalleryLauncher.launch("image/*")
+        }
 
-        FileUtils.makeDir(appInternalFilesDir().path, "a")
+        saveFile(File(appInternalFilesDir().path,"save.txt"))
 
-        FileUtils.rename(File(appInternalFilesDir().path, "a"), "b")
+        makeDir(File(appInternalFilesDir().path,"makeDir"))
 
-        LogUtils.i(tag, File(appInternalFilesDir().path).listFiles()?.toList().toString())
+        makeDir(File(appInternalFilesDir().path,"makeDir2"))
+
+        val res = deleteDir(File(appInternalFilesDir().path,"makeDir2"))
+
+        LogUtils.i(defaultTag, res.toString())
+
+        val res1 = writeFile(File(appInternalFilesDir().path, "picture.jpg"),
+            object : FileUtils.WriteEventListener {
+                override fun writeEvent(fileWriter: FileWriter) {
+                    fileWriter.write("Hello")
+                }
+            })
+
+        LogUtils.i(defaultTag, res1.toString())
+
+        val res2 = writeFile(File(appInternalFilesDir().path, "save.txt"),
+            object : FileUtils.WriteEventListener {
+                override fun writeEvent(fileWriter: FileWriter) {
+                    fileWriter.write("Hello")
+                }
+            })
+
+        LogUtils.i(defaultTag, res2.toString())
     }
 
 }

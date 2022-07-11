@@ -164,7 +164,7 @@ object DateUtils {
         }
 
     /**
-     * Get min time
+     * Get min time [Date].
      *
      * @since 0.0.2
      */

@@ -24,9 +24,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowInsetsController
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowInsetsCompat
 import java.lang.reflect.ParameterizedType
 
@@ -38,6 +38,8 @@ import java.lang.reflect.ParameterizedType
 /**
  * The parent class for [VastVmActivity] , [VastVbActivity] ,
  * [VastVbVmActivity].
+ *
+ * @since 0.0.9
  */
 @Suppress("UNCHECKED_CAST")
 sealed class VastActivity : AppCompatActivity(),

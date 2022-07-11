@@ -26,9 +26,9 @@ import android.content.Context
 // Documentation:
 
 /**
- * Base Activity.
+ * Base Activity
  *
- * @since 0.0.9
+ * @since 0.0.6
  */
 internal interface VastBaseActivity {
 

@@ -17,9 +17,10 @@
 package com.gcode.vasttools.utils
 
 import com.gcode.vasttools.helper.ContextHelper
+import com.gcode.vasttools.utils.FileUtils.ResultSet.*
 import java.io.File
+import java.io.FileOutputStream
 import java.io.FileWriter
-import java.io.IOException
 import java.net.URI
 
 // Author: SakurajimaMai
@@ -45,7 +46,7 @@ object FileUtils {
      *
      * [FLAG_FAILED] means running failed.
      */
-    enum class FileOperationsResult {
+    enum class ResultSet {
         FLAG_SUCCESS,
         FLAG_PARENT_NOT_EXISTS,
         FLAG_EXISTS,
@@ -63,7 +64,7 @@ object FileUtils {
 
     /** @since 0.0.9 */
     @JvmStatic
-    fun appExternalFilesDir(path: String) = ContextHelper.getAppContext().getExternalFilesDir(path)
+    fun appExternalFilesDir(path: String?) = ContextHelper.getAppContext().getExternalFilesDir(path)
 
     /** @since 0.0.9 */
     @JvmStatic
@@ -73,20 +74,8 @@ object FileUtils {
      * Save file.If the file is exist,the original file will be deleted
      * and create a new file.
      *
-     * For example,if you want create a file named test.txt and write
-     * Hello World into this file.
-     *
-     * ```
-     * fileSave(appInternalFilesDir().path,"test.txt",object :WriteEventListener{
-     *      override fun writeEvent(fileWriter: FileWriter) {
-     *          fileWriter.write("Hello World")
-     *      }
-     * })
-     * ```
-     *
      * @param saveParent The dir you want to save.
      * @param saveChild The name of the file.
-     * @param writeListener Register a listener when write to file.
      * @since 0.0.9
      */
     @JvmStatic
@@ -94,12 +83,11 @@ object FileUtils {
     fun saveFile(
         saveParent: String,
         saveChild: String? = null,
-        writeListener: WriteEventListener? = null
     ) {
         if (saveChild != null) {
-            File(saveParent, saveChild).realFileWrite(writeListener)
+            File(saveParent, saveChild).realFileWrite()
         } else {
-            File(saveParent).realFileWrite(writeListener)
+            File(saveParent).realFileWrite()
         }
     }
 
@@ -107,45 +95,50 @@ object FileUtils {
      * Save file to [saveUri]
      *
      * @param saveUri The uri you want to save.
-     * @param writeListener Register a listener when write to file.
      * @since 0.0.9
      */
     @JvmStatic
-    @JvmOverloads
-    fun saveFile(saveUri: URI, writeListener: WriteEventListener? = null) {
-        File(saveUri).realFileWrite(writeListener)
+    fun saveFile(saveUri: URI) {
+        File(saveUri).realFileWrite()
     }
 
     /**
      * Save file.
      *
      * @param file The file you want to save.
-     * @param writeListener Register a listener when write to file.
      * @since 0.0.9
      */
     @JvmStatic
-    @JvmOverloads
-    fun saveFile(file: File, writeListener: WriteEventListener? = null) {
-        file.realFileWrite(writeListener)
+    fun saveFile(file: File) {
+        file.realFileWrite()
     }
 
     /**
      * Delete file.
      *
      * @param file the file you want to delete.
-     * @return [FileOperationsResult]
+     * @return [ResultSet]
      * @since 0.0.9
      */
     @JvmStatic
-    fun deleteFile(file: File): FileOperationsResult {
+    fun deleteFile(file: File): ResultSet {
         return if (file.isFile) {
             if (file.delete()) {
-                FileOperationsResult.FLAG_SUCCESS
+                FLAG_SUCCESS
             } else {
-                FileOperationsResult.FLAG_FAILED
+                FLAG_FAILED
             }
         } else {
-            FileOperationsResult.FLAG_FAILED
+            FLAG_FAILED
+        }
+    }
+
+    @JvmStatic
+    fun writeFile(file: File, writeEventListener: WriteEventListener) {
+        if ("txt" == getFileExtension(file)) {
+            val fileWriter = FileWriter(file)
+            writeEventListener.writeEvent(fileWriter)
+            fileWriter.close()
         }
     }
 
@@ -165,20 +158,20 @@ object FileUtils {
      * @since 0.0.9
      */
     @JvmOverloads
-    fun makeDir(dirPath: String, dirName: String? = null): FileOperationsResult {
+    fun makeDir(dirPath: String, dirName: String? = null): ResultSet {
         val dir = if (null != dirName) {
             File(dirPath, dirName)
         } else File(dirPath)
         if (dir.exists()) {
-            return FileOperationsResult.FLAG_EXISTS
+            return FLAG_EXISTS
         }
         val path = if (!dir.path.endsWith(File.separator)) {
             dir.path + File.separator
         } else dir.path
         if (File(path).mkdir()) {
-            return FileOperationsResult.FLAG_SUCCESS
+            return FLAG_SUCCESS
         }
-        return FileOperationsResult.FLAG_FAILED
+        return FLAG_FAILED
     }
 
     /**
@@ -189,7 +182,7 @@ object FileUtils {
      * @return Operations result.
      * @since 0.0.9
      */
-    fun deleteDir(dirPath: String, dirName: String? = null): FileOperationsResult {
+    fun deleteDir(dirPath: String, dirName: String? = null): ResultSet {
         val dir = if (null != dirName) {
             File(dirPath, dirName)
         } else File(dirPath)
@@ -203,19 +196,23 @@ object FileUtils {
      * @return Operations result.
      * @since 0.0.9
      */
-    fun deleteDir(file: File): FileOperationsResult {
+    fun deleteDir(file: File): ResultSet {
         if (!file.exists()) {
-            return FileOperationsResult.FLAG_FAILED
+            return FLAG_FAILED
         }
-        for (f in file.listFiles()!!) {
-            if (f.isFile) {
-                f.delete()
-            } else if (f.isDirectory) {
-                deleteDir(f)
+        if (null == file.listFiles()) {
+            file.delete()
+        } else {
+            for (f in file.listFiles()!!) {
+                if (f.isFile) {
+                    f.delete()
+                } else if (f.isDirectory) {
+                    deleteDir(f)
+                }
             }
         }
         file.delete()
-        return FileOperationsResult.FLAG_SUCCESS
+        return FLAG_SUCCESS
     }
 
     /**
@@ -226,23 +223,28 @@ object FileUtils {
      * @return Operations result.
      * @since 0.0.9
      */
-    fun rename(file: File, newName: String): FileOperationsResult {
+    fun rename(file: File, newName: String): ResultSet {
         if (!file.exists()) {
-            return FileOperationsResult.FLAG_NOT_EXISTS
+            return ResultSet.FLAG_NOT_EXISTS
         } else if (newName == file.name) {
-            return FileOperationsResult.FLAG_SUCCESS
+            return FLAG_SUCCESS
         } else {
             return if (null == file.parent) {
-                FileOperationsResult.FLAG_FAILED
+                FLAG_FAILED
             } else {
                 val newFile = File(file.parent!! + File.separator + newName)
                 if (file.renameTo(newFile)) {
-                    FileOperationsResult.FLAG_SUCCESS
+                    FLAG_SUCCESS
                 } else {
-                    FileOperationsResult.FLAG_FAILED
+                    FLAG_FAILED
                 }
             }
         }
+    }
+
+    /** Get the extension name of the file. */
+    fun getFileExtension(file: File): String {
+        return file.name.substring(file.name.lastIndexOf(".") + 1)
     }
 
     /**
@@ -261,28 +263,40 @@ object FileUtils {
         fun writeEvent(fileWriter: FileWriter)
     }
 
+    /**
+     * Register a listener when write result.
+     *
+     * @since 0.0.9
+     */
+    interface WriteEventResultListener {
+
+        /**
+         * On success.
+         *
+         * @since 0.0.9
+         */
+        fun onSuccess()
+
+
+        /**
+         * On failed.Default print StackTrace.
+         *
+         * @since 0.0.9
+         */
+        fun onFailed(e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     /** @since 0.0.9 */
-    internal fun File.realFileWrite(writeListener: WriteEventListener?) {
+    private fun File.realFileWrite() {
         if (this.exists() && this.isFile) {
             this.delete()
         }
         if (!this.parentFile?.exists()!!)
             this.parentFile?.mkdirs()
-        var fileWriter: FileWriter? = null
-        try {
-            fileWriter = FileWriter(this)
-            writeListener?.writeEvent(fileWriter)
-            fileWriter.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        } finally {
-            if (fileWriter != null) {
-                try {
-                    fileWriter.close()
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-            }
-        }
+        val fileOutputStream = FileOutputStream(this)
+        fileOutputStream.close()
     }
+
 }

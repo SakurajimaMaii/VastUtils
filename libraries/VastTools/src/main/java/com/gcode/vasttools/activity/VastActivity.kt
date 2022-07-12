@@ -50,12 +50,17 @@ sealed class VastActivity : AppCompatActivity(),
 
     override var enableFullScreen = false
 
-    override lateinit var mSnackbar: Snackbar
-
     final override lateinit var mContext: Context
 
     final override val defaultTag: String
         get() = this.javaClass.simpleName
+
+    /**
+     * Default [Snackbar] for activity.
+     *
+     * @since 0.0.9
+     */
+    protected lateinit var mSnackbar:Snackbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         initBeforeOnCreate()

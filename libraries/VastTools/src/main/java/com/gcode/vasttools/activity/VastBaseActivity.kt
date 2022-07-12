@@ -50,11 +50,4 @@ internal interface VastBaseActivity {
      */
     val defaultTag:String
 
-    /**
-     * Default [Snackbar] for activity.
-     *
-     * @since 0.0.9
-     */
-    val mSnackbar:Snackbar
-
 }

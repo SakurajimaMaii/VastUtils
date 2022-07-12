@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.snackbar.Snackbar
 import java.lang.reflect.ParameterizedType
 
 // Author: Vast Gui
@@ -49,7 +50,9 @@ sealed class VastActivity : AppCompatActivity(),
 
     override var enableFullScreen = false
 
-    override lateinit var mContext: Context
+    override lateinit var mSnackbar: Snackbar
+
+    final override lateinit var mContext: Context
 
     final override val defaultTag: String
         get() = this.javaClass.simpleName

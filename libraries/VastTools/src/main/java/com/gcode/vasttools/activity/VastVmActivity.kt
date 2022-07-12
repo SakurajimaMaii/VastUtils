@@ -19,6 +19,7 @@ package com.gcode.vasttools.activity
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -30,6 +31,7 @@ import androidx.lifecycle.ViewModelProvider
  * VastVmActivity.
  *
  * Here is an example in kotlin:
+ *
  * ```kotlin
  * class MainActivity : VastVmActivity<MainViewModel>() {
  *     override fun initView(savedInstanceState: Bundle?) {
@@ -39,16 +41,12 @@ import androidx.lifecycle.ViewModelProvider
  * ```
  *
  * @param VM [ViewModel] of the activity.
- *
  * @since 0.0.6
  */
 abstract class VastVmActivity<VM : ViewModel> : VastActivity() {
 
     /**
      * The layout resource id for this activity.
-     *
-     * If you want to use [VastVmActivity] for [Jetpack Compose](https://developer.android.com/jetpack/compose),
-     * please set 0 to [layoutId].
      *
      * @since 0.0.6
      */
@@ -58,12 +56,15 @@ abstract class VastVmActivity<VM : ViewModel> : VastActivity() {
 
     final override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(0 != layoutId){
+        if (0 != layoutId) {
             setContentView(layoutId)
+        } else {
+            throw RuntimeException("Please set correct layout id for the $defaultTag .")
         }
         mViewModel = createViewModel()
         initView(savedInstanceState)
         initWindow()
+        mSnackbar = Snackbar.make(findViewById(layoutId), defaultTag, Snackbar.LENGTH_SHORT)
     }
 
     private fun createViewModel(): VM {

@@ -17,6 +17,7 @@
 package com.gcode.vasttools.activity
 
 import android.content.Context
+import com.google.android.material.snackbar.Snackbar
 
 
 // Author: Vast Gui
@@ -48,5 +49,12 @@ internal interface VastBaseActivity {
      * @since 0.0.9
      */
     val defaultTag:String
+
+    /**
+     * Default [Snackbar] for activity.
+     *
+     * @since 0.0.9
+     */
+    val mSnackbar:Snackbar
 
 }

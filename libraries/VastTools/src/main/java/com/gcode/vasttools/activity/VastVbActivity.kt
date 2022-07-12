@@ -18,6 +18,7 @@ package com.gcode.vasttools.activity
 
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.snackbar.Snackbar
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -29,10 +30,11 @@ import androidx.viewbinding.ViewBinding
 /**
  * VastVbActivity.
  *
- * If your Activity contains to 0 or more ViewModels,
- * I recommend you use [VastVbActivity].
+ * If your Activity contains to 0 or more ViewModels, I recommend you
+ * use [VastVbActivity].
  *
  * Here is an example in kotlin:
+ *
  * ```kotlin
  * class MainActivity : VastVbActivity<ActivityMainBinding>() {
  *     override fun initView(savedInstanceState: Bundle?) {
@@ -42,7 +44,6 @@ import androidx.viewbinding.ViewBinding
  * ```
  *
  * @param VB [ViewBinding] of the activity layout.
- *
  * @since 0.0.6
  */
 abstract class VastVbActivity<VB : ViewBinding> : VastActivity() {
@@ -54,11 +55,12 @@ abstract class VastVbActivity<VB : ViewBinding> : VastActivity() {
         initDataBind()
         initView(savedInstanceState)
         initWindow()
+        mSnackbar = Snackbar.make(mBinding.root, defaultTag, Snackbar.LENGTH_SHORT)
     }
 
     @Suppress("UNCHECKED_CAST")
     private fun initDataBind() {
-        mBinding = getVbClass(this,0,layoutInflater)
+        mBinding = getVbClass(this, 0, layoutInflater)
         setContentView(mBinding.root)
     }
 

@@ -43,7 +43,7 @@ import com.google.android.material.snackbar.Snackbar
  * @param VM [ViewModel] of the activity.
  * @since 0.0.6
  */
-abstract class VastVmActivity<VM : ViewModel> : VastActivity() {
+abstract class VastVmActivity<VM : ViewModel> : VastActivity(), VastBaseActivityViewModel {
 
     /**
      * The layout resource id for this activity.
@@ -61,14 +61,21 @@ abstract class VastVmActivity<VM : ViewModel> : VastActivity() {
         } else {
             throw RuntimeException("Please set correct layout id for the $defaultTag .")
         }
-        mViewModel = createViewModel()
+        mViewModel =
+            ViewModelProvider(this, object : ViewModelProvider.Factory {
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    return createViewModel(modelClass) as T
+                }
+            }).get(
+                getVmClass(this, 0)
+            )
         initView(savedInstanceState)
         initWindow()
         mSnackbar = Snackbar.make(findViewById(layoutId), defaultTag, Snackbar.LENGTH_SHORT)
     }
 
-    private fun createViewModel(): VM {
-        return ViewModelProvider(this).get(getVmClass(this, 0))
+    override fun createViewModel(modelClass: Class<out ViewModel>): ViewModel {
+        return modelClass.newInstance()
     }
 
 }

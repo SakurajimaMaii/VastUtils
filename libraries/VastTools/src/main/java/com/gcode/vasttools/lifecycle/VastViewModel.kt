@@ -16,6 +16,7 @@
 
 package com.gcode.vasttools.lifecycle
 
+import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.ViewModel
 
 
@@ -29,7 +30,7 @@ import androidx.lifecycle.ViewModel
  *
  * @since 0.0.9
  */
-abstract class VastViewModel:ViewModel() {
+abstract class VastViewModel:ViewModel(),DefaultLifecycleObserver {
 
     /**
      * Default tag for log.

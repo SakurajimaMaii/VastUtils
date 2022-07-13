@@ -16,38 +16,22 @@
 
 package com.gcode.vasttools.activity
 
-import android.content.Context
-import com.google.android.material.snackbar.Snackbar
+import androidx.lifecycle.ViewModel
 
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
-// Date: 2022/7/6
+// Date: 2022/7/13
 // Description: 
 // Documentation:
 
 /**
- * Some setting for activity.
+ * Some settings for activity [ViewModel]
  *
- * @since 0.0.6
+ * @since 0.0.9
  */
-internal interface VastBaseActivity {
+interface VastBaseActivityViewModel {
 
-    /**
-     * The [Context] of the activity.
-     *
-     * @since 0.0.8
-     */
-    val mContext: Context
-
-    /**
-     * Default tag for log.
-     *
-     * The value of [defaultTag] will be the class name that extends
-     * [VastVbActivity] , [VastVmActivity] or [VastVbVmActivity].
-     *
-     * @since 0.0.9
-     */
-    val defaultTag:String
+    fun createViewModel(modelClass: Class<out ViewModel>): ViewModel
 
 }

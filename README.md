@@ -11,32 +11,42 @@
 
 <div align="center">English | <a href="https://github.com/SakurajimaMaii/VastUtils/blob/master/README_CN.md">简体中文</a></div>
 
-## VastDocs
+## Documentation
 
 The **VastDocs** provides you with detailed usage examples, click [here](https://sakurajimamaii.github.io/VastDocs/en/) to view the detailed documentation
 
-## Add to your project
+## Quick start
 
-### VastNetStateLayout
+- **VastNetStateLayout**
 
-A layout to set customized network state ui.
 
-```groovy
-implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.3'
-```
+    A layout to set customized network state ui.
 
-### VastTools
+    ```groovy
+    implementation 'io.github.sakurajimamaii:VastNetStateLayout:0.0.3'
+    ```
 
-Easy Quick Android Tools for you to faster project development.
+- **VastTools**
 
-```groovy
-implementation 'io.github.sakurajimamaii:VastTools:0.0.8'
-```
+    Easy Quick Android Tools for you to faster project development.
 
-### VastAdapter
+    ```groovy
+    implementation 'io.github.sakurajimamaii:VastTools:0.0.8'
+    ```
 
-Help you quickly build an Adapter suitable for RecyclerView.
+- **VastAdapter**
 
-```groovy
-implementation 'io.github.sakurajimamaii:VastAdapter:0.0.5'
-```
+    Help you quickly build an Adapter suitable for RecyclerView.
+
+    ```groovy
+    implementation 'io.github.sakurajimamaii:VastAdapter:0.0.5'
+    ```
+
+## Acknowledgements
+
+Thanks to the following users for helping me with the development project.
+
+|**Avator**| **Name**  | **Website**                                                |
+|:--:| :--: | :--: | 
+| <img src="https://avatars.githubusercontent.com/u/23447567?v=4" width=15%> | lt | [https://github.com/ltttttttttttt](https://github.com/ltttttttttttt) |
+| <img src="https://avatars.githubusercontent.com/u/45026715?v=4" width=15%> | 夜里的向日葵 | [https://github.com/lookup-cat](https://github.com/lookup-cat) |

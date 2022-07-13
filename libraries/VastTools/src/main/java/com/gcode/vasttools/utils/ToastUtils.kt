@@ -53,8 +53,9 @@ object ToastUtils {
      * @param id message string id of the toast.
      * @since 0.0.5
      */
+    @JvmStatic
     fun showShortMsg(context: Context, @StringRes id: Int) =
-        showShortMsg(context, context.resources.getString(id))
+        showShortMsg(context, ResUtils.getString(id))
 
 
     /**
@@ -72,6 +73,7 @@ object ToastUtils {
      * @param id message string id of the toast.
      * @since 0.0.5
      */
+    @JvmStatic
     fun showLongMsg(context: Context, @StringRes id: Int) =
-        showShortMsg(context, context.resources.getString(id))
+        showShortMsg(context, ResUtils.getString(id))
 }

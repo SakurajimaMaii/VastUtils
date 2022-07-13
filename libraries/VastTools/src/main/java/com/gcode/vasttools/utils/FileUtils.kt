@@ -21,7 +21,6 @@ import com.gcode.vasttools.utils.FileUtils.ResultSet.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.FileWriter
-import java.net.URI
 
 // Author: SakurajimaMai
 // Email: guihy2019@gmail.com
@@ -89,7 +88,7 @@ object FileUtils {
     }
 
     /**
-     * Delete file.
+     * Delete [file].
      *
      * @param file the file you want to delete.
      * @return [ResultSet]
@@ -108,6 +107,14 @@ object FileUtils {
         }
     }
 
+    /**
+     * Write to the [file].
+     *
+     * @param file the file you want to write.
+     * @param writeEventListener register a listener for writing.
+     * @return [ResultSet]
+     * @since 0.0.9
+     */
     @JvmStatic
     fun writeFile(file: File, writeEventListener: WriteEventListener): ResultSet {
         return if (!file.exists())
@@ -127,6 +134,7 @@ object FileUtils {
      * @return [ResultSet]
      * @since 0.0.9
      */
+    @JvmStatic
     fun makeDir(dir: File): ResultSet {
         if (dir.exists()) {
             return FLAG_EXISTS
@@ -147,6 +155,7 @@ object FileUtils {
      * @return Operations result.
      * @since 0.0.9
      */
+    @JvmStatic
     fun deleteDir(file: File): ResultSet {
         if (!file.exists()) {
             return FLAG_FAILED
@@ -174,6 +183,7 @@ object FileUtils {
      * @return Operations result.
      * @since 0.0.9
      */
+    @JvmStatic
     fun rename(file: File, newName: String): ResultSet {
         if (!file.exists()) {
             return ResultSet.FLAG_NOT_EXISTS
@@ -198,6 +208,7 @@ object FileUtils {
      *
      * @since 0.0.9
      */
+    @JvmStatic
     fun getFileExtension(file: File): String {
         return file.name.substring(file.name.lastIndexOf(".") + 1)
     }

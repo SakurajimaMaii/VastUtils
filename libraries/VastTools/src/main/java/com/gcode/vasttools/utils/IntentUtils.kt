@@ -110,7 +110,6 @@ object IntentUtils {
      */
     @JvmStatic
     @JvmOverloads
-    @Throws(SecurityException::class)
     fun sendMmsMessage(
         context: Context,
         message: String = "",

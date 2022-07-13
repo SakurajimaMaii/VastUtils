@@ -37,6 +37,7 @@ object IDCardUtils {
      *     successful.
      * @since 0.0.6
      */
+    @JvmStatic
     fun validateIDCardNumber(IDStr: String): String {
         var errorInfo: String
         val valCodeArr = arrayOf(

@@ -33,6 +33,7 @@ object MapUtils {
      * @return true if GPS is turned on, false otherwise.
      * @since 0.0.8
      */
+    @JvmStatic
     fun isGPSOPen(): Boolean {
         val locationManager = ContextHelper.getAppContext()
             .getSystemService(Context.LOCATION_SERVICE) as LocationManager

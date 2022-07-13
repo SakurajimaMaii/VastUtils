@@ -49,6 +49,7 @@ object UriUtils {
      * @return the path string.
      * @since 0.0.9
      */
+    @JvmStatic
     @JvmOverloads
     fun getRealPath(uri: Uri, context: Context = ContextHelper.getAppContext()): String? {
         var filePath = ""

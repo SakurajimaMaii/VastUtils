@@ -135,6 +135,7 @@ object DensityUtils {
      *     appropriate metrics(in pixels).
      * @since 0.0.6
      */
+    @JvmStatic
     val Float.PX
         get() = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_PX,

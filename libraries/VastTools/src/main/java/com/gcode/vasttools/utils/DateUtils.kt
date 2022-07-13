@@ -148,6 +148,7 @@ object DateUtils {
      *
      * @since 0.0.4
      */
+    @JvmStatic
     val currentTime: String
         get() {
             return dateTimeToGMT()
@@ -158,6 +159,7 @@ object DateUtils {
      *
      * @since 0.0.4
      */
+    @JvmStatic
     val currentTimeZone: String
         get() {
             return TimeZone.getDefault().getDisplayName(true, TimeZone.SHORT, Locale.getDefault())
@@ -168,6 +170,7 @@ object DateUtils {
      *
      * @since 0.0.2
      */
+    @JvmStatic
     fun minDate(): Date {
         val result = Date()
         result.time = GregorianCalendar().let {
@@ -183,6 +186,7 @@ object DateUtils {
      * @return Get the minimum time string in the given format.
      * @since 0.0.5
      */
+    @JvmStatic
     @JvmOverloads
     fun minDateToString(@DateFormatString dateFormat: String = TIME_FORMAT): String {
         return datetimeToString(minDate(), dateFormat)
@@ -212,10 +216,9 @@ object DateUtils {
      *     format.
      * @return If [timeString] parsing fails, it returns 'null'
      *     object.Otherwise, it returns date object.
-     * @throws [ParseException] If [timeString] parsing fails.
      * @since 0.0.1
      */
-    @Throws(ParseException::class)
+    @JvmStatic
     fun datetimeFromString(
         timeString: String,
         @DateFormatString timeStringFormat: String
@@ -238,6 +241,7 @@ object DateUtils {
      * @return the formatted time string.
      * @since 0.0.1
      */
+    @JvmStatic
     @JvmOverloads
     fun datetimeToString(
         date: Date = Date(),
@@ -259,6 +263,7 @@ object DateUtils {
      * @return the formatted time string.
      * @since 0.0.4
      */
+    @JvmStatic
     @JvmOverloads
     fun dateTimeToGMT(
         @GmtFormatString gmtFormat: String = currentTimeZone,
@@ -279,6 +284,7 @@ object DateUtils {
      * @return the formatted time string.
      * @since 0.0.1
      */
+    @JvmStatic
     fun dateTimeFromGMT(
         utcTime: String,
         @DateFormatString dateFormat: String
@@ -305,6 +311,7 @@ object DateUtils {
      * @return WeekStartTime parsed in [yearFormat] format.
      * @since 0.0.1
      */
+    @JvmStatic
     @JvmOverloads
     fun weekStartTime(@YearFormatString yearFormat: String = DATE_FORMAT): String {
         val simpleDateFormat = SimpleDateFormat(yearFormat, Locale.getDefault())
@@ -325,6 +332,7 @@ object DateUtils {
      * @return WeekEndTime parsed in [yearFormat] format.
      * @since 0.0.1
      */
+    @JvmStatic
     @JvmOverloads
     fun weekEndTime(@YearFormatString yearFormat: String = DATE_FORMAT): String {
         val simpleDateFormat = SimpleDateFormat(yearFormat, Locale.getDefault())
@@ -346,6 +354,7 @@ object DateUtils {
      * @return WeekStartTime parsed in [yearFormat] format.
      * @since 0.0.1
      */
+    @JvmStatic
     @JvmOverloads
     fun getWeekStartTime(
         calendar: Calendar = Calendar.getInstance(),
@@ -365,6 +374,7 @@ object DateUtils {
      * @return WeekEndTime parsed in [yearFormat] format.
      * @since 0.0.1
      */
+    @JvmStatic
     @JvmOverloads
     fun getWeekEndTime(
         calendar: Calendar = Calendar.getInstance(),

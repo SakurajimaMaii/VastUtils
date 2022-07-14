@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -13,14 +14,13 @@ android {
         }
     }
     namespace 'com.gcode.vastutils'
-    compileSdkVersion compile_sdk_version as int
-
+    compileSdkVersion Versions.compile_sdk_version
     defaultConfig {
         applicationId "com.gcode.vastutils"
-        minSdkVersion min_sdk_version as int
-        targetSdkVersion target_sdk_version as int
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Versions.min_sdk_version
+        targetSdkVersion Versions.target_sdk_version
+        versionCode Versions.version_code
+        versionName Versions.version_name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -42,10 +42,7 @@ android {
 
 dependencies {
 
-    implementation "androidx.core:core-ktx:$core_ktx_version"
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "com.google.android.material:material:$material_version"
-    testImplementation "junit:junit:$junit_version"
-    androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
+    rootProject.AllModuleDependencies(dependencies)
+    rootProject.AllModuleDependenciesKt(dependencies)
+
 }

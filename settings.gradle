@@ -12,7 +12,8 @@ def libs = [
         "VastTools",
         "VastNetStateLayout",
         "VastSwipeRecyclerView",
-        "VastUtils"
+        "VastUtils",
+        "VastNetProgressManager"
 ]
 
 libs.forEach {
@@ -30,4 +31,3 @@ def skin = [
 skin.forEach {
      include(":skin:$it")
 }
-include ':libraries:VastNetProgressManager'

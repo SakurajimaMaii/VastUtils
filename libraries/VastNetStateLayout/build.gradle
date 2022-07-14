@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdk compile_sdk_version as int
+    compileSdk Versions.compile_sdk_version
 
     defaultConfig {
-        minSdk min_sdk_version as int
-        targetSdk target_sdk_version as int
+        minSdk Versions.min_sdk_version
+        targetSdk Versions.target_sdk_version
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -30,13 +30,12 @@ android {
 }
 
 dependencies {
-    implementation "androidx.fragment:fragment-ktx:$fragment_version"
-    implementation "androidx.activity:activity-ktx:$activity_version"
-    implementation "androidx.core:core-ktx:$core_ktx_version"
-    implementation "com.google.android.material:material:$material_version"
-    testImplementation "junit:junit:$junit_version"
-    androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
+
+    rootProject.AllModuleDependencies(dependencies)
+    rootProject.AllModuleDependenciesKt(dependencies)
+    implementation(Dependencies.version_activity_ktx)
+    implementation(Dependencies.version_material)
+
 }
 
 ext {

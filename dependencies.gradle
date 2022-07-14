@@ -1,0 +1,41 @@
+static def AllModuleDependencies(DependencyHandler dependencyHandler) {
+    dependencyHandler.implementation Dependencies.version_annotation
+    dependencyHandler.implementation Dependencies.version_appcompat
+    dependencyHandler.implementation Dependencies.version_arch_core_runtime
+    dependencyHandler.implementation Dependencies.version_constraintlayout
+    dependencyHandler.implementation Dependencies.version_core_splashscreen
+    dependencyHandler.implementation Dependencies.version_material
+    dependencyHandler.implementation Dependencies.version_okhttp3
+    dependencyHandler.implementation Dependencies.version_recyclerview
+    dependencyHandler.implementation Dependencies.version_recyclerview
+    dependencyHandler.implementation Dependencies.version_start_up_runtime_version
+    dependencyHandler.implementation Dependencies.version_test_monitor
+    dependencyHandler.androidTestImplementation Dependencies.version_espresso_core
+    dependencyHandler.androidTestImplementation Dependencies.version_ext_junit
+    dependencyHandler.testImplementation Dependencies.version_junit
+}
+
+static def AllModuleDependenciesJava(DependencyHandler dependencyHandler) {
+    dependencyHandler.implementation Dependencies.version_activity
+    dependencyHandler.implementation Dependencies.version_fragment
+    dependencyHandler.implementation Dependencies.version_core
+    dependencyHandler.implementation Dependencies.version_lifecycle_livedata_core
+    dependencyHandler.implementation Dependencies.version_lifecycle_livedata
+    dependencyHandler.implementation Dependencies.version_lifecycle_runtime
+    dependencyHandler.implementation Dependencies.version_lifecycle_viewmodel
+}
+
+static def AllModuleDependenciesKt(DependencyHandler dependencyHandler) {
+    dependencyHandler.implementation Dependencies.version_activity_ktx
+    dependencyHandler.implementation Dependencies.version_core_ktx
+    dependencyHandler.implementation Dependencies.version_fragment_ktx
+    dependencyHandler.implementation Dependencies.version_kotlin_reflect
+    dependencyHandler.implementation Dependencies.version_lifecycle_livedata_core_ktx
+    dependencyHandler.implementation Dependencies.version_lifecycle_livedata_ktx
+    dependencyHandler.implementation Dependencies.version_lifecycle_runtime_ktx
+    dependencyHandler.implementation Dependencies.version_lifecycle_viewmodel_ktx
+}
+
+ext.AllModuleDependencies = this.&AllModuleDependencies
+ext.AllModuleDependenciesJava = this.&AllModuleDependenciesJava
+ext.AllModuleDependenciesKt = this.&AllModuleDependenciesKt

@@ -19,9 +19,9 @@ package com.gcode.vasttools.utils
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import com.gcode.progressmanager.ProgressListener
-import com.gcode.progressmanager.ProgressManager
-import com.gcode.progressmanager.body.ProgressInfo
+import me.jessyan.progressmanager.ProgressListener
+import me.jessyan.progressmanager.ProgressManager
+import me.jessyan.progressmanager.body.ProgressInfo
 import okhttp3.*
 import java.io.File
 import java.io.FileOutputStream

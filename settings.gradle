@@ -13,7 +13,6 @@ def libs = [
         "VastNetStateLayout",
         "VastSwipeRecyclerView",
         "VastUtils",
-        "VastNetProgressManager"
 ]
 
 libs.forEach {

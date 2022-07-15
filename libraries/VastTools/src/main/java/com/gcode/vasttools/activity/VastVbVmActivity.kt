@@ -45,8 +45,7 @@ import com.google.android.material.snackbar.Snackbar
  * @param VM [ViewModel] of the activity.
  * @since 0.0.6
  */
-abstract class VastVbVmActivity<VB : ViewBinding, VM : ViewModel> : VastActivity(),
-    VastBaseActivityViewModel {
+abstract class VastVbVmActivity<VB : ViewBinding, VM : ViewModel> : VastActivity() {
 
     protected lateinit var mBinding: VB
     protected lateinit var mViewModel: VM
@@ -59,9 +58,7 @@ abstract class VastVbVmActivity<VB : ViewBinding, VM : ViewModel> : VastActivity
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
                     return createViewModel(modelClass) as T
                 }
-            }).get(
-                getVmClass(this, 0)
-            )
+            })[getVmClass(this, 1)]
         initView(savedInstanceState)
         initWindow()
         mSnackbar = Snackbar.make(mBinding.root, defaultTag, Snackbar.LENGTH_SHORT)

@@ -33,11 +33,11 @@ import androidx.activity.ComponentActivity
  *
  * @since 0.0.9
  */
-abstract class VastComposeActivity : ComponentActivity(), VastBaseActivity {
+abstract class VastComposeActivity : ComponentActivity() {
 
-    override lateinit var mContext: Context
+    protected lateinit var mContext: Context
 
-    final override val defaultTag: String
+    protected val defaultTag: String
         get() = this.javaClass.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {

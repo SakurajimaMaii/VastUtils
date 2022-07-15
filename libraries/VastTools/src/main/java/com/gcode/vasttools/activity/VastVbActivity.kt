@@ -17,6 +17,7 @@
 package com.gcode.vasttools.activity
 
 import android.os.Bundle
+import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -62,6 +63,10 @@ abstract class VastVbActivity<VB : ViewBinding> : VastActivity() {
     private fun initDataBind() {
         mBinding = getVbClass(this, 0, layoutInflater)
         setContentView(mBinding.root)
+    }
+
+    final override fun createViewModel(modelClass: Class<out ViewModel>): ViewModel {
+        return modelClass.newInstance()
     }
 
 }

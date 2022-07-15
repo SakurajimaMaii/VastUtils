@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("UNCHECKED_CAST")
+
 package com.gcode.vasttools.activity
 
 import android.os.Bundle
@@ -43,7 +45,7 @@ import com.google.android.material.snackbar.Snackbar
  * @param VM [ViewModel] of the activity.
  * @since 0.0.6
  */
-abstract class VastVmActivity<VM : ViewModel> : VastActivity(), VastBaseActivityViewModel {
+abstract class VastVmActivity<VM : ViewModel> : VastActivity() {
 
     /**
      * The layout resource id for this activity.
@@ -66,9 +68,7 @@ abstract class VastVmActivity<VM : ViewModel> : VastActivity(), VastBaseActivity
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
                     return createViewModel(modelClass) as T
                 }
-            }).get(
-                getVmClass(this, 0)
-            )
+            })[getVmClass(this, 0)]
         initView(savedInstanceState)
         initWindow()
         mSnackbar = Snackbar.make(findViewById(layoutId), defaultTag, Snackbar.LENGTH_SHORT)

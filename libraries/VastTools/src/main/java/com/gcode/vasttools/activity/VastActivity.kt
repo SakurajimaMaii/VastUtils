@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("DEPRECATION", "UNCHECKED_CAST")
+
 package com.gcode.vasttools.activity
 
 import android.content.Context
@@ -42,17 +44,41 @@ import java.lang.reflect.ParameterizedType
  *
  * @since 0.0.9
  */
-@Suppress("UNCHECKED_CAST")
-sealed class VastActivity : AppCompatActivity(),
-    VastBaseActivity, VastBaseActivityWindow {
+sealed class VastActivity : AppCompatActivity() {
 
-    override var enableActionBar = true
+    /**
+     * True if you want to show the ActionBar,false otherwise.
+     *
+     * @since 0.0.6
+     */
+    protected var enableActionBar = true
 
-    override var enableFullScreen = false
+    /**
+     * True if you want to set fullscreen,false otherwise.
+     *
+     * If you set [enableFullScreen] to true,the ActionBar
+     * will not be shown.
+     *
+     * @since 0.0.6
+     */
+    protected var enableFullScreen = false
 
-    final override lateinit var mContext: Context
+    /**
+     * The [Context] of the activity.
+     *
+     * @since 0.0.8
+     */
+    protected lateinit var mContext: Context
 
-    final override val defaultTag: String
+    /**
+     * Default tag for log.
+     *
+     * The value of [defaultTag] will be the class name that extends
+     * [VastVbActivity] , [VastVmActivity] or [VastVbVmActivity].
+     *
+     * @since 0.0.9
+     */
+    protected val defaultTag: String
         get() = this.javaClass.simpleName
 
     /**
@@ -81,6 +107,22 @@ sealed class VastActivity : AppCompatActivity(),
      * @since 0.0.6
      */
     protected abstract fun initView(savedInstanceState: Bundle?)
+
+    /**
+     * Return a [ViewModel].
+     *
+     * If you want to initialization a [ViewModel] with parameters,just do like this:
+     * ```kotlin
+     * override fun createViewModel(modelClass: Class<out ViewModel>): ViewModel {
+     *      return MainSharedVM("MyVM")
+     * }
+     * ```
+     *
+     * @param modelClass by default, Activity will get the [ViewModel] by `modelClass.newInstance()`.
+     * @return the [ViewModel] of the Activity.
+     * @since 0.0.9
+     */
+    protected abstract fun createViewModel(modelClass: Class<out ViewModel>): ViewModel
 
     /**
      * initialize activity window.

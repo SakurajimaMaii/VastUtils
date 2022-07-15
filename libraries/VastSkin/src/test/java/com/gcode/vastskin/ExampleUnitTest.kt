@@ -14,14 +14,20 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.skin
+package com.gcode.vastskin
 
-// Author: Vast Gui
-// Email: guihy2019@gmail.com
-// Date: 2022/3/27 18:17
+import org.junit.Test
 
-interface VastSkinSupport {
+import org.junit.Assert.*
 
-    fun applySkin()
-
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
+ */
+class ExampleUnitTest {
+    @Test
+    fun addition_isCorrect() {
+        assertEquals(4, 2 + 2)
+    }
 }

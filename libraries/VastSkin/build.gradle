@@ -1,0 +1,65 @@
+/*
+ * Copyright 2022 VastGui
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+plugins {
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+}
+
+android {
+    namespace = "com.gcode.vastskin"
+    compileSdk = Versions.compile_sdk_version
+
+    defaultConfig {
+        minSdk = Versions.min_sdk_version
+        targetSdk = Versions.target_sdk_version
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    rootProject.AllModuleDependencies(dependencies)
+    rootProject.AllModuleDependenciesKt(dependencies)
+}
+
+ext {
+    PUBLISH_GROUP_ID = "io.github.sakurajimamaii"
+    PUBLISH_ARTIFACT_ID = 'VastSkin'
+    PUBLISH_VERSION = '0.0.1'
+    PUBLISH_DESCRIPTION = 'Vast Skin.'
+    PUBLISH_URL = 'https://github.com/SakurajimaMaii/VastUtils/tree/master/libraries/VastSkin'
+}
+
+apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"

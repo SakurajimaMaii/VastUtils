@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.gcode.vasttools.skin.utils
+package com.gcode.vastskin.utils
 
 import android.app.Activity
 import android.content.Context
-import com.gcode.vasttools.skin.utils.VastSkinResources.getColor
+import com.gcode.vastskin.utils.VastSkinResources.getColor
 
 object VastSkinUtils {
 

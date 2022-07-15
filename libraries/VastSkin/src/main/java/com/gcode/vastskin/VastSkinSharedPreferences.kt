@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.skin
+package com.gcode.vastskin
 
 import android.content.SharedPreferences
 

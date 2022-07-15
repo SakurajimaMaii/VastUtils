@@ -18,7 +18,6 @@ package com.gcode.vasttools.helper
 
 import android.app.Application
 import android.content.Context
-import com.gcode.vasttools.skin.VastSkinManager
 import com.gcode.vasttools.utils.LogUtils
 
 
@@ -43,7 +42,6 @@ object ContextHelper{
     fun init(application: Application){
         if(!::application.isInitialized){
             this.application = application
-            VastSkinManager.initVastThemeManager(application)
             LogUtils.syncIsDeBug(application.applicationContext)
         }
     }

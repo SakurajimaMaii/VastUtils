@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.skin.model
+package com.gcode.vastskin.model
 
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -22,12 +22,16 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.ViewCompat
-import com.gcode.vasttools.skin.*
-import com.gcode.vasttools.skin.CHANGEABLY_BACKGROUND
-import com.gcode.vasttools.skin.CHANGEABLY_DRAWABLE_LEFT
-import com.gcode.vasttools.skin.CHANGEABLY_SRC
-import com.gcode.vasttools.skin.CHANGEABLY_TEXT_COLOR
-import com.gcode.vasttools.skin.utils.VastSkinResources
+import com.gcode.vastskin.*
+import com.gcode.vastskin.CHANGEABLY_BACKGROUND
+import com.gcode.vastskin.CHANGEABLY_DRAWABLE_BOTTOM
+import com.gcode.vastskin.CHANGEABLY_DRAWABLE_LEFT
+import com.gcode.vastskin.CHANGEABLY_DRAWABLE_RIGHT
+import com.gcode.vastskin.CHANGEABLY_DRAWABLE_TOP
+import com.gcode.vastskin.CHANGEABLY_SRC
+import com.gcode.vastskin.CHANGEABLY_TEXT
+import com.gcode.vastskin.CHANGEABLY_TEXT_COLOR
+import com.gcode.vastskin.utils.VastSkinResources
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -71,6 +75,7 @@ internal class VastSkinView(private var view: View, private var skinPairs: List<
                             (view as ImageView).setImageDrawable(background as Drawable?)
                         }
                     }
+                    CHANGEABLY_TEXT -> (view as TextView).text = VastSkinResources.getText(skinPair.resId)
                     CHANGEABLY_TEXT_COLOR -> (view as TextView).setTextColor(
                         VastSkinResources.getColorStateList(skinPair.resId)
                     )

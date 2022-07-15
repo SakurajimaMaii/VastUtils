@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.skin.utils
+package com.gcode.vastskin.utils
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -112,6 +112,19 @@ object VastSkinResources {
         } else {
             // drawable
             getDrawable(resId)
+        }
+    }
+
+    /**
+     * Get string by [resId].
+     *
+     * @since 0.0.9
+     */
+    fun getText(resId:Int):String{
+        return if(isDefaultTheme){
+            mAppResources.getString(resId)
+        }else{
+            mThemeResources!!.getString(resId)
         }
     }
 }

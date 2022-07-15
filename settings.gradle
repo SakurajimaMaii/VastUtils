@@ -11,6 +11,7 @@ def libs = [
         "VastAdapter",
         "VastTools",
         "VastNetStateLayout",
+        "VastSkin",
         "VastSwipeRecyclerView",
         "VastUtils",
 ]

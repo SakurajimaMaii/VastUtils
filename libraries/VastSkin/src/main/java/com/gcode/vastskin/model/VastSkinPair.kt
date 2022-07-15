@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.skin.model
+package com.gcode.vastskin.model
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com

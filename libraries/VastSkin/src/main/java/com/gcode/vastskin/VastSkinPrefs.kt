@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.skin
+package com.gcode.vastskin
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -24,22 +24,24 @@ internal const val THEME_FILE = "com.gcode.vastskin"
 internal const val THEME_PATH = "com.gcode.vastskin.path"
 
 internal const val CHANGEABLY_BACKGROUND = "background"
-internal const val CHANGEABLY_SRC = "src"
-internal const val CHANGEABLY_TEXT_COLOR = "textColor"
-internal const val CHANGEABLY_DRAWABLE_LEFT = "drawableLeft"
-internal const val CHANGEABLY_DRAWABLE_TOP = "drawableTop"
-internal const val CHANGEABLY_DRAWABLE_RIGHT = "drawableRight"
 internal const val CHANGEABLY_DRAWABLE_BOTTOM = "drawableBottom"
+internal const val CHANGEABLY_DRAWABLE_LEFT = "drawableLeft"
+internal const val CHANGEABLY_DRAWABLE_RIGHT = "drawableRight"
+internal const val CHANGEABLY_DRAWABLE_TOP = "drawableTop"
+internal const val CHANGEABLY_SRC = "src"
+internal const val CHANGEABLY_TEXT = "text"
+internal const val CHANGEABLY_TEXT_COLOR = "textColor"
 
 /**
  * Vast skin currently supports changeably resource types.
  */
 internal val ChangeablyAttrs: MutableList<String> = ArrayList<String>().apply {
     add(CHANGEABLY_BACKGROUND)
-    add(CHANGEABLY_SRC)
-    add(CHANGEABLY_TEXT_COLOR)
     add(CHANGEABLY_DRAWABLE_LEFT)
     add(CHANGEABLY_DRAWABLE_TOP)
     add(CHANGEABLY_DRAWABLE_RIGHT)
     add(CHANGEABLY_DRAWABLE_BOTTOM)
+    add(CHANGEABLY_SRC)
+    add(CHANGEABLY_TEXT)
+    add(CHANGEABLY_TEXT_COLOR)
 }

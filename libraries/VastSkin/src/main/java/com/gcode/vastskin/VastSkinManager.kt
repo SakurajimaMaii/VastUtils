@@ -15,7 +15,7 @@
  */
 @file:Suppress("DEPRECATION")
 
-package com.gcode.vasttools.skin
+package com.gcode.vastskin
 
 import android.app.Application
 import android.content.Context
@@ -24,8 +24,7 @@ import android.content.pm.PackageManager
 import android.content.res.AssetManager
 import android.content.res.Resources
 import android.text.TextUtils
-import com.gcode.vasttools.skin.utils.VastSkinResources
-import com.gcode.vasttools.helper.ContextHelper
+import com.gcode.vastskin.utils.VastSkinResources
 import java.util.*
 
 // Author: Vast Gui
@@ -57,12 +56,12 @@ object VastSkinManager : Observable() {
     internal lateinit var sharedPreferences:SharedPreferences
 
     /**
-     * [VastSkinManager] will be initialized in [ContextHelper].
+     * Initialization the [VastSkinManager].
      *
      * If [originalApplication] and [skinActivityLifecycle] is initialized,
      * when you call [initVastThemeManager],it will do nothing.
      */
-    internal fun initVastThemeManager(application:Application){
+    fun initVastThemeManager(application:Application){
         if(!this::originalApplication.isInitialized and !this::skinActivityLifecycle.isInitialized){
             originalApplication = application
             VastSkinResources.initSkinResources(originalApplication)
@@ -80,6 +79,7 @@ object VastSkinManager : Observable() {
      *
      * @param skinPath Theme path,if empty use default skin.
      */
+    @JvmStatic
     fun loadSkin(skinPath: String?) {
         if (TextUtils.isEmpty(skinPath)) {
             VastSkinSharedPreferences.reset()

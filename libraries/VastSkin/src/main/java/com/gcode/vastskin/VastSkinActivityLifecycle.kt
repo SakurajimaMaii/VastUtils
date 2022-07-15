@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.skin
+package com.gcode.vastskin
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -24,7 +24,7 @@ import android.os.Bundle
 import android.util.ArrayMap
 import android.view.LayoutInflater
 import androidx.core.view.LayoutInflaterCompat
-import com.gcode.vasttools.skin.utils.VastSkinUtils
+import com.gcode.vastskin.utils.VastSkinUtils
 import java.util.*
 
 // Author: Vast Gui
@@ -41,7 +41,7 @@ internal class VastSkinActivityLifecycle constructor(private val mObservable: Ob
         VastSkinUtils.updateStatusBarColor(activity)
         val layoutInflater = activity.layoutInflater
 
-        val skinLayoutInflaterFactory:VastSkinLayoutInflaterFactory
+        val skinLayoutInflaterFactory: VastSkinLayoutInflaterFactory
         if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.P){
             try {
                 // Set the mFactorySet with false

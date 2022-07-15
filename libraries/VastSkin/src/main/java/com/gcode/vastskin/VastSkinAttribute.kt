@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.skin
+package com.gcode.vastskin
 
 import android.util.AttributeSet
 import android.view.View
-import com.gcode.vasttools.skin.model.VastSkinPair
-import com.gcode.vasttools.skin.model.VastSkinView
-import com.gcode.vasttools.skin.utils.VastSkinUtils
+import com.gcode.vastskin.model.VastSkinPair
+import com.gcode.vastskin.model.VastSkinView
+import com.gcode.vastskin.utils.VastSkinUtils
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -39,7 +39,7 @@ internal class VastSkinAttribute {
     fun look(view: View, attrs: AttributeSet) {
         val mSkinPars: MutableList<VastSkinPair> = ArrayList()
         for (i in 0 until attrs.attributeCount) {
-            // Get the view attr name.
+            // Get the view attributes name.
             val attributeName = attrs.getAttributeName(i)
             if (ChangeablyAttrs.contains(attributeName)) {
                 val attributeValue = attrs.getAttributeValue(i)
@@ -66,9 +66,7 @@ internal class VastSkinAttribute {
         }
     }
 
-    /**
-     * Change the attr of view in [mSkinViews]
-     */
+    /** Change the attr of view in [mSkinViews] */
     fun applySkin() {
         for (mSkinView in mSkinViews) {
             mSkinView.applySkin()

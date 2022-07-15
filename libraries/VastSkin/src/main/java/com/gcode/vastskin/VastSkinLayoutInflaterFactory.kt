@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.gcode.vasttools.skin
+package com.gcode.vastskin
 
 import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import com.gcode.vasttools.skin.utils.VastSkinUtils
+import com.gcode.vastskin.utils.VastSkinUtils
 import java.lang.reflect.Constructor
 import java.util.*
 import kotlin.collections.HashMap
@@ -30,7 +30,8 @@ import kotlin.collections.HashMap
 // Email: guihy2019@gmail.com
 // Date: 2022/3/27 18:35
 
-internal class VastSkinLayoutInflaterFactory(private val activity: Activity) : LayoutInflater.Factory2,
+internal class VastSkinLayoutInflaterFactory(private val activity: Activity) :
+    LayoutInflater.Factory2,
     Observer {
 
     private val skinAttribute: VastSkinAttribute =

@@ -25,6 +25,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.gcode.vasttools.extension.NotNUllSingleVar
 import java.lang.reflect.ParameterizedType
 
 // Author: Vast Gui
@@ -65,10 +66,45 @@ sealed class VastBaseFragment : Fragment() {
         get() = this.javaClass.simpleName
 
     /**
+     * When [vmBySelf] is true, the ViewModel representing the Fragment
+     * is retained by itself. When you want the ViewModel to be retained
+     * by its associated Activity, please set [vmBySelf] to false.
+     *
+     * You can only set [vmBySelf] through [initVmBySelf], the default value
+     * of [vmBySelf] is false.
+     *
+     * @since 0.0.9
+     */
+    protected var vmBySelf:Boolean by NotNUllSingleVar()
+
+    /**
      * @param savedInstanceState
      * @since 0.0.6
      */
     protected abstract fun initView(savedInstanceState: Bundle?)
+
+    /**
+     * Initialize the [vmBySelf].
+     *
+     * @since 0.0.9
+     */
+    protected abstract fun initVmBySelf():Boolean
+
+    /**
+     * Return a [ViewModel].
+     *
+     * If you want to initialization a [ViewModel] with parameters,just do like this:
+     * ```kotlin
+     * override fun createViewModel(modelClass: Class<out ViewModel>): ViewModel {
+     *      return MainSharedVM("MyVM")
+     * }
+     * ```
+     *
+     * @param modelClass by default, Fragment will get the [ViewModel] by `modelClass.newInstance()`.
+     * @return the [ViewModel] of the Fragment.
+     * @since 0.0.9
+     */
+    protected abstract fun createViewModel(modelClass: Class<out ViewModel>): ViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,

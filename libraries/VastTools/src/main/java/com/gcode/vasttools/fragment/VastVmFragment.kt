@@ -24,6 +24,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.gcode.vasttools.extension.NotNUllSingleVar
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
@@ -48,7 +49,7 @@ import androidx.lifecycle.ViewModelProvider
  * @param VM [ViewModel] of the fragment.
  * @since 0.0.6
  */
-abstract class VastVmFragment<VM : ViewModel> : VastBaseVmFragment() {
+abstract class VastVmFragment<VM : ViewModel> : VastBaseFragment() {
 
     protected lateinit var mViewModel: VM
 

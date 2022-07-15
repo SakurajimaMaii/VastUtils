@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 
 // Author: Vast Gui
@@ -32,6 +33,7 @@ import androidx.viewbinding.ViewBinding
  * VastVbFragment.
  *
  * Here is an example in kotlin:
+ *
  * ```kotlin
  * // Because using the ViewBinding,so just set the layoutId to 0.
  * class MainFragment(override val layoutId: Int = 0) : VastVbFragment<FragmentMainBinding>() {
@@ -42,10 +44,9 @@ import androidx.viewbinding.ViewBinding
  * ```
  *
  * @param VB [ViewBinding] of the fragment layout.
- *
  * @since 0.0.6
  */
-abstract class VastVbFragment<VB : ViewBinding>: VastBaseFragment() {
+abstract class VastVbFragment<VB : ViewBinding> : VastBaseFragment() {
 
     protected lateinit var mBinding: VB
 
@@ -54,6 +55,7 @@ abstract class VastVbFragment<VB : ViewBinding>: VastBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        vmBySelf = initVmBySelf()
         initDataBind()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
@@ -65,11 +67,17 @@ abstract class VastVbFragment<VB : ViewBinding>: VastBaseFragment() {
 
     @Suppress("UNCHECKED_CAST")
     private fun initDataBind() {
-        mBinding = getVbClass(this,0,layoutInflater)
+        mBinding = getVbClass(this, 0, layoutInflater)
         if (dataBindView != null) {
             (dataBindView!!.parent as? ViewGroup)?.removeView(dataBindView)
         }
         dataBindView = mBinding.root
+    }
+
+    final override fun initVmBySelf(): Boolean = false
+
+    final override fun createViewModel(modelClass: Class<out ViewModel>): ViewModel {
+        return modelClass.newInstance()
     }
 
 }

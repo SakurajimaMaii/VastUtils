@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("UNCHECKED_CAST")
+
 package com.gcode.vasttools.fragment
 
 import android.os.Bundle
@@ -34,6 +36,7 @@ import androidx.viewbinding.ViewBinding
  * VastVbVmFragment.
  *
  * Here is an example in kotlin:
+ *
  * ```kotlin
  * // Because using the ViewBinding,so just set the layoutId to 0.
  * class MainFragment(override val layoutId: Int = 0) : VastVbVmFragment<FragmentMainBinding,MainViewModel>() {
@@ -45,10 +48,9 @@ import androidx.viewbinding.ViewBinding
  *
  * @param VB [ViewBinding] of the fragment layout.
  * @param VM [ViewModel] of the fragment.
- *
  * @since 0.0.6
  */
-abstract class VastVbVmFragment<VB : ViewBinding, VM : ViewModel> : VastBaseFragment() {
+abstract class VastVbVmFragment<VB : ViewBinding, VM : ViewModel> : VastBaseVmFragment() {
 
     protected lateinit var mBinding: VB
     protected lateinit var mViewModel: VM
@@ -58,8 +60,9 @@ abstract class VastVbVmFragment<VB : ViewBinding, VM : ViewModel> : VastBaseFrag
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        vmBySelf = initVmBySelf()
         initDataBind()
-        mViewModel = createViewModel()
+        initVM()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -70,17 +73,27 @@ abstract class VastVbVmFragment<VB : ViewBinding, VM : ViewModel> : VastBaseFrag
 
     @Suppress("UNCHECKED_CAST")
     private fun initDataBind() {
-        mBinding = getVbClass(this,0,layoutInflater)
+        mBinding = getVbClass(this, 0, layoutInflater)
         if (dataBindView != null) {
             (dataBindView!!.parent as? ViewGroup)?.removeView(dataBindView)
         }
         dataBindView = mBinding.root
     }
 
-    private fun createViewModel(): VM {
-        // Fix https://github.com/SakurajimaMaii/VastUtils/issues/42
-        // Change this to requireActivity()
-        return ViewModelProvider(requireActivity()).get(getVmClass(this, 1))
+    private fun initVM() {
+        mViewModel = ViewModelProvider(
+            if (vmBySelf) this else requireActivity(),
+            object : ViewModelProvider.Factory {
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    return createViewModel(modelClass) as T
+                }
+            })[getVmClass(this, 1)]
     }
+
+    override fun createViewModel(modelClass: Class<out ViewModel>): ViewModel {
+        return modelClass.newInstance()
+    }
+
+    override fun initVmBySelf(): Boolean = false
 
 }

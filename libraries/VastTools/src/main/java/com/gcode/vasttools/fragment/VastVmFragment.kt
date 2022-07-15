@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("UNCHECKED_CAST")
+
 package com.gcode.vasttools.fragment
 
 import android.os.Bundle
@@ -33,6 +35,7 @@ import androidx.lifecycle.ViewModelProvider
  * VastVmActivity.
  *
  * Here is an example in kotlin:
+ *
  * ```kotlin
  * // Because don't using the ViewBinding,so just set the layoutId to layout id.
  * class MainFragment(override val layoutId: Int = R.layout.fragment_main) :VastVmFragment<MainViewModel>() {
@@ -43,10 +46,9 @@ import androidx.lifecycle.ViewModelProvider
  * ```
  *
  * @param VM [ViewModel] of the fragment.
- *
  * @since 0.0.6
  */
-abstract class VastVmFragment<VM : ViewModel> : VastBaseFragment() {
+abstract class VastVmFragment<VM : ViewModel> : VastBaseVmFragment() {
 
     protected lateinit var mViewModel: VM
 
@@ -55,7 +57,8 @@ abstract class VastVmFragment<VM : ViewModel> : VastBaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mViewModel = createViewModel()
+        vmBySelf = initVmBySelf()
+        initVM()
         return dataBindView ?: super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -64,10 +67,20 @@ abstract class VastVmFragment<VM : ViewModel> : VastBaseFragment() {
         initView(savedInstanceState)
     }
 
-    private fun createViewModel(): VM {
-        // Fix https://github.com/SakurajimaMaii/VastUtils/issues/42
-        // Change this to requireActivity()
-        return ViewModelProvider(requireActivity()).get(getVmClass(this, 0))
+    private fun initVM() {
+        mViewModel = ViewModelProvider(
+            if (vmBySelf) this else requireActivity(),
+            object : ViewModelProvider.Factory {
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    return createViewModel(modelClass) as T
+                }
+            })[getVmClass(this, 1)]
     }
+
+    override fun createViewModel(modelClass: Class<out ViewModel>): ViewModel {
+        return modelClass.newInstance()
+    }
+
+    override fun initVmBySelf(): Boolean = false
 
 }

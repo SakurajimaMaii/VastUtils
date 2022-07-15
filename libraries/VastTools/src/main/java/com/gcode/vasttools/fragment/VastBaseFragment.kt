@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("UNCHECKED_CAST")
+
 package com.gcode.vasttools.fragment
 
 import android.os.Bundle
@@ -23,9 +25,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
-import com.gcode.vasttools.activity.VastVbActivity
-import com.gcode.vasttools.activity.VastVbVmActivity
-import com.gcode.vasttools.activity.VastVmActivity
 import java.lang.reflect.ParameterizedType
 
 // Author: Vast Gui
@@ -67,7 +66,6 @@ sealed class VastBaseFragment : Fragment() {
 
     /**
      * @param savedInstanceState
-     *
      * @since 0.0.6
      */
     protected abstract fun initView(savedInstanceState: Bundle?)

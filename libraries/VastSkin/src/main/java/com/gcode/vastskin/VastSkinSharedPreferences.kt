@@ -38,8 +38,8 @@ internal object VastSkinSharedPreferences {
         }
     }
 
-    var skin: String?
-        get() = VastSkinManager.sharedPreferences.getString(THEME_PATH, null)
+    var skin: String
+        get() = VastSkinManager.sharedPreferences.getString(THEME_PATH, null) ?: ""
         set(skinPath) {
             VastSkinManager.sharedPreferences.edit().apply {
                 putString(THEME_PATH, skinPath)

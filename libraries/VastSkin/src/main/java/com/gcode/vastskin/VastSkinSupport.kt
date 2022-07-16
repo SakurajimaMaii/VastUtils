@@ -20,8 +20,21 @@ package com.gcode.vastskin
 // Email: guihy2019@gmail.com
 // Date: 2022/3/27 18:17
 
+
+/**
+ * If your custom view supports skinning, you need your
+ * custom view to implement [VastSkinSupport] in order to
+ * define resource replacement logic.
+ *
+ * @since 0.0.1
+ */
 interface VastSkinSupport {
 
+    /**
+     * Custom resource replacement logic.
+     *
+     * @since 0.0.1
+     */
     fun applySkin()
 
 }

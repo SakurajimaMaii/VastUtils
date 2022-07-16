@@ -17,30 +17,65 @@ package com.gcode.vastskin.utils
 
 import android.app.Activity
 import android.content.Context
+import com.gcode.vastskin.R
 import com.gcode.vastskin.utils.VastSkinResources.getColor
 
-object VastSkinUtils {
+internal object VastSkinUtils {
+
+    private val tag = this::class.java.simpleName
 
     private val APPCOMPAT_COLOR_PRIMARY_DARK_ATTRS = intArrayOf(
-        android.R.attr.colorPrimaryDark
+        R.attr.colorPrimaryDark
     )
     private val STATUS_BAR_COLOR_ATTRS = intArrayOf(
         android.R.attr.statusBarColor, android.R.attr.navigationBarColor
     )
 
-    fun getResId(context: Context, attrs: IntArray): IntArray {
+    /**
+     * Default resource id.
+     *
+     * @since 0.0.1
+     */
+    private val DEFAULT_RESOURCE_ID = 0
+
+    /**
+     * Returns the resource id corresponding to the attribute in attrs.
+     *
+     * If you declare the theme like this:
+     * ```xml
+     * <style name="VastSkin" parent="Theme.Material3.Light.NoActionBar">
+     *     <item name="colorPrimary">#0060A9</item>
+     * </style>
+     * ```
+     * when you use [getResourceId] like this:
+     * ```kotlin
+     * val resId = VastSkinUtils.getResourceId(view.context, intArrayOf(R.attr.colorPrimary))[0]
+     * ```
+     * The value of resId will be 0,So the correct way should be:
+     * ```xml
+     * <!-- Declare the color in color.xml-->
+     * <color name="surface">#D9E5F3</color>
+     * <!-- Declare the color in color.xml-->
+     * <style name="VastSkin" parent="Theme.Material3.Light.NoActionBar">
+     *     <item name="colorPrimary">@color/surface</item>
+     * </style>
+     * ```
+     * So that the [getResourceId] will return int value of `R.color.surface`
+     *
+     * @since 0.0.1
+     */
+    fun getResourceId(context: Context, attrs: IntArray): IntArray {
         val resIds = IntArray(attrs.size)
-        val a = context.obtainStyledAttributes(attrs)
+        val a = context.theme.obtainStyledAttributes(attrs)
         for (i in attrs.indices) {
-            resIds[i] = a.getResourceId(i, 0)
+            resIds[i] = a.getResourceId(i, DEFAULT_RESOURCE_ID)
         }
         a.recycle()
         return resIds
     }
 
     fun updateStatusBarColor(activity: Activity) {
-
-        val resIds = getResId(activity, STATUS_BAR_COLOR_ATTRS)
+        val resIds = getResourceId(activity, STATUS_BAR_COLOR_ATTRS)
         val statusBarColorResId = resIds[0]
         val navigationBarColor = resIds[1]
 
@@ -48,7 +83,7 @@ object VastSkinUtils {
             val color = getColor(statusBarColorResId)
             activity.window.statusBarColor = color
         } else {
-            val colorPrimaryDarkResId = getResId(activity, APPCOMPAT_COLOR_PRIMARY_DARK_ATTRS)[0]
+            val colorPrimaryDarkResId = getResourceId(activity, APPCOMPAT_COLOR_PRIMARY_DARK_ATTRS)[0]
             if (colorPrimaryDarkResId != 0) {
                 val color = getColor(colorPrimaryDarkResId)
                 activity.window.statusBarColor = color

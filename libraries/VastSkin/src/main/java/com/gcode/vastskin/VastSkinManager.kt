@@ -23,8 +23,9 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.AssetManager
 import android.content.res.Resources
-import android.text.TextUtils
+import com.gcode.vastskin.VastSkinManager.loadSkin
 import com.gcode.vastskin.utils.VastSkinResources
+import java.io.File
 import java.util.*
 
 // Author: Vast Gui
@@ -46,14 +47,35 @@ import java.util.*
  * VastSkinManager.loadSkin(null)
  * ```
  *
- * @since 0.0.6
+ * @since 0.0.1
  */
 object VastSkinManager : Observable() {
 
-    private lateinit var originalApplication:Application
-    private lateinit var skinActivityLifecycle: VastSkinActivityLifecycle
-    // Fix https://github.com/SakurajimaMaii/VastUtils/issues/39
+    /**
+     * The [SharedPreferences] of the app.
+     *
+     * @since 0.0.1
+     */
     internal lateinit var sharedPreferences:SharedPreferences
+
+    /**
+     * The application of your app.[originalApplication]
+     * will be initialized in [initVastThemeManager].
+     *
+     * @since 0.0.1
+     */
+    internal lateinit var originalApplication:Application
+
+    internal var themeId:Int = 0
+
+    /**
+     * The log tag of the [VastSkinManager].
+     *
+     * @since 0.0.1
+     */
+    private const val tag:String = "VastSkinManager"
+
+    private lateinit var skinActivityLifecycle: VastSkinActivityLifecycle
 
     /**
      * Initialization the [VastSkinManager].
@@ -61,10 +83,13 @@ object VastSkinManager : Observable() {
      * If [originalApplication] and [skinActivityLifecycle] is initialized,
      * when you call [initVastThemeManager],it will do nothing.
      */
-    fun initVastThemeManager(application:Application){
+    @JvmStatic
+    fun initVastThemeManager(application:Application,themeId:Int){
         if(!this::originalApplication.isInitialized and !this::skinActivityLifecycle.isInitialized){
+            this.themeId = themeId
             originalApplication = application
             VastSkinResources.initSkinResources(originalApplication)
+            // Init sharedPreferences
             sharedPreferences = application.getSharedPreferences(THEME_FILE, Context.MODE_PRIVATE)
             // Register the original application as Observer.
             skinActivityLifecycle = VastSkinActivityLifecycle(this)
@@ -75,44 +100,73 @@ object VastSkinManager : Observable() {
     }
 
     /**
-     * Get the skin and apply it.
+     * Loading the skin.
      *
-     * @param skinPath Theme path,if empty use default skin.
+     * @param skinPath skin path,if empty will use default skin.
+     * @param skinFileListener register a listener of the skin file.
+     * @since 0.0.1
      */
     @JvmStatic
-    fun loadSkin(skinPath: String?) {
-        if (TextUtils.isEmpty(skinPath)) {
-            VastSkinSharedPreferences.reset()
-            VastSkinResources.reset()
-        } else {
-            try {
-                // The resources of application.
-                val appResource = originalApplication.resources
-                // Create AssetManager and Resource by reflection.
-                val assetManager = AssetManager::class.java.newInstance()
-                // Resource path setting directory or zip.
-                val addAssetPath = assetManager.javaClass.getMethod(
-                    "addAssetPath",
-                    String::class.java
-                )
-                addAssetPath.invoke(assetManager, skinPath)
-                //Create Resources based on the current device display information
-                //and configuration (horizontal and vertical screen, language, etc.)
-                val themeResource =
-                    Resources(assetManager, appResource.displayMetrics, appResource.configuration)
-
-                //Get theme package
-                val mPm = originalApplication.packageManager
-                val info = mPm.getPackageArchiveInfo(skinPath!!, PackageManager.GET_ACTIVITIES)
-                val packageName = info!!.packageName
-                VastSkinResources.applySkin(themeResource, packageName)
-                VastSkinSharedPreferences.skin = skinPath
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+    @JvmOverloads
+    fun loadSkin(skinPath: String,skinFileListener: SkinFileListener? = null) {
+        if(!File(skinPath).exists()){
+            skinFileListener?.fileNoExists()
+            return
+        }
+        try {
+            // The resources of application.
+            val appResource = originalApplication.resources
+            // Create AssetManager and Resource by reflection.
+            val assetManager = AssetManager::class.java.newInstance()
+            // Resource path setting directory or zip.
+            val addAssetPath = assetManager.javaClass.getMethod(
+                "addAssetPath",
+                String::class.java
+            )
+            addAssetPath.invoke(assetManager, skinPath)
+            // Create Resources based on the current device display information
+            // and configuration (horizontal and vertical screen, language, etc.)
+            val themeResource =
+                Resources(assetManager, appResource.displayMetrics, appResource.configuration)
+            //Get theme package
+            val mPm = originalApplication.packageManager
+            val info = mPm.getPackageArchiveInfo(skinPath, PackageManager.GET_ACTIVITIES)
+            val packageName = info!!.packageName
+            VastSkinResources.applySkin(themeResource, packageName)
+            // Save the skin file path.
+            VastSkinSharedPreferences.skin = skinPath
+        } catch (e: Exception) {
+            skinFileListener?.fileLoadError(e)
+            e.printStackTrace()
         }
         setChanged()
         notifyObservers(this)
+    }
+
+    /**
+     * Loading the default skin.
+     *
+     * @since 0.0.1
+     */
+    @JvmStatic
+    fun resetSkin(){
+        VastSkinSharedPreferences.reset()
+        VastSkinResources.reset()
+        setChanged()
+        notifyObservers(this)
+    }
+
+    /**
+     * A listener of skin file.
+     *
+     * @since 0.0.1
+     */
+    interface SkinFileListener{
+
+        fun fileNoExists()
+
+        fun fileLoadError(e:Exception)
+
     }
 
 }

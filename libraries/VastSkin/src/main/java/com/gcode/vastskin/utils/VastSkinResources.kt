@@ -19,6 +19,7 @@ package com.gcode.vastskin.utils
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Resources
+import android.content.res.Resources.NotFoundException
 import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import androidx.core.content.res.ResourcesCompat
@@ -29,7 +30,14 @@ import androidx.core.content.res.ResourcesCompat
 // Description: Used to loading skin resource from original app or skin apk.
 
 object VastSkinResources {
+
     private var themePackageName: String? = null
+
+    /**
+     * If true, use default resources, otherwise use skin resources
+     *
+     * @since 0.0.1
+     */
     private var isDefaultTheme = true
 
     // The original resource of app.
@@ -51,7 +59,6 @@ object VastSkinResources {
     fun applySkin(resources: Resources?, pkgName: String?) {
         mThemeResources = resources
         themePackageName = pkgName
-        //Whether to use the default theme
         isDefaultTheme = TextUtils.isEmpty(pkgName) || resources == null
     }
 
@@ -118,13 +125,24 @@ object VastSkinResources {
     /**
      * Get string by [resId].
      *
-     * @since 0.0.9
+     * Because some strings may not be defined in the skin resource package,
+     * `mThemeResources.getString` will throw a [NotFoundException] exception
+     * during the execution process. At this time, the [getText] method will
+     * catch this exception and use the string resource defined in the original
+     * app as the return value.
+     *
+     * @since 0.0.1
      */
     fun getText(resId:Int):String{
         return if(isDefaultTheme){
             mAppResources.getString(resId)
         }else{
-            mThemeResources!!.getString(resId)
+            try{
+                val resIdInSkin = getIdentifier(resId)
+                mThemeResources!!.getString(resIdInSkin)
+            }catch (e:NotFoundException){
+                mAppResources.getString(resId)
+            }
         }
     }
 }

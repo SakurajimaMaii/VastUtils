@@ -19,14 +19,15 @@ package com.gcode.vastskin.model
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2022/3/30 20:00
-// Description: VastSkinPair is used to record the name and id of the attr that can be changed.
+// Description: VastSkinPair is used to store the name and id of the attr that can be changed.
 
 /**
- * VastSkinPair.
+ * [VastSkinPair] is used to store the name and resource
+ * id of the attribute that can be changed.
  *
  * @property attributeName attribute name.
- * @property resId resource id.
+ * @property resourceId resource id of the attribute.
  *
- * @since 0.0.6
+ * @since 0.0.1
  */
-internal class VastSkinPair(var attributeName: String, var resId: Int)
+internal class VastSkinPair(var attributeName: String, var resourceId: Int)

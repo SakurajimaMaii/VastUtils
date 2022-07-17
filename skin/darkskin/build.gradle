@@ -13,10 +13,10 @@ android {
             keyPassword myKeyPassword
         }
     }
-    namespace 'com.gcode.vastutils'
+    namespace 'com.gcode.vastutilsjava'
     compileSdkVersion Versions.compile_sdk_version
     defaultConfig {
-        applicationId "com.gcode.vastutils"
+        applicationId "com.gcode.vastutilsjava"
         minSdkVersion Versions.min_sdk_version
         targetSdkVersion Versions.target_sdk_version
         versionCode Versions.version_code

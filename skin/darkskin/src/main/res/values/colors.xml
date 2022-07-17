@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2022 VastGui
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,17 +15,34 @@
   -->
 
 <resources>
-    <!-- Default Dark color. -->
-    <color name="vast_skin_primary">#FFBB86FC</color>
-    <color name="vast_skin_on_primary">#FF000000</color>
-    <color name="vast_skin_primary_variant">#FF3700B3</color>
-    <color name="vast_skin_secondary">#FF03DAC6</color>
-    <color name="vast_skin_on_secondary">#FF000000</color>
-    <color name="vast_skin_secondary_variant">#FF03DAC6</color>
-    <color name="vast_skin_surface">#FF121212</color>
-    <color name="vast_skin_on_surface">#FFFFFFFF</color>
-    <color name="vast_skin_background">#FF121212</color>
-    <color name="vast_skin_on_background">#FFFFFFFF</color>
-    <color name="vast_skin_error">#FFCF6679</color>
-    <color name="vast_skin_on_error">#FF000000</color>
+    <color name="colorPrimary">#6750A4</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorPrimaryContainer">#EADDFF</color>
+    <color name="colorOnPrimaryContainer">#21005D</color>
+    <color name="colorSecondary">#625B71</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorSecondaryContainer">#E8DEF8</color>
+    <color name="colorOnSecondaryContainer">#1D192B</color>
+    <color name="colorTertiary">#7D5260</color>
+    <color name="colorOnTertiary">#FFFFFF</color>
+    <color name="colorTertiaryContainer">#FFD8E4</color>
+    <color name="colorOnTertiaryContainer">#31111D</color>
+    <color name="colorError">#B3261E</color>
+    <color name="colorOnError">#FFFFFF</color>
+    <color name="colorErrorContainer">#F9DEDC</color>
+    <color name="colorOnErrorContainer">#410E0B</color>
+    <color name="colorBackground">#FFFBFE</color>
+    <color name="colorOnBackground">#1C1B1F</color>
+    <color name="colorSurface">#FFFBFE</color>
+    <color name="colorOnSurface">#1C1B1F</color>
+    <color name="colorSurfaceVariant">#79747E</color>
+    <color name="colorOnSurfaceVariant">#E7E0EC</color>
+    <color name="colorOutline">#49454F</color>
+
+    <color name="colorSurface1">#F0F4FB</color>
+    <color name="colorSurface2">#E8EFF7</color>
+    <color name="colorSurface3">#E0EAF4</color>
+    <color name="colorSurface4">#DEE8F3</color>
+    <color name="colorSurface5">#D9E5F2</color>
+    <color name="colorSurface6">#FFFFFF</color>
 </resources>

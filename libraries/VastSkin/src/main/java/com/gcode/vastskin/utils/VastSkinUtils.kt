@@ -25,7 +25,7 @@ internal object VastSkinUtils {
     private val tag = this::class.java.simpleName
 
     private val APPCOMPAT_COLOR_PRIMARY_DARK_ATTRS = intArrayOf(
-        R.attr.colorPrimaryDark
+        android.R.attr.colorPrimaryDark
     )
     private val STATUS_BAR_COLOR_ATTRS = intArrayOf(
         android.R.attr.statusBarColor, android.R.attr.navigationBarColor
@@ -36,7 +36,7 @@ internal object VastSkinUtils {
      *
      * @since 0.0.1
      */
-    private val DEFAULT_RESOURCE_ID = 0
+    private const val DEFAULT_RESOURCE_ID = 0
 
     /**
      * Returns the resource id corresponding to the attribute in attrs.

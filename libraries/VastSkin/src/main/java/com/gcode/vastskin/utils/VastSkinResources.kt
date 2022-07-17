@@ -31,7 +31,7 @@ import androidx.core.content.res.ResourcesCompat
 
 object VastSkinResources {
 
-    private var themePackageName: String? = null
+    private var mSkinPackageName: String? = null
 
     /**
      * If true, use default resources, otherwise use skin resources
@@ -40,31 +40,46 @@ object VastSkinResources {
      */
     private var isDefaultTheme = true
 
-    // The original resource of app.
+    /**
+     * The original [Resources] of app.
+     *
+     * @since 0.0.1
+     */
     private lateinit var mAppResources: Resources
 
-    // Theme package resource
-    private var mThemeResources: Resources? = null
+    /**
+     * The [Resources] of skin apk.
+     *
+     * @since 0.0.1
+     */
+    private var mSkinResources: Resources? = null
 
-    fun initSkinResources(context: Context) {
+    internal fun initSkinResources(context: Context) {
         mAppResources = context.resources
     }
 
-    fun reset() {
-        mThemeResources = null
-        themePackageName = ""
+    internal fun reset() {
+        mSkinResources = null
+        mSkinPackageName = ""
         isDefaultTheme = true
     }
 
-    fun applySkin(resources: Resources?, pkgName: String?) {
-        mThemeResources = resources
-        themePackageName = pkgName
+    /**
+     * Update skin apk resource and package name.
+     *
+     * @since 0.0.1
+     */
+    internal fun update(resources: Resources?, pkgName: String?) {
+        mSkinResources = resources
+        mSkinPackageName = pkgName
         isDefaultTheme = TextUtils.isEmpty(pkgName) || resources == null
     }
 
     /**
-     * 1.Return the entry name for a given resource identifier. 2.Return
-     * the type name for a given resource identifier.
+     * Obtain the resource name and resource type corresponding to the id through
+     * the resource of the app, and find the resource id matching the skin package.
+     *
+     * @since 0.0.1
      */
     private fun getIdentifier(resId: Int): Int {
         if (isDefaultTheme) {
@@ -72,53 +87,84 @@ object VastSkinResources {
         }
         val resName = mAppResources.getResourceEntryName(resId)
         val resType = mAppResources.getResourceTypeName(resId)
-        return mThemeResources!!.getIdentifier(resName, resType, themePackageName)
+        return mSkinResources!!.getIdentifier(resName, resType, mSkinPackageName)
     }
 
     /**
-     * Enter the [resId] of the main APP and go to the skin APK file to
-     * find the color value of the corresponding [resId].
+     * Get color int by [resId].
+     *
+     * If [isDefaultTheme] is true, it will return a color int from
+     * original app by [resId]. Otherwise, it will first get the resource
+     * id in skin apk by [getIdentifier], if resId is a valid id, it will
+     * get the resource from skin apk. Otherwise get resource from original app.
+     *
+     * @since 0.0.1
      */
-    fun getColor(resId: Int): Int {
+    internal fun getColor(resId: Int): Int {
         if (isDefaultTheme) {
             return mAppResources.getColor(resId, null)
         }
         val skinId = getIdentifier(resId)
         return if (skinId == 0) {
             mAppResources.getColor(resId, null)
-        } else mThemeResources!!.getColor(skinId, null)
+        } else mSkinResources!!.getColor(skinId, null)
     }
 
-    fun getColorStateList(resId: Int): ColorStateList {
+    /**
+     * Get color state list resource by [resId].
+     *
+     * If [isDefaultTheme] is true, it will return a [ColorStateList] from
+     * original app by [resId]. Otherwise, it will first get the resource
+     * id in skin apk by [getIdentifier], if resId is a valid id, it will
+     * get the resource from skin apk. Otherwise get resource from original app.
+     *
+     * @since 0.0.1
+     */
+    internal fun getColorStateList(resId: Int): ColorStateList {
         if (isDefaultTheme) {
             return mAppResources.getColorStateList(resId, null)
         }
         val skinId = getIdentifier(resId)
         return if (skinId == 0) {
             mAppResources.getColorStateList(resId, null)
-        } else mThemeResources!!.getColorStateList(skinId, null)
+        } else mSkinResources!!.getColorStateList(skinId, null)
     }
 
-    fun getDrawable(resId: Int): Drawable? {
+    /**
+     * Get drawable resource by [resId].
+     *
+     * If [isDefaultTheme] is true, it will return a [Drawable] from
+     * original app by [resId]. Otherwise, it will first get the resource
+     * id in skin apk by [getIdentifier], if resId is a valid id, it will
+     * get the resource from skin apk. Otherwise get resource from original app.
+     *
+     * @since 0.0.1
+     */
+    internal fun getDrawable(resId: Int): Drawable? {
         if (isDefaultTheme) {
             return ResourcesCompat.getDrawable(mAppResources, resId, null)
         }
-        //Obtain the resource name and resource type corresponding to the id through
-        //the resource of the app, and find the resource id matching the skin package.
-        val skinId = getIdentifier(resId)
-        return if (skinId == 0) {
+        val resId = getIdentifier(resId)
+        return if (resId == 0) {
             ResourcesCompat.getDrawable(mAppResources, resId, null)
-        } else ResourcesCompat.getDrawable(mThemeResources!!, skinId, null)
+        } else ResourcesCompat.getDrawable(mSkinResources!!, resId, null)
     }
 
-    /** @return Maybe color or drawable. */
-    fun getBackground(resId: Int): Any? {
-        val resourceTypeName = mAppResources.getResourceTypeName(resId)
-        return if ("color" == resourceTypeName) {
-            getColor(resId)
-        } else {
-            // drawable
-            getDrawable(resId)
+    /**
+     * Get background src by [resId].
+     *
+     * [getBackground] will first determine whether the resource type,
+     * if the type of resource is color, it will use [getColor] to get
+     * the color resource. Otherwise, it will use [getDrawable] to get
+     * drawable resource.
+     *
+     * @since 0.0.1
+     */
+    internal fun getBackground(resId: Int): Any? {
+        return when(mAppResources.getResourceTypeName(resId)){
+            "color" -> getColor(resId)
+            "drawable" -> getDrawable(resId)
+            else -> null
         }
     }
 
@@ -133,13 +179,13 @@ object VastSkinResources {
      *
      * @since 0.0.1
      */
-    fun getText(resId:Int):String{
+    internal fun getText(resId:Int):String{
         return if(isDefaultTheme){
             mAppResources.getString(resId)
         }else{
             try{
                 val resIdInSkin = getIdentifier(resId)
-                mThemeResources!!.getString(resIdInSkin)
+                mSkinResources!!.getString(resIdInSkin)
             }catch (e:NotFoundException){
                 mAppResources.getString(resId)
             }

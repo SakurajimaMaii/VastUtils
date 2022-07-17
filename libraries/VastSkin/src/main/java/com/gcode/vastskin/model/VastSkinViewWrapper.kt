@@ -40,7 +40,7 @@ import com.gcode.vastskin.utils.VastSkinResources
  * @property view view which need to change the attributes.
  * @property skinPairs list of [VastSkinPair].
  *
- * @since 0.0.6
+ * @since 0.0.1
  */
 internal class VastSkinViewWrapper(private var view: View, private var skinPairs: List<VastSkinPair>) {
 
@@ -69,7 +69,6 @@ internal class VastSkinViewWrapper(private var view: View, private var skinPairs
                         val background: Any? =
                             VastSkinResources.getBackground(skinPair.resourceId)
                         if (background is Int) {
-                            Log.d(tag,view::class.java.simpleName)
                             val colorStateList = ColorStateList.valueOf(background)
                             view.backgroundTintList = colorStateList
                         }

@@ -30,4 +30,4 @@ package com.gcode.vastskin.model
  *
  * @since 0.0.1
  */
-internal class VastSkinPair(var attributeName: String, var resourceId: Int)
+class VastSkinPair(internal var attributeName: String,internal var resourceId: Int)

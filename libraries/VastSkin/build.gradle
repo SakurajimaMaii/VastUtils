@@ -54,6 +54,21 @@ dependencies {
     rootProject.AllModuleDependenciesKt(dependencies)
 }
 
+// 打包生成class.jar
+def JAR_PATH = "build/intermediates/runtime_library_classes_jar/release/" // 待打包文件的位置
+def JAR_NAME = "classes.jar" // 待打包文件的名字
+def DESTINATION_PATH = "libs" // 生成jar包的位置
+def NEW_NAME = "VastSkin_0.0.1_Cancey.jar" // 生成jar包的名字
+
+task makeJar(type: Copy) {
+    delete DESTINATION_PATH + NEW_NAME
+    from(JAR_PATH + JAR_NAME)
+    into(DESTINATION_PATH)
+    rename(JAR_NAME, NEW_NAME)
+}
+
+makeJar.dependsOn(build)
+
 ext {
     PUBLISH_GROUP_ID = "io.github.sakurajimamaii"
     PUBLISH_ARTIFACT_ID = 'VastSkin'

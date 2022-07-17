@@ -65,7 +65,7 @@ abstract class VastVmFragment<VM : ViewModel> : VastBaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView(savedInstanceState)
+        initView(view, savedInstanceState)
     }
 
     private fun initVM() {

@@ -33,15 +33,12 @@ import java.lang.reflect.ParameterizedType
 // Date: 2022/3/10 16:04
 // Description: VastBaseFragment.
 
-/**
- * @since 0.0.6
- */
+/** @since 0.0.6 */
 sealed class VastBaseFragment : Fragment() {
 
     /**
-     * When you are not using view binding, you should
-     * set [layoutId] to the corresponding view resource
-     * id of this Fragment.
+     * When you are not using view binding, you should set [layoutId] to
+     * the corresponding view resource id of this Fragment.
      *
      * @since 0.0.6
      */
@@ -62,7 +59,7 @@ sealed class VastBaseFragment : Fragment() {
      *
      * @since 0.0.9
      */
-    protected val defaultTag:String
+    protected val defaultTag: String
         get() = this.javaClass.simpleName
 
     /**
@@ -70,37 +67,40 @@ sealed class VastBaseFragment : Fragment() {
      * is retained by itself. When you want the ViewModel to be retained
      * by its associated Activity, please set [vmBySelf] to false.
      *
-     * You can only set [vmBySelf] through [initVmBySelf], the default value
-     * of [vmBySelf] is false.
+     * You can only set [vmBySelf] through [initVmBySelf], the default
+     * value of [vmBySelf] is false.
      *
      * @since 0.0.9
      */
-    protected var vmBySelf:Boolean by NotNUllSingleVar()
+    protected var vmBySelf: Boolean by NotNUllSingleVar()
 
     /**
      * @param savedInstanceState
      * @since 0.0.6
      */
-    protected abstract fun initView(savedInstanceState: Bundle?)
+    protected abstract fun initView(view: View, savedInstanceState: Bundle?)
 
     /**
      * Initialize the [vmBySelf].
      *
      * @since 0.0.9
      */
-    protected abstract fun initVmBySelf():Boolean
+    protected abstract fun initVmBySelf(): Boolean
 
     /**
      * Return a [ViewModel].
      *
-     * If you want to initialization a [ViewModel] with parameters,just do like this:
+     * If you want to initialization a [ViewModel] with parameters,just
+     * do like this:
+     *
      * ```kotlin
      * override fun createViewModel(modelClass: Class<out ViewModel>): ViewModel {
      *      return MainSharedVM("MyVM")
      * }
      * ```
      *
-     * @param modelClass by default, Fragment will get the [ViewModel] by `modelClass.newInstance()`.
+     * @param modelClass by default, Fragment will get the [ViewModel]
+     *     by `modelClass.newInstance()`.
      * @return the [ViewModel] of the Fragment.
      * @since 0.0.9
      */
@@ -111,9 +111,9 @@ sealed class VastBaseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return if(null == dataBindView){
+        return if (null == dataBindView) {
             inflater.inflate(layoutId, container, false)
-        }else{
+        } else {
             dataBindView
         }
     }
@@ -123,7 +123,7 @@ sealed class VastBaseFragment : Fragment() {
      *
      * @since 0.0.6
      */
-    internal fun <VB> getVbClass(obj: Any, index: Int,layoutInflater: LayoutInflater): VB {
+    internal fun <VB> getVbClass(obj: Any, index: Int, layoutInflater: LayoutInflater): VB {
         val superClass = obj.javaClass.genericSuperclass
         val clazz = (superClass as ParameterizedType).actualTypeArguments[index] as Class<*>
         val method = clazz.getMethod("inflate", LayoutInflater::class.java)

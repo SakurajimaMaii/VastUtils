@@ -69,7 +69,7 @@ abstract class VastVbVmFragment<VB : ViewBinding, VM : ViewModel> : VastBaseFrag
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView(savedInstanceState)
+        initView(view, savedInstanceState)
     }
 
     @Suppress("UNCHECKED_CAST")

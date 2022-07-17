@@ -16,6 +16,7 @@
 
 package com.gcode.vastskin
 
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
@@ -39,6 +40,8 @@ internal class VastSkinAttribute {
      */
     private val mSkinViews: MutableList<VastSkinViewWrapper> = ArrayList()
 
+    private val DEFAULT_EORROR_RESOURCE_ID = -1
+
     /**
      * The [look] is called in [VastSkinLayoutInflaterFactory.onCreateView],
      * This method will first get the view and it's attrs. After that, the
@@ -57,23 +60,27 @@ internal class VastSkinAttribute {
             val attributeName = attrs.getAttributeName(i)
             if (ChangeablyAttrs.contains(attributeName)) {
                 val attributeValue = attrs.getAttributeValue(i)
-                // If the color start with "#",for example "#000000",
-                // It can not be change.
-                if (attributeValue.startsWith("#")) {
-                    continue
-                }
-                // If the attribute resource start with "?",
-                // for example "?primaryColor".
-                val resId: Int = if (attributeValue.startsWith("?")) {
-                    val attrId = attributeValue.substring(1).toInt()
-                    VastSkinUtils.getResourceId(view.context, intArrayOf(attrId))[0]
-                } else {
+                var resId:Int = DEFAULT_EORROR_RESOURCE_ID
+                when{
+                    TextUtils.equals(attributeValue,"") -> continue
+                    // If the color start with "#",for example "#000000",
+                    // It can not be change.
+                    attributeValue.startsWith("#") -> continue
+                    // If the attribute resource start with "?",
+                    // for example "?primaryColor".
+                    attributeValue.startsWith("?") -> {
+                        val attrId = attributeValue.substring(1).toInt()
+                        resId = VastSkinUtils.getResourceId(view.context, intArrayOf(attrId))[0]
+                    }
                     // If the attribute resource start with "@",
                     // for example "@string/zh_change_theme".
-                    attributeValue.substring(1).toInt()
+                    attributeValue.startsWith("@") -> {
+                        resId = attributeValue.substring(1).toInt()
+                    }
                 }
-                Log.d(tag,"${view::class.java} $attributeName $attributeValue $resId")
-                mSkinPairs.add(VastSkinPair(attributeName, resId))
+                if(DEFAULT_EORROR_RESOURCE_ID != resId){
+                    mSkinPairs.add(VastSkinPair(attributeName, resId))
+                }
             }
         }
         if (mSkinPairs.isNotEmpty() || view is VastSkinSupport) {

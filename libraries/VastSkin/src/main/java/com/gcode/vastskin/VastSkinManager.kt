@@ -18,8 +18,6 @@
 package com.gcode.vastskin
 
 import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.AssetManager
 import android.content.res.Resources
@@ -52,21 +50,12 @@ import java.util.*
 object VastSkinManager : Observable() {
 
     /**
-     * The [SharedPreferences] of the app.
-     *
-     * @since 0.0.1
-     */
-    internal lateinit var sharedPreferences:SharedPreferences
-
-    /**
      * The application of your app.[originalApplication]
      * will be initialized in [initVastThemeManager].
      *
      * @since 0.0.1
      */
-    internal lateinit var originalApplication:Application
-
-    internal var themeId:Int = 0
+    private lateinit var originalApplication:Application
 
     /**
      * The log tag of the [VastSkinManager].
@@ -84,13 +73,11 @@ object VastSkinManager : Observable() {
      * when you call [initVastThemeManager],it will do nothing.
      */
     @JvmStatic
-    fun initVastThemeManager(application:Application,themeId:Int){
+    fun initVastThemeManager(application: Application){
         if(!this::originalApplication.isInitialized and !this::skinActivityLifecycle.isInitialized){
-            this.themeId = themeId
             originalApplication = application
             VastSkinResources.initSkinResources(originalApplication)
-            // Init sharedPreferences
-            sharedPreferences = application.getSharedPreferences(THEME_FILE, Context.MODE_PRIVATE)
+            VastSkinSharedPreferences.initSkinSharedPreferences(originalApplication)
             // Register the original application as Observer.
             skinActivityLifecycle = VastSkinActivityLifecycle(this)
             originalApplication.registerActivityLifecycleCallbacks(skinActivityLifecycle)
@@ -132,7 +119,7 @@ object VastSkinManager : Observable() {
             val mPm = originalApplication.packageManager
             val info = mPm.getPackageArchiveInfo(skinPath, PackageManager.GET_ACTIVITIES)
             val packageName = info!!.packageName
-            VastSkinResources.applySkin(themeResource, packageName)
+            VastSkinResources.update(themeResource, packageName)
             // Save the skin file path.
             VastSkinSharedPreferences.skin = skinPath
         } catch (e: Exception) {

@@ -16,6 +16,8 @@
 
 package com.gcode.vastskin
 
+import android.app.Application
+import android.content.Context
 import android.content.SharedPreferences
 
 // Author: Vast Gui
@@ -25,23 +27,45 @@ import android.content.SharedPreferences
 // Documentation:
 
 /**
- * VastSkinSharedPreferences is used to get the skin path from [SharedPreferences]
+ * [VastSkinSharedPreferences] is used to
+ * store the skin path in [SharedPreferences]
  *
- * @since 0.0.6
+ * @since 0.0.1
  */
-internal object VastSkinSharedPreferences {
+object VastSkinSharedPreferences {
 
-    fun reset() {
-        VastSkinManager.sharedPreferences.edit().apply {
+    /**
+     * The [SharedPreferences] of the skin.
+     *
+     * @since 0.0.1
+     */
+    private lateinit var skinSharedPreferences:SharedPreferences
+
+    internal fun initSkinSharedPreferences(application: Application){
+        skinSharedPreferences = application.getSharedPreferences(THEME_FILE, Context.MODE_PRIVATE)
+    }
+
+    /**
+     * Remove file path from [skinSharedPreferences].
+     *
+     * @since 0.0.1
+     */
+    internal fun reset() {
+        skinSharedPreferences.edit().apply {
             remove(THEME_PATH)
             apply()
         }
     }
 
-    var skin: String
-        get() = VastSkinManager.sharedPreferences.getString(THEME_PATH, null) ?: ""
+    /**
+     * Get skin file path from [skinSharedPreferences].
+     *
+     * @since 0.0.1
+     */
+    internal var skin: String
+        get() = skinSharedPreferences.getString(THEME_PATH, null) ?: ""
         set(skinPath) {
-            VastSkinManager.sharedPreferences.edit().apply {
+            skinSharedPreferences.edit().apply {
                 putString(THEME_PATH, skinPath)
                 apply()
             }
